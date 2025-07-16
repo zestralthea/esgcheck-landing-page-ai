@@ -4,6 +4,7 @@ import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ArrowRight } from "lucide-react";
+import { supabase } from "@/integrations/supabase/client";
 
 export default function WaitlistForm() {
   const [formData, setFormData] = useState({
@@ -12,24 +13,58 @@ export default function WaitlistForm() {
     company: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setIsLoading(true);
     
-    // Simulate form submission
-    toast({
-      title: "Welcome to the waitlist!",
-      description: "We'll notify you when ESGCheck is ready for early access.",
-    });
-    
-    setIsSubmitted(true);
-    
-    // Reset form after 3 seconds
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", company: "" });
-    }, 3000);
+    try {
+      const { error } = await supabase
+        .from('waitlist')
+        .insert([
+          {
+            name: formData.name,
+            email: formData.email,
+            company: formData.company
+          }
+        ]);
+
+      if (error) {
+        // Handle duplicate email error specifically
+        if (error.code === '23505') {
+          toast({
+            title: "Already on the waitlist!",
+            description: "This email is already registered. We'll be in touch soon!",
+          });
+        } else {
+          throw error;
+        }
+      } else {
+        toast({
+          title: "Welcome to the waitlist!",
+          description: "We'll notify you when ESGCheck is ready for early access.",
+        });
+      }
+      
+      setIsSubmitted(true);
+      
+      // Reset form after 3 seconds
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({ name: "", email: "", company: "" });
+      }, 3000);
+    } catch (error) {
+      console.error('Error adding to waitlist:', error);
+      toast({
+        title: "Something went wrong",
+        description: "Please try again later or contact support.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -90,9 +125,9 @@ export default function WaitlistForm() {
                     required
                     className="h-12"
                   />
-                  <Button type="submit" variant="hero" size="lg" className="w-full group">
-                    Join Waitlist
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading}>
+                    {isLoading ? "Joining..." : "Join Waitlist"}
+                    {!isLoading && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
                   <p className="text-sm text-muted-foreground">
                     By joining, you agree to receive updates about ESGCheck. 
