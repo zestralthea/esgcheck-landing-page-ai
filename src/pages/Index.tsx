@@ -4,8 +4,12 @@ import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
+import WaitlistModal from "@/components/WaitlistModal";
+import { WaitlistModalProvider, useWaitlistModal } from "@/hooks/useWaitlistModal";
 
-const Index = () => {
+function IndexContent() {
+  const { isOpen, closeModal } = useWaitlistModal();
+  
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -14,7 +18,16 @@ const Index = () => {
       <HowItWorks />
       <WaitlistForm />
       <Footer />
+      <WaitlistModal isOpen={isOpen} onClose={closeModal} />
     </div>
+  );
+}
+
+const Index = () => {
+  return (
+    <WaitlistModalProvider>
+      <IndexContent />
+    </WaitlistModalProvider>
   );
 };
 

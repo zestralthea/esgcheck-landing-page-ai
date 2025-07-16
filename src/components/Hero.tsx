@@ -1,8 +1,11 @@
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, FileText, BarChart3, Shield } from "lucide-react";
+import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 
 export default function Hero() {
+  const { openModal } = useWaitlistModal();
+  
   return (
     <section className="py-20 bg-gradient-dark relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-success/5"></div>
@@ -24,7 +27,7 @@ export default function Hero() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="premium" size="lg" className="group">
+              <Button variant="premium" size="lg" className="group" onClick={openModal}>
                 Join the Waitlist
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>

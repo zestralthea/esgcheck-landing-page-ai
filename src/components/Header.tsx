@@ -1,7 +1,10 @@
 import { Button } from "@/components/ui/button";
 import { Leaf } from "lucide-react";
+import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 
 export default function Header() {
+  const { openModal } = useWaitlistModal();
+  
   return (
     <header className="border-b border-border bg-gradient-dark backdrop-blur supports-[backdrop-filter]:bg-gradient-dark/90 sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
@@ -24,7 +27,7 @@ export default function Header() {
           </a>
         </nav>
         
-        <Button variant="hero" size="sm">
+        <Button variant="hero" size="sm" onClick={openModal}>
           Join Waitlist
         </Button>
       </div>
