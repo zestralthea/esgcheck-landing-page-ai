@@ -4,8 +4,9 @@ import { ArrowRight, FileText, BarChart3, Shield } from "lucide-react";
 
 export default function Hero() {
   return (
-    <section className="py-20 bg-gradient-accent">
-      <div className="container mx-auto px-4">
+    <section className="py-20 bg-gradient-dark relative overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-success/5"></div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
@@ -23,7 +24,7 @@ export default function Hero() {
             </div>
             
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button variant="hero" size="lg" className="group">
+              <Button variant="premium" size="lg" className="group">
                 Join the Waitlist
                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
               </Button>
@@ -45,7 +46,7 @@ export default function Hero() {
           </div>
           
           <div className="lg:pl-8 animate-slide-up">
-            <Card className="p-8 shadow-elegant bg-card border-0">
+            <Card className="p-8 shadow-premium bg-gradient-card border border-border/20 backdrop-blur">
               <div className="space-y-6">
                 <div className="text-center space-y-2">
                   <div className="w-12 h-12 bg-gradient-primary rounded-lg mx-auto flex items-center justify-center">

@@ -3,7 +3,7 @@ import { Leaf } from "lucide-react";
 
 export default function Header() {
   return (
-    <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
+    <header className="border-b border-border bg-gradient-dark backdrop-blur supports-[backdrop-filter]:bg-gradient-dark/90 sticky top-0 z-50">
       <div className="container mx-auto px-4 h-16 flex items-center justify-between">
         <div className="flex items-center space-x-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gradient-primary rounded-lg">

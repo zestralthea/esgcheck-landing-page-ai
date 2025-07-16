@@ -36,7 +36,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-20 bg-background">
+    <section id="features" className="py-20 bg-gradient-accent">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -50,9 +50,9 @@ export default function Features() {
         
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
-            <Card key={index} className="border-0 shadow-card hover:shadow-elegant transition-shadow duration-300">
+            <Card key={index} className="border border-border/20 shadow-premium hover:shadow-glow bg-gradient-card backdrop-blur transition-all duration-500 hover:scale-105 group">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4">
+                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300">
                   <feature.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <CardTitle className="text-xl">{feature.title}</CardTitle>

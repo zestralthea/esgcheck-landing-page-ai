@@ -21,7 +21,7 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section id="how-it-works" className="py-20 bg-gradient-accent">
+    <section id="how-it-works" className="py-20 bg-gradient-dark relative overflow-hidden">
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
@@ -36,7 +36,7 @@ export default function HowItWorks() {
           <div className="grid md:grid-cols-3 gap-8 md:gap-4">
             {steps.map((step, index) => (
               <div key={index} className="relative">
-                <Card className="text-center p-8 border-0 shadow-card">
+                <Card className="text-center p-8 border border-border/20 shadow-premium bg-gradient-card backdrop-blur hover:shadow-glow transition-all duration-500">
                   <CardContent className="space-y-4">
                     <div className="w-16 h-16 bg-gradient-primary rounded-full flex items-center justify-center mx-auto">
                       <step.icon className="h-8 w-8 text-primary-foreground" />

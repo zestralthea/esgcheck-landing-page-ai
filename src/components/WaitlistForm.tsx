@@ -40,7 +40,7 @@ export default function WaitlistForm() {
   };
 
   return (
-    <section id="waitlist" className="py-20 bg-background">
+    <section id="waitlist" className="py-20 bg-gradient-accent relative">
       <div className="container mx-auto px-4">
         <div className="max-w-2xl mx-auto text-center">
           <div className="space-y-4 mb-12">
@@ -53,7 +53,7 @@ export default function WaitlistForm() {
             </p>
           </div>
           
-          <Card className="border-0 shadow-elegant">
+          <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
               <CardTitle className="text-2xl">Request Early Access</CardTitle>
               <CardDescription>
