@@ -2,12 +2,22 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { ArrowRight, FileText, BarChart3, Shield } from "lucide-react";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
+import heroVideoBg from "@/assets/hero-video-bg.jpg";
 
 export default function Hero() {
   const { openModal } = useWaitlistModal();
   
   return (
     <section className="py-20 bg-gradient-dark relative overflow-hidden">
+      {/* Video Background */}
+      <div className="absolute inset-0">
+        <img 
+          src={heroVideoBg}
+          alt="Forest and workplace environment"
+          className="w-full h-full object-cover opacity-30"
+        />
+        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/40 to-background/80"></div>
+      </div>
       <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-success/5"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
