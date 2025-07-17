@@ -108,6 +108,14 @@ export default {
 						opacity: '1',
 						transform: 'translateY(0)'
 					}
+				},
+				'pan': {
+					'0%': {
+						transform: 'scale(1.05) translateX(-2%)'
+					},
+					'100%': {
+						transform: 'scale(1.1) translateX(2%)'
+					}
 				}
 			},
 			animation: {

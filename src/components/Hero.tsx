@@ -14,11 +14,11 @@ export default function Hero() {
         <img 
           src={heroVideoBg}
           alt="Forest and workplace environment"
-          className="w-full h-full object-cover opacity-30"
+          className="w-full h-full object-cover opacity-60 animate-[pan_20s_ease-in-out_infinite_alternate]"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/40 to-background/80"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-background/30 via-background/10 to-background/30"></div>
       </div>
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-success/5"></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/3 via-transparent to-success/3"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-8 animate-fade-in">
