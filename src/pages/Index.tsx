@@ -5,9 +5,9 @@ import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
 import WaitlistModal from "@/components/WaitlistModal";
-import { WaitlistModalProvider, useWaitlistModal } from "@/hooks/useWaitlistModal";
+import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 
-function IndexContent() {
+const Index = () => {
   const { isOpen, closeModal } = useWaitlistModal();
   
   return (
@@ -20,14 +20,6 @@ function IndexContent() {
       <Footer />
       <WaitlistModal isOpen={isOpen} onClose={closeModal} />
     </div>
-  );
-}
-
-const Index = () => {
-  return (
-    <WaitlistModalProvider>
-      <IndexContent />
-    </WaitlistModalProvider>
   );
 };
 
