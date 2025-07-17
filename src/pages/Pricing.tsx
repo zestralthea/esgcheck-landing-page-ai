@@ -1,14 +1,17 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Switch } from "@/components/ui/switch";
 import { CheckCircle, X } from "lucide-react";
 
 const plans = [
   {
     name: "Pay Per Report",
-    price: "$99",
+    monthlyPrice: 99,
+    annualPrice: 99,
     period: "per report",
     description: "Perfect for occasional compliance checks",
     features: [
@@ -24,11 +27,13 @@ const plans = [
       "No custom frameworks"
     ],
     popular: false,
-    cta: "Start Analysis"
+    cta: "Start Analysis",
+    isPerReport: true
   },
   {
     name: "Professional",
-    price: "$299",
+    monthlyPrice: 299,
+    annualPrice: 239, // 20% discount
     period: "per month",
     description: "Continuous compliance monitoring for growing businesses",
     features: [
@@ -46,11 +51,13 @@ const plans = [
       "No white-labeling"
     ],
     popular: true,
-    cta: "Start Free Trial"
+    cta: "Start Free Trial",
+    isPerReport: false
   },
   {
     name: "Enterprise",
-    price: "Custom",
+    monthlyPrice: null,
+    annualPrice: null,
     period: "contact us",
     description: "Complete ESG compliance solution for large organizations",
     features: [
@@ -67,13 +74,15 @@ const plans = [
     ],
     limitations: [],
     popular: false,
-    cta: "Contact Sales"
+    cta: "Contact Sales",
+    isPerReport: false
   }
 ];
 
 const annualDiscount = 20;
 
 export default function Pricing() {
+  const [isAnnual, setIsAnnual] = useState(false);
   return (
     <div className="min-h-screen bg-background">
       <Header />
@@ -89,15 +98,20 @@ export default function Pricing() {
           </p>
           
           <div className="flex items-center justify-center space-x-4 mb-8">
-            <span className="text-muted-foreground">Monthly</span>
-            <div className="relative">
-              <input type="checkbox" className="sr-only" />
-              <div className="w-14 h-8 bg-muted rounded-full p-1 duration-300 ease-in-out">
-                <div className="bg-primary w-6 h-6 rounded-full shadow-md transform duration-300 ease-in-out"></div>
-              </div>
-            </div>
-            <span className="text-foreground">Annual</span>
-            <Badge variant="secondary" className="ml-2">Save {annualDiscount}%</Badge>
+            <span className={`transition-colors ${!isAnnual ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
+              Monthly
+            </span>
+            <Switch
+              checked={isAnnual}
+              onCheckedChange={setIsAnnual}
+              className="data-[state=checked]:bg-primary"
+            />
+            <span className={`transition-colors ${isAnnual ? 'text-foreground font-medium' : 'text-muted-foreground'}`}>
+              Annual
+            </span>
+            <Badge variant="secondary" className="ml-2 animate-pulse">
+              Save {annualDiscount}%
+            </Badge>
           </div>
         </div>
 
@@ -114,8 +128,29 @@ export default function Pricing() {
               <CardHeader className="text-center">
                 <CardTitle className="text-2xl mb-2">{plan.name}</CardTitle>
                 <div className="mb-4">
-                  <span className="text-4xl font-bold">{plan.price}</span>
-                  {plan.period && <span className="text-muted-foreground ml-2">{plan.period}</span>}
+                  {plan.monthlyPrice !== null ? (
+                    <>
+                      <span className="text-4xl font-bold">
+                        ${isAnnual ? plan.annualPrice : plan.monthlyPrice}
+                      </span>
+                      <span className="text-muted-foreground ml-2">
+                        {plan.isPerReport ? plan.period : `per month${isAnnual ? ' (billed annually)' : ''}`}
+                      </span>
+                      {isAnnual && !plan.isPerReport && plan.monthlyPrice > plan.annualPrice && (
+                        <div className="text-sm text-muted-foreground mt-1">
+                          <span className="line-through">${plan.monthlyPrice}/month</span>
+                          <span className="text-green-600 ml-2 font-medium">
+                            Save ${(plan.monthlyPrice - plan.annualPrice) * 12}/year
+                          </span>
+                        </div>
+                      )}
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-4xl font-bold">Custom</span>
+                      <span className="text-muted-foreground ml-2">{plan.period}</span>
+                    </>
+                  )}
                 </div>
                 <CardDescription>{plan.description}</CardDescription>
               </CardHeader>
