@@ -1,5 +1,29 @@
 import { Leaf } from "lucide-react";
+import { useLocation } from "react-router-dom";
+
+const smoothScrollTo = (elementId: string) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    });
+  }
+};
+
 export default function Footer() {
+  const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
+  const handleNavClick = (sectionId: string) => {
+    if (isHomePage) {
+      smoothScrollTo(sectionId);
+    } else {
+      // Navigate to home page with hash
+      window.location.href = `/#${sectionId}`;
+    }
+  };
+
   return <footer className="border-t border-border bg-gradient-dark">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
@@ -16,7 +40,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Product</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Features</a></li>
+              <li><button onClick={() => handleNavClick('features')} className="hover:text-foreground transition-colors">Features</button></li>
             </ul>
           </div>
           
