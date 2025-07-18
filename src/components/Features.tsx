@@ -32,8 +32,9 @@ const benefits = [
 
 export default function Features() {
   return (
-    <section id="features" className="py-20 bg-gradient-accent">
-      <div className="container mx-auto px-4">
+    <section id="features" className="py-20 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Social.jpg)' }}>
+      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+      <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
             Get ESG clarity — without the complexity
