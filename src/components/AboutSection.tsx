@@ -5,18 +5,18 @@ import { Lightbulb, Settings, Shield } from "lucide-react";
 const valueCards = [
   {
     icon: Lightbulb,
-    title: "Clarity over complexity",
-    description: "We turn dense ESG data into simple, actionable insights — no jargon, no spreadsheets."
+    title: "Clarity over Complexity",
+    description: "We turn dense ESG data into simple, actionable insights."
   },
   {
     icon: Settings,
-    title: "Always improving",
+    title: "Always Improving",
     description: "Use ESGCheck before, between, or even without formal audits to keep progress on track."
   },
   {
     icon: Shield,
-    title: "Secure & trustworthy",
-    description: "Built on global frameworks (GRI, CSRD). Your data is private — always."
+    title: "Secure & Trustworthy",
+    description: "Built on global frameworks (GRI, CSRD). Your data is always private."
   }
 ];
 
@@ -30,7 +30,7 @@ export default function AboutSection() {
           </h2>
           <div className="max-w-4xl mx-auto space-y-4">
             <p className="text-lg text-muted-foreground">
-              We believe ESG transparency should be fast, accessible, and practical — not just reserved for large corporations with audit budgets. ESGCheck gives companies an easy starting point to track their environmental, social, and governance performance in real time — and improve over time.
+              We believe ESG transparency should be fast, accessible, and practical, not just reserved for large corporations with audit budgets. ESGCheck gives companies an easy starting point to track their environmental, social, and governance performance in real time, and improve over time.
             </p>
             <p className="text-lg text-muted-foreground">
               We're a small, Swiss-based team using AI to bring ESG clarity to those who need it most: growing businesses, consultants, and early-stage sustainability teams.

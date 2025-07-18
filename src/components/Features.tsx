@@ -10,7 +10,7 @@ const benefits = [
   },
   {
     icon: AlertTriangle,
-    title: "Risk areas flagged — before investors or regulators do",
+    title: "Spot risks before investors or regulators do",
     description: "Identify compliance gaps and potential issues before they become costly problems or regulatory violations."
   },
   {
@@ -25,7 +25,7 @@ const benefits = [
   },
   {
     icon: Clock,
-    title: "All from a single upload — in minutes",
+    title: "Upload once, get insights in minutes",
     description: "Transform weeks of analysis into minutes. Just upload your report and get comprehensive insights instantly."
   }
 ];
@@ -39,7 +39,10 @@ export default function Features() {
             Get ESG clarity — without the complexity
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            ESGCheck gives you instant, actionable insights from your sustainability reports — no consultants, no spreadsheets, no waiting weeks for feedback.
+            ESGCheck gives you instant, actionable insights from your sustainability reports.
+          </p>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            No consultants, No spreadsheets, No waiting weeks for feedback.
           </p>
         </div>
         
