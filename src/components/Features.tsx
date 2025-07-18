@@ -47,7 +47,7 @@ export default function Features() {
           {benefits.slice(0, 3).map((benefit, index) => (
             <Card key={index} className="border border-border/20 shadow-premium hover:shadow-glow bg-gradient-card backdrop-blur transition-all duration-500 hover:scale-105 group max-w-sm">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300 mx-auto">
                   <benefit.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <CardTitle className="text-xl">{benefit.title}</CardTitle>
@@ -65,7 +65,7 @@ export default function Features() {
           {benefits.slice(3).map((benefit, index) => (
             <Card key={index + 3} className="border border-border/20 shadow-premium hover:shadow-glow bg-gradient-card backdrop-blur transition-all duration-500 hover:scale-105 group max-w-sm">
               <CardHeader>
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300">
+                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300 mx-auto">
                   <benefit.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
                 <CardTitle className="text-xl">{benefit.title}</CardTitle>
