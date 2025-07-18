@@ -92,9 +92,9 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md bg-gradient-card border border-border/20 backdrop-blur">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Reserve Your Beta Access</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Get Early Access — and Help Shape the Future of ESG Insight</DialogTitle>
           <DialogDescription>
-            Join our exclusive beta program and help shape the future of ESG technology
+            Join the ESGCheck beta to get early access to our AI-powered ESG health check
           </DialogDescription>
         </DialogHeader>
         
@@ -135,10 +135,10 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               </Button>
               
               <p className="text-xs text-muted-foreground text-center">
-                Secure your spot in our exclusive beta. Privacy-first approach guaranteed.
+                Free during beta · No credit card · Privacy respected
               </p>
               <p className="text-xs text-success font-medium text-center mt-2">
-                🎯 Bonus: Beta members get lifetime access to premium features
+                Early testers will receive free report analysis and help us improve the product.
               </p>
             </form>
           ) : (

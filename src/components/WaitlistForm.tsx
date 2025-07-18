@@ -80,18 +80,19 @@ export default function WaitlistForm() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Join the ESG Revolution
+              Ready to Take the First Step Toward Real ESG Progress?
             </h2>
             <p className="text-xl text-muted-foreground">
-              Be part of building the future of ESG reporting with our collaborative beta program.
+              Join the ESGCheck beta to get early access to our AI-powered ESG health check.
+              It's free to try — and designed to help you understand where you stand, what's missing, and what comes next.
             </p>
           </div>
           
           <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-2xl">Reserve Your Beta Access</CardTitle>
+              <CardTitle className="text-2xl">Get Early Access — and Help Shape the Future of ESG Insight</CardTitle>
               <CardDescription>
-                Join our exclusive beta program and help shape the future of ESG technology.
+                Join the ESGCheck beta to get early access to our AI-powered ESG health check.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -129,10 +130,10 @@ export default function WaitlistForm() {
                     {!isLoading && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
                   <p className="text-sm text-muted-foreground">
-                    Secure your spot in our exclusive beta. Privacy-first approach guaranteed.
+                    Free during beta · No credit card · Privacy respected
                   </p>
                   <p className="text-xs text-success font-medium">
-                    🎯 Bonus: Beta members get lifetime access to premium features
+                    Early testers will receive free report analysis and help us improve the product.
                   </p>
                 </form>
               ) : (
