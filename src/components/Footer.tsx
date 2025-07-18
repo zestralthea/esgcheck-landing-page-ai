@@ -1,8 +1,6 @@
 import { Leaf } from "lucide-react";
-
 export default function Footer() {
-  return (
-    <footer className="border-t border-border bg-gradient-dark">
+  return <footer className="border-t border-border bg-gradient-dark">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -12,9 +10,7 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold text-foreground">ESGCheck</span>
             </div>
-            <p className="text-muted-foreground max-w-xs">
-              ESGCheck helps businesses make sense of their ESG reports — with AI-powered insights and guidance, in minutes.
-            </p>
+            <p className="text-muted-foreground max-w-xs">ESGCheck helps businesses make sense of their ESG reports with AI-powered insights and guidance, in minutes.</p>
           </div>
           
           <div>
@@ -28,7 +24,7 @@ export default function Footer() {
             <h4 className="font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li><a href="#" className="hover:text-foreground transition-colors">About</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Contact</a></li>
+              
             </ul>
           </div>
           
@@ -58,6 +54,5 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>
-  );
+    </footer>;
 }
