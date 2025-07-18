@@ -1,7 +1,9 @@
+
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, FileText, BarChart3, Shield } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
+import { AspectRatio } from "@/components/ui/aspect-ratio";
 
 export default function Hero() {
   const { openModal } = useWaitlistModal();
@@ -48,38 +50,52 @@ export default function Hero() {
           </div>
           
           <div className="lg:pl-8 animate-slide-up">
-            <Card className="p-8 shadow-premium bg-gradient-card border border-border/20 backdrop-blur">
-              <div className="space-y-6">
-                <div className="text-center space-y-2">
-                  <div className="w-12 h-12 bg-gradient-primary rounded-lg mx-auto flex items-center justify-center">
-                    <BarChart3 className="h-6 w-6 text-primary-foreground" />
+            <Card className="overflow-hidden shadow-premium bg-gradient-card border border-border/20 backdrop-blur">
+              <div className="relative">
+                <AspectRatio ratio={16 / 9}>
+                  <div className="relative w-full h-full bg-gradient-to-br from-primary/10 to-success/10 flex items-center justify-center group cursor-pointer rounded-t-lg overflow-hidden">
+                    {/* Video Thumbnail/Placeholder */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-success/20"></div>
+                    
+                    {/* Play Button Overlay */}
+                    <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-8">
+                      <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors shadow-lg">
+                        <Play className="h-6 w-6 text-primary-foreground ml-1" fill="currentColor" />
+                      </div>
+                      <div className="space-y-2">
+                        <h3 className="text-lg font-semibold text-foreground">Watch ESGCheck in Action</h3>
+                        <p className="text-sm text-muted-foreground">See how we simplify ESG compliance</p>
+                      </div>
+                    </div>
+                    
+                    {/* Optional: Replace with actual video embed */}
+                    {/* Uncomment and replace with your video URL when ready */}
+                    {/*
+                    <iframe
+                      src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
+                      title="ESGCheck Demo"
+                      className="w-full h-full"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    />
+                    */}
                   </div>
-                  <h3 className="text-lg font-semibold">What You Get</h3>
-                </div>
-                
-                <div className="space-y-4">
-                  <div className="grid grid-cols-1 gap-4">
-                    <div className="text-center p-4 rounded-lg bg-card/50">
-                      <div className="flex items-center justify-center mb-2">
-                        <FileText className="h-5 w-5 text-primary mr-2" />
-                      </div>
-                      <div className="text-sm font-medium text-foreground">Automated Data Collection</div>
-                      <div className="text-xs text-muted-foreground mt-1">Import from multiple sources</div>
-                    </div>
-                    <div className="text-center p-4 rounded-lg bg-card/50">
-                      <div className="flex items-center justify-center mb-2">
-                        <Shield className="h-5 w-5 text-primary mr-2" />
-                      </div>
-                      <div className="text-sm font-medium text-foreground">Compliance Guidance</div>
-                      <div className="text-xs text-muted-foreground mt-1">Stay aligned with standards</div>
-                    </div>
-                    <div className="text-center p-4 rounded-lg bg-card/50">
-                      <div className="flex items-center justify-center mb-2">
-                        <BarChart3 className="h-5 w-5 text-primary mr-2" />
-                      </div>
-                      <div className="text-sm font-medium text-foreground">Smart Analytics</div>
-                      <div className="text-xs text-muted-foreground mt-1">AI-powered insights</div>
-                    </div>
+                </AspectRatio>
+              </div>
+              
+              <div className="p-6">
+                <div className="grid grid-cols-3 gap-4 text-center">
+                  <div className="space-y-1">
+                    <div className="text-sm font-semibold text-foreground">Automated</div>
+                    <div className="text-xs text-muted-foreground">Data Collection</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="text-sm font-semibold text-foreground">AI-Powered</div>
+                    <div className="text-xs text-muted-foreground">Insights</div>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="text-sm font-semibold text-foreground">Compliance</div>
+                    <div className="text-xs text-muted-foreground">Guidance</div>
                   </div>
                 </div>
               </div>
