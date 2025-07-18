@@ -85,15 +85,15 @@ export default function Features() {
         {/* Trust Block */}
         <div className="bg-gradient-card border border-border/20 rounded-lg p-8 text-center shadow-card">
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div>
+            <div className="flex flex-col justify-center">
               <div className="text-base font-medium text-foreground mb-2">Built on global ESG frameworks like GRI & CSRD</div>
               <div className="text-sm text-muted-foreground">Industry-standard compliance foundation</div>
             </div>
-            <div>
+            <div className="flex flex-col justify-center">
               <div className="text-base font-medium text-foreground mb-2">Not a certified audit, but your smartest first step toward one</div>
               <div className="text-sm text-muted-foreground">Prepare confidently for formal assessments</div>
             </div>
-            <div>
+            <div className="flex flex-col justify-center">
               <div className="text-base font-medium text-foreground mb-2">Your data is never used to train models and stays secure</div>
               <div className="text-sm text-muted-foreground">Complete privacy and data protection</div>
             </div>
