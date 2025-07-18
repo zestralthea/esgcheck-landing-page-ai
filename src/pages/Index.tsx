@@ -2,15 +2,10 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
-
-
-import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
 import AboutSection from "@/components/AboutSection";
 import WaitlistModal from "@/components/WaitlistModal";
-
-
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
@@ -23,11 +18,7 @@ const Index = () => {
       <Header />
       <Hero />
       <Features />
-      
-      
       <AboutSection />
-      
-      
       <WaitlistForm />
       <Footer />
       <WaitlistModal isOpen={isOpen} onClose={closeModal} />
