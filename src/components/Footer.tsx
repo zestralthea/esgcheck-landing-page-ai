@@ -13,8 +13,7 @@ export default function Footer() {
               <span className="text-xl font-bold text-foreground">ESGCheck</span>
             </div>
             <p className="text-muted-foreground max-w-xs">
-              AI-powered ESG compliance for the modern enterprise. 
-              Automate your sustainability reporting today.
+              ESGCheck helps businesses make sense of their ESG reports — with AI-powered insights and guidance, in minutes.
             </p>
           </div>
           
