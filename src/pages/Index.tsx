@@ -7,6 +7,7 @@ import Features from "@/components/Features";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
+import AboutSection from "@/components/AboutSection";
 import WaitlistModal from "@/components/WaitlistModal";
 
 
@@ -24,7 +25,7 @@ const Index = () => {
       <Features />
       
       
-      <HowItWorks />
+      <AboutSection />
       
       
       <WaitlistForm />
