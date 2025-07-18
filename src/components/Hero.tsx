@@ -27,14 +27,14 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-              Stop Stressing About{" "}
+              Make ESG Progress{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                ESG Reporting Deadlines
+                Visible — in Minutes
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Upload your ESG report and get instant, AI-powered insights.
-              We flag gaps, suggest improvements, and help you stay aligned with global frameworks like GRI & CSRD — in minutes, not months.
+              Upload your sustainability report and get instant, AI-powered insights.
+              We help you spot gaps, improve alignment with global frameworks, and stay on track — with clarity, not complexity.
             </p>
           </div>
           
@@ -43,7 +43,7 @@ export default function Hero() {
               Join the Waitlist
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <p className="text-sm text-muted-foreground">Free during beta · No credit card</p>
+            <p className="text-sm text-muted-foreground">Free during beta · No credit card needed</p>
           </div>
           
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-muted-foreground">
@@ -57,7 +57,7 @@ export default function Hero() {
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>Built on global standards</span>
+              <span>Built on trusted frameworks (GRI, CSRD)</span>
             </div>
           </div>
         </div>
