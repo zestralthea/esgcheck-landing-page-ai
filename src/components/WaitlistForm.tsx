@@ -83,16 +83,16 @@ export default function WaitlistForm() {
               Ready to Transform Your ESG Process?
             </h2>
             <p className="text-xl text-muted-foreground">
-              Join 2000+ companies already on our waitlist. Get early access 
-              and save 50% on your first year.
+              Get early access to ESGCheck and receive a free compliance audit 
+              of your current ESG reporting process.
             </p>
           </div>
           
           <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-2xl">Get Early Access + 50% Off</CardTitle>
+              <CardTitle className="text-2xl">Get Early Access + Free Audit</CardTitle>
               <CardDescription>
-                Limited spots available. Join 2000+ companies transforming their ESG compliance.
+                Limited early access spots. Receive a complimentary ESG compliance audit.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -148,16 +148,16 @@ export default function WaitlistForm() {
           
           <div className="grid md:grid-cols-3 gap-6 mt-12 text-center">
             <div>
-              <div className="text-2xl font-bold text-success">2000+</div>
-              <div className="text-muted-foreground">Companies waiting</div>
+              <div className="text-2xl font-bold text-success">2 min</div>
+              <div className="text-muted-foreground">Compliance check</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-success">50%</div>
-              <div className="text-muted-foreground">Early access discount</div>
+              <div className="text-2xl font-bold text-success">Free</div>
+              <div className="text-muted-foreground">Initial audit</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-success">90%</div>
-              <div className="text-muted-foreground">Faster than manual</div>
+              <div className="text-2xl font-bold text-success">50+</div>
+              <div className="text-muted-foreground">ESG frameworks</div>
             </div>
           </div>
         </div>
