@@ -138,7 +138,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                 Free during beta · No credit card · Privacy respected
               </p>
               <p className="text-xs text-success font-medium text-center mt-2">
-                Early testers will receive free report analysis and help us improve the product.
+                Early testers get free access and help us build ESGCheck into the tool you need.
               </p>
             </form>
           ) : (
