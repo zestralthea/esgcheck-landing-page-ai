@@ -14,14 +14,14 @@ export default function Hero() {
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Cut ESG Compliance Time{" "}
+                Streamline Your{" "}
                 <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  From Weeks to Hours
+                  ESG Compliance
                 </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg">
-                Stop struggling with manual ESG reporting. Our AI instantly analyzes your 
-                sustainability data and ensures 100% compliance with global standards.
+                Stop struggling with manual ESG reporting. Our AI helps you analyze your 
+                sustainability data and improve your compliance process.
               </p>
             </div>
             
@@ -54,30 +54,31 @@ export default function Hero() {
                   <div className="w-12 h-12 bg-gradient-primary rounded-lg mx-auto flex items-center justify-center">
                     <BarChart3 className="h-6 w-6 text-primary-foreground" />
                   </div>
-                  <h3 className="text-lg font-semibold">Real Results</h3>
+                  <h3 className="text-lg font-semibold">What You Get</h3>
                 </div>
                 
                 <div className="space-y-4">
-                <div className="text-center mb-4">
-                  <div className="text-4xl font-bold text-success mb-1">6 weeks</div>
-                  <div className="text-lg text-muted-foreground line-through">Manual Process</div>
-                  <div className="text-xl font-semibold text-primary mt-2">2 hours with AI</div>
-                </div>
-                  
-                <div className="w-full bg-muted rounded-full h-3">
-                  <div className="bg-gradient-primary h-3 rounded-full w-[97%] relative">
-                    <div className="absolute right-2 top-0 text-xs text-primary-foreground font-bold leading-3">97% faster</div>
-                  </div>
-                </div>
-                  
-                  <div className="grid grid-cols-2 gap-4 pt-4">
-                    <div className="text-center p-3 rounded-lg bg-card/50">
-                      <div className="text-lg font-bold text-success">500+</div>
-                      <div className="text-xs text-muted-foreground">Hours Saved</div>
+                  <div className="grid grid-cols-1 gap-4">
+                    <div className="text-center p-4 rounded-lg bg-card/50">
+                      <div className="flex items-center justify-center mb-2">
+                        <FileText className="h-5 w-5 text-primary mr-2" />
+                      </div>
+                      <div className="text-sm font-medium text-foreground">Automated Data Collection</div>
+                      <div className="text-xs text-muted-foreground mt-1">Import from multiple sources</div>
                     </div>
-                    <div className="text-center p-3 rounded-lg bg-card/50">
-                      <div className="text-lg font-bold text-success">50+</div>
-                      <div className="text-xs text-muted-foreground">Frameworks</div>
+                    <div className="text-center p-4 rounded-lg bg-card/50">
+                      <div className="flex items-center justify-center mb-2">
+                        <Shield className="h-5 w-5 text-primary mr-2" />
+                      </div>
+                      <div className="text-sm font-medium text-foreground">Compliance Guidance</div>
+                      <div className="text-xs text-muted-foreground mt-1">Stay aligned with standards</div>
+                    </div>
+                    <div className="text-center p-4 rounded-lg bg-card/50">
+                      <div className="flex items-center justify-center mb-2">
+                        <BarChart3 className="h-5 w-5 text-primary mr-2" />
+                      </div>
+                      <div className="text-sm font-medium text-foreground">Smart Analytics</div>
+                      <div className="text-xs text-muted-foreground mt-1">AI-powered insights</div>
                     </div>
                   </div>
                 </div>

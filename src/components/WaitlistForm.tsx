@@ -148,15 +148,15 @@ export default function WaitlistForm() {
           
           <div className="grid md:grid-cols-3 gap-6 mt-12 text-center">
             <div>
-              <div className="text-2xl font-bold text-success">2 min</div>
-              <div className="text-muted-foreground">Compliance check</div>
+              <div className="text-2xl font-bold text-success">Quick</div>
+              <div className="text-muted-foreground">Setup process</div>
             </div>
             <div>
               <div className="text-2xl font-bold text-success">Free</div>
-              <div className="text-muted-foreground">Initial audit</div>
+              <div className="text-muted-foreground">Initial consultation</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-success">50+</div>
+              <div className="text-2xl font-bold text-success">Multiple</div>
               <div className="text-muted-foreground">ESG frameworks</div>
             </div>
           </div>
