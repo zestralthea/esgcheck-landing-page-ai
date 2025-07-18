@@ -10,7 +10,7 @@ export default function Hero() {
     <section className="py-20 bg-gradient-dark relative overflow-hidden min-h-screen flex items-center">
       {/* Video Background */}
       <video
-        src="/ESGCheck_hero.mp4"
+        src="/ESGCheck_hero_compressed.mp4"
         autoPlay
         loop
         muted
@@ -27,14 +27,14 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-              Stop Worrying About{" "}
+              Stop Stressing About{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                ESG Deadlines
+                ESG Reporting Deadlines
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Upload any ESG document and get instant compliance insights. Our AI identifies gaps, 
-              suggests improvements, and keeps you ahead of regulatory changes.
+              Upload your ESG report and get instant, AI-powered insights.
+              We flag gaps, suggest improvements, and help you stay aligned with global frameworks like GRI & CSRD — in minutes, not months.
             </p>
           </div>
           
@@ -43,14 +43,9 @@ export default function Hero() {
               Join the Waitlist
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg"
-              className="bg-background/20 backdrop-blur border-border/50 hover:bg-background/30"
-            >
-              Watch Demo
-              <Play className="ml-2 h-4 w-4" />
-            </Button>
+            <div className="text-center">
+              <p className="text-sm text-muted-foreground mb-2">Free during beta · No credit card</p>
+            </div>
           </div>
           
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-muted-foreground">
@@ -64,7 +59,7 @@ export default function Hero() {
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>Free trial • No credit card</span>
+              <span>Built on global standards</span>
             </div>
           </div>
         </div>
