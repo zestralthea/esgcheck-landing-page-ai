@@ -39,7 +39,10 @@ export default function Features() {
             Get ESG clarity — without the complexity
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            ESGCheck gives you instant, actionable insights from your sustainability reports — no consultants, no spreadsheets, no waiting weeks for feedback.
+            ESGCheck gives you instant, actionable insights from your sustainability reports .
+          </p>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto"> 
+            No consultants, No spreadsheets, No waiting weeks for feedback.
           </p>
         </div>
         

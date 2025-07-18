@@ -34,7 +34,7 @@ export default function Hero() {
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
               Upload your sustainability report and get instant, AI-powered insights.
-              We help you spot gaps, improve alignment with global frameworks, and stay on track — with clarity, not complexity.
+              We help you spot gaps, improve alignment with global frameworks, and stay on track with clarity, not complexity.
             </p>
           </div>
           
