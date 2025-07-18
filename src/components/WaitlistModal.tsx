@@ -92,9 +92,9 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md bg-gradient-card border border-border/20 backdrop-blur">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Request Early Access</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Reserve Your Beta Access</DialogTitle>
           <DialogDescription>
-            Join thousands of sustainability professionals already on our waitlist
+            Join our exclusive beta program and help shape the future of ESG technology
           </DialogDescription>
         </DialogHeader>
         
@@ -135,8 +135,10 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
               </Button>
               
               <p className="text-xs text-muted-foreground text-center">
-                By joining, you agree to receive updates about ESGCheck. 
-                We respect your privacy and won't spam you.
+                Secure your spot in our exclusive beta. Privacy-first approach guaranteed.
+              </p>
+              <p className="text-xs text-success font-medium text-center mt-2">
+                🎯 Bonus: Beta members get lifetime access to premium features
               </p>
             </form>
           ) : (

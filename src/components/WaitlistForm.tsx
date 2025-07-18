@@ -80,19 +80,18 @@ export default function WaitlistForm() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Ready to Transform Your ESG Process?
+              Join the ESG Revolution
             </h2>
             <p className="text-xl text-muted-foreground">
-              Get early access to ESGCheck and receive a free compliance audit 
-              of your current ESG reporting process.
+              Be part of building the future of ESG reporting with our collaborative beta program.
             </p>
           </div>
           
           <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-2xl">Get Early Access + Free Audit</CardTitle>
+              <CardTitle className="text-2xl">Reserve Your Beta Access</CardTitle>
               <CardDescription>
-                Limited early access spots. Receive a complimentary ESG compliance audit.
+                Join our exclusive beta program and help shape the future of ESG technology.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -130,8 +129,10 @@ export default function WaitlistForm() {
                     {!isLoading && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
                   <p className="text-sm text-muted-foreground">
-                    By joining, you agree to receive updates about ESGCheck. 
-                    We respect your privacy and won't spam you.
+                    Secure your spot in our exclusive beta. Privacy-first approach guaranteed.
+                  </p>
+                  <p className="text-xs text-success font-medium">
+                    🎯 Bonus: Beta members get lifetime access to premium features
                   </p>
                 </form>
               ) : (
