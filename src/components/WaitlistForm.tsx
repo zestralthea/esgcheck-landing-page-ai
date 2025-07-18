@@ -80,11 +80,11 @@ export default function WaitlistForm() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Ready to Take the First Step Toward Real ESG Progress?
+              Take the First Step Toward Reeal ESG Progress
             </h2>
             <p className="text-xl text-muted-foreground">
-              Join the ESGCheck beta to get early access to our AI-powered ESG health check.
-              It's free to try — and designed to help you understand where you stand, what's missing, and what comes next.
+              Join the ESGCheck beta for early access to our AI-powered ESG health check.
+              It's free to try and designed to help you understand where you stand, what's missing, and what comes next.
             </p>
           </div>
           
@@ -92,7 +92,7 @@ export default function WaitlistForm() {
             <CardHeader>
               <CardTitle className="text-2xl">Join the ESGCheck Beta</CardTitle>
               <CardDescription>
-                Be one of the first to try our AI-powered ESG health check. Upload your report, get actionable insights, and help us build something truly useful.
+                Built with your feedback. Help us make ESGCheck the most useful ESG tool on the market.
               </CardDescription>
             </CardHeader>
             <CardContent>
