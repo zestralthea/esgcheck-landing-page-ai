@@ -47,7 +47,7 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">Company</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">About</a></li>
+              <li><button onClick={() => handleNavClick('about')} className="hover:text-foreground transition-colors">About</button></li>
               
             </ul>
           </div>
