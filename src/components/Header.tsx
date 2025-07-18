@@ -1,11 +1,32 @@
+
 import { Button } from "@/components/ui/button";
 import { Leaf } from "lucide-react";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { Link, useLocation } from "react-router-dom";
 
+const smoothScrollTo = (elementId: string) => {
+  const element = document.getElementById(elementId);
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start',
+    });
+  }
+};
+
 export default function Header() {
   const { openModal } = useWaitlistModal();
   const location = useLocation();
+  const isHomePage = location.pathname === '/';
+  
+  const handleNavClick = (sectionId: string) => {
+    if (isHomePage) {
+      smoothScrollTo(sectionId);
+    } else {
+      // Navigate to home page with hash
+      window.location.href = `/#${sectionId}`;
+    }
+  };
   
   return (
     <header className="border-b border-border bg-gradient-dark backdrop-blur supports-[backdrop-filter]:bg-gradient-dark/90 sticky top-0 z-50">
@@ -18,30 +39,24 @@ export default function Header() {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-6">
-          <Link 
-            to="/features" 
-            className={`transition-colors ${location.pathname === '/features' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+          <button 
+            onClick={() => handleNavClick('features')}
+            className="transition-colors text-muted-foreground hover:text-foreground"
           >
             Features
-          </Link>
-          <Link 
-            to="/pricing" 
-            className={`transition-colors ${location.pathname === '/pricing' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
-          >
-            Pricing
-          </Link>
-          <Link 
-            to="/about" 
-            className={`transition-colors ${location.pathname === '/about' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+          </button>
+          <button 
+            onClick={() => handleNavClick('about')}
+            className="transition-colors text-muted-foreground hover:text-foreground"
           >
             About
-          </Link>
-          <Link 
-            to="/contact" 
-            className={`transition-colors ${location.pathname === '/contact' ? 'text-foreground font-medium' : 'text-muted-foreground hover:text-foreground'}`}
+          </button>
+          <button 
+            onClick={() => handleNavClick('contact')}
+            className="transition-colors text-muted-foreground hover:text-foreground"
           >
             Contact
-          </Link>
+          </button>
         </nav>
         
         <Button variant="hero" size="sm" onClick={openModal}>
