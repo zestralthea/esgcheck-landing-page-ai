@@ -46,14 +46,14 @@ export default function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 justify-items-center max-w-5xl mx-auto">
           {benefits.slice(0, 3).map((benefit, index) => (
             <Card key={index} className="border border-border/20 shadow-premium hover:shadow-glow bg-gradient-card backdrop-blur transition-all duration-500 hover:scale-105 group max-w-sm">
-              <CardHeader>
+              <CardHeader className="text-center">
                 <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300 mx-auto">
                   <benefit.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                <CardTitle className="text-xl text-center">{benefit.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
+              <CardContent className="text-center">
+                <CardDescription className="text-base text-center">
                   {benefit.description}
                 </CardDescription>
               </CardContent>
@@ -64,14 +64,14 @@ export default function Features() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16 justify-items-center max-w-3xl mx-auto">
           {benefits.slice(3).map((benefit, index) => (
             <Card key={index + 3} className="border border-border/20 shadow-premium hover:shadow-glow bg-gradient-card backdrop-blur transition-all duration-500 hover:scale-105 group max-w-sm">
-              <CardHeader>
+              <CardHeader className="text-center">
                 <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300 mx-auto">
                   <benefit.icon className="h-6 w-6 text-primary-foreground" />
                 </div>
-                <CardTitle className="text-xl">{benefit.title}</CardTitle>
+                <CardTitle className="text-xl text-center">{benefit.title}</CardTitle>
               </CardHeader>
-              <CardContent>
-                <CardDescription className="text-base">
+              <CardContent className="text-center">
+                <CardDescription className="text-base text-center">
                   {benefit.description}
                 </CardDescription>
               </CardContent>
