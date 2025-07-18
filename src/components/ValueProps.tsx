@@ -34,10 +34,10 @@ export default function ValueProps() {
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-            Why Companies Choose ESGCheck
+            The Results Speak for Themselves
           </h2>
-          <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Join thousands of sustainability professionals who've transformed their compliance process
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            Real metrics from real customers who've transformed their ESG compliance with our platform
           </p>
         </div>
         

@@ -2,6 +2,8 @@
 import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
+import TargetMarket from "@/components/TargetMarket";
+import ValueProps from "@/components/ValueProps";
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
@@ -20,6 +22,8 @@ const Index = () => {
       <Header />
       <Hero />
       <Features />
+      <TargetMarket />
+      <ValueProps />
       <HowItWorks />
       <AboutSection />
       <ContactSection />

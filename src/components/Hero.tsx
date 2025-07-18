@@ -27,14 +27,14 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-              Streamline Your{" "}
+              Stop Worrying About{" "}
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                ESG Compliance
+                ESG Deadlines
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Stop struggling with manual ESG reporting. Our AI helps you analyze your 
-              sustainability data and improve your compliance process.
+              Upload any ESG document and get instant compliance insights. Our AI identifies gaps, 
+              suggests improvements, and keeps you ahead of regulatory changes.
             </p>
           </div>
           
@@ -56,15 +56,15 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>No setup required</span>
+              <span>Upload. Analyze. Improve.</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>Free compliance audit</span>
+              <span>Results in under 2 minutes</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>AI-powered insights</span>
+              <span>Free trial • No credit card</span>
             </div>
           </div>
         </div>
