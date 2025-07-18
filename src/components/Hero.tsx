@@ -27,9 +27,9 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-              Make ESG Progress{" "}
+              Make ESG Progress<br />
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Visible — in Minutes
+                Visible
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
