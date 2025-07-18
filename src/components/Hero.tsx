@@ -1,17 +1,12 @@
 
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
-import { ArrowRight, Play, Upload } from "lucide-react";
+import { ArrowRight, Play } from "lucide-react";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { AspectRatio } from "@/components/ui/aspect-ratio";
-import { useHeroVideos } from "@/hooks/useHeroVideos";
-import { VideoUploadModal } from "@/components/VideoUploadModal";
-import { useState } from "react";
 
 export default function Hero() {
   const { openModal } = useWaitlistModal();
-  const { activeVideo } = useHeroVideos();
-  const [isVideoUploadOpen, setIsVideoUploadOpen] = useState(false);
   
   return (
     <section className="py-20 bg-gradient-dark relative overflow-hidden">
@@ -41,16 +36,11 @@ export default function Hero() {
                 variant="outline" 
                 size="lg"
                 onClick={() => {
-                  if (activeVideo) {
-                    // Scroll to video section
-                    document.getElementById('hero-video')?.scrollIntoView({ behavior: 'smooth' });
-                  } else {
-                    setIsVideoUploadOpen(true);
-                  }
+                  document.getElementById('hero-video')?.scrollIntoView({ behavior: 'smooth' });
                 }}
               >
-                {activeVideo ? 'Watch Demo' : 'Upload Video'}
-                {!activeVideo && <Upload className="ml-2 h-4 w-4" />}
+                Watch Demo
+                <Play className="ml-2 h-4 w-4" />
               </Button>
             </div>
             
@@ -70,39 +60,15 @@ export default function Hero() {
             <Card className="overflow-hidden shadow-premium bg-gradient-card border border-border/20 backdrop-blur">
               <div className="relative" id="hero-video">
                 <AspectRatio ratio={16 / 9}>
-                  {activeVideo ? (
-                    /* Active Video Display */
-                    <div className="relative w-full h-full">
-                      <video
-                        src={activeVideo.video_url}
-                        title={activeVideo.title}
-                        className="w-full h-full object-cover rounded-t-lg"
-                        controls
-                        preload="metadata"
-                        poster={activeVideo.thumbnail_url}
-                      />
-                    </div>
-                  ) : (
-                    /* Placeholder when no video */
-                    <div 
-                      className="relative w-full h-full bg-gradient-to-br from-primary/10 to-success/10 flex items-center justify-center group cursor-pointer rounded-t-lg overflow-hidden"
-                      onClick={() => setIsVideoUploadOpen(true)}
-                    >
-                      {/* Placeholder Background */}
-                      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-primary/10 to-success/20"></div>
-                      
-                      {/* Upload Prompt */}
-                      <div className="relative z-10 flex flex-col items-center space-y-4 text-center p-8">
-                        <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center group-hover:bg-primary transition-colors shadow-lg">
-                          <Upload className="h-6 w-6 text-primary-foreground" />
-                        </div>
-                        <div className="space-y-2">
-                          <h3 className="text-lg font-semibold text-foreground">Upload Your Demo Video</h3>
-                          <p className="text-sm text-muted-foreground">Show ESGCheck in action</p>
-                        </div>
-                      </div>
-                    </div>
-                  )}
+                  <div className="relative w-full h-full">
+                    <video
+                      src="/ESGCheck_hero.mp4"
+                      title="ESGCheck Demo"
+                      className="w-full h-full object-cover rounded-t-lg"
+                      controls
+                      preload="metadata"
+                    />
+                  </div>
                 </AspectRatio>
               </div>
               
@@ -127,10 +93,6 @@ export default function Hero() {
         </div>
       </div>
       
-      <VideoUploadModal 
-        isOpen={isVideoUploadOpen} 
-        onClose={() => setIsVideoUploadOpen(false)} 
-      />
     </section>
   );
 }
