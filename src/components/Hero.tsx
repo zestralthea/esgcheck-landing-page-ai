@@ -14,15 +14,14 @@ export default function Hero() {
           <div className="space-y-8 animate-fade-in">
             <div className="space-y-4">
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-foreground leading-tight">
-                Automate Your{" "}
+                Cut ESG Compliance Time{" "}
                 <span className="bg-gradient-primary bg-clip-text text-transparent">
-                  ESG Compliance
-                </span>{" "}
-                in Minutes
+                  From Weeks to Hours
+                </span>
               </h1>
               <p className="text-xl text-muted-foreground max-w-lg">
-                AI-powered ESG analysis that instantly checks your sustainability reports 
-                against global standards like CSRD, GRI, and SFDR.
+                Stop struggling with manual ESG reporting. Our AI instantly analyzes your 
+                sustainability data and ensures 100% compliance with global standards.
               </p>
             </div>
             
@@ -39,11 +38,11 @@ export default function Hero() {
             <div className="flex items-center space-x-6 text-sm text-muted-foreground">
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span>No credit card required</span>
+                <span>90% faster than manual reviews</span>
               </div>
               <div className="flex items-center space-x-2">
                 <div className="w-2 h-2 bg-success rounded-full"></div>
-                <span>Free trial included</span>
+                <span>Join 2000+ companies</span>
               </div>
             </div>
           </div>
@@ -55,34 +54,30 @@ export default function Hero() {
                   <div className="w-12 h-12 bg-gradient-primary rounded-lg mx-auto flex items-center justify-center">
                     <BarChart3 className="h-6 w-6 text-primary-foreground" />
                   </div>
-                  <h3 className="text-lg font-semibold">ESG Compliance Score</h3>
+                  <h3 className="text-lg font-semibold">Real Results</h3>
                 </div>
                 
                 <div className="space-y-4">
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm text-muted-foreground">Overall Score</span>
-                    <span className="text-2xl font-bold text-success">87%</span>
+                  <div className="text-center mb-4">
+                    <div className="text-4xl font-bold text-success mb-1">12 weeks</div>
+                    <div className="text-lg text-muted-foreground line-through">Manual Process</div>
+                    <div className="text-xl font-semibold text-primary mt-2">2 hours with ESGCheck</div>
                   </div>
                   
-                  <div className="w-full bg-muted rounded-full h-2">
-                    <div className="bg-gradient-primary h-2 rounded-full w-[87%]"></div>
+                  <div className="w-full bg-muted rounded-full h-3">
+                    <div className="bg-gradient-primary h-3 rounded-full w-[95%] relative">
+                      <div className="absolute right-2 top-0 text-xs text-primary-foreground font-bold leading-3">95% faster</div>
+                    </div>
                   </div>
                   
-                  <div className="grid grid-cols-3 gap-4 pt-4">
-                    <div className="text-center">
-                      <FileText className="h-5 w-5 text-primary mx-auto mb-1" />
-                      <div className="text-xs text-muted-foreground">Reports</div>
-                      <div className="text-sm font-semibold">12</div>
+                  <div className="grid grid-cols-2 gap-4 pt-4">
+                    <div className="text-center p-3 rounded-lg bg-card/50">
+                      <div className="text-lg font-bold text-success">$50K+</div>
+                      <div className="text-xs text-muted-foreground">Cost Savings/Year</div>
                     </div>
-                    <div className="text-center">
-                      <Shield className="h-5 w-5 text-primary mx-auto mb-1" />
-                      <div className="text-xs text-muted-foreground">Compliant</div>
-                      <div className="text-sm font-semibold">94%</div>
-                    </div>
-                    <div className="text-center">
-                      <BarChart3 className="h-5 w-5 text-primary mx-auto mb-1" />
-                      <div className="text-xs text-muted-foreground">Risks</div>
-                      <div className="text-sm font-semibold">3</div>
+                    <div className="text-center p-3 rounded-lg bg-card/50">
+                      <div className="text-lg font-bold text-success">100%</div>
+                      <div className="text-xs text-muted-foreground">Compliance Rate</div>
                     </div>
                   </div>
                 </div>

@@ -4,33 +4,18 @@ import { Upload, Brain, FileBarChart, Download, Target, DollarSign } from "lucid
 const features = [
   {
     icon: Upload,
-    title: "Easy Upload",
-    description: "Upload ESG reports in PDF, Excel, or CSV format with simple drag-and-drop interface."
+    title: "Instant Compliance Check",
+    description: "Upload any ESG document and get a comprehensive compliance report in under 2 minutes."
   },
   {
     icon: Brain,
-    title: "AI-Powered Analysis",
-    description: "Advanced AI instantly analyzes your reports against CSRD, GRI, and SFDR standards."
-  },
-  {
-    icon: FileBarChart,
-    title: "Instant Scoring",
-    description: "Get comprehensive compliance scores and risk assessments in minutes, not weeks."
+    title: "Never Miss Deadlines",
+    description: "Built-in alerts for CSRD, GRI, SASB deadlines plus automatic regulatory updates."
   },
   {
     icon: Target,
-    title: "Gap Analysis",
-    description: "Identify specific compliance gaps with actionable recommendations for improvement."
-  },
-  {
-    icon: Download,
-    title: "PDF Summary",
-    description: "Download professional reports ready for stakeholders, auditors, and regulators."
-  },
-  {
-    icon: DollarSign,
-    title: "Cost Effective",
-    description: "Save thousands compared to manual consultants while getting faster, more accurate results."
+    title: "Improve ESG Scores",
+    description: "AI-powered recommendations show exactly how to boost your ratings and reduce risks."
   }
 ];
 
@@ -40,15 +25,14 @@ export default function Features() {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Everything You Need for ESG Compliance
+            Everything You Need for ESG Success
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Streamline your sustainability reporting with AI-powered analysis 
-            that ensures compliance across all major ESG frameworks.
+            Three core capabilities that solve your biggest ESG compliance challenges
           </p>
         </div>
         
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid lg:grid-cols-3 gap-8">
           {features.map((feature, index) => (
             <Card key={index} className="border border-border/20 shadow-premium hover:shadow-glow bg-gradient-card backdrop-blur transition-all duration-500 hover:scale-105 group">
               <CardHeader>

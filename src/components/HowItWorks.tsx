@@ -4,18 +4,18 @@ import { Upload, Cpu, FileText, ArrowRight } from "lucide-react";
 const steps = [
   {
     icon: Upload,
-    title: "Upload Your Reports",
-    description: "Simply drag and drop your ESG reports (PDF, Excel, CSV) into our secure platform."
+    title: "Upload in Seconds",
+    description: "Drop any ESG document - sustainability reports, policies, or raw data. Works with PDFs, Word docs, Excel files."
   },
   {
     icon: Cpu,
-    title: "AI Analysis",
-    description: "Our AI engine analyzes your data against CSRD, GRI, SFDR and other global standards."
+    title: "AI Does the Work",
+    description: "Our AI instantly scans against 50+ frameworks (CSRD, GRI, SASB, TCFD) and flags every compliance gap."
   },
   {
     icon: FileText,
-    title: "Get Results",
-    description: "Receive instant compliance scores, risk assessments, and actionable next steps."
+    title: "Get Actionable Results",
+    description: "Receive detailed compliance scores, specific improvement recommendations, and board-ready reports in minutes."
   }
 ];
 
@@ -25,10 +25,10 @@ export default function HowItWorks() {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            How ESGCheck Works
+            From Upload to Compliance in Under 5 Minutes
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            Get from ESG reports to compliance insights in three simple steps.
+            Stop spending weeks on manual compliance checks. See how easy ESG reporting becomes.
           </p>
         </div>
         

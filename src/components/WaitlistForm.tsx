@@ -80,19 +80,19 @@ export default function WaitlistForm() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Join the ESGCheck Waitlist
+              Ready to Transform Your ESG Process?
             </h2>
             <p className="text-xl text-muted-foreground">
-              Be among the first to experience AI-powered ESG compliance. 
-              Get early access and special launch pricing.
+              Join 2000+ companies already on our waitlist. Get early access 
+              and save 50% on your first year.
             </p>
           </div>
           
           <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-2xl">Request Early Access</CardTitle>
+              <CardTitle className="text-2xl">Get Early Access + 50% Off</CardTitle>
               <CardDescription>
-                Join thousands of sustainability professionals already on our waitlist
+                Limited spots available. Join 2000+ companies transforming their ESG compliance.
               </CardDescription>
             </CardHeader>
             <CardContent>
@@ -148,16 +148,16 @@ export default function WaitlistForm() {
           
           <div className="grid md:grid-cols-3 gap-6 mt-12 text-center">
             <div>
-              <div className="text-2xl font-bold text-foreground">2000+</div>
-              <div className="text-muted-foreground">Companies on waitlist</div>
+              <div className="text-2xl font-bold text-success">2000+</div>
+              <div className="text-muted-foreground">Companies waiting</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-foreground">50+</div>
-              <div className="text-muted-foreground">Countries represented</div>
+              <div className="text-2xl font-bold text-success">50%</div>
+              <div className="text-muted-foreground">Early access discount</div>
             </div>
             <div>
-              <div className="text-2xl font-bold text-foreground">90%</div>
-              <div className="text-muted-foreground">Time savings vs. manual</div>
+              <div className="text-2xl font-bold text-success">90%</div>
+              <div className="text-muted-foreground">Faster than manual</div>
             </div>
           </div>
         </div>
