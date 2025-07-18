@@ -9,7 +9,7 @@ import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
 import WaitlistModal from "@/components/WaitlistModal";
 
-import ContactSection from "@/components/ContactSection";
+
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
@@ -26,7 +26,7 @@ const Index = () => {
       
       <HowItWorks />
       
-      <ContactSection />
+      
       <WaitlistForm />
       <Footer />
       <WaitlistModal isOpen={isOpen} onClose={closeModal} />
