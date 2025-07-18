@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Hero from "@/components/Hero";
 import Features from "@/components/Features";
 
-import ValueProps from "@/components/ValueProps";
+
 import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
@@ -23,7 +23,7 @@ const Index = () => {
       <Hero />
       <Features />
       
-      <ValueProps />
+      
       <HowItWorks />
       <AboutSection />
       <ContactSection />
