@@ -1,32 +1,32 @@
 
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Shield, Clock, TrendingUp, DollarSign, Users } from "lucide-react";
+import { BarChart3, AlertTriangle, Lightbulb, FileText, Clock } from "lucide-react";
 
 const benefits = [
   {
-    icon: Shield,
-    title: "Slash Compliance Risks",
-    description: "Identify gaps before they become costly regulatory violations. Our AI scans against 50+ frameworks including CSRD, GRI, SASB, and TCFD."
+    icon: BarChart3,
+    title: "A simple score that shows where you stand",
+    description: "Get an instant ESG performance score that's easy to understand and benchmark against industry standards."
+  },
+  {
+    icon: AlertTriangle,
+    title: "Risk areas flagged — before investors or regulators do",
+    description: "Identify compliance gaps and potential issues before they become costly problems or regulatory violations."
+  },
+  {
+    icon: Lightbulb,
+    title: "AI-generated suggestions tailored to your report",
+    description: "Receive specific, actionable recommendations based on your actual data and industry best practices."
+  },
+  {
+    icon: FileText,
+    title: "A clean summary PDF you can share with your team",
+    description: "Export professional reports that communicate your ESG progress clearly to stakeholders and leadership."
   },
   {
     icon: Clock,
-    title: "Save 200+ Hours Per Report",
-    description: "Automate the tedious work of gap analysis and compliance checking. Get from document upload to actionable insights in under 5 minutes."
-  },
-  {
-    icon: TrendingUp,
-    title: "Boost Your ESG Ratings",
-    description: "Get specific, prioritized recommendations that directly improve your sustainability scores and investor confidence."
-  },
-  {
-    icon: DollarSign,
-    title: "Cut Consulting Costs by 70%",
-    description: "Replace expensive consultants with AI-powered analysis that's faster, more comprehensive, and available 24/7."
-  },
-  {
-    icon: Users,
-    title: "Trusted by Sustainability Leaders",
-    description: "Join forward-thinking companies who've already streamlined their ESG compliance and improved their market positioning."
+    title: "All from a single upload — in minutes",
+    description: "Transform weeks of analysis into minutes. Just upload your report and get comprehensive insights instantly."
   }
 ];
 
@@ -36,10 +36,10 @@ export default function Features() {
       <div className="container mx-auto px-4">
         <div className="text-center space-y-4 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-            Why Sustainability Teams Choose ESGCheck
+            Get ESG clarity — without the complexity
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Stop spending weeks on manual compliance checks. Get instant analysis, clear action plans, and regulatory confidence.
+            ESGCheck gives you instant, actionable insights from your sustainability reports — no consultants, no spreadsheets, no waiting weeks for feedback.
           </p>
         </div>
         
@@ -63,27 +63,20 @@ export default function Features() {
 
         {/* Trust Block */}
         <div className="bg-gradient-card border border-border/20 rounded-lg p-8 text-center shadow-card">
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">95%</div>
-              <div className="text-sm text-muted-foreground">Accuracy Rate</div>
+              <div className="text-base font-medium text-foreground mb-2">Built on global ESG frameworks like GRI & CSRD</div>
+              <div className="text-sm text-muted-foreground">Industry-standard compliance foundation</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">50+</div>
-              <div className="text-sm text-muted-foreground">Frameworks Supported</div>
+              <div className="text-base font-medium text-foreground mb-2">Not a certified audit — but your smartest first step toward one</div>
+              <div className="text-sm text-muted-foreground">Prepare confidently for formal assessments</div>
             </div>
             <div>
-              <div className="text-3xl font-bold text-primary mb-2">&lt;5min</div>
-              <div className="text-sm text-muted-foreground">Analysis Time</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-primary mb-2">24/7</div>
-              <div className="text-sm text-muted-foreground">Monitoring</div>
+              <div className="text-base font-medium text-foreground mb-2">Your data is never used to train models and stays secure</div>
+              <div className="text-sm text-muted-foreground">Complete privacy and data protection</div>
             </div>
           </div>
-          <p className="text-muted-foreground mt-6 text-sm">
-            Trusted by sustainability professionals at companies worldwide
-          </p>
         </div>
       </div>
     </section>
