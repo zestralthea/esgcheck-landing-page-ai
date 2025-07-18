@@ -8,7 +8,7 @@ import HowItWorks from "@/components/HowItWorks";
 import WaitlistForm from "@/components/WaitlistForm";
 import Footer from "@/components/Footer";
 import WaitlistModal from "@/components/WaitlistModal";
-import AboutSection from "@/components/AboutSection";
+
 import ContactSection from "@/components/ContactSection";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
@@ -25,7 +25,7 @@ const Index = () => {
       
       
       <HowItWorks />
-      <AboutSection />
+      
       <ContactSection />
       <WaitlistForm />
       <Footer />
