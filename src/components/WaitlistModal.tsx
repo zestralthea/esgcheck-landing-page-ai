@@ -92,9 +92,9 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     <Dialog open={isOpen} onOpenChange={handleClose}>
       <DialogContent className="sm:max-w-md bg-gradient-card border border-border/20 backdrop-blur">
         <DialogHeader>
-          <DialogTitle className="text-xl font-semibold">Get Early Access — and Help Shape the Future of ESG Insight</DialogTitle>
+          <DialogTitle className="text-xl font-semibold">Join the ESGCheck Beta</DialogTitle>
           <DialogDescription>
-            Join the ESGCheck beta to get early access to our AI-powered ESG health check
+            Be one of the first to try our AI-powered ESG health check. Upload your report, get actionable insights, and help us build something truly useful.
           </DialogDescription>
         </DialogHeader>
         

@@ -90,9 +90,9 @@ export default function WaitlistForm() {
           
           <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-2xl">Get Early Access — and Help Shape the Future of ESG Insight</CardTitle>
+              <CardTitle className="text-2xl">Join the ESGCheck Beta</CardTitle>
               <CardDescription>
-                Join the ESGCheck beta to get early access to our AI-powered ESG health check.
+                Be one of the first to try our AI-powered ESG health check. Upload your report, get actionable insights, and help us build something truly useful.
               </CardDescription>
             </CardHeader>
             <CardContent>
