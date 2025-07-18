@@ -91,9 +91,6 @@ export default function WaitlistForm() {
           <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
               <CardTitle className="text-2xl">Join the ESGCheck Beta</CardTitle>
-              <CardDescription>
-                Built with your feedback. Help us make ESGCheck the most useful ESG tool on the market.
-              </CardDescription>
             </CardHeader>
             <CardContent>
               {!isSubmitted ? (
@@ -133,7 +130,7 @@ export default function WaitlistForm() {
                     Free during beta · No credit card · Privacy respected
                   </p>
                   <p className="text-xs text-success font-medium">
-                    Early testers get free access and help us build ESGCheck into the tool you need.
+                    Built with your feedback. Help us make ESGCheck the most useful ESG tool on the market.
                   </p>
                 </form>
               ) : (
