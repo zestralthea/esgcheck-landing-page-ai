@@ -33,7 +33,7 @@ export default function Header() {
 
   return (
     <header className="border-b border-border bg-gradient-dark backdrop-blur supports-[backdrop-filter]:bg-gradient-dark/90 sticky top-0 z-50">
-      <div className="container mx-auto px-4 h-16 relative flex items-center">
+      <div className="container mx-auto px-2 md:px-4 h-16 relative flex items-center">
         <Link to="/" className="flex items-center space-x-2">
           <div className="flex items-center justify-center w-8 h-8 bg-gradient-primary rounded-lg">
             <Leaf className="h-5 w-5 text-primary-foreground" />
