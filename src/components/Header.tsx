@@ -57,10 +57,10 @@ export default function Header() {
         </nav>
         
         <div className="flex items-center space-x-2">
-          <LanguageToggle />
           <Button variant="hero" size="sm" onClick={openModal}>
             {t('header.joinWaitlist')}
           </Button>
+          <LanguageToggle />
         </div>
       </div>
     </header>
