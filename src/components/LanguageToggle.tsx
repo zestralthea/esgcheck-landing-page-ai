@@ -12,7 +12,7 @@ export default function LanguageToggle() {
   ];
 
   return (
-    <div className="flex items-center space-x-1 bg-muted/50 rounded-md p-1">
+    <div className="hidden md:flex items-center space-x-1 bg-muted/50 rounded-md p-1">
       {languages.map(({ code, label }) => (
         <Button
           key={code}
