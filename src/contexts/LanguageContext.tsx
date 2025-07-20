@@ -1,7 +1,6 @@
-
 import React, { createContext, useContext, useState, ReactNode } from 'react';
 
-export type Language = 'en' | 'de';
+export type Language = 'en' | 'de' | 'fr';
 
 interface LanguageContextType {
   language: Language;
@@ -46,6 +45,8 @@ const getTranslations = (lang: Language) => {
   switch (lang) {
     case 'de':
       return deTranslations;
+    case 'fr':
+      return frTranslations;
     case 'en':
     default:
       return enTranslations;
@@ -203,5 +204,82 @@ const deTranslations = {
     privacy: "Datenschutzrichtlinie",
     terms: "Nutzungsbedingungen",
     copyright: "© 2025 ESGCheck. Alle Rechte vorbehalten."
+  }
+};
+
+const frTranslations = {
+  header: {
+    features: "Fonctionnalités",
+    about: "À propos",
+    joinWaitlist: "Rejoindre la liste d'attente"
+  },
+  hero: {
+    title: "Rendre les progrès ESG",
+    titleHighlight: "Visibles",
+    description: "Téléchargez votre rapport de durabilité et obtenez des informations instantanées alimentées par l'IA. Nous vous aidons à identifier les lacunes, améliorer l'alignement avec les cadres mondiaux et rester sur la bonne voie avec clarté, pas complexité.",
+    joinWaitlist: "Rejoindre la liste d'attente",
+    freeBeta: "Gratuit pendant la bêta · Aucune carte de crédit requise",
+    uploadAnalyze: "Télécharger. Analyser. Améliorer.",
+    resultsTime: "Résultats en moins de 2 minutes",
+    frameworks: "Basé sur des cadres de confiance (GRI, CSRD)"
+  },
+  features: {
+    title: "Obtenez la clarté ESG — sans la complexité",
+    subtitle: "ESGCheck vous donne des informations instantanées et exploitables à partir de vos rapports de durabilité.",
+    subtitleTwo: "Pas de consultants, pas de feuilles de calcul, pas d'attente de semaines pour les commentaires.",
+    score: {
+      title: "Un score simple qui montre où vous en êtes",
+      description: "Obtenez instantanément un score de performance ESG facile à comprendre et à comparer aux normes de l'industrie."
+    },
+    risks: {
+      title: "Repérez les risques avant que les investisseurs ou les régulateurs ne le fassent",
+      description: "Identifiez les lacunes de conformité et les problèmes potentiels avant qu'ils ne deviennent des problèmes coûteux ou des violations réglementaires."
+    },
+    suggestions: {
+      title: "Suggestions générées par l'IA adaptées à votre rapport",
+      description: "Recevez des recommandations spécifiques et exploitables basées sur vos données réelles et les meilleures pratiques de l'industrie."
+    },
+    summary: {
+      title: "Un résumé PDF propre que vous pouvez partager avec votre équipe",
+      description: "Exportez des rapports professionnels qui communiquent clairement vos progrès ESG aux parties prenantes et à la direction."
+    },
+    upload: {
+      title: "Téléchargez une fois, obtenez des informations en minutes",
+      description: "Transformez des semaines d'analyse en minutes. Téléchargez simplement votre rapport et obtenez instantanément des informations complètes."
+    },
+    trust: {
+      frameworks: "Basé sur les cadres ESG mondiaux comme GRI & CSRD",
+      frameworksDesc: "Fondation de conformité aux normes de l'industrie",
+      audit: "Pas un audit certifié, mais votre première étape la plus intelligente vers un",
+      auditDesc: "Préparez-vous en toute confiance pour les évaluations formelles",
+      security: "Vos données ne sont jamais utilisées pour entraîner des modèles et restent sécurisées",
+      securityDesc: "Confidentialité complète et protection des données"
+    }
+  },
+  about: {
+    title: "Pourquoi nous construisons ESGCheck",
+    description: "Nous croyons que la transparence ESG devrait être rapide, accessible et pratique, pas seulement réservée aux grandes entreprises avec des budgets d'audit. ESGCheck donne aux entreprises un point de départ facile pour suivre leur performance environnementale, sociale et de gouvernance en temps réel, et s'améliorer au fil du temps.",
+    team: "Nous sommes une petite équipe basée en Suisse utilisant l'IA pour apporter la clarté ESG à ceux qui en ont le plus besoin : les entreprises en croissance, les consultants et les équipes de durabilité en phase précoce.",
+    clarity: {
+      title: "Clarté plutôt que complexité",
+      description: "Nous transformons les données ESG denses en informations simples et exploitables."
+    },
+    improving: {
+      title: "Toujours en amélioration",
+      description: "Utilisez ESGCheck avant, entre ou même sans audits formels pour maintenir les progrès sur la bonne voie."
+    },
+    secure: {
+      title: "Sécurisé et digne de confiance",
+      description: "Basé sur des cadres mondiaux (GRI, CSRD). Vos données sont toujours privées."
+    }
+  },
+  footer: {
+    description: "ESGCheck aide les entreprises à comprendre leurs rapports ESG avec des informations et des conseils alimentés par l'IA, en minutes.",
+    product: "Produit",
+    company: "Entreprise",
+    legal: "Légal",
+    privacy: "Politique de confidentialité",
+    terms: "Conditions d'utilisation",
+    copyright: "© 2025 ESGCheck. Tous droits réservés."
   }
 };
