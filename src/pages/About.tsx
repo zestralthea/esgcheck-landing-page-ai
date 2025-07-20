@@ -1,5 +1,8 @@
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Leaf, Target, Users, Globe, Award, TrendingUp } from "lucide-react";
@@ -43,12 +46,45 @@ const values = [
   }
 ];
 
+const aboutStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "ESGCheck",
+  "description": "AI-powered ESG compliance reporting and analysis platform for startups and SMEs",
+  "url": "https://esgcheck.lovable.app/",
+  "logo": "https://esgcheck.lovable.app/esgcheck_logo.svg",
+  "foundingDate": "2024",
+  "founder": [
+    {
+      "@type": "Person",
+      "name": "Sarah Chen",
+      "jobTitle": "CEO & Co-founder"
+    },
+    {
+      "@type": "Person", 
+      "name": "Marcus Johnson",
+      "jobTitle": "CTO & Co-founder"
+    }
+  ],
+  "mission": "To make ESG compliance accessible, accurate, and automated for organizations of all sizes"
+};
+
 export default function About() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="About ESGCheck | AI-Powered ESG Compliance Platform | Our Story"
+        description="Learn about ESGCheck's mission to democratize ESG compliance through AI. Meet our team of ESG experts and sustainability professionals building the future of compliance reporting."
+        keywords="ESGCheck about, ESG compliance team, sustainability experts, AI ESG platform, company mission"
+        canonicalUrl="https://esgcheck.lovable.app/about"
+        structuredData={aboutStructuredData}
+      />
+      
       <Header />
       
       <main className="container mx-auto px-4 py-16">
+        <BreadcrumbNav />
+        
         {/* Hero Section */}
         <div className="text-center mb-16">
           <div className="flex items-center justify-center mb-6">

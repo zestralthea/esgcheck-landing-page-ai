@@ -1,5 +1,8 @@
+
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEOHead from "@/components/SEOHead";
+import BreadcrumbNav from "@/components/BreadcrumbNav";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { CheckCircle, Shield, BarChart3, FileSearch, Globe, Zap } from "lucide-react";
@@ -43,12 +46,43 @@ const features = [
   }
 ];
 
+const featuresStructuredData = {
+  "@context": "https://schema.org",
+  "@type": "Product",
+  "name": "ESGCheck Features",
+  "description": "Comprehensive ESG compliance features including automated report analysis, regulatory monitoring, and performance benchmarking",
+  "provider": {
+    "@type": "Organization",
+    "name": "ESGCheck"
+  },
+  "offers": {
+    "@type": "Offer",
+    "price": "0",
+    "priceCurrency": "USD"
+  },
+  "hasFeature": features.map(feature => ({
+    "@type": "SoftwareFeature",
+    "name": feature.title,
+    "description": feature.description
+  }))
+};
+
 export default function Features() {
   return (
     <div className="min-h-screen bg-background">
+      <SEOHead 
+        title="ESG Compliance Features | Automated Analysis & Monitoring | ESGCheck"
+        description="Discover ESGCheck's powerful features: automated ESG report analysis, regulatory compliance monitoring, performance benchmarking, and multi-framework support for startups and SMEs."
+        keywords="ESG features, automated analysis, compliance monitoring, performance benchmarking, GRI SASB TCFD support, ESG dashboard"
+        canonicalUrl="https://esgcheck.lovable.app/features"
+        structuredData={featuresStructuredData}
+      />
+      
       <Header />
       
       <main className="container mx-auto px-4 py-16">
+        <BreadcrumbNav />
+        
         {/* Hero Section */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-primary bg-clip-text text-transparent">
