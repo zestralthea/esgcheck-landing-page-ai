@@ -29,8 +29,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     setIsLoading(true);
     
     try {
-      // First, insert into waitlist table
-      const { error: insertError } = await supabase
+      const { error } = await supabase
         .from('waitlist')
         .insert([
           {
@@ -40,48 +39,21 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
           }
         ]);
 
-      if (insertError) {
+      if (error) {
         // Handle duplicate email error specifically
-        if (insertError.code === '23505') {
+        if (error.code === '23505') {
           toast({
             title: "Already on the waitlist!",
             description: "This email is already registered. We'll be in touch soon!",
           });
         } else {
-          throw insertError;
+          throw error;
         }
       } else {
-        // If insertion successful, send confirmation email
-        try {
-          const { error: emailError } = await supabase.functions.invoke('send-waitlist-confirmation', {
-            body: {
-              name: formData.name,
-              email: formData.email,
-              company: formData.company
-            }
-          });
-
-          if (emailError) {
-            console.error('Error sending confirmation email:', emailError);
-            // Don't fail the whole process if email fails
-            toast({
-              title: "Added to waitlist!",
-              description: "You're on the waitlist! We'll notify you when ESGCheck is ready for early access.",
-            });
-          } else {
-            toast({
-              title: "Welcome to the waitlist!",
-              description: "Check your email for confirmation. We'll notify you when ESGCheck is ready for early access.",
-            });
-          }
-        } catch (emailError) {
-          console.error('Error sending confirmation email:', emailError);
-          // Don't fail the whole process if email fails
-          toast({
-            title: "Added to waitlist!",
-            description: "You're on the waitlist! We'll notify you when ESGCheck is ready for early access.",
-          });
-        }
+        toast({
+          title: "Welcome to the waitlist!",
+          description: "Check your email for confirmation. We'll notify you when ESGCheck is ready for early access.",
+        });
       }
       
       setIsSubmitted(true);
