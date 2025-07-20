@@ -1,3 +1,4 @@
+
 import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -5,6 +6,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function WaitlistForm() {
   const [formData, setFormData] = useState({
@@ -15,6 +17,7 @@ export default function WaitlistForm() {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const { toast } = useToast();
+  const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -80,17 +83,16 @@ export default function WaitlistForm() {
         <div className="max-w-2xl mx-auto text-center">
           <div className="space-y-4 mb-12">
             <h2 className="text-3xl md:text-4xl font-bold text-foreground">
-              Ready to Take the First Step Toward Real ESG Progress?
+              {t('waitlist.title')}
             </h2>
             <p className="text-xl text-muted-foreground">
-              Be one of the first to try our AI-powered ESG health check. 
-              Upload your report, get actionable insights, and help us build something truly useful.
+              {t('waitlist.description')}
             </p>
           </div>
           
           <Card className="border border-border/20 shadow-premium bg-gradient-card backdrop-blur">
             <CardHeader>
-              <CardTitle className="text-2xl">Join the ESGCheck Beta</CardTitle>
+              <CardTitle className="text-2xl">{t('waitlist.cardTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
               {!isSubmitted ? (
@@ -98,7 +100,7 @@ export default function WaitlistForm() {
                   <div className="grid md:grid-cols-2 gap-4">
                     <Input
                       name="name"
-                      placeholder="Full Name"
+                      placeholder={t('waitlist.modal.namePlaceholder')}
                       value={formData.name}
                       onChange={handleChange}
                       required
@@ -106,7 +108,7 @@ export default function WaitlistForm() {
                     />
                     <Input
                       name="company"
-                      placeholder="Company"
+                      placeholder={t('waitlist.modal.companyPlaceholder')}
                       value={formData.company}
                       onChange={handleChange}
                       required
@@ -116,29 +118,31 @@ export default function WaitlistForm() {
                   <Input
                     name="email"
                     type="email"
-                    placeholder="Work Email"
+                    placeholder={t('waitlist.modal.emailPlaceholder')}
                     value={formData.email}
                     onChange={handleChange}
                     required
                     className="h-12"
                   />
                   <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading}>
-                    {isLoading ? "Joining..." : "Join Waitlist"}
+                    {isLoading ? t('waitlist.modal.submittingButton') : t('waitlist.modal.submitButton')}
                     {!isLoading && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
                   </Button>
                   <p className="text-sm text-muted-foreground">
-                    Free during beta · No credit card · Privacy respected
+                    {t('waitlist.modal.disclaimer')}
                   </p>
                   <p className="text-xs text-success font-medium">
-                    Early testers get free beta access and help us build ESGCheck into the tool you need.
+                    {t('waitlist.modal.betaNote')}
                   </p>
                 </form>
               ) : (
                 <div className="py-8 text-center space-y-4">
                   <CheckCircle className="h-16 w-16 text-success mx-auto" />
-                  <h3 className="text-xl font-semibold text-foreground">Thank you!</h3>
+                  <h3 className="text-xl font-semibold text-foreground">
+                    {t('waitlist.modal.successTitle')}
+                  </h3>
                   <p className="text-muted-foreground">
-                    You've been added to our waitlist. We'll be in touch soon with early access details.
+                    {t('waitlist.modal.successMessage')}
                   </p>
                 </div>
               )}

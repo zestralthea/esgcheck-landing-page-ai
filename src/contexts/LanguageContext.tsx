@@ -119,6 +119,24 @@ const enTranslations = {
       description: "Built on global frameworks (GRI, CSRD). Your data is always private."
     }
   },
+  waitlist: {
+    title: "Ready to Take the First Step Toward Real ESG Progress?",
+    description: "Be one of the first to try our AI-powered ESG health check. Upload your report, get actionable insights, and help us build something truly useful.",
+    cardTitle: "Join the ESGCheck Beta",
+    modal: {
+      title: "Join the ESGCheck Beta",
+      description: "Be one of the first to try our AI-powered ESG health check. Upload your report, get actionable insights, and help us build something truly useful.",
+      namePlaceholder: "Full Name",
+      companyPlaceholder: "Company",
+      emailPlaceholder: "Work Email",
+      submitButton: "Join Waitlist",
+      submittingButton: "Joining...",
+      disclaimer: "Free during beta · No credit card · Privacy respected",
+      betaNote: "Early testers get free access and help us build ESGCheck into the tool you need.",
+      successTitle: "Thank you!",
+      successMessage: "You've been added to our waitlist. We'll be in touch soon with early access details."
+    }
+  },
   footer: {
     description: "ESGCheck helps businesses make sense of their ESG reports with AI-powered insights and guidance, in minutes.",
     product: "Product",
@@ -196,6 +214,24 @@ const deTranslations = {
       description: "Basiert auf globalen Frameworks (GRI, CSRD). Ihre Daten sind immer privat."
     }
   },
+  waitlist: {
+    title: "Bereit, den ersten Schritt zu echtem ESG-Fortschritt zu machen?",
+    description: "Seien Sie einer der ersten, die unseren KI-gestützten ESG-Gesundheitscheck ausprobieren. Laden Sie Ihren Bericht hoch, erhalten Sie umsetzbare Einblicke und helfen Sie uns, etwas wirklich Nützliches zu bauen.",
+    cardTitle: "ESGCheck Beta beitreten",
+    modal: {
+      title: "ESGCheck Beta beitreten",
+      description: "Seien Sie einer der ersten, die unseren KI-gestützten ESG-Gesundheitscheck ausprobieren. Laden Sie Ihren Bericht hoch, erhalten Sie umsetzbare Einblicke und helfen Sie uns, etwas wirklich Nützliches zu bauen.",
+      namePlaceholder: "Vollständiger Name",
+      companyPlaceholder: "Unternehmen",
+      emailPlaceholder: "Geschäftliche E-Mail",
+      submitButton: "Warteliste beitreten",
+      submittingButton: "Beitreten...",
+      disclaimer: "Kostenlos während Beta · Keine Kreditkarte · Privatsphäre respektiert",
+      betaNote: "Frühe Tester erhalten kostenlosen Zugang und helfen uns, ESGCheck zu dem Tool zu entwickeln, das Sie brauchen.",
+      successTitle: "Vielen Dank!",
+      successMessage: "Sie wurden zu unserer Warteliste hinzugefügt. Wir werden uns bald mit Details zum frühen Zugang bei Ihnen melden."
+    }
+  },
   footer: {
     description: "ESGCheck hilft Unternehmen, ihre ESG-Berichte mit KI-gestützten Einblicken und Anleitung in Minuten zu verstehen.",
     product: "Produkt",
@@ -271,6 +307,24 @@ const frTranslations = {
     secure: {
       title: "Sécurisé et digne de confiance",
       description: "Basé sur des cadres mondiaux (GRI, CSRD). Vos données sont toujours privées."
+    }
+  },
+  waitlist: {
+    title: "Prêt à faire le premier pas vers de vrais progrès ESG?",
+    description: "Soyez parmi les premiers à essayer notre vérification de santé ESG alimentée par l'IA. Téléchargez votre rapport, obtenez des informations exploitables et aidez-nous à construire quelque chose de vraiment utile.",
+    cardTitle: "Rejoindre la bêta ESGCheck",
+    modal: {
+      title: "Rejoindre la bêta ESGCheck",
+      description: "Soyez parmi les premiers à essayer notre vérification de santé ESG alimentée par l'IA. Téléchargez votre rapport, obtenez des informations exploitables et aidez-nous à construire quelque chose de vraiment utile.",
+      namePlaceholder: "Nom complet",
+      companyPlaceholder: "Entreprise",
+      emailPlaceholder: "Email professionnel",
+      submitButton: "Rejoindre la liste d'attente",
+      submittingButton: "Inscription...",
+      disclaimer: "Gratuit pendant la bêta · Aucune carte de crédit · Confidentialité respectée",
+      betaNote: "Les premiers testeurs obtiennent un accès gratuit et nous aident à construire ESGCheck selon vos besoins.",
+      successTitle: "Merci!",
+      successMessage: "Vous avez été ajouté à notre liste d'attente. Nous vous contacterons bientôt avec les détails d'accès anticipé."
     }
   },
   footer: {
