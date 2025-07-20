@@ -1,10 +1,12 @@
 
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 export default function Hero() {
   const { openModal } = useWaitlistModal();
+  const { t } = useLanguage();
   
   return (
     <section className="py-20 bg-gradient-dark relative overflow-hidden min-h-screen flex items-center">
@@ -27,37 +29,36 @@ export default function Hero() {
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight">
-              Make ESG Progress<br />
+              {t('hero.title')}<br />
               <span className="bg-gradient-primary bg-clip-text text-transparent">
-                Visible
+                {t('hero.titleHighlight')}
               </span>
             </h1>
             <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
-              Upload your sustainability report and get instant, AI-powered insights.
-              We help you spot gaps, improve alignment with global frameworks, and stay on track with clarity, not complexity.
+              {t('hero.description')}
             </p>
           </div>
           
           <div className="flex flex-col items-center justify-center space-y-2">
             <Button variant="premium" size="lg" className="group" onClick={openModal}>
-              Join the Waitlist
+              {t('hero.joinWaitlist')}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <p className="text-sm text-muted-foreground">Free during beta · No credit card needed</p>
+            <p className="text-sm text-muted-foreground">{t('hero.freeBeta')}</p>
           </div>
           
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-muted-foreground">
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>Upload. Analyze. Improve.</span>
+              <span>{t('hero.uploadAnalyze')}</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>Results in under 2 minutes</span>
+              <span>{t('hero.resultsTime')}</span>
             </div>
             <div className="flex items-center space-x-2">
               <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>Built on trusted frameworks (GRI, CSRD)</span>
+              <span>{t('hero.frameworks')}</span>
             </div>
           </div>
         </div>

@@ -1,0 +1,207 @@
+
+import React, { createContext, useContext, useState, ReactNode } from 'react';
+
+export type Language = 'en' | 'de';
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+  t: (key: string) => string;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+export const useLanguage = () => {
+  const context = useContext(LanguageContext);
+  if (!context) {
+    throw new Error('useLanguage must be used within a LanguageProvider');
+  }
+  return context;
+};
+
+interface LanguageProviderProps {
+  children: ReactNode;
+}
+
+export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
+  const [language, setLanguage] = useState<Language>('en');
+
+  const t = (key: string): string => {
+    const translations = getTranslations(language);
+    return getNestedValue(translations, key) || key;
+  };
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage, t }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+};
+
+const getNestedValue = (obj: any, path: string): string | undefined => {
+  return path.split('.').reduce((current, key) => current?.[key], obj);
+};
+
+const getTranslations = (lang: Language) => {
+  switch (lang) {
+    case 'de':
+      return deTranslations;
+    case 'en':
+    default:
+      return enTranslations;
+  }
+};
+
+const enTranslations = {
+  header: {
+    features: "Features",
+    about: "About",
+    joinWaitlist: "Join Waitlist"
+  },
+  hero: {
+    title: "Make ESG Progress",
+    titleHighlight: "Visible",
+    description: "Upload your sustainability report and get instant, AI-powered insights. We help you spot gaps, improve alignment with global frameworks, and stay on track with clarity, not complexity.",
+    joinWaitlist: "Join the Waitlist",
+    freeBeta: "Free during beta · No credit card needed",
+    uploadAnalyze: "Upload. Analyze. Improve.",
+    resultsTime: "Results in under 2 minutes",
+    frameworks: "Built on trusted frameworks (GRI, CSRD)"
+  },
+  features: {
+    title: "Get ESG clarity — without the complexity",
+    subtitle: "ESGCheck gives you instant, actionable insights from your sustainability reports.",
+    subtitleTwo: "No consultants, No spreadsheets, No waiting weeks for feedback.",
+    score: {
+      title: "A simple score that shows where you stand",
+      description: "Get an instant ESG performance score that's easy to understand and benchmark against industry standards."
+    },
+    risks: {
+      title: "Spot risks before investors or regulators do",
+      description: "Identify compliance gaps and potential issues before they become costly problems or regulatory violations."
+    },
+    suggestions: {
+      title: "AI-generated suggestions tailored to your report",
+      description: "Receive specific, actionable recommendations based on your actual data and industry best practices."
+    },
+    summary: {
+      title: "A clean summary PDF you can share with your team",
+      description: "Export professional reports that communicate your ESG progress clearly to stakeholders and leadership."
+    },
+    upload: {
+      title: "Upload once, get insights in minutes",
+      description: "Transform weeks of analysis into minutes. Just upload your report and get comprehensive insights instantly."
+    },
+    trust: {
+      frameworks: "Built on global ESG frameworks like GRI & CSRD",
+      frameworksDesc: "Industry-standard compliance foundation",
+      audit: "Not a certified audit, but your smartest first step toward one",
+      auditDesc: "Prepare confidently for formal assessments",
+      security: "Your data is never used to train models and stays secure",
+      securityDesc: "Complete privacy and data protection"
+    }
+  },
+  about: {
+    title: "Why we're building ESGCheck",
+    description: "We believe ESG transparency should be fast, accessible, and practical, not just reserved for large corporations with audit budgets. ESGCheck gives companies an easy starting point to track their environmental, social, and governance performance in real time, and improve over time.",
+    team: "We're a small, Swiss-based team using AI to bring ESG clarity to those who need it most: growing businesses, consultants, and early-stage sustainability teams.",
+    clarity: {
+      title: "Clarity over Complexity",
+      description: "We turn dense ESG data into simple, actionable insights."
+    },
+    improving: {
+      title: "Always Improving",
+      description: "Use ESGCheck before, between, or even without formal audits to keep progress on track."
+    },
+    secure: {
+      title: "Secure & Trustworthy",
+      description: "Built on global frameworks (GRI, CSRD). Your data is always private."
+    }
+  },
+  footer: {
+    description: "ESGCheck helps businesses make sense of their ESG reports with AI-powered insights and guidance, in minutes.",
+    product: "Product",
+    company: "Company",
+    legal: "Legal",
+    privacy: "Privacy Policy",
+    terms: "Terms of Service",
+    copyright: "© 2025 ESGCheck. All rights reserved."
+  }
+};
+
+const deTranslations = {
+  header: {
+    features: "Funktionen",
+    about: "Über uns",
+    joinWaitlist: "Warteliste beitreten"
+  },
+  hero: {
+    title: "ESG-Fortschritt",
+    titleHighlight: "Sichtbar machen",
+    description: "Laden Sie Ihren Nachhaltigkeitsbericht hoch und erhalten Sie sofortige, KI-gestützte Einblicke. Wir helfen Ihnen, Lücken zu erkennen, die Angleichung an globale Frameworks zu verbessern und mit Klarheit, nicht Komplexität, auf Kurs zu bleiben.",
+    joinWaitlist: "Warteliste beitreten",
+    freeBeta: "Kostenlos während Beta · Keine Kreditkarte erforderlich",
+    uploadAnalyze: "Hochladen. Analysieren. Verbessern.",
+    resultsTime: "Ergebnisse in unter 2 Minuten",
+    frameworks: "Basiert auf vertrauenswürdigen Frameworks (GRI, CSRD)"
+  },
+  features: {
+    title: "ESG-Klarheit erhalten — ohne die Komplexität",
+    subtitle: "ESGCheck gibt Ihnen sofortige, umsetzbare Einblicke aus Ihren Nachhaltigkeitsberichten.",
+    subtitleTwo: "Keine Berater, keine Tabellen, kein wochenlanges Warten auf Feedback.",
+    score: {
+      title: "Eine einfache Bewertung, die zeigt, wo Sie stehen",
+      description: "Erhalten Sie sofort eine ESG-Leistungsbewertung, die leicht zu verstehen ist und mit Branchenstandards verglichen werden kann."
+    },
+    risks: {
+      title: "Risiken erkennen, bevor Investoren oder Regulatoren es tun",
+      description: "Identifizieren Sie Compliance-Lücken und potenzielle Probleme, bevor sie zu kostspieligen Problemen oder regulatorischen Verstößen werden."
+    },
+    suggestions: {
+      title: "KI-generierte Vorschläge, maßgeschneidert für Ihren Bericht",
+      description: "Erhalten Sie spezifische, umsetzbare Empfehlungen basierend auf Ihren tatsächlichen Daten und branchenweiten Best Practices."
+    },
+    summary: {
+      title: "Eine übersichtliche Zusammenfassung als PDF, die Sie mit Ihrem Team teilen können",
+      description: "Exportieren Sie professionelle Berichte, die Ihren ESG-Fortschritt klar an Stakeholder und Führungskräfte kommunizieren."
+    },
+    upload: {
+      title: "Einmal hochladen, Einblicke in Minuten erhalten",
+      description: "Verwandeln Sie wochenlange Analysen in Minuten. Laden Sie einfach Ihren Bericht hoch und erhalten Sie sofort umfassende Einblicke."
+    },
+    trust: {
+      frameworks: "Basiert auf globalen ESG-Frameworks wie GRI & CSRD",
+      frameworksDesc: "Branchenstandard-Compliance-Grundlage",
+      audit: "Kein zertifiziertes Audit, aber Ihr klügster erster Schritt dorthin",
+      auditDesc: "Bereiten Sie sich selbstbewusst auf formale Bewertungen vor",
+      security: "Ihre Daten werden niemals zum Trainieren von Modellen verwendet und bleiben sicher",
+      securityDesc: "Vollständige Privatsphäre und Datenschutz"
+    }
+  },
+  about: {
+    title: "Warum wir ESGCheck entwickeln",
+    description: "Wir glauben, dass ESG-Transparenz schnell, zugänglich und praktisch sein sollte, nicht nur großen Unternehmen mit Audit-Budgets vorbehalten. ESGCheck gibt Unternehmen einen einfachen Ausgangspunkt, um ihre Umwelt-, Sozial- und Governance-Leistung in Echtzeit zu verfolgen und sich im Laufe der Zeit zu verbessern.",
+    team: "Wir sind ein kleines, in der Schweiz ansässiges Team, das KI nutzt, um ESG-Klarheit zu denjenigen zu bringen, die sie am meisten brauchen: wachsende Unternehmen, Berater und frühe Nachhaltigkeitsteams.",
+    clarity: {
+      title: "Klarheit über Komplexität",
+      description: "Wir verwandeln dichte ESG-Daten in einfache, umsetzbare Einblicke."
+    },
+    improving: {
+      title: "Immer verbessernd",
+      description: "Verwenden Sie ESGCheck vor, zwischen oder sogar ohne formale Audits, um den Fortschritt auf Kurs zu halten."
+    },
+    secure: {
+      title: "Sicher & Vertrauenswürdig",
+      description: "Basiert auf globalen Frameworks (GRI, CSRD). Ihre Daten sind immer privat."
+    }
+  },
+  footer: {
+    description: "ESGCheck hilft Unternehmen, ihre ESG-Berichte mit KI-gestützten Einblicken und Anleitung in Minuten zu verstehen.",
+    product: "Produkt",
+    company: "Unternehmen",
+    legal: "Rechtliches",
+    privacy: "Datenschutzrichtlinie",
+    terms: "Nutzungsbedingungen",
+    copyright: "© 2025 ESGCheck. Alle Rechte vorbehalten."
+  }
+};

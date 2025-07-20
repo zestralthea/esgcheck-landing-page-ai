@@ -1,5 +1,7 @@
+
 import { Leaf } from "lucide-react";
 import { useLocation } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const smoothScrollTo = (elementId: string) => {
   const element = document.getElementById(elementId);
@@ -13,6 +15,7 @@ const smoothScrollTo = (elementId: string) => {
 
 export default function Footer() {
   const location = useLocation();
+  const { t } = useLanguage();
   const isHomePage = location.pathname === '/';
   
   const handleNavClick = (sectionId: string) => {
@@ -24,7 +27,8 @@ export default function Footer() {
     }
   };
 
-  return <footer className="border-t border-border bg-gradient-dark">
+  return (
+    <footer className="border-t border-border bg-gradient-dark">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
@@ -34,36 +38,35 @@ export default function Footer() {
               </div>
               <span className="text-xl font-bold text-foreground">ESGCheck</span>
             </div>
-            <p className="text-muted-foreground max-w-xs">ESGCheck helps businesses make sense of their ESG reports with AI-powered insights and guidance, in minutes.</p>
+            <p className="text-muted-foreground max-w-xs">{t('footer.description')}</p>
           </div>
           
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Product</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.product')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><button onClick={() => handleNavClick('features')} className="hover:text-foreground transition-colors">Features</button></li>
+              <li><button onClick={() => handleNavClick('features')} className="hover:text-foreground transition-colors">{t('header.features')}</button></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Company</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.company')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><button onClick={() => handleNavClick('about')} className="hover:text-foreground transition-colors">About</button></li>
-              
+              <li><button onClick={() => handleNavClick('about')} className="hover:text-foreground transition-colors">{t('header.about')}</button></li>
             </ul>
           </div>
           
           <div>
-            <h4 className="font-semibold text-foreground mb-4">Legal</h4>
+            <h4 className="font-semibold text-foreground mb-4">{t('footer.legal')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">Privacy Policy</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">Terms of Service</a></li>
+              <li><a href="#" className="hover:text-foreground transition-colors">{t('footer.privacy')}</a></li>
+              <li><a href="#" className="hover:text-foreground transition-colors">{t('footer.terms')}</a></li>
             </ul>
           </div>
         </div>
         
         <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
           <p className="text-muted-foreground text-sm">
-            © 2025 ESGCheck. All rights reserved.
+            {t('footer.copyright')}
           </p>
           <div className="flex space-x-6 mt-4 md:mt-0">
             <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
@@ -78,5 +81,6 @@ export default function Footer() {
           </div>
         </div>
       </div>
-    </footer>;
+    </footer>
+  );
 }
