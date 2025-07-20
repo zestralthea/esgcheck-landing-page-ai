@@ -30,7 +30,7 @@ export default function Hero() {
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight">
               {t('hero.title')}<br />
-              <span className="bg-gradient-primary bg-clip-text text-transparent">
+              <span className="bg-gradient-primary bg-clip-text text-transparent uppercase">
                 {t('hero.titleHighlight')}
               </span>
             </h1>
