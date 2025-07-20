@@ -44,7 +44,7 @@ export default function Hero() {
               {t('hero.joinWaitlist')}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <p className="text-sm text-muted-foreground">{t('hero.freeBeta')}</p>
+            <p className="text-sm text-muted-foreground">{t('waitlist.modal.disclaimer')}</p>
           </div>
           
           <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-muted-foreground">
