@@ -47,7 +47,7 @@ export default function WaitlistForm() {
       } else {
         toast({
           title: "Welcome to the waitlist!",
-          description: "We'll notify you when ESGCheck is ready for early access.",
+          description: "Check your email for confirmation. We'll notify you when ESGCheck is ready for early access.",
         });
       }
       
