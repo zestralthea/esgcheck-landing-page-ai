@@ -1,4 +1,3 @@
-
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Link } from "react-router-dom";
@@ -33,8 +32,8 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center space-x-2">
+            <div className="flex flex-col space-y-3 sm:flex-row sm:items-center sm:justify-between sm:space-y-0">
+              <div className="flex items-center space-x-2 order-2 sm:order-1">
                 <img 
                   src="/esgcheck_logo.svg" 
                   alt="ESGCheck Logo" 
@@ -42,7 +41,9 @@ export default function Footer() {
                 />
                 <span className="text-xl font-bold text-foreground">ESGCheck</span>
               </div>
-              <LanguageToggle showOnMobile />
+              <div className="order-1 sm:order-2">
+                <LanguageToggle showOnMobile />
+              </div>
             </div>
             <p className="text-muted-foreground max-w-xs">{t('footer.description')}</p>
           </div>
