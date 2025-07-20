@@ -43,18 +43,18 @@ export default function Header() {
         </Link>
         
         <nav className="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2">
-          <Link 
-            to="/features" 
-            className="transition-colors text-muted-foreground hover:text-foreground"
+          <button 
+            onClick={() => handleNavClick('features')}
+            className="transition-colors text-muted-foreground hover:text-foreground cursor-pointer"
           >
             {t('header.features')}
-          </Link>
-          <Link 
-            to="/about" 
-            className="transition-colors text-muted-foreground hover:text-foreground"
+          </button>
+          <button 
+            onClick={() => handleNavClick('about')}
+            className="transition-colors text-muted-foreground hover:text-foreground cursor-pointer"
           >
             {t('header.about')}
-          </Link>
+          </button>
         </nav>
         
         <div className="flex items-center space-x-2 ml-auto">

@@ -50,14 +50,28 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-foreground mb-4">{t('footer.product')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><Link to="/features" className="hover:text-foreground transition-colors">{t('header.features')}</Link></li>
+              <li>
+                <button 
+                  onClick={() => handleNavClick('features')}
+                  className="hover:text-foreground transition-colors cursor-pointer"
+                >
+                  {t('header.features')}
+                </button>
+              </li>
             </ul>
           </div>
           
           <div>
             <h4 className="font-semibold text-foreground mb-4">{t('footer.company')}</h4>
             <ul className="space-y-2 text-muted-foreground">
-              <li><Link to="/about" className="hover:text-foreground transition-colors">{t('header.about')}</Link></li>
+              <li>
+                <button 
+                  onClick={() => handleNavClick('about')}
+                  className="hover:text-foreground transition-colors cursor-pointer"
+                >
+                  {t('header.about')}
+                </button>
+              </li>
             </ul>
           </div>
           
