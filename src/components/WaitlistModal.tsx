@@ -50,6 +50,25 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
           throw error;
         }
       } else {
+        // Send confirmation email via edge function
+        try {
+          const { error: emailError } = await supabase.functions.invoke('send-waitlist-confirmation', {
+            body: {
+              name: formData.name,
+              email: formData.email,
+              company: formData.company
+            }
+          });
+          
+          if (emailError) {
+            console.error('Email sending error:', emailError);
+            // Don't throw error, just log it - user is still successfully added to waitlist
+          }
+        } catch (emailError) {
+          console.error('Failed to send confirmation email:', emailError);
+          // Continue with success flow even if email fails
+        }
+
         toast({
           title: "Welcome to the waitlist!",
           description: "Check your email for confirmation. We'll notify you when ESGCheck is ready for early access.",
