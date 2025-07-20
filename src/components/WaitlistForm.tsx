@@ -47,18 +47,18 @@ export default function WaitlistForm() {
       } else {
         // Send confirmation email via edge function
         try {
-          const { error: emailError } = await supabase.functions.invoke('send-waitlist-confirmation', {
-            body: {
+          await fetch('https://equtqvlukqloqphhmblj.functions.supabase.co/process-waitlist-emails', {
+            method: 'POST',
+            headers: {
+              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdXRxdmx1a3Fsb3FwaGhtYmxqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2OTk4MTEsImV4cCI6MjA2ODI3NTgxMX0.EBfu0XEQ82hBRProv8UDA1ivvemgdtbqmOBkWBhnTV4`,
+              'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
               name: formData.name,
               email: formData.email,
               company: formData.company
-            }
+            })
           });
-          
-          if (emailError) {
-            console.error('Email sending error:', emailError);
-            // Don't throw error, just log it - user is still successfully added to waitlist
-          }
         } catch (emailError) {
           console.error('Failed to send confirmation email:', emailError);
           // Continue with success flow even if email fails
