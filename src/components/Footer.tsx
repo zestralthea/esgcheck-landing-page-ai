@@ -2,6 +2,7 @@
 import { Leaf } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
+import LanguageToggle from "./LanguageToggle";
 
 const smoothScrollTo = (elementId: string) => {
   const element = document.getElementById(elementId);
@@ -32,11 +33,14 @@ export default function Footer() {
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="flex items-center justify-center w-8 h-8 bg-gradient-primary rounded-lg">
-                <Leaf className="h-5 w-5 text-primary-foreground" />
+            <div className="flex items-center justify-between">
+              <div className="flex items-center space-x-2">
+                <div className="flex items-center justify-center w-8 h-8 bg-gradient-primary rounded-lg">
+                  <Leaf className="h-5 w-5 text-primary-foreground" />
+                </div>
+                <span className="text-xl font-bold text-foreground">ESGCheck</span>
               </div>
-              <span className="text-xl font-bold text-foreground">ESGCheck</span>
+              <LanguageToggle />
             </div>
             <p className="text-muted-foreground max-w-xs">{t('footer.description')}</p>
           </div>
