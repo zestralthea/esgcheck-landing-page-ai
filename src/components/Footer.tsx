@@ -40,7 +40,7 @@ export default function Footer() {
                 </div>
                 <span className="text-xl font-bold text-foreground">ESGCheck</span>
               </div>
-              <LanguageToggle />
+              <LanguageToggle showOnMobile />
             </div>
             <p className="text-muted-foreground max-w-xs">{t('footer.description')}</p>
           </div>

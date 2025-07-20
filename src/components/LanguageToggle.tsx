@@ -2,7 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { useLanguage, Language } from "@/contexts/LanguageContext";
 
-export default function LanguageToggle() {
+export default function LanguageToggle({ showOnMobile = false }: { showOnMobile?: boolean }) {
   const { language, setLanguage } = useLanguage();
   
   const languages: { code: Language; label: string }[] = [
@@ -12,7 +12,7 @@ export default function LanguageToggle() {
   ];
 
   return (
-    <div className="flex items-center space-x-1 bg-muted/50 rounded-md p-1">
+    <div className={`flex items-center space-x-1 bg-muted/50 rounded-md p-1 ${showOnMobile ? '' : 'hidden md:flex'}`}>
       {languages.map(({ code, label }) => (
         <Button
           key={code}
