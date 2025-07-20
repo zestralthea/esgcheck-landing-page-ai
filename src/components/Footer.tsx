@@ -1,5 +1,4 @@
 
-import { Leaf } from "lucide-react";
 import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
 import LanguageToggle from "./LanguageToggle";
@@ -35,9 +34,11 @@ export default function Footer() {
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
-                <div className="flex items-center justify-center w-8 h-8 bg-gradient-primary rounded-lg">
-                  <Leaf className="h-5 w-5 text-primary-foreground" />
-                </div>
+                <img 
+                  src="/esgcheck_logo.svg" 
+                  alt="ESGCheck Logo" 
+                  className="w-8 h-8"
+                />
                 <span className="text-xl font-bold text-foreground">ESGCheck</span>
               </div>
               <LanguageToggle showOnMobile />
