@@ -1,37 +1,23 @@
 
 import React, { useEffect, useRef, useCallback } from 'react';
+import { TURNSTILE_SITE_KEY, waitForTurnstile } from '@/utils/turnstileUtils';
 
 interface TurnstileWidgetProps {
   onVerify: (token: string) => void;
   onError?: () => void;
   onExpire?: () => void;
-}
-
-declare global {
-  interface Window {
-    turnstile: {
-      render: (element: HTMLElement, options: any) => string;
-      reset: (widgetId: string) => void;
-      remove: (widgetId: string) => void;
-    };
-  }
+  className?: string;
 }
 
 export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
   onVerify,
   onError,
   onExpire,
+  className = ""
 }) => {
   const widgetRef = useRef<HTMLDivElement>(null);
   const widgetIdRef = useRef<string | null>(null);
-  const isRenderingRef = useRef(false);
   const isInitializedRef = useRef(false);
-  const errorCountRef = useRef(0);
-  const lastRenderTimeRef = useRef(0);
-
-  // Prevent rapid re-renders
-  const MIN_RENDER_INTERVAL = 2000; // 2 seconds between renders
-  const MAX_ERROR_COUNT = 3; // Maximum errors before giving up
 
   const cleanupWidget = useCallback(() => {
     if (widgetIdRef.current && window.turnstile) {
@@ -47,84 +33,33 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
     }
   }, []);
 
-  const resetWidget = useCallback(() => {
-    if (widgetIdRef.current && window.turnstile && isInitializedRef.current) {
-      try {
-        console.log('Resetting Turnstile widget:', widgetIdRef.current);
-        window.turnstile.reset(widgetIdRef.current);
-        return true;
-      } catch (error) {
-        console.error('Failed to reset Turnstile widget:', error);
-        return false;
-      }
-    }
-    return false;
-  }, []);
-
-  const handleError = useCallback(() => {
-    errorCountRef.current += 1;
-    console.error(`Turnstile error ${errorCountRef.current}/${MAX_ERROR_COUNT}`);
-    
-    if (errorCountRef.current >= MAX_ERROR_COUNT) {
-      console.error('Maximum Turnstile errors reached, stopping retries');
-      onError?.();
-      return;
-    }
-
-    // Try to reset instead of re-render on error
-    setTimeout(() => {
-      const resetSuccess = resetWidget();
-      if (!resetSuccess) {
-        console.warn('Reset failed, will attempt full re-render after delay');
-        cleanupWidget();
-        setTimeout(() => renderWidget(), 3000);
-      }
-    }, 1000);
-  }, [onError, resetWidget, cleanupWidget]);
-
-  const renderWidget = useCallback(() => {
-    const now = Date.now();
-    
-    // Prevent rapid re-renders
-    if (now - lastRenderTimeRef.current < MIN_RENDER_INTERVAL) {
-      console.log('Render throttled, too soon since last render');
-      return;
-    }
-
-    if (!widgetRef.current || !window.turnstile || isRenderingRef.current) {
-      console.log('Cannot render: missing requirements or already rendering');
-      return;
-    }
-
-    if (isInitializedRef.current && widgetIdRef.current) {
-      console.log('Widget already initialized, skipping render');
+  const renderWidget = useCallback(async () => {
+    if (!widgetRef.current || isInitializedRef.current) {
       return;
     }
 
     try {
-      isRenderingRef.current = true;
-      lastRenderTimeRef.current = now;
+      await waitForTurnstile();
       
-      // Clean up any existing widget
-      cleanupWidget();
-
-      console.log('Rendering new Turnstile widget...');
+      console.log('Rendering visible Turnstile widget...');
       
       widgetIdRef.current = window.turnstile.render(widgetRef.current, {
-        sitekey: '0x4AAAAAABmAJXX1tHQtUYp_',
+        sitekey: TURNSTILE_SITE_KEY,
         callback: (token: string) => {
-          console.log('Turnstile verification successful');
-          errorCountRef.current = 0; // Reset error count on success
+          console.log('Visible Turnstile verification successful');
           onVerify(token);
         },
-        'error-callback': handleError,
+        'error-callback': () => {
+          console.error('Visible Turnstile verification error');
+          onError?.();
+        },
         'expired-callback': () => {
-          console.log('Turnstile token expired');
+          console.log('Visible Turnstile token expired');
           onExpire?.();
         },
         'timeout-callback': () => {
-          console.log('Turnstile timeout');
-          handleError();
+          console.log('Visible Turnstile timeout');
+          onError?.();
         },
         theme: 'light',
         size: 'normal',
@@ -133,78 +68,29 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
       });
       
       if (widgetIdRef.current) {
-        console.log('Turnstile widget rendered successfully with ID:', widgetIdRef.current);
+        console.log('Visible Turnstile widget rendered successfully');
         isInitializedRef.current = true;
-      } else {
-        throw new Error('Widget ID not returned from render');
       }
     } catch (error) {
-      console.error('Failed to render Turnstile widget:', error);
-      handleError();
-    } finally {
-      isRenderingRef.current = false;
+      console.error('Failed to render visible Turnstile widget:', error);
+      onError?.();
     }
-  }, [onVerify, onExpire, handleError, cleanupWidget]);
+  }, [onVerify, onError, onExpire]);
 
-  // Initialize widget when Turnstile loads
   useEffect(() => {
-    let checkInterval: NodeJS.Timeout;
-    let timeoutId: NodeJS.Timeout;
-
-    const initializeTurnstile = () => {
-      if (window.turnstile) {
-        console.log('Turnstile API ready, initializing widget');
-        renderWidget();
-      } else {
-        console.log('Waiting for Turnstile API to load...');
-        checkInterval = setInterval(() => {
-          if (window.turnstile) {
-            clearInterval(checkInterval);
-            renderWidget();
-          }
-        }, 500); // Check every 500ms instead of 100ms
-
-        // Timeout after 15 seconds instead of 10
-        timeoutId = setTimeout(() => {
-          clearInterval(checkInterval);
-          if (!window.turnstile) {
-            console.error('Turnstile failed to load within 15 seconds');
-            onError?.();
-          }
-        }, 15000);
-      }
-    };
-
-    // Small delay to ensure DOM is ready
-    const initTimeout = setTimeout(initializeTurnstile, 100);
-
+    renderWidget();
+    
     return () => {
-      clearTimeout(initTimeout);
-      clearInterval(checkInterval);
-      clearTimeout(timeoutId);
       cleanupWidget();
     };
-  }, []); // Empty dependency array to run only once
-
-  // Expose reset function for parent components
-  useEffect(() => {
-    const widget = widgetRef.current;
-    if (widget) {
-      (widget as any).resetTurnstile = resetWidget;
-    }
-  }, [resetWidget]);
+  }, [renderWidget, cleanupWidget]);
 
   return (
-    <div className="flex justify-center my-4">
+    <div className={`flex justify-center ${className}`}>
       <div 
         ref={widgetRef} 
-        style={{ minHeight: '65px' }} // Reserve space to prevent layout shift
+        style={{ minHeight: '65px' }}
       />
-      {errorCountRef.current >= MAX_ERROR_COUNT && (
-        <div className="text-sm text-destructive text-center mt-2">
-          Verification temporarily unavailable. Please try again later.
-        </div>
-      )}
     </div>
   );
 };
