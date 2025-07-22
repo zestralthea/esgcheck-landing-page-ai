@@ -20,7 +20,6 @@ declare global {
       reset: (widgetId: string) => void;
       remove: (widgetId: string) => void;
       execute: (container?: HTMLElement | string, options?: TurnstileConfig) => Promise<string>;
-      isReady: () => boolean;
     };
     turnstileLoadCallbacks?: (() => void)[];
   }
@@ -31,9 +30,9 @@ export const TURNSTILE_SITE_KEY = '0x4AAAAAABmAJXX1tHQtUYp_';
 // Enhanced script loading with multiple detection methods
 export const ensureTurnstileScript = (): Promise<void> => {
   return new Promise((resolve, reject) => {
-    // Check if Turnstile is already loaded and ready
-    if (window.turnstile?.isReady?.()) {
-      console.log('Turnstile already loaded and ready');
+    // Check if Turnstile is already loaded
+    if (window.turnstile?.render && window.turnstile?.remove) {
+      console.log('Turnstile already loaded');
       resolve();
       return;
     }
@@ -108,7 +107,7 @@ export const ensureTurnstileScript = (): Promise<void> => {
 const waitForTurnstileLoad = (): Promise<void> => {
   return new Promise((resolve, reject) => {
     let attempts = 0;
-    const maxAttempts = 60; // 30 seconds
+    const maxAttempts = 30; // 15 seconds
     let isResolved = false;
 
     const checkTurnstile = () => {
@@ -117,23 +116,21 @@ const waitForTurnstileLoad = (): Promise<void> => {
       attempts++;
       console.log(`Checking Turnstile availability (attempt ${attempts}/${maxAttempts})`);
 
-      // Multiple checks for Turnstile availability
+      // Check for Turnstile availability - no isReady method exists in Cloudflare Turnstile
       const hasTurnstileObject = typeof window.turnstile === 'object' && window.turnstile !== null;
       const hasRenderMethod = typeof window.turnstile?.render === 'function';
-      const hasIsReadyMethod = typeof window.turnstile?.isReady === 'function';
-      const isReady = window.turnstile?.isReady?.() === true;
+      const hasRemoveMethod = typeof window.turnstile?.remove === 'function';
 
       console.log('Turnstile check:', {
         hasTurnstileObject,
         hasRenderMethod,
-        hasIsReadyMethod,
-        isReady,
+        hasRemoveMethod,
         turnstileType: typeof window.turnstile
       });
 
-      if (hasTurnstileObject && hasRenderMethod && hasIsReadyMethod && isReady) {
+      if (hasTurnstileObject && hasRenderMethod && hasRemoveMethod) {
         isResolved = true;
-        console.log('Turnstile is fully ready');
+        console.log('Turnstile is ready');
         resolve();
         return;
       }
@@ -159,8 +156,8 @@ export const waitForTurnstile = (): Promise<void> => {
       // First ensure the script is loaded
       await ensureTurnstileScript();
       
-      // Then wait for Turnstile to be ready
-      if (window.turnstile?.isReady?.()) {
+      // Check if Turnstile is ready immediately
+      if (window.turnstile?.render && window.turnstile?.remove) {
         console.log('Turnstile ready immediately');
         resolve();
         return;
