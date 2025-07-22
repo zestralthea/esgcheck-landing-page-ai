@@ -22,7 +22,6 @@ export default function WaitlistForm() {
   
   const {
     turnstileToken,
-    turnstileError,
     isVerified,
     isVerifying,
     showWidget,
@@ -47,11 +46,6 @@ export default function WaitlistForm() {
         } catch (error) {
           // Background verification failed, widget should now be visible
           setIsLoading(false);
-          toast({
-            title: "Verification required",
-            description: "Please complete the verification challenge below.",
-            variant: "destructive",
-          });
           return;
         }
       }
@@ -183,12 +177,6 @@ export default function WaitlistForm() {
                          onExpire={handleTurnstileExpire}
                        />
                      </div>
-                   )}
-                   
-                   {turnstileError && showWidget && (
-                     <p className="text-sm text-destructive text-center">
-                       Verification failed. Please try again.
-                     </p>
                    )}
                    
                    <Button 

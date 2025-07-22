@@ -22,21 +22,19 @@ export const useTurnstile = (): UseTurnstileReturn => {
   const [isVerifying, setIsVerifying] = useState(false);
   const [showWidget, setShowWidget] = useState(false);
   const { toast } = useToast();
-  const errorToastShownRef = useRef(false);
   const backgroundAttemptedRef = useRef(false);
 
   const handleTurnstileVerify = useCallback((token: string) => {
-    console.log('Turnstile token received via hook:', token);
+    console.log('Turnstile token received:', token);
     setTurnstileToken(token);
     setTurnstileError(false);
     setShowWidget(false);
     setIsVerifying(false);
-    errorToastShownRef.current = false;
     backgroundAttemptedRef.current = false;
   }, []);
 
   const handleTurnstileError = useCallback(() => {
-    console.error('Turnstile verification error via hook');
+    console.error('Turnstile verification error');
     setTurnstileToken(null);
     setTurnstileError(true);
     setIsVerifying(false);
@@ -49,22 +47,14 @@ export const useTurnstile = (): UseTurnstileReturn => {
         description: "Please complete the verification challenge below.",
         variant: "destructive",
       });
-    } else if (!errorToastShownRef.current) {
-      errorToastShownRef.current = true;
-      toast({
-        title: "Verification failed",
-        description: "Please try the verification challenge again.",
-        variant: "destructive",
-      });
     }
   }, [toast, showWidget]);
 
   const handleTurnstileExpire = useCallback(() => {
-    console.log('Turnstile token expired via hook');
+    console.log('Turnstile token expired');
     setTurnstileToken(null);
     setTurnstileError(false);
     setIsVerifying(false);
-    errorToastShownRef.current = false;
     
     toast({
       title: "Verification expired",
@@ -78,7 +68,6 @@ export const useTurnstile = (): UseTurnstileReturn => {
     setTurnstileError(false);
     setIsVerifying(false);
     setShowWidget(false);
-    errorToastShownRef.current = false;
     backgroundAttemptedRef.current = false;
   }, []);
 
