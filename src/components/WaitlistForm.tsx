@@ -36,47 +36,41 @@ export default function WaitlistForm() {
     setIsLoading(true);
     
     try {
-      const { error } = await supabase
-        .from('waitlist')
-        .insert([
-          {
-            name: formData.name,
-            email: formData.email,
-            company: formData.company
-          }
-        ]);
+      // Send to verification endpoint
+      const response = await fetch('https://equtqvlukqloqphhmblj.functions.supabase.co/verify-waitlist-signup', {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdXRxdmx1a3Fsb3FwaGhtYmxqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2OTk4MTEsImV4cCI6MjA2ODI3NTgxMX0.EBfu0XEQ82hBRProv8UDA1ivvemgdtbqmOBkWBhnTV4`,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: formData.name,
+          email: formData.email,
+          company: formData.company,
+          turnstileToken: turnstileToken
+        })
+      });
 
-      if (error) {
-        // Handle duplicate email error specifically
-        if (error.code === '23505') {
+      const result = await response.json();
+      
+      if (!response.ok) {
+        if (result.code === '23505') {
           toast({
             title: "Already on the waitlist!",
             description: "This email is already registered. We'll be in touch soon!",
           });
+        } else if (result.error === 'Human verification failed') {
+          toast({
+            title: "Verification failed",
+            description: "Please complete the human verification challenge again.",
+            variant: "destructive",
+          });
+          setTurnstileToken(null);
+          return;
         } else {
-          throw error;
+          throw new Error(result.error || 'Failed to join waitlist');
         }
       } else {
-        // Send confirmation email via edge function
-        try {
-          await fetch('https://equtqvlukqloqphhmblj.functions.supabase.co/process-waitlist-emails', {
-            method: 'POST',
-            headers: {
-              'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdXRxdmx1a3Fsb3FwaGhtYmxqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2OTk4MTEsImV4cCI6MjA2ODI3NTgxMX0.EBfu0XEQ82hBRProv8UDA1ivvemgdtbqmOBkWBhnTV4`,
-              'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-              name: formData.name,
-              email: formData.email,
-              company: formData.company,
-              turnstileToken: turnstileToken
-            })
-          });
-        } catch (emailError) {
-          console.error('Failed to send confirmation email:', emailError);
-          // Continue with success flow even if email fails
-        }
-
         toast({
           title: "Welcome to the waitlist!",
           description: "Check your email for confirmation. We'll notify you when ESGCheck is ready for early access.",

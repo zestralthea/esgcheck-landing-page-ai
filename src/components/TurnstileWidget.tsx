@@ -29,7 +29,7 @@ export const TurnstileWidget: React.FC<TurnstileWidgetProps> = ({
       if (widgetRef.current && window.turnstile) {
         try {
           widgetIdRef.current = window.turnstile.render(widgetRef.current, {
-            sitekey: '0x4AAAAAAAhKK8TuuqGM_6Qr', // This will be replaced with your actual site key
+            sitekey: '0x4AAAAAABmAJXX1tHQtUYp_',
             callback: onVerify,
             'error-callback': onError,
             'expired-callback': onExpire,
