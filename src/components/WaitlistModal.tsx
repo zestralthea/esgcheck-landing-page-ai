@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ArrowRight, X } from "lucide-react";
 import { supabase } from "@/integrations/supabase/client";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { TurnstileWidget } from "@/components/TurnstileWidget";
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -21,11 +22,22 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
   const { toast } = useToast();
   const { t } = useLanguage();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    if (!turnstileToken) {
+      toast({
+        title: "Verification required",
+        description: "Please complete the human verification challenge.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
@@ -61,7 +73,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
             body: JSON.stringify({
               name: formData.name,
               email: formData.email,
-              company: formData.company
+              company: formData.company,
+              turnstileToken: turnstileToken
             })
           });
         } catch (emailError) {
@@ -151,9 +164,22 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                   required
                   className="h-11"
                 />
-              </div>
-              
-              <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading}>
+               </div>
+               
+               <TurnstileWidget
+                 onVerify={setTurnstileToken}
+                 onError={() => {
+                   toast({
+                     title: "Verification failed",
+                     description: "Please try the verification challenge again.",
+                     variant: "destructive",
+                   });
+                   setTurnstileToken(null);
+                 }}
+                 onExpire={() => setTurnstileToken(null)}
+               />
+               
+               <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading || !turnstileToken}>
                 {isLoading ? t('waitlist.modal.submittingButton') : t('waitlist.modal.submitButton')}
                 {!isLoading && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
               </Button>
