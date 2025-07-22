@@ -23,8 +23,36 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
+  const [turnstileError, setTurnstileError] = useState(false);
   const { toast } = useToast();
   const { t } = useLanguage();
+
+  const handleTurnstileVerify = (token: string) => {
+    console.log('Turnstile token received:', token);
+    setTurnstileToken(token);
+    setTurnstileError(false);
+  };
+
+  const handleTurnstileError = () => {
+    console.error('Turnstile verification error');
+    setTurnstileToken(null);
+    setTurnstileError(true);
+    toast({
+      title: "Verification failed",
+      description: "Please try the verification challenge again.",
+      variant: "destructive",
+    });
+  };
+
+  const handleTurnstileExpire = () => {
+    console.log('Turnstile token expired');
+    setTurnstileToken(null);
+    toast({
+      title: "Verification expired",
+      description: "Please complete the verification challenge again.",
+      variant: "destructive",
+    });
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,11 +69,12 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     setIsLoading(true);
     
     try {
+      console.log('Submitting waitlist modal with token:', turnstileToken);
+      
       // Send to verification endpoint
       const response = await fetch('https://equtqvlukqloqphhmblj.functions.supabase.co/verify-waitlist-signup', {
         method: 'POST',
         headers: {
-          'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVxdXRxdmx1a3Fsb3FwaGhtYmxqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTI2OTk4MTEsImV4cCI6MjA2ODI3NTgxMX0.EBfu0XEQ82hBRProv8UDA1ivvemgdtbqmOBkWBhnTV4`,
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
@@ -57,6 +86,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
       });
 
       const result = await response.json();
+      console.log('Server response:', result);
       
       if (!response.ok) {
         if (result.code === '23505') {
@@ -71,6 +101,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
             variant: "destructive",
           });
           setTurnstileToken(null);
+          setTurnstileError(true);
           return;
         } else {
           throw new Error(result.error || 'Failed to join waitlist');
@@ -88,6 +119,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: "", email: "", company: "" });
+        setTurnstileToken(null);
+        setTurnstileError(false);
         onClose();
       }, 3000);
     } catch (error) {
@@ -113,6 +146,8 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     if (!isLoading) {
       setIsSubmitted(false);
       setFormData({ name: "", email: "", company: "" });
+      setTurnstileToken(null);
+      setTurnstileError(false);
       onClose();
     }
   };
@@ -161,17 +196,16 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                </div>
                
                <TurnstileWidget
-                 onVerify={setTurnstileToken}
-                 onError={() => {
-                   toast({
-                     title: "Verification failed",
-                     description: "Please try the verification challenge again.",
-                     variant: "destructive",
-                   });
-                   setTurnstileToken(null);
-                 }}
-                 onExpire={() => setTurnstileToken(null)}
+                 onVerify={handleTurnstileVerify}
+                 onError={handleTurnstileError}
+                 onExpire={handleTurnstileExpire}
                />
+               
+               {turnstileError && (
+                 <p className="text-sm text-destructive text-center">
+                   Verification failed. Please try again.
+                 </p>
+               )}
                
                <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading || !turnstileToken}>
                 {isLoading ? t('waitlist.modal.submittingButton') : t('waitlist.modal.submitButton')}
