@@ -4,10 +4,10 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { useToast } from "@/hooks/use-toast";
-import { CheckCircle, ArrowRight, X } from "lucide-react";
-import { supabase } from "@/integrations/supabase/client";
+import { CheckCircle, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
+import { useTurnstile } from "@/hooks/useTurnstile";
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -22,42 +22,23 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [turnstileToken, setTurnstileToken] = useState<string | null>(null);
-  const [turnstileError, setTurnstileError] = useState(false);
   const { toast } = useToast();
   const { t } = useLanguage();
-
-  const handleTurnstileVerify = (token: string) => {
-    console.log('Turnstile token received:', token);
-    setTurnstileToken(token);
-    setTurnstileError(false);
-  };
-
-  const handleTurnstileError = () => {
-    console.error('Turnstile verification error');
-    setTurnstileToken(null);
-    setTurnstileError(true);
-    toast({
-      title: "Verification failed",
-      description: "Please try the verification challenge again.",
-      variant: "destructive",
-    });
-  };
-
-  const handleTurnstileExpire = () => {
-    console.log('Turnstile token expired');
-    setTurnstileToken(null);
-    toast({
-      title: "Verification expired",
-      description: "Please complete the verification challenge again.",
-      variant: "destructive",
-    });
-  };
+  
+  const {
+    turnstileToken,
+    turnstileError,
+    isVerified,
+    handleTurnstileVerify,
+    handleTurnstileError,
+    handleTurnstileExpire,
+    resetTurnstile,
+  } = useTurnstile();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    if (!turnstileToken) {
+    if (!isVerified) {
       toast({
         title: "Verification required",
         description: "Please complete the human verification challenge.",
@@ -100,8 +81,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
             description: "Please complete the human verification challenge again.",
             variant: "destructive",
           });
-          setTurnstileToken(null);
-          setTurnstileError(true);
+          resetTurnstile();
           return;
         } else {
           throw new Error(result.error || 'Failed to join waitlist');
@@ -119,8 +99,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
       setTimeout(() => {
         setIsSubmitted(false);
         setFormData({ name: "", email: "", company: "" });
-        setTurnstileToken(null);
-        setTurnstileError(false);
+        resetTurnstile();
         onClose();
       }, 3000);
     } catch (error) {
@@ -146,8 +125,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     if (!isLoading) {
       setIsSubmitted(false);
       setFormData({ name: "", email: "", company: "" });
-      setTurnstileToken(null);
-      setTurnstileError(false);
+      resetTurnstile();
       onClose();
     }
   };
@@ -207,7 +185,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                  </p>
                )}
                
-               <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading || !turnstileToken}>
+               <Button type="submit" variant="hero" size="lg" className="w-full group" disabled={isLoading || !isVerified}>
                 {isLoading ? t('waitlist.modal.submittingButton') : t('waitlist.modal.submitButton')}
                 {!isLoading && <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />}
               </Button>
