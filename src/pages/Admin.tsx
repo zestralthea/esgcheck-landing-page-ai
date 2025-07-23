@@ -8,7 +8,7 @@ import { useAuth } from '@/contexts/AuthContext';
 import { useFeatureFlags } from '@/hooks/useFeatureFlags';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
-import { Lock, Users, Settings, Flag } from 'lucide-react';
+import { Lock, Users, Settings, Flag, Mail, CheckCircle } from 'lucide-react';
 
 interface User {
   id: string;
@@ -17,6 +17,7 @@ interface User {
   role: string;
   dashboard_access: boolean;
   created_at: string;
+  email_confirmed_at: string | null;
 }
 
 const Admin = () => {
@@ -25,6 +26,7 @@ const Admin = () => {
   const { toast } = useToast();
   const [users, setUsers] = useState<User[]>([]);
   const [loadingUsers, setLoadingUsers] = useState(true);
+  const [verifyingUsers, setVerifyingUsers] = useState<Set<string>>(new Set());
 
   // Check if user is admin
   const isAdmin = profile?.role === 'admin';
@@ -51,7 +53,14 @@ const Admin = () => {
         return;
       }
 
-      setUsers(data || []);
+      // Set email_confirmed_at to null for all users initially
+      // The verification status will be checked when needed
+      const usersWithVerificationField = (data || []).map(profile => ({
+        ...profile,
+        email_confirmed_at: null // We'll assume unverified unless verification succeeds
+      }));
+
+      setUsers(usersWithVerificationField);
     } catch (error) {
       console.error('Error fetching users:', error);
     } finally {
@@ -141,6 +150,64 @@ const Admin = () => {
         title: "Error",
         description: "An unexpected error occurred while updating user access",
         variant: "destructive"
+      });
+    }
+  };
+
+  const verifyUserEmail = async (userId: string, userEmail: string) => {
+    setVerifyingUsers(prev => new Set(prev).add(userId));
+    
+    try {
+      const { data, error } = await supabase.rpc('manually_verify_user', {
+        user_identifier: userEmail
+      });
+
+      if (error) {
+        console.error('Email verification error:', error);
+        toast({
+          title: "Error",
+          description: `Failed to verify email: ${error.message}`,
+          variant: "destructive"
+        });
+        return;
+      }
+
+      // Type assertion for the JSON response
+      const result = data as { success: boolean; message: string };
+
+      if (result?.success) {
+        toast({
+          title: "Success",
+          description: `Email verified for ${userEmail}`
+        });
+        
+        // Update the user's verification status locally
+        setUsers(prevUsers => 
+          prevUsers.map(u => 
+            u.id === userId 
+              ? { ...u, email_confirmed_at: new Date().toISOString() }
+              : u
+          )
+        );
+      } else {
+        toast({
+          title: "Verification Failed",
+          description: result?.message || "Unable to verify email",
+          variant: "destructive"
+        });
+      }
+    } catch (error) {
+      console.error('Error verifying user email:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred while verifying email",
+        variant: "destructive"
+      });
+    } finally {
+      setVerifyingUsers(prev => {
+        const newSet = new Set(prev);
+        newSet.delete(userId);
+        return newSet;
       });
     }
   };
@@ -267,7 +334,7 @@ const Admin = () => {
                         <p className="text-sm text-muted-foreground truncate">
                           {userData.email}
                         </p>
-                        <div className="flex gap-2 mt-1">
+                        <div className="flex gap-2 mt-1 flex-wrap">
                           <Badge variant="outline" className="text-xs">
                             {userData.role}
                           </Badge>
@@ -276,13 +343,48 @@ const Admin = () => {
                               Dashboard Access
                             </Badge>
                           )}
+                          <Badge 
+                            variant={userData.email_confirmed_at ? "default" : "destructive"} 
+                            className="text-xs flex items-center gap-1"
+                          >
+                            {userData.email_confirmed_at ? (
+                              <>
+                                <CheckCircle className="h-3 w-3" />
+                                Verified
+                              </>
+                            ) : (
+                              <>
+                                <Mail className="h-3 w-3" />
+                                Unverified
+                              </>
+                            )}
+                          </Badge>
                         </div>
                       </div>
-                      <Switch
-                        checked={userData.dashboard_access}
-                        onCheckedChange={() => toggleUserDashboardAccess(userData.id, userData.dashboard_access)}
-                        disabled={userData.id === user.id} // Can't modify own access
-                      />
+                      <div className="flex items-center gap-2">
+                        {!userData.email_confirmed_at && (
+                          <Button
+                            size="sm"
+                            variant="outline"
+                            onClick={() => verifyUserEmail(userData.id, userData.email)}
+                            disabled={verifyingUsers.has(userData.id)}
+                          >
+                            {verifyingUsers.has(userData.id) ? (
+                              <div className="animate-spin rounded-full h-3 w-3 border-b border-current" />
+                            ) : (
+                              <>
+                                <Mail className="h-3 w-3 mr-1" />
+                                Verify Email
+                              </>
+                            )}
+                          </Button>
+                        )}
+                        <Switch
+                          checked={userData.dashboard_access}
+                          onCheckedChange={() => toggleUserDashboardAccess(userData.id, userData.dashboard_access)}
+                          disabled={userData.id === user.id} // Can't modify own access
+                        />
+                      </div>
                     </div>
                   ))}
                 </div>
