@@ -8,6 +8,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import { useFeatureFlags } from '@/hooks/useFeatureFlags';
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -18,6 +19,7 @@ const Auth = () => {
   
   const { signIn, signUp, user } = useAuth();
   const { toast } = useToast();
+  const { isEnabled, loading: flagsLoading } = useFeatureFlags();
   const navigate = useNavigate();
 
   // Redirect if already authenticated
@@ -26,6 +28,26 @@ const Auth = () => {
       navigate('/');
     }
   }, [user, navigate]);
+
+  // Redirect if auth access is disabled
+  useEffect(() => {
+    if (!flagsLoading && !isEnabled('auth_public_access')) {
+      navigate('/');
+    }
+  }, [isEnabled, flagsLoading, navigate]);
+
+  // Show loading while checking feature flags
+  if (flagsLoading) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted p-4">
+        <Card className="w-full max-w-md">
+          <CardContent className="p-6">
+            <div className="text-center">Loading...</div>
+          </CardContent>
+        </Card>
+      </div>
+    );
+  }
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();

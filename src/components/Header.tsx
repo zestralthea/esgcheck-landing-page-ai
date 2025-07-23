@@ -115,9 +115,11 @@ export default function Header() {
               <Button variant="hero" size="sm" onClick={openModal}>
                 {t('header.joinWaitlist')}
               </Button>
-              <Button asChild variant="outline" size="sm">
-                <Link to="/auth">Sign In</Link>
-              </Button>
+              {isEnabled('auth_public_access') && (
+                <Button asChild variant="outline" size="sm">
+                  <Link to="/auth">Sign In</Link>
+                </Button>
+              )}
             </>
           )}
           <LanguageToggle />
