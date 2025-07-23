@@ -137,6 +137,10 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: boolean
       }
+      manually_verify_user: {
+        Args: { user_identifier: string }
+        Returns: Json
+      }
     }
     Enums: {
       [_ in never]: never
