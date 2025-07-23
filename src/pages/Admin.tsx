@@ -39,30 +39,35 @@ const Admin = () => {
 
   const fetchUsers = async () => {
     try {
-      const { data, error } = await supabase
-        .from('profiles')
-        .select('*')
-        .order('created_at', { ascending: false });
+      // Call the edge function to get users with auth status
+      const { data, error } = await supabase.functions.invoke('get-users-with-auth-status');
 
       if (error) {
+        console.error('Error fetching users:', error);
         toast({
           title: "Error",
-          description: "Failed to fetch users",
+          description: "Failed to fetch users with auth status",
           variant: "destructive"
         });
         return;
       }
 
-      // Set email_confirmed_at to null for all users initially
-      // The verification status will be checked when needed
-      const usersWithVerificationField = (data || []).map(profile => ({
-        ...profile,
-        email_confirmed_at: null // We'll assume unverified unless verification succeeds
-      }));
-
-      setUsers(usersWithVerificationField);
+      if (data?.users) {
+        setUsers(data.users);
+      } else {
+        toast({
+          title: "Error",
+          description: "Invalid response format",
+          variant: "destructive"
+        });
+      }
     } catch (error) {
       console.error('Error fetching users:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred while fetching users",
+        variant: "destructive"
+      });
     } finally {
       setLoadingUsers(false);
     }
