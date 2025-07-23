@@ -67,11 +67,22 @@ const Admin = () => {
         .eq('flag_name', flagName);
 
       if (error) {
-        toast({
-          title: "Error",
-          description: "Failed to update feature flag",
-          variant: "destructive"
-        });
+        console.error('Feature flag update error:', error);
+        
+        // Check for permission errors
+        if (error.code === '42501' || error.message.includes('insufficient privileges')) {
+          toast({
+            title: "Permission Denied",
+            description: "You don't have permission to update feature flags. Admin access required.",
+            variant: "destructive"
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: `Failed to update feature flag: ${error.message}`,
+            variant: "destructive"
+          });
+        }
         return;
       }
 
@@ -83,6 +94,11 @@ const Admin = () => {
       refetch();
     } catch (error) {
       console.error('Error updating feature flag:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred while updating the feature flag",
+        variant: "destructive"
+      });
     }
   };
 
@@ -94,11 +110,22 @@ const Admin = () => {
         .eq('id', userId);
 
       if (error) {
-        toast({
-          title: "Error",
-          description: "Failed to update user access",
-          variant: "destructive"
-        });
+        console.error('User access update error:', error);
+        
+        // Check for permission errors
+        if (error.code === '42501' || error.message.includes('insufficient privileges')) {
+          toast({
+            title: "Permission Denied",
+            description: "You don't have permission to update user access. Admin access required.",
+            variant: "destructive"
+          });
+        } else {
+          toast({
+            title: "Error",
+            description: `Failed to update user access: ${error.message}`,
+            variant: "destructive"
+          });
+        }
         return;
       }
 
@@ -110,6 +137,11 @@ const Admin = () => {
       fetchUsers();
     } catch (error) {
       console.error('Error updating user access:', error);
+      toast({
+        title: "Error",
+        description: "An unexpected error occurred while updating user access",
+        variant: "destructive"
+      });
     }
   };
 
