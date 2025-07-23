@@ -14,36 +14,93 @@ export type Database = {
   }
   public: {
     Tables: {
-      hero_videos: {
+      background_jobs: {
+        Row: {
+          attempts: number | null
+          completed_at: string | null
+          created_at: string | null
+          error_message: string | null
+          id: number
+          job_type: string
+          payload: Json
+          status: string | null
+        }
+        Insert: {
+          attempts?: number | null
+          completed_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: never
+          job_type: string
+          payload: Json
+          status?: string | null
+        }
+        Update: {
+          attempts?: number | null
+          completed_at?: string | null
+          created_at?: string | null
+          error_message?: string | null
+          id?: never
+          job_type?: string
+          payload?: Json
+          status?: string | null
+        }
+        Relationships: []
+      }
+      feature_flags: {
         Row: {
           created_at: string
           description: string | null
+          flag_name: string
           id: string
-          is_active: boolean | null
-          thumbnail_url: string | null
-          title: string
+          is_enabled: boolean
           updated_at: string
-          video_url: string
         }
         Insert: {
           created_at?: string
           description?: string | null
+          flag_name: string
           id?: string
-          is_active?: boolean | null
-          thumbnail_url?: string | null
-          title: string
+          is_enabled?: boolean
           updated_at?: string
-          video_url: string
         }
         Update: {
           created_at?: string
           description?: string | null
+          flag_name?: string
           id?: string
-          is_active?: boolean | null
-          thumbnail_url?: string | null
-          title?: string
+          is_enabled?: boolean
           updated_at?: string
-          video_url?: string
+        }
+        Relationships: []
+      }
+      profiles: {
+        Row: {
+          created_at: string
+          dashboard_access: boolean
+          email: string
+          full_name: string | null
+          id: string
+          role: string
+          updated_at: string
+        }
+        Insert: {
+          created_at?: string
+          dashboard_access?: boolean
+          email: string
+          full_name?: string | null
+          id: string
+          role?: string
+          updated_at?: string
+        }
+        Update: {
+          created_at?: string
+          dashboard_access?: boolean
+          email?: string
+          full_name?: string | null
+          id?: string
+          role?: string
+          updated_at?: string
         }
         Relationships: []
       }
