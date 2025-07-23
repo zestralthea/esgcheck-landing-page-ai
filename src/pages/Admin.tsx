@@ -279,13 +279,29 @@ const Admin = () => {
           {/* Feature Flags */}
           <Card>
             <CardHeader>
-              <CardTitle className="flex items-center gap-2">
-                <Flag className="h-5 w-5" />
-                Feature Flags
-              </CardTitle>
-              <CardDescription>
-                Control application features and access
-              </CardDescription>
+              <div className="flex items-center justify-between">
+                <div>
+                  <CardTitle className="flex items-center gap-2">
+                    <Flag className="h-5 w-5" />
+                    Feature Flags
+                  </CardTitle>
+                  <CardDescription>
+                    Control application features and access
+                  </CardDescription>
+                </div>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={refetch}
+                  disabled={flagsLoading}
+                  className="flex items-center gap-2"
+                >
+                  <svg className="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                  </svg>
+                  Refresh
+                </Button>
+              </div>
             </CardHeader>
             <CardContent className="space-y-4">
               {Object.entries(flags).map(([flagName, isEnabled]) => (
@@ -295,6 +311,7 @@ const Admin = () => {
                     <p className="text-sm text-muted-foreground">
                       {flagName === 'dashboard_enabled' && 'Controls global dashboard access'}
                       {flagName === 'dashboard_beta_access' && 'Controls beta feature access'}
+                      {flagName === 'auth_public_access' && 'Controls whether authentication (sign in/sign up) is publicly accessible'}
                     </p>
                   </div>
                   <div className="flex items-center gap-2">
