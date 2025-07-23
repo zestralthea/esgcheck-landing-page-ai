@@ -89,7 +89,22 @@ export const useFeatureFlags = () => {
   }, []);
 
   const isEnabled = (flagName: string): boolean => {
+    // If still loading, we don't know the state yet
+    if (loading) {
+      return false;
+    }
+    
+    // If flags object is empty but we're not loading, something went wrong
+    if (Object.keys(flags).length === 0 && !loading) {
+      return false;
+    }
+    
+    // Return the actual flag value, defaulting to false if not found
     return flags[flagName] || false;
+  };
+
+  const isFlagLoaded = (flagName: string): boolean => {
+    return !loading && flagName in flags;
   };
 
   return {
@@ -97,6 +112,7 @@ export const useFeatureFlags = () => {
     loading,
     error,
     isEnabled,
+    isFlagLoaded,
     refetch: fetchFlags
   };
 };

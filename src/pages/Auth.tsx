@@ -19,7 +19,7 @@ const Auth = () => {
   
   const { signIn, signUp, user } = useAuth();
   const { toast } = useToast();
-  const { isEnabled, loading: flagsLoading } = useFeatureFlags();
+  const { isEnabled, isFlagLoaded, loading: flagsLoading } = useFeatureFlags();
   const navigate = useNavigate();
 
   // Redirect if already authenticated
@@ -29,12 +29,12 @@ const Auth = () => {
     }
   }, [user, navigate]);
 
-  // Redirect if auth access is disabled
+  // Redirect if auth access is disabled (only after flag is loaded)
   useEffect(() => {
-    if (!flagsLoading && !isEnabled('auth_public_access')) {
+    if (isFlagLoaded('auth_public_access') && !isEnabled('auth_public_access')) {
       navigate('/');
     }
-  }, [isEnabled, flagsLoading, navigate]);
+  }, [isEnabled, isFlagLoaded, navigate]);
 
   // Show loading while checking feature flags
   if (flagsLoading) {
