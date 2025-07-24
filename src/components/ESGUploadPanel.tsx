@@ -132,8 +132,7 @@ export function ESGUploadPanel() {
     try {
       // Upload file to documents bucket with enhanced security
       const fileExt = file.name.split('.').pop();
-      const sanitizedTitle = reportTitle.replace(/[^a-zA-Z0-9\-_]/g, '-');
-      const fileName = `${Date.now()}-${sanitizedTitle}.${fileExt}`;
+      const fileName = `esg-report-${Date.now()}.${fileExt}`;
       const filePath = `${user.id}/esg-reports/${fileName}`;
 
       const { data: uploadData, error: uploadError } = await supabase.storage
