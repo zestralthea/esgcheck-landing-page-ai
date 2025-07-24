@@ -3,9 +3,15 @@ import { Navigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
 import { useFeatureFlags } from '@/hooks/useFeatureFlags';
-import { Lock, Settings, BarChart3, Users, FileText, Bell, FolderOpen } from 'lucide-react';
+import { Lock, Settings, BarChart3, Users, FileText, Bell, FolderOpen, Leaf, Upload, Download } from 'lucide-react';
+import { ESGUploadPanel } from '@/components/ESGUploadPanel';
+import { ESGScoreSnapshot } from '@/components/ESGScoreSnapshot';
+import { ESGInsightsPanel } from '@/components/ESGInsightsPanel';
+import { ESGReportsTable } from '@/components/ESGReportsTable';
+import { ESGExportCenter } from '@/components/ESGExportCenter';
 
 const Dashboard = () => {
   const { user, profile, signOut, loading: authLoading } = useAuth();
@@ -159,127 +165,110 @@ const Dashboard = () => {
           })}
         </div>
 
-        {/* Main Dashboard Content */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-          {/* Main Content Area */}
-          <div className="lg:col-span-2 space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Recent Activity</CardTitle>
-                <CardDescription>
-                  Your latest dashboard activities and updates
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="space-y-4">
-                  <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50">
-                    <div className="w-2 h-2 rounded-full bg-primary"></div>
-                    <div className="flex-1">
-                      <p className="font-medium">Dashboard access granted</p>
-                      <p className="text-sm text-muted-foreground">Welcome to the dashboard!</p>
+        {/* ESG Dashboard Tabs */}
+        <Tabs defaultValue="overview" className="space-y-6">
+          <TabsList className="grid w-full grid-cols-5">
+            <TabsTrigger value="overview">Overview</TabsTrigger>
+            <TabsTrigger value="upload">Upload</TabsTrigger>
+            <TabsTrigger value="reports">Reports</TabsTrigger>
+            <TabsTrigger value="insights">Insights</TabsTrigger>
+            <TabsTrigger value="export">Export</TabsTrigger>
+          </TabsList>
+
+          <TabsContent value="overview">
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {/* Main Content Area */}
+              <div className="lg:col-span-2 space-y-6">
+                <ESGScoreSnapshot />
+                <ESGInsightsPanel />
+              </div>
+
+              {/* Sidebar */}
+              <div className="space-y-6">
+                <Card>
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2">
+                      <Leaf className="h-5 w-5" />
+                      ESG Quick Actions
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="space-y-3">
+                      <Button variant="outline" className="w-full justify-start gap-2">
+                        <Upload className="h-4 w-4" />
+                        Upload New Report
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start gap-2">
+                        <BarChart3 className="h-4 w-4" />
+                        View Analytics
+                      </Button>
+                      <Button variant="outline" className="w-full justify-start gap-2">
+                        <Download className="h-4 w-4" />
+                        Export Data
+                      </Button>
+                      <Button 
+                        variant="outline" 
+                        className="w-full justify-start gap-2"
+                        onClick={() => window.location.href = '/documents'}
+                      >
+                        <FolderOpen className="h-4 w-4" />
+                        All Documents
+                      </Button>
                     </div>
-                    <span className="text-sm text-muted-foreground">Just now</span>
-                  </div>
-                  <div className="flex items-center gap-4 p-4 rounded-lg bg-muted/50">
-                    <div className="w-2 h-2 rounded-full bg-muted-foreground"></div>
-                    <div className="flex-1">
-                      <p className="font-medium">Profile updated</p>
-                      <p className="text-sm text-muted-foreground">Your profile information was updated</p>
+                  </CardContent>
+                </Card>
+
+                <Card>
+                  <CardHeader>
+                    <CardTitle>Profile Information</CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-4">
+                    <div>
+                      <p className="text-sm font-medium">Email</p>
+                      <p className="text-sm text-muted-foreground">{user.email}</p>
                     </div>
-                    <span className="text-sm text-muted-foreground">2 hours ago</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+                    {profile?.full_name && (
+                      <div>
+                        <p className="text-sm font-medium">Full Name</p>
+                        <p className="text-sm text-muted-foreground">{profile.full_name}</p>
+                      </div>
+                    )}
+                    <div>
+                      <p className="text-sm font-medium">Role</p>
+                      <Badge variant="outline">{profile?.role}</Badge>
+                    </div>
+                    <div>
+                      <p className="text-sm font-medium">Member Since</p>
+                      <p className="text-sm text-muted-foreground">
+                        {new Date(profile?.created_at || '').toLocaleDateString()}
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+            </div>
+          </TabsContent>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Quick Actions</CardTitle>
-                <CardDescription>
-                  Common tasks and actions you can perform
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="grid grid-cols-2 gap-4">
-                  <Button 
-                    variant="outline" 
-                    className="h-20 flex-col gap-2"
-                    onClick={() => window.location.href = '/documents'}
-                  >
-                    <FolderOpen className="h-5 w-5" />
-                    Documents
-                  </Button>
-                  <Button variant="outline" className="h-20 flex-col gap-2">
-                    <Settings className="h-5 w-5" />
-                    Settings
-                  </Button>
-                  <Button variant="outline" className="h-20 flex-col gap-2">
-                    <BarChart3 className="h-5 w-5" />
-                    Analytics
-                  </Button>
-                  <Button variant="outline" className="h-20 flex-col gap-2">
-                    <Users className="h-5 w-5" />
-                    Users
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
+          <TabsContent value="upload">
+            <div className="max-w-4xl mx-auto">
+              <ESGUploadPanel />
+            </div>
+          </TabsContent>
 
-          {/* Sidebar */}
-          <div className="space-y-6">
-            <Card>
-              <CardHeader>
-                <CardTitle>Profile Information</CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                <div>
-                  <p className="text-sm font-medium">Email</p>
-                  <p className="text-sm text-muted-foreground">{user.email}</p>
-                </div>
-                {profile?.full_name && (
-                  <div>
-                    <p className="text-sm font-medium">Full Name</p>
-                    <p className="text-sm text-muted-foreground">{profile.full_name}</p>
-                  </div>
-                )}
-                <div>
-                  <p className="text-sm font-medium">Role</p>
-                  <Badge variant="outline">{profile?.role}</Badge>
-                </div>
-                <div>
-                  <p className="text-sm font-medium">Member Since</p>
-                  <p className="text-sm text-muted-foreground">
-                    {new Date(profile?.created_at || '').toLocaleDateString()}
-                  </p>
-                </div>
-              </CardContent>
-            </Card>
+          <TabsContent value="reports">
+            <ESGReportsTable />
+          </TabsContent>
 
-            <Card>
-              <CardHeader>
-                <CardTitle>Feature Flags</CardTitle>
-                <CardDescription>
-                  Current feature availability
-                </CardDescription>
-              </CardHeader>
-              <CardContent className="space-y-2">
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Dashboard</span>
-                  <Badge variant={isEnabled('dashboard_enabled') ? 'default' : 'secondary'}>
-                    {isEnabled('dashboard_enabled') ? 'Enabled' : 'Disabled'}
-                  </Badge>
-                </div>
-                <div className="flex justify-between items-center">
-                  <span className="text-sm">Beta Features</span>
-                  <Badge variant={isEnabled('dashboard_beta_access') ? 'default' : 'secondary'}>
-                    {isEnabled('dashboard_beta_access') ? 'Enabled' : 'Disabled'}
-                  </Badge>
-                </div>
-              </CardContent>
-            </Card>
-          </div>
-        </div>
+          <TabsContent value="insights">
+            <ESGInsightsPanel />
+          </TabsContent>
+
+          <TabsContent value="export">
+            <div className="max-w-4xl mx-auto">
+              <ESGExportCenter />
+            </div>
+          </TabsContent>
+        </Tabs>
       </main>
     </div>
   );

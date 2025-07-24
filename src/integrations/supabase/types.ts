@@ -136,6 +136,165 @@ export type Database = {
         }
         Relationships: []
       }
+      esg_insights: {
+        Row: {
+          actionable: boolean | null
+          category: string
+          created_at: string
+          description: string
+          gri_reference: string | null
+          id: string
+          impact_score: number | null
+          implementation_effort: string | null
+          insight_type: string
+          priority: string
+          report_id: string
+          title: string
+          updated_at: string
+        }
+        Insert: {
+          actionable?: boolean | null
+          category: string
+          created_at?: string
+          description: string
+          gri_reference?: string | null
+          id?: string
+          impact_score?: number | null
+          implementation_effort?: string | null
+          insight_type: string
+          priority?: string
+          report_id: string
+          title: string
+          updated_at?: string
+        }
+        Update: {
+          actionable?: boolean | null
+          category?: string
+          created_at?: string
+          description?: string
+          gri_reference?: string | null
+          id?: string
+          impact_score?: number | null
+          implementation_effort?: string | null
+          insight_type?: string
+          priority?: string
+          report_id?: string
+          title?: string
+          updated_at?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "esg_insights_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "esg_reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      esg_reports: {
+        Row: {
+          created_at: string
+          document_id: string
+          gri_standards: string[] | null
+          id: string
+          report_title: string
+          report_type: string
+          reporting_period_end: string
+          reporting_period_start: string
+          status: string
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          document_id: string
+          gri_standards?: string[] | null
+          id?: string
+          report_title: string
+          report_type: string
+          reporting_period_end: string
+          reporting_period_start: string
+          status?: string
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          document_id?: string
+          gri_standards?: string[] | null
+          id?: string
+          report_title?: string
+          report_type?: string
+          reporting_period_end?: string
+          reporting_period_start?: string
+          status?: string
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "esg_reports_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      esg_scores: {
+        Row: {
+          category: string
+          confidence_level: number | null
+          created_at: string
+          gri_disclosure: string | null
+          id: string
+          max_score: number
+          methodology: string | null
+          report_id: string
+          score: number
+          subcategory: string | null
+          updated_at: string
+          weight: number | null
+        }
+        Insert: {
+          category: string
+          confidence_level?: number | null
+          created_at?: string
+          gri_disclosure?: string | null
+          id?: string
+          max_score?: number
+          methodology?: string | null
+          report_id: string
+          score: number
+          subcategory?: string | null
+          updated_at?: string
+          weight?: number | null
+        }
+        Update: {
+          category?: string
+          confidence_level?: number | null
+          created_at?: string
+          gri_disclosure?: string | null
+          id?: string
+          max_score?: number
+          methodology?: string | null
+          report_id?: string
+          score?: number
+          subcategory?: string | null
+          updated_at?: string
+          weight?: number | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "esg_scores_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "esg_reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       feature_flags: {
         Row: {
           created_at: string
