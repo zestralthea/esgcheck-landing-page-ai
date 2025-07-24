@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
+import { sessionManager } from '@/lib/sessionSecurity';
 
 interface Profile {
   id: string;
@@ -81,12 +82,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         setUser(session?.user ?? null);
 
         if (session?.user) {
+          // Start session monitoring for authenticated users
+          sessionManager.startSessionMonitoring();
+          
           // Defer profile fetching to avoid blocking auth state change
           setTimeout(async () => {
             const profileData = await fetchProfile(session.user.id);
             setProfile(profileData);
           }, 0);
         } else {
+          // Stop session monitoring for unauthenticated users
+          sessionManager.stopSessionMonitoring();
           setProfile(null);
         }
 
@@ -134,6 +140,8 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   const signOut = async () => {
+    // Stop session monitoring before signing out
+    sessionManager.stopSessionMonitoring();
     await supabase.auth.signOut();
   };
 

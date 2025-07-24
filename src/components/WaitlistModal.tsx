@@ -8,6 +8,8 @@ import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
 import { useTurnstile } from "@/hooks/useTurnstile";
+import { waitlistSchema, type WaitlistFormData, sanitizeInput } from "@/lib/validationSchemas";
+import { checkFormSubmissionLimit, getRemainingCooldown } from "@/lib/rateLimiting";
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -15,13 +17,14 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
-  const [formData, setFormData] = useState({
+  const [formData, setFormData] = useState<WaitlistFormData>({
     name: "",
     email: "",
     company: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof WaitlistFormData, string>>>({});
   const { toast } = useToast();
   const { t } = useLanguage();
   
@@ -39,6 +42,40 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    
+    // Clear previous validation errors
+    setValidationErrors({});
+    
+    // Check rate limiting
+    if (!checkFormSubmissionLimit('waitlist', formData.email)) {
+      const remainingTime = getRemainingCooldown('waitlist', formData.email);
+      const minutes = Math.ceil(remainingTime / 60000);
+      toast({
+        title: "Too Many Attempts",
+        description: `Please wait ${minutes} minute(s) before trying again.`,
+        variant: "destructive",
+      });
+      return;
+    }
+
+    // Validate form data
+    const validation = waitlistSchema.safeParse(formData);
+    if (!validation.success) {
+      const errors: Partial<Record<keyof WaitlistFormData, string>> = {};
+      validation.error.issues.forEach((issue) => {
+        if (issue.path[0]) {
+          errors[issue.path[0] as keyof WaitlistFormData] = issue.message;
+        }
+      });
+      setValidationErrors(errors);
+      toast({
+        title: "Validation Error",
+        description: "Please check your input and try again.",
+        variant: "destructive",
+      });
+      return;
+    }
+    
     setIsLoading(true);
     
     try {
@@ -57,15 +94,20 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
       
       console.log('Submitting waitlist modal with token:', token);
       
+      // Sanitize inputs before sending
+      const sanitizedData = {
+        name: sanitizeInput(formData.name),
+        email: sanitizeInput(formData.email),
+        company: formData.company ? sanitizeInput(formData.company) : ""
+      };
+      
       const response = await fetch('https://equtqvlukqloqphhmblj.functions.supabase.co/verify-waitlist-signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-          name: formData.name,
-          email: formData.email,
-          company: formData.company,
+          ...sanitizedData,
           turnstileToken: token
         })
       });
@@ -118,16 +160,26 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
-      [e.target.name]: e.target.value
+      [name]: value
     }));
+    
+    // Clear validation error for this field when user starts typing
+    if (validationErrors[name as keyof WaitlistFormData]) {
+      setValidationErrors(prev => ({
+        ...prev,
+        [name]: undefined
+      }));
+    }
   };
 
   const handleClose = () => {
     if (!isLoading) {
       setIsSubmitted(false);
       setFormData({ name: "", email: "", company: "" });
+      setValidationErrors({});
       resetTurnstile();
       onClose();
     }
@@ -149,31 +201,45 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
           {!isSubmitted ? (
             <form onSubmit={handleSubmit} className="space-y-4">
               <div className="space-y-3">
-                <Input
-                  name="name"
-                  placeholder={t('waitlist.modal.namePlaceholder')}
-                  value={formData.name}
-                  onChange={handleChange}
-                  required
-                  className="h-11"
-                />
-                <Input
-                  name="company"
-                  placeholder={t('waitlist.modal.companyPlaceholder')}
-                  value={formData.company}
-                  onChange={handleChange}
-                  required
-                  className="h-11"
-                />
-                <Input
-                  name="email"
-                  type="email"
-                  placeholder={t('waitlist.modal.emailPlaceholder')}
-                  value={formData.email}
-                  onChange={handleChange}
-                  required
-                  className="h-11"
-                />
+                <div>
+                  <Input
+                    name="name"
+                    placeholder={t('waitlist.modal.namePlaceholder')}
+                    value={formData.name}
+                    onChange={handleChange}
+                    required
+                    className={`h-11 ${validationErrors.name ? 'border-destructive' : ''}`}
+                  />
+                  {validationErrors.name && (
+                    <p className="text-sm text-destructive mt-1">{validationErrors.name}</p>
+                  )}
+                </div>
+                <div>
+                  <Input
+                    name="company"
+                    placeholder={t('waitlist.modal.companyPlaceholder')}
+                    value={formData.company}
+                    onChange={handleChange}
+                    className={`h-11 ${validationErrors.company ? 'border-destructive' : ''}`}
+                  />
+                  {validationErrors.company && (
+                    <p className="text-sm text-destructive mt-1">{validationErrors.company}</p>
+                  )}
+                </div>
+                <div>
+                  <Input
+                    name="email"
+                    type="email"
+                    placeholder={t('waitlist.modal.emailPlaceholder')}
+                    value={formData.email}
+                    onChange={handleChange}
+                    required
+                    className={`h-11 ${validationErrors.email ? 'border-destructive' : ''}`}
+                  />
+                  {validationErrors.email && (
+                    <p className="text-sm text-destructive mt-1">{validationErrors.email}</p>
+                  )}
+                </div>
                </div>
                
                {showWidget && (
