@@ -12,6 +12,7 @@ import { ESGScoreSnapshot } from '@/components/ESGScoreSnapshot';
 import { ESGInsightsPanel } from '@/components/ESGInsightsPanel';
 import { ESGReportsTable } from '@/components/ESGReportsTable';
 import { ESGExportCenter } from '@/components/ESGExportCenter';
+import ESGReportAuditLog from '@/components/ESGReportAuditLog';
 
 const Dashboard = () => {
   const { user, profile, signOut, loading: authLoading } = useAuth();
@@ -249,9 +250,14 @@ const Dashboard = () => {
             </div>
           </TabsContent>
 
-          <TabsContent value="upload">
-            <div className="max-w-4xl mx-auto">
-              <ESGUploadPanel />
+          <TabsContent value="upload" className="space-y-6">
+            <div className="grid gap-6 lg:grid-cols-3">
+              <div className="lg:col-span-2">
+                <ESGUploadPanel />
+              </div>
+              <div className="lg:col-span-1">
+                <ESGReportAuditLog />
+              </div>
             </div>
           </TabsContent>
 

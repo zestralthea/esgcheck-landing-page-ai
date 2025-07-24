@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, FileText, Calendar, Target } from 'lucide-react';
+import { Upload, FileText, Calendar, Target, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
@@ -45,17 +45,56 @@ export function ESGUploadPanel() {
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
 
+  const validateFile = (selectedFile: File): boolean => {
+    // File size validation (max 50MB)
+    if (selectedFile.size > 50 * 1024 * 1024) {
+      toast({
+        title: "File too large",
+        description: "Please select a file smaller than 50MB",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    // File type validation - allow common document formats
+    const allowedTypes = [
+      'application/pdf',
+      'application/msword',
+      'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+      'application/vnd.ms-excel',
+      'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
+      'text/csv',
+      'text/plain'
+    ];
+
+    if (!allowedTypes.includes(selectedFile.type)) {
+      toast({
+        title: "Invalid file type",
+        description: "Please upload PDF, Word, Excel, CSV, or text files only.",
+        variant: "destructive",
+      });
+      return false;
+    }
+
+    return true;
+  };
+
+  const logESGAccess = async (documentId: string, success: boolean, errorMessage?: string) => {
+    try {
+      await supabase.rpc('log_document_access', {
+        doc_id: documentId,
+        access_type_param: success ? 'esg_upload' : 'esg_upload_failed',
+        success_param: success,
+        error_msg: errorMessage || null
+      });
+    } catch (error) {
+      console.error('Failed to log ESG access:', error);
+    }
+  };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const selectedFile = e.target.files?.[0];
-    if (selectedFile) {
-      if (selectedFile.size > 10 * 1024 * 1024) {
-        toast({
-          title: "File too large",
-          description: "Please select a file smaller than 10MB",
-          variant: "destructive",
-        });
-        return;
-      }
+    if (selectedFile && validateFile(selectedFile)) {
       setFile(selectedFile);
       if (!reportTitle) {
         setReportTitle(selectedFile.name.replace(/\.[^/.]+$/, ""));
@@ -82,21 +121,31 @@ export function ESGUploadPanel() {
       return;
     }
 
+    // Re-validate file before upload
+    if (!validateFile(file)) {
+      return;
+    }
+
     setUploading(true);
+    let documentId: string | null = null;
     
     try {
-      // Upload file to documents bucket
+      // Upload file to documents bucket with enhanced security
       const fileExt = file.name.split('.').pop();
-      const fileName = `${Date.now()}_${file.name}`;
-      const filePath = `${user.id}/${fileName}`;
+      const sanitizedTitle = reportTitle.replace(/[^a-zA-Z0-9\-_]/g, '-');
+      const fileName = `${Date.now()}-${sanitizedTitle}.${fileExt}`;
+      const filePath = `esg-reports/${user.id}/${fileName}`;
 
       const { data: uploadData, error: uploadError } = await supabase.storage
         .from('documents')
-        .upload(filePath, file);
+        .upload(filePath, file, {
+          cacheControl: '3600',
+          upsert: false
+        });
 
       if (uploadError) throw uploadError;
 
-      // Insert document record
+      // Insert document record with enhanced security
       const { data: documentData, error: documentError } = await supabase
         .from('documents')
         .insert({
@@ -106,13 +155,15 @@ export function ESGUploadPanel() {
           storage_path: uploadData.path,
           file_size: file.size,
           mime_type: file.type,
-          description,
+          description: `ESG Report: ${reportTitle}${description ? ` - ${description}` : ''}`,
+          tags: ['esg-report', reportType, ...selectedGRIStandards],
           is_public: false,
         })
         .select()
         .single();
 
       if (documentError) throw documentError;
+      documentId = documentData.id;
 
       // Create ESG report record
       const { error: reportError } = await supabase
@@ -130,6 +181,9 @@ export function ESGUploadPanel() {
 
       if (reportError) throw reportError;
 
+      // Log successful upload
+      await logESGAccess(documentData.id, true);
+
       toast({
         title: "ESG Report uploaded successfully",
         description: "Your report is being processed for ESG analysis",
@@ -144,11 +198,30 @@ export function ESGUploadPanel() {
       setSelectedGRIStandards([]);
       setDescription('');
       
-    } catch (error) {
+      // Trigger refresh event for audit log
+      window.dispatchEvent(new CustomEvent('esgReportUploaded'));
+      
+    } catch (error: any) {
       console.error('Upload error:', error);
+      
+      // Log failed upload if we have a document ID
+      if (documentId) {
+        await logESGAccess(documentId, false, error.message);
+      }
+      
+      // Enhanced error handling
+      let errorMessage = 'There was an error uploading your report. Please try again.';
+      if (error.message?.includes('storage')) {
+        errorMessage = 'Storage error: Please check file permissions and try again';
+      } else if (error.message?.includes('auth')) {
+        errorMessage = 'Authentication error: Please log in and try again';
+      } else if (error.message?.includes('policy')) {
+        errorMessage = 'Permission denied: Please contact support';
+      }
+      
       toast({
         title: "Upload failed",
-        description: "There was an error uploading your report. Please try again.",
+        description: errorMessage,
         variant: "destructive",
       });
     } finally {
@@ -160,23 +233,26 @@ export function ESGUploadPanel() {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Upload className="h-5 w-5" />
-          ESG Report Upload
+          <Shield className="h-5 w-5" />
+          Secure ESG Report Upload
         </CardTitle>
         <CardDescription>
-          Upload your ESG or sustainability report for automated analysis and scoring
+          Upload your ESG report with enhanced security and compliance tracking
         </CardDescription>
       </CardHeader>
       <CardContent>
         <form onSubmit={handleSubmit} className="space-y-6">
           {/* File Upload */}
           <div className="space-y-2">
-            <Label htmlFor="file">Report Document *</Label>
+            <Label htmlFor="file" className="flex items-center gap-2">
+              <Shield className="h-4 w-4" />
+              Report Document (Secure Upload) *
+            </Label>
             <div className="border-2 border-dashed border-muted-foreground/25 rounded-lg p-6 text-center">
               <input
                 id="file"
                 type="file"
-                accept=".pdf,.doc,.docx"
+                accept=".pdf,.doc,.docx,.xls,.xlsx,.csv,.txt"
                 onChange={handleFileChange}
                 className="hidden"
               />
@@ -184,10 +260,17 @@ export function ESGUploadPanel() {
                 <div className="flex flex-col items-center gap-2">
                   <FileText className="h-8 w-8 text-muted-foreground" />
                   <div className="text-sm">
-                    {file ? file.name : "Click to select PDF, DOC, or DOCX file"}
+                    {file ? (
+                      <div className="flex items-center gap-2">
+                        <CheckCircle className="h-4 w-4 text-green-600" />
+                        {file.name}
+                      </div>
+                    ) : (
+                      "Click to select document file"
+                    )}
                   </div>
                   <div className="text-xs text-muted-foreground">
-                    Maximum file size: 10MB
+                    Supported: PDF, Word, Excel, CSV, Text (Max 50MB)
                   </div>
                 </div>
               </Label>

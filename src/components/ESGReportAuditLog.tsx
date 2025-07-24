@@ -4,20 +4,16 @@ import { Badge } from '@/components/ui/badge';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { 
-  Eye, 
-  Download, 
   Upload, 
-  Trash2, 
   CheckCircle, 
   XCircle,
   Clock,
-  ExternalLink,
-  FileDown,
+  FileText,
   AlertTriangle,
   Shield
 } from 'lucide-react';
 
-interface AccessLog {
+interface ESGAccessLog {
   id: string;
   document_id: string;
   access_type: string;
@@ -29,8 +25,8 @@ interface AccessLog {
   } | null;
 }
 
-const DocumentAuditLog = () => {
-  const [logs, setLogs] = useState<AccessLog[]>([]);
+const ESGReportAuditLog = () => {
+  const [logs, setLogs] = useState<ESGAccessLog[]>([]);
   const [loading, setLoading] = useState(true);
 
   const fetchAuditLogs = async () => {
@@ -43,14 +39,15 @@ const DocumentAuditLog = () => {
             original_filename
           )
         `)
+        .eq('access_type', 'esg_upload')
         .order('accessed_at', { ascending: false })
-        .limit(50);
+        .limit(20);
 
       if (error) throw error;
       setLogs(data || []);
     } catch (error: any) {
-      console.error('Error fetching audit logs:', error);
-      toast.error(error.message || "Error loading audit logs");
+      console.error('Error fetching ESG audit logs:', error);
+      toast.error(error.message || "Error loading ESG audit logs");
     } finally {
       setLoading(false);
     }
@@ -59,15 +56,16 @@ const DocumentAuditLog = () => {
   useEffect(() => {
     fetchAuditLogs();
 
-    // Set up real-time subscription for new logs
+    // Set up real-time subscription for new ESG logs
     const channel = supabase
-      .channel('audit-logs')
+      .channel('esg-audit-logs')
       .on(
         'postgres_changes',
         {
           event: 'INSERT',
           schema: 'public',
-          table: 'document_access_logs'
+          table: 'document_access_logs',
+          filter: 'access_type=eq.esg_upload'
         },
         () => {
           fetchAuditLogs();
@@ -82,45 +80,12 @@ const DocumentAuditLog = () => {
 
   const getAccessIcon = (accessType: string) => {
     switch (accessType) {
-      case 'view':
-        return <Eye className="h-4 w-4" />;
-      case 'download':
-        return <Download className="h-4 w-4" />;
-      case 'upload':
+      case 'esg_upload':
         return <Upload className="h-4 w-4" />;
-      case 'delete':
-        return <Trash2 className="h-4 w-4" />;
-      case 'signed_url_view':
-        return <ExternalLink className="h-4 w-4" />;
-      case 'signed_url_download':
-        return <FileDown className="h-4 w-4" />;
-      case 'view_failed':
-      case 'download_failed':
+      case 'esg_upload_failed':
         return <AlertTriangle className="h-4 w-4" />;
       default:
-        return <Clock className="h-4 w-4" />;
-    }
-  };
-
-  const getAccessTypeColor = (accessType: string) => {
-    switch (accessType) {
-      case 'view':
-        return 'bg-blue-100 text-blue-800 dark:bg-blue-900 dark:text-blue-300';
-      case 'download':
-        return 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300';
-      case 'upload':
-        return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300';
-      case 'delete':
-        return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300';
-      case 'signed_url_view':
-        return 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300';
-      case 'signed_url_download':
-        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300';
-      case 'view_failed':
-      case 'download_failed':
-        return 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300';
-      default:
-        return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300';
+        return <FileText className="h-4 w-4" />;
     }
   };
 
@@ -152,7 +117,10 @@ const DocumentAuditLog = () => {
     return (
       <Card>
         <CardHeader>
-          <CardTitle>Activity Log</CardTitle>
+          <CardTitle className="flex items-center gap-2">
+            <Shield className="h-5 w-5" />
+            ESG Upload Activity
+          </CardTitle>
         </CardHeader>
         <CardContent>
           <div className="flex items-center justify-center py-8">
@@ -167,20 +135,20 @@ const DocumentAuditLog = () => {
     <Card>
       <CardHeader>
         <CardTitle className="flex items-center gap-2">
-          <Clock className="h-5 w-5" />
-          Activity Log
+          <Shield className="h-5 w-5" />
+          ESG Upload Activity
         </CardTitle>
         <CardDescription>
-          Recent document access and activity
+          Recent ESG report upload activity and security monitoring
         </CardDescription>
       </CardHeader>
       <CardContent>
         {logs.length === 0 ? (
           <div className="text-center py-8">
-            <Clock className="mx-auto h-12 w-12 text-muted-foreground/50" />
-            <h3 className="mt-4 text-lg font-semibold">No activity yet</h3>
+            <Upload className="mx-auto h-12 w-12 text-muted-foreground/50" />
+            <h3 className="mt-4 text-lg font-semibold">No ESG uploads yet</h3>
             <p className="text-muted-foreground">
-              Document access will appear here
+              ESG report upload activity will appear here
             </p>
           </div>
         ) : (
@@ -192,7 +160,11 @@ const DocumentAuditLog = () => {
               >
                 {/* Icon and Status */}
                 <div className="flex items-center gap-2 flex-shrink-0">
-                  <div className={`p-2 rounded-full ${getAccessTypeColor(log.access_type)}`}>
+                  <div className={`p-2 rounded-full ${
+                    log.success 
+                      ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
+                      : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+                  }`}>
                     {getAccessIcon(log.access_type)}
                   </div>
                   {log.success ? (
@@ -207,9 +179,13 @@ const DocumentAuditLog = () => {
                   <div className="flex items-center gap-2 mb-1">
                     <Badge 
                       variant="secondary" 
-                      className={`text-xs ${getAccessTypeColor(log.access_type)}`}
+                      className={`text-xs ${
+                        log.success 
+                          ? 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-300'
+                          : 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300'
+                      }`}
                     >
-                      {log.access_type.toUpperCase()}
+                      ESG UPLOAD
                     </Badge>
                     <span className="text-xs text-muted-foreground">
                       {formatRelativeTime(log.accessed_at)}
@@ -217,7 +193,7 @@ const DocumentAuditLog = () => {
                   </div>
                   
                   <p className="text-sm font-medium mb-1">
-                    {log.documents?.original_filename || 'Unknown Document'}
+                    {log.documents?.original_filename || 'ESG Report Upload'}
                   </p>
                   
                   {!log.success && log.error_message && (
@@ -239,4 +215,4 @@ const DocumentAuditLog = () => {
   );
 };
 
-export default DocumentAuditLog;
+export default ESGReportAuditLog;
