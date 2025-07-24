@@ -381,6 +381,10 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      check_waitlist_rate_limit: {
+        Args: { user_email: string; user_ip?: unknown }
+        Returns: boolean
+      }
       get_document_access_summary: {
         Args: { user_id_filter?: string; include_public?: boolean }
         Returns: {
