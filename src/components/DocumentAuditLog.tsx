@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { 
   Eye, 
@@ -28,7 +28,6 @@ interface AccessLog {
 const DocumentAuditLog = () => {
   const [logs, setLogs] = useState<AccessLog[]>([]);
   const [loading, setLoading] = useState(true);
-  const { toast } = useToast();
 
   const fetchAuditLogs = async () => {
     try {
@@ -47,11 +46,7 @@ const DocumentAuditLog = () => {
       setLogs(data || []);
     } catch (error: any) {
       console.error('Error fetching audit logs:', error);
-      toast({
-        title: "Error loading audit logs",
-        description: error.message,
-        variant: "destructive"
-      });
+      toast.error(error.message || "Error loading audit logs");
     } finally {
       setLoading(false);
     }

@@ -6,7 +6,7 @@ import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
 import { Switch } from '@/components/ui/switch';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { Upload, File, X } from 'lucide-react';
@@ -17,7 +17,6 @@ const DocumentUpload = () => {
   const [tags, setTags] = useState('');
   const [isPublic, setIsPublic] = useState(false);
   const [uploading, setUploading] = useState(false);
-  const { toast } = useToast();
   const { user } = useAuth();
 
   const handleFileSelect = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -25,11 +24,7 @@ const DocumentUpload = () => {
     if (selectedFile) {
       // Check file size (10MB limit)
       if (selectedFile.size > 10 * 1024 * 1024) {
-        toast({
-          title: "File too large",
-          description: "Please select a file smaller than 10MB",
-          variant: "destructive"
-        });
+        toast.error("File too large - Please select a file smaller than 10MB");
         return;
       }
       setFile(selectedFile);
@@ -42,11 +37,7 @@ const DocumentUpload = () => {
 
   const handleUpload = async () => {
     if (!file) {
-      toast({
-        title: "No file selected",
-        description: "Please select a file to upload",
-        variant: "destructive"
-      });
+      toast.error("Please select a file to upload");
       return;
     }
 
@@ -101,10 +92,7 @@ const DocumentUpload = () => {
         success_param: true
       });
 
-      toast({
-        title: "Upload successful",
-        description: `${file.name} has been uploaded successfully`
-      });
+      toast.success(`${file.name} has been uploaded successfully`);
 
       // Reset form
       setFile(null);
@@ -117,11 +105,7 @@ const DocumentUpload = () => {
 
     } catch (error: any) {
       console.error('Upload error:', error);
-      toast({
-        title: "Upload failed",
-        description: error.message || "Failed to upload document",
-        variant: "destructive"
-      });
+      toast.error(error.message || "Failed to upload document");
     } finally {
       setUploading(false);
     }

@@ -3,7 +3,7 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Input } from '@/components/ui/input';
-import { useToast } from '@/hooks/use-toast';
+import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
 import { 
   File, 
@@ -47,7 +47,6 @@ const DocumentList = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [documentToDelete, setDocumentToDelete] = useState<Document | null>(null);
-  const { toast } = useToast();
 
   const fetchDocuments = async () => {
     try {
@@ -60,11 +59,7 @@ const DocumentList = () => {
       setDocuments(data || []);
     } catch (error: any) {
       console.error('Error fetching documents:', error);
-      toast({
-        title: "Error loading documents",
-        description: error.message,
-        variant: "destructive"
-      });
+      toast.error(error.message || "Error loading documents");
     } finally {
       setLoading(false);
     }
@@ -112,11 +107,7 @@ const DocumentList = () => {
         error_msg: error.message
       });
 
-      toast({
-        title: "Error viewing document",
-        description: error.message,
-        variant: "destructive"
-      });
+      toast.error(error.message || "Error viewing document");
     }
   };
 
@@ -155,11 +146,7 @@ const DocumentList = () => {
         error_msg: error.message
       });
 
-      toast({
-        title: "Error downloading document",
-        description: error.message,
-        variant: "destructive"
-      });
+      toast.error(error.message || "Error downloading document");
     }
   };
 
@@ -196,20 +183,13 @@ const DocumentList = () => {
         success_param: true
       });
 
-      toast({
-        title: "Document deleted",
-        description: `${documentToDelete.original_filename} has been deleted`
-      });
+      toast.success(`${documentToDelete.original_filename} has been deleted`);
 
       // Refresh the list
       fetchDocuments();
     } catch (error: any) {
       console.error('Error deleting document:', error);
-      toast({
-        title: "Error deleting document",
-        description: error.message,
-        variant: "destructive"
-      });
+      toast.error(error.message || "Error deleting document");
     } finally {
       setDeleteDialogOpen(false);
       setDocumentToDelete(null);
