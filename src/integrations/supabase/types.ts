@@ -47,6 +47,95 @@ export type Database = {
         }
         Relationships: []
       }
+      document_access_logs: {
+        Row: {
+          access_type: string
+          accessed_at: string
+          document_id: string
+          error_message: string | null
+          id: string
+          ip_address: unknown | null
+          success: boolean
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          access_type: string
+          accessed_at?: string
+          document_id: string
+          error_message?: string | null
+          id?: string
+          ip_address?: unknown | null
+          success?: boolean
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          access_type?: string
+          accessed_at?: string
+          document_id?: string
+          error_message?: string | null
+          id?: string
+          ip_address?: unknown | null
+          success?: boolean
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "document_access_logs_document_id_fkey"
+            columns: ["document_id"]
+            isOneToOne: false
+            referencedRelation: "documents"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      documents: {
+        Row: {
+          created_at: string
+          description: string | null
+          file_size: number
+          filename: string
+          id: string
+          is_public: boolean
+          mime_type: string
+          original_filename: string
+          storage_path: string
+          tags: string[] | null
+          updated_at: string
+          user_id: string
+        }
+        Insert: {
+          created_at?: string
+          description?: string | null
+          file_size: number
+          filename: string
+          id?: string
+          is_public?: boolean
+          mime_type: string
+          original_filename: string
+          storage_path: string
+          tags?: string[] | null
+          updated_at?: string
+          user_id: string
+        }
+        Update: {
+          created_at?: string
+          description?: string | null
+          file_size?: number
+          filename?: string
+          id?: string
+          is_public?: boolean
+          mime_type?: string
+          original_filename?: string
+          storage_path?: string
+          tags?: string[] | null
+          updated_at?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
       feature_flags: {
         Row: {
           created_at: string
@@ -136,6 +225,15 @@ export type Database = {
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean
+      }
+      log_document_access: {
+        Args: {
+          doc_id: string
+          access_type_param: string
+          success_param?: boolean
+          error_msg?: string
+        }
+        Returns: string
       }
       manually_verify_user: {
         Args: { user_identifier: string }
