@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { useAuth } from '@/contexts/AuthContext';
 import { useFeatureFlags } from '@/hooks/useFeatureFlags';
-import { Lock, Settings, BarChart3, Users, FileText, Bell } from 'lucide-react';
+import { Lock, Settings, BarChart3, Users, FileText, Bell, FolderOpen } from 'lucide-react';
 
 const Dashboard = () => {
   const { user, profile, signOut, loading: authLoading } = useAuth();
@@ -201,6 +201,14 @@ const Dashboard = () => {
               </CardHeader>
               <CardContent>
                 <div className="grid grid-cols-2 gap-4">
+                  <Button 
+                    variant="outline" 
+                    className="h-20 flex-col gap-2"
+                    onClick={() => window.location.href = '/documents'}
+                  >
+                    <FolderOpen className="h-5 w-5" />
+                    Documents
+                  </Button>
                   <Button variant="outline" className="h-20 flex-col gap-2">
                     <Settings className="h-5 w-5" />
                     Settings
@@ -208,10 +216,6 @@ const Dashboard = () => {
                   <Button variant="outline" className="h-20 flex-col gap-2">
                     <BarChart3 className="h-5 w-5" />
                     Analytics
-                  </Button>
-                  <Button variant="outline" className="h-20 flex-col gap-2">
-                    <FileText className="h-5 w-5" />
-                    Reports
                   </Button>
                   <Button variant="outline" className="h-20 flex-col gap-2">
                     <Users className="h-5 w-5" />
