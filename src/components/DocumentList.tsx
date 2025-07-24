@@ -48,6 +48,52 @@ const DocumentList = () => {
   const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
   const [documentToDelete, setDocumentToDelete] = useState<Document | null>(null);
 
+  // Debug function to test database access logging
+  const testLogFunction = async () => {
+    if (documents.length === 0) {
+      toast.error("No documents available for testing");
+      return;
+    }
+
+    const testDoc = documents[0];
+    console.log('🧪 Testing log_document_access function with document:', testDoc.id);
+
+    try {
+      // Test successful logging
+      const { data: successData, error: successError } = await supabase.rpc('log_document_access', {
+        doc_id: testDoc.id,
+        access_type_param: 'test_access',
+        success_param: true
+      });
+
+      if (successError) {
+        console.error('❌ Test failed - RPC error:', successError);
+        toast.error(`Test failed: ${successError.message}`);
+      } else {
+        console.log('✅ Test successful - Log entry created:', successData);
+        toast.success("Test logging successful! Check console for details.");
+      }
+
+      // Test failure logging
+      const { data: failData, error: failError } = await supabase.rpc('log_document_access', {
+        doc_id: testDoc.id,
+        access_type_param: 'test_failure',
+        success_param: false,
+        error_msg: 'This is a test error message'
+      });
+
+      if (failError) {
+        console.error('❌ Test failure logging failed:', failError);
+      } else {
+        console.log('✅ Test failure logging successful:', failData);
+      }
+
+    } catch (error) {
+      console.error('❌ Test exception:', error);
+      toast.error(`Test exception: ${error}`);
+    }
+  };
+
   const fetchDocuments = async () => {
     try {
       const { data, error } = await supabase
@@ -78,6 +124,8 @@ const DocumentList = () => {
   }, []);
 
   const handleView = async (document: Document) => {
+    console.log('📋 Starting view process for document:', document.id, document.filename);
+    
     try {
       // Get signed URL for viewing
       const { data, error } = await supabase.storage
@@ -85,34 +133,71 @@ const DocumentList = () => {
         .createSignedUrl(document.storage_path, 3600); // 1 hour expiry
 
       if (error) {
-        // Log failed signed URL generation
-        await supabase.rpc('log_document_access', {
-          doc_id: document.id,
-          access_type_param: 'signed_url_view_failed',
-          success_param: false,
-          error_msg: error.message
-        });
+        console.error('❌ Error creating signed URL for view:', error);
+        
+        // Log failed signed URL generation with comprehensive error handling
+        try {
+          console.log('🔍 Attempting to log view failure...');
+          const { error: logError } = await supabase.rpc('log_document_access', {
+            doc_id: document.id,
+            access_type_param: 'signed_url_view_failed',
+            success_param: false,
+            error_msg: error.message
+          });
+          
+          if (logError) {
+            console.error('❌ Failed to log view failure:', logError);
+            toast.error("Document access failed and couldn't be logged");
+          } else {
+            console.log('✅ Successfully logged view failure');
+          }
+        } catch (logError) {
+          console.error('❌ Exception while logging view failure:', logError);
+        }
+        
         throw error;
       }
 
       if (data?.signedUrl) {
-        // Log successful signed URL generation for view
-        await supabase.rpc('log_document_access', {
-          doc_id: document.id,
-          access_type_param: 'signed_url_view',
-          success_param: true
-        });
+        console.log('✅ Signed URL created successfully for view:', data.signedUrl.substring(0, 50) + '...');
+        
+        // Log successful signed URL generation for view with error handling
+        try {
+          console.log('🔍 Attempting to log successful view access...');
+          const { error: logError } = await supabase.rpc('log_document_access', {
+            doc_id: document.id,
+            access_type_param: 'signed_url_view',
+            success_param: true
+          });
+          
+          if (logError) {
+            console.error('❌ Failed to log successful view:', logError);
+            toast.warning("Document opened but access wasn't logged");
+          } else {
+            console.log('✅ Successfully logged signed URL view access');
+          }
+        } catch (logError) {
+          console.error('❌ Exception while logging successful view:', logError);
+          toast.warning("Document opened but access logging failed");
+        }
 
-        window.open(data.signedUrl, '_blank');
+        // Add a slight delay to ensure logging completes before opening
+        setTimeout(() => {
+          console.log('🚀 Opening document in new tab');
+          window.open(data.signedUrl, '_blank');
+        }, 100);
+        
         toast.success("Document opened in new tab");
       }
     } catch (error: any) {
-      console.error('Error viewing document:', error);
+      console.error('❌ Error in handleView:', error);
       toast.error(error.message || "Error viewing document");
     }
   };
 
   const handleDownload = async (document: Document) => {
+    console.log('📥 Starting download process for document:', document.id, document.filename);
+    
     try {
       // Get signed URL for download
       const { data, error } = await supabase.storage
@@ -120,34 +205,69 @@ const DocumentList = () => {
         .createSignedUrl(document.storage_path, 300); // 5 minutes expiry
 
       if (error) {
-        // Log failed signed URL generation
-        await supabase.rpc('log_document_access', {
-          doc_id: document.id,
-          access_type_param: 'signed_url_download_failed',
-          success_param: false,
-          error_msg: error.message
-        });
+        console.error('❌ Error creating signed URL for download:', error);
+        
+        // Log failed signed URL generation with comprehensive error handling
+        try {
+          console.log('🔍 Attempting to log download failure...');
+          const { error: logError } = await supabase.rpc('log_document_access', {
+            doc_id: document.id,
+            access_type_param: 'signed_url_download_failed',
+            success_param: false,
+            error_msg: error.message
+          });
+          
+          if (logError) {
+            console.error('❌ Failed to log download failure:', logError);
+            toast.error("Download failed and couldn't be logged");
+          } else {
+            console.log('✅ Successfully logged download failure');
+          }
+        } catch (logError) {
+          console.error('❌ Exception while logging download failure:', logError);
+        }
+        
         throw error;
       }
 
       if (data?.signedUrl) {
-        // Log successful signed URL generation for download
-        await supabase.rpc('log_document_access', {
-          doc_id: document.id,
-          access_type_param: 'signed_url_download',
-          success_param: true
-        });
+        console.log('✅ Signed URL created successfully for download:', data.signedUrl.substring(0, 50) + '...');
+        
+        // Log successful signed URL generation for download with error handling
+        try {
+          console.log('🔍 Attempting to log successful download access...');
+          const { error: logError } = await supabase.rpc('log_document_access', {
+            doc_id: document.id,
+            access_type_param: 'signed_url_download',
+            success_param: true
+          });
+          
+          if (logError) {
+            console.error('❌ Failed to log successful download:', logError);
+            toast.warning("Download started but access wasn't logged");
+          } else {
+            console.log('✅ Successfully logged signed URL download access');
+          }
+        } catch (logError) {
+          console.error('❌ Exception while logging successful download:', logError);
+          toast.warning("Download started but access logging failed");
+        }
 
-        const link = window.document.createElement('a');
-        link.href = data.signedUrl;
-        link.download = document.original_filename;
-        window.document.body.appendChild(link);
-        link.click();
-        window.document.body.removeChild(link);
+        // Add a slight delay to ensure logging completes before downloading
+        setTimeout(() => {
+          console.log('🚀 Starting download');
+          const link = window.document.createElement('a');
+          link.href = data.signedUrl;
+          link.download = document.original_filename;
+          window.document.body.appendChild(link);
+          link.click();
+          window.document.body.removeChild(link);
+        }, 100);
+        
         toast.success("Download started");
       }
     } catch (error: any) {
-      console.error('Error downloading document:', error);
+      console.error('❌ Error in handleDownload:', error);
       toast.error(error.message || "Error downloading document");
     }
   };
@@ -178,12 +298,23 @@ const DocumentList = () => {
 
       if (dbError) throw dbError;
 
-      // Log the deletion
-      await supabase.rpc('log_document_access', {
-        doc_id: documentToDelete.id,
-        access_type_param: 'delete',
-        success_param: true
-      });
+      // Log the deletion with error handling
+      try {
+        console.log('🔍 Attempting to log document deletion...');
+        const { error: logError } = await supabase.rpc('log_document_access', {
+          doc_id: documentToDelete.id,
+          access_type_param: 'delete',
+          success_param: true
+        });
+        
+        if (logError) {
+          console.error('❌ Failed to log deletion:', logError);
+        } else {
+          console.log('✅ Successfully logged document deletion');
+        }
+      } catch (logError) {
+        console.error('❌ Exception while logging deletion:', logError);
+      }
 
       toast.success(`${documentToDelete.original_filename} has been deleted`);
 
@@ -250,15 +381,25 @@ const DocumentList = () => {
           </CardDescription>
         </CardHeader>
         <CardContent>
-          {/* Search */}
-          <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-            <Input
-              placeholder="Search documents..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              className="pl-10"
-            />
+          {/* Search and Debug */}
+          <div className="flex gap-2 mb-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+              <Input
+                placeholder="Search documents..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10"
+              />
+            </div>
+            <Button
+              onClick={testLogFunction}
+              variant="outline"
+              size="sm"
+              className="whitespace-nowrap"
+            >
+              🧪 Test Logging
+            </Button>
           </div>
 
           {/* Document List */}
