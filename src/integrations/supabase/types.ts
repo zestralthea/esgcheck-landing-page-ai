@@ -222,6 +222,24 @@ export type Database = {
       [_ in never]: never
     }
     Functions: {
+      get_document_access_summary: {
+        Args: { user_id_filter?: string; include_public?: boolean }
+        Returns: {
+          document_id: string
+          filename: string
+          owner_id: string
+          owner_email: string
+          is_public: boolean
+          total_accesses: number
+          unique_accessors: number
+          last_accessed: string
+          view_count: number
+          download_count: number
+          signed_url_accesses: number
+          failed_accesses: number
+          success_rate: number
+        }[]
+      }
       is_admin: {
         Args: Record<PropertyKey, never>
         Returns: boolean

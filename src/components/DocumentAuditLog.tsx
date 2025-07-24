@@ -10,7 +10,11 @@ import {
   Trash2, 
   CheckCircle, 
   XCircle,
-  Clock
+  Clock,
+  ExternalLink,
+  FileDown,
+  AlertTriangle,
+  Shield
 } from 'lucide-react';
 
 interface AccessLog {
@@ -86,6 +90,13 @@ const DocumentAuditLog = () => {
         return <Upload className="h-4 w-4" />;
       case 'delete':
         return <Trash2 className="h-4 w-4" />;
+      case 'signed_url_view':
+        return <ExternalLink className="h-4 w-4" />;
+      case 'signed_url_download':
+        return <FileDown className="h-4 w-4" />;
+      case 'view_failed':
+      case 'download_failed':
+        return <AlertTriangle className="h-4 w-4" />;
       default:
         return <Clock className="h-4 w-4" />;
     }
@@ -101,6 +112,13 @@ const DocumentAuditLog = () => {
         return 'bg-purple-100 text-purple-800 dark:bg-purple-900 dark:text-purple-300';
       case 'delete':
         return 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-300';
+      case 'signed_url_view':
+        return 'bg-cyan-100 text-cyan-800 dark:bg-cyan-900 dark:text-cyan-300';
+      case 'signed_url_download':
+        return 'bg-emerald-100 text-emerald-800 dark:bg-emerald-900 dark:text-emerald-300';
+      case 'view_failed':
+      case 'download_failed':
+        return 'bg-orange-100 text-orange-800 dark:bg-orange-900 dark:text-orange-300';
       default:
         return 'bg-gray-100 text-gray-800 dark:bg-gray-900 dark:text-gray-300';
     }

@@ -6,6 +6,7 @@ import { ArrowLeft } from 'lucide-react';
 import DocumentUpload from '@/components/DocumentUpload';
 import DocumentList from '@/components/DocumentList';
 import DocumentAuditLog from '@/components/DocumentAuditLog';
+import SecurityDashboard from '@/components/SecurityDashboard';
 
 const Documents = () => {
   const { user, loading } = useAuth();
@@ -53,7 +54,11 @@ const Documents = () => {
       </header>
 
       {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
+      <main className="container mx-auto px-4 py-8 space-y-8">
+        {/* Security Dashboard */}
+        <SecurityDashboard />
+        
+        {/* Document Management */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Upload and List */}
           <div className="lg:col-span-2 space-y-6">

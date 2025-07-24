@@ -79,27 +79,37 @@ const DocumentList = () => {
 
   const handleView = async (document: Document) => {
     try {
-      // Log the view access
-      await supabase.rpc('log_document_access', {
-        doc_id: document.id,
-        access_type_param: 'view',
-        success_param: true
-      });
-
       // Get signed URL for viewing
       const { data, error } = await supabase.storage
         .from('documents')
         .createSignedUrl(document.storage_path, 3600); // 1 hour expiry
 
-      if (error) throw error;
+      if (error) {
+        // Log failed signed URL generation
+        await supabase.rpc('log_document_access', {
+          doc_id: document.id,
+          access_type_param: 'view_failed',
+          success_param: false,
+          error_msg: error.message
+        });
+        throw error;
+      }
+
+      // Log signed URL generation
+      await supabase.rpc('log_document_access', {
+        doc_id: document.id,
+        access_type_param: 'signed_url_view',
+        success_param: true
+      });
 
       if (data?.signedUrl) {
         window.open(data.signedUrl, '_blank');
+        toast.success("Document opened in new tab");
       }
     } catch (error: any) {
       console.error('Error viewing document:', error);
       
-      // Log failed access
+      // Log failed access if not already logged
       await supabase.rpc('log_document_access', {
         doc_id: document.id,
         access_type_param: 'view',
@@ -113,19 +123,28 @@ const DocumentList = () => {
 
   const handleDownload = async (document: Document) => {
     try {
-      // Log the download access
-      await supabase.rpc('log_document_access', {
-        doc_id: document.id,
-        access_type_param: 'download',
-        success_param: true
-      });
-
       // Get signed URL for download
       const { data, error } = await supabase.storage
         .from('documents')
         .createSignedUrl(document.storage_path, 300); // 5 minutes expiry
 
-      if (error) throw error;
+      if (error) {
+        // Log failed signed URL generation
+        await supabase.rpc('log_document_access', {
+          doc_id: document.id,
+          access_type_param: 'download_failed',
+          success_param: false,
+          error_msg: error.message
+        });
+        throw error;
+      }
+
+      // Log signed URL generation for download
+      await supabase.rpc('log_document_access', {
+        doc_id: document.id,
+        access_type_param: 'signed_url_download',
+        success_param: true
+      });
 
       if (data?.signedUrl) {
         const link = window.document.createElement('a');
@@ -134,11 +153,12 @@ const DocumentList = () => {
         window.document.body.appendChild(link);
         link.click();
         window.document.body.removeChild(link);
+        toast.success("Download started");
       }
     } catch (error: any) {
       console.error('Error downloading document:', error);
       
-      // Log failed access
+      // Log failed access if not already logged
       await supabase.rpc('log_document_access', {
         doc_id: document.id,
         access_type_param: 'download',
