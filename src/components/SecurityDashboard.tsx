@@ -4,6 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { toast } from 'sonner';
 import { supabase } from '@/integrations/supabase/client';
+import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
 import { 
   Shield, 
   AlertTriangle, 
@@ -12,7 +13,9 @@ import {
   FileText, 
   Activity,
   ExternalLink,
-  RefreshCw
+  RefreshCw,
+  ChevronDown,
+  ChevronRight
 } from 'lucide-react';
 
 interface SuspiciousActivity {
@@ -38,6 +41,7 @@ const SecurityDashboard = () => {
   const [suspiciousActivity, setSuspiciousActivity] = useState<SuspiciousActivity[]>([]);
   const [accessStats, setAccessStats] = useState<AccessStats | null>(null);
   const [loading, setLoading] = useState(true);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const fetchSecurityData = async () => {
     try {
@@ -196,27 +200,58 @@ const SecurityDashboard = () => {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h2 className="text-2xl font-bold tracking-tight flex items-center gap-2">
-            <Shield className="h-6 w-6" />
-            Security Dashboard
-          </h2>
-          <p className="text-muted-foreground">
-            Monitor document access patterns and detect suspicious activity
-          </p>
-        </div>
-        <Button onClick={fetchSecurityData} variant="outline" size="sm">
-          <RefreshCw className="h-4 w-4 mr-2" />
-          Refresh
-        </Button>
-      </div>
+    <Collapsible open={isExpanded} onOpenChange={setIsExpanded}>
+      <Card>
+        <CollapsibleTrigger asChild>
+          <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Shield className="h-6 w-6" />
+                <div>
+                  <CardTitle>Security Dashboard</CardTitle>
+                  <CardDescription>
+                    Monitor document access patterns and detect suspicious activity
+                  </CardDescription>
+                </div>
+              </div>
+              <div className="flex items-center gap-2">
+                {!isExpanded && accessStats && (
+                  <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                    <span className="flex items-center gap-1">
+                      <Activity className="h-4 w-4" />
+                      {accessStats.total_accesses} accesses
+                    </span>
+                    <span className="flex items-center gap-1">
+                      <Users className="h-4 w-4" />
+                      {accessStats.unique_users} users
+                    </span>
+                    {suspiciousActivity.length > 0 && (
+                      <Badge variant="destructive" className="text-xs">
+                        {suspiciousActivity.length} alerts
+                      </Badge>
+                    )}
+                  </div>
+                )}
+                <Button variant="ghost" size="sm" onClick={fetchSecurityData}>
+                  <RefreshCw className="h-4 w-4" />
+                </Button>
+                {isExpanded ? (
+                  <ChevronDown className="h-4 w-4" />
+                ) : (
+                  <ChevronRight className="h-4 w-4" />
+                )}
+              </div>
+            </div>
+          </CardHeader>
+        </CollapsibleTrigger>
+        
+        <CollapsibleContent>
+          <CardContent className="pt-0">
+            <div className="space-y-6">
 
-      {/* Statistics Overview */}
-      {accessStats && (
-        <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {/* Statistics Overview */}
+            {accessStats && (
+              <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
           <Card>
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">Total Accesses</CardTitle>
@@ -260,11 +295,11 @@ const SecurityDashboard = () => {
               <p className="text-xs text-muted-foreground">URL-based access</p>
             </CardContent>
           </Card>
-        </div>
-      )}
+              </div>
+            )}
 
-      {/* Suspicious Activity */}
-      <Card>
+            {/* Suspicious Activity */}
+            <Card>
         <CardHeader>
           <CardTitle className="flex items-center gap-2">
             <AlertTriangle className="h-5 w-5" />
@@ -335,11 +370,11 @@ const SecurityDashboard = () => {
             </div>
           )}
         </CardContent>
-      </Card>
+            </Card>
 
-      {/* Additional Security Insights */}
-      {accessStats && (
-        <div className="grid gap-6 md:grid-cols-2">
+            {/* Additional Security Insights */}
+            {accessStats && (
+              <div className="grid gap-6 md:grid-cols-2">
           <Card>
             <CardHeader>
               <CardTitle>Access Patterns</CardTitle>
@@ -396,9 +431,13 @@ const SecurityDashboard = () => {
               </div>
             </CardContent>
           </Card>
+            </div>
+          )}
         </div>
-      )}
-    </div>
+          </CardContent>
+        </CollapsibleContent>
+      </Card>
+    </Collapsible>
   );
 };
 

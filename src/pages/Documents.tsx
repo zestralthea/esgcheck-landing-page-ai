@@ -1,9 +1,11 @@
 import React from 'react';
 import { Navigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
+import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
 import { ArrowLeft } from 'lucide-react';
 import DocumentUpload from '@/components/DocumentUpload';
+import MultiFileUpload from '@/components/MultiFileUpload';
 import DocumentList from '@/components/DocumentList';
 import DocumentAuditLog from '@/components/DocumentAuditLog';
 import SecurityDashboard from '@/components/SecurityDashboard';
@@ -62,7 +64,18 @@ const Documents = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Left Column - Upload and List */}
           <div className="lg:col-span-2 space-y-6">
-            <DocumentUpload />
+            <Tabs defaultValue="single" className="w-full">
+              <TabsList className="grid w-full grid-cols-2">
+                <TabsTrigger value="single">Single Upload</TabsTrigger>
+                <TabsTrigger value="multi">Multi Upload</TabsTrigger>
+              </TabsList>
+              <TabsContent value="single">
+                <DocumentUpload />
+              </TabsContent>
+              <TabsContent value="multi">
+                <MultiFileUpload />
+              </TabsContent>
+            </Tabs>
             <DocumentList />
           </div>
 
