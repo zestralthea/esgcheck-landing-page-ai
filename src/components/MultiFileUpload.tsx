@@ -123,8 +123,15 @@ const MultiFileUpload = () => {
         throw dbError;
       }
 
-      // Update progress and status
+      // Update progress and status  
       updateFileSettings(uploadFile.id, { progress: 100, status: 'success' });
+
+      // Log the upload action
+      await supabase.rpc('log_document_access', {
+        doc_id: null, // We don't have the document ID for upload logging
+        access_type_param: 'upload',
+        success_param: true
+      });
 
       return true;
     } catch (error: any) {

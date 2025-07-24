@@ -85,9 +85,9 @@ const DocumentUpload = () => {
         throw dbError;
       }
 
-      // Log the upload
+      // Log the upload action
       await supabase.rpc('log_document_access', {
-        doc_id: null, // We don't have the ID yet, this is for upload
+        doc_id: null, // We don't have the document ID for upload logging
         access_type_param: 'upload',
         success_param: true
       });
