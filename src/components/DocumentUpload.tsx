@@ -47,7 +47,7 @@ const DocumentUpload = () => {
       // Generate unique filename
       const fileExt = file.name.split('.').pop();
       const fileName = `${Date.now()}-${Math.random().toString(36).substring(2)}.${fileExt}`;
-      const filePath = `${fileName}`;
+      const filePath = `${user?.id}/${fileName}`;
 
       // Upload file to storage
       const { error: uploadError } = await supabase.storage
