@@ -3,3 +3,9 @@ project_id = "equtqvlukqloqphhmblj"
 
 [functions.verify-waitlist-signup]
 verify_jwt = false
+
+[functions.secure-file-upload]
+verify_jwt = true
+
+[functions.admin-operations]
+verify_jwt = true

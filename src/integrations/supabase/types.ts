@@ -352,6 +352,45 @@ export type Database = {
         }
         Relationships: []
       }
+      security_audit_log: {
+        Row: {
+          action_type: string
+          created_at: string
+          error_message: string | null
+          id: string
+          ip_address: unknown | null
+          resource_id: string | null
+          resource_type: string
+          success: boolean
+          user_agent: string | null
+          user_id: string | null
+        }
+        Insert: {
+          action_type: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          ip_address?: unknown | null
+          resource_id?: string | null
+          resource_type: string
+          success?: boolean
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Update: {
+          action_type?: string
+          created_at?: string
+          error_message?: string | null
+          id?: string
+          ip_address?: unknown | null
+          resource_id?: string | null
+          resource_type?: string
+          success?: boolean
+          user_agent?: string | null
+          user_id?: string | null
+        }
+        Relationships: []
+      }
       waitlist: {
         Row: {
           company: string | null
@@ -411,6 +450,16 @@ export type Database = {
         Args: {
           doc_id: string
           access_type_param: string
+          success_param?: boolean
+          error_msg?: string
+        }
+        Returns: string
+      }
+      log_security_event: {
+        Args: {
+          action_type_param: string
+          resource_type_param: string
+          resource_id_param?: string
           success_param?: boolean
           error_msg?: string
         }

@@ -127,65 +127,48 @@ export function ESGUploadPanel() {
     }
 
     setUploading(true);
-    let documentId: string | null = null;
     
     try {
-      // Upload file to documents bucket with enhanced security
-      const fileExt = file.name.split('.').pop();
-      const fileName = `esg-report-${Date.now()}.${fileExt}`;
-      const filePath = `${user.id}/esg-reports/${fileName}`;
+      // Convert file to base64 for secure upload
+      const fileBase64 = await new Promise<string>((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const result = reader.result as string;
+          // Remove data URL prefix to get just the base64 data
+          const base64Data = result.split(',')[1];
+          resolve(base64Data);
+        };
+        reader.onerror = reject;
+        reader.readAsDataURL(file);
+      });
 
-      const { data: uploadData, error: uploadError } = await supabase.storage
-        .from('documents')
-        .upload(filePath, file, {
-          cacheControl: '3600',
-          upsert: false
-        });
+      // Use secure file upload edge function
+      const { data, error } = await supabase.functions.invoke('secure-file-upload', {
+        body: {
+          file: fileBase64,
+          filename: file.name,
+          mimeType: file.type,
+          fileSize: file.size,
+          reportTitle,
+          reportType,
+          reportingPeriodStart: periodStart,
+          reportingPeriodEnd: periodEnd,
+          description,
+          griStandards: selectedGRIStandards
+        }
+      });
 
-      if (uploadError) throw uploadError;
+      if (error) {
+        throw new Error(error.message || 'Upload failed');
+      }
 
-      // Insert document record with enhanced security
-      const { data: documentData, error: documentError } = await supabase
-        .from('documents')
-        .insert({
-          user_id: user.id,
-          filename: fileName,
-          original_filename: file.name,
-          storage_path: uploadData.path,
-          file_size: file.size,
-          mime_type: file.type,
-          description: `ESG Report: ${reportTitle}${description ? ` - ${description}` : ''}`,
-          tags: ['esg-report', reportType, ...selectedGRIStandards],
-          is_public: false,
-        })
-        .select()
-        .single();
-
-      if (documentError) throw documentError;
-      documentId = documentData.id;
-
-      // Create ESG report record
-      const { error: reportError } = await supabase
-        .from('esg_reports')
-        .insert({
-          user_id: user.id,
-          document_id: documentData.id,
-          report_title: reportTitle,
-          report_type: reportType,
-          gri_standards: selectedGRIStandards,
-          reporting_period_start: periodStart,
-          reporting_period_end: periodEnd,
-          status: 'processing',
-        });
-
-      if (reportError) throw reportError;
-
-      // Log successful upload
-      await logESGAccess(documentData.id, true);
+      if (!data.success) {
+        throw new Error(data.message || 'Upload failed');
+      }
 
       toast({
         title: "ESG Report uploaded successfully",
-        description: "Your report is being processed for ESG analysis",
+        description: "Your report is being processed for ESG analysis with enhanced security",
       });
 
       // Reset form
@@ -203,19 +186,17 @@ export function ESGUploadPanel() {
     } catch (error: any) {
       console.error('Upload error:', error);
       
-      // Log failed upload if we have a document ID
-      if (documentId) {
-        await logESGAccess(documentId, false, error.message);
-      }
-      
-      // Enhanced error handling
+      // Enhanced error handling with server-side validation feedback
       let errorMessage = 'There was an error uploading your report. Please try again.';
-      if (error.message?.includes('storage')) {
-        errorMessage = 'Storage error: Please check file permissions and try again';
-      } else if (error.message?.includes('auth')) {
+      
+      if (error.message?.includes('Validation failed')) {
+        errorMessage = 'Validation failed: Please check your inputs and try again';
+      } else if (error.message?.includes('Authentication')) {
         errorMessage = 'Authentication error: Please log in and try again';
-      } else if (error.message?.includes('policy')) {
-        errorMessage = 'Permission denied: Please contact support';
+      } else if (error.message?.includes('Invalid file type')) {
+        errorMessage = 'Invalid file type: Only PDF, Word documents, and text files are allowed';
+      } else if (error.message?.includes('File size')) {
+        errorMessage = 'File too large: Maximum size is 50MB';
       }
       
       toast({
