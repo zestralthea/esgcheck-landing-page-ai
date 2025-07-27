@@ -104,12 +104,51 @@ export const profileUpdateSchema = z.object({
     .max(255, 'Email must be less than 255 characters')
 });
 
-// Input sanitization helper
+// Enhanced input sanitization helpers
 export const sanitizeInput = (input: string): string => {
   return input
     .trim()
     .replace(/[<>]/g, '') // Remove potentially dangerous HTML characters
+    .replace(/[^\x20-\x7E\u00A0-\u00FF\u0100-\u017F\u0180-\u024F]/g, '') // Allow only printable ASCII and basic Latin characters
+    .replace(/\s+/g, ' ') // Normalize whitespace
     .substring(0, 1000); // Limit length as additional safety
+};
+
+export const sanitizeHtml = (input: string): string => {
+  return input
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#x27;')
+    .replace(/\//g, '&#x2F;');
+};
+
+export const sanitizeFileName = (filename: string): string => {
+  return filename
+    .trim()
+    .replace(/[^a-zA-Z0-9._-]/g, '_') // Replace unsafe characters with underscores
+    .replace(/_{2,}/g, '_') // Replace multiple underscores with single
+    .substring(0, 255); // Limit filename length
+};
+
+// SQL injection prevention (for dynamic query building if needed)
+export const sanitizeSqlInput = (input: string): string => {
+  return input
+    .replace(/[';\\]/g, '') // Remove SQL dangerous characters
+    .replace(/--/g, '') // Remove SQL comments
+    .replace(/\/\*/g, '') // Remove SQL block comments start
+    .replace(/\*\//g, '') // Remove SQL block comments end
+    .trim();
+};
+
+// XSS prevention for rich text content
+export const sanitizeRichText = (input: string): string => {
+  return input
+    .replace(/<script\b[^<]*(?:(?!<\/script>)<[^<]*)*<\/script>/gi, '') // Remove script tags
+    .replace(/<iframe\b[^<]*(?:(?!<\/iframe>)<[^<]*)*<\/iframe>/gi, '') // Remove iframe tags
+    .replace(/javascript:/gi, '') // Remove javascript: URLs
+    .replace(/on\w+\s*=/gi, '') // Remove event handlers
+    .trim();
 };
 
 export type WaitlistFormData = z.infer<typeof waitlistSchema>;

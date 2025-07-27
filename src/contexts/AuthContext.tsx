@@ -2,6 +2,7 @@ import React, { createContext, useContext, useEffect, useState } from 'react';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
 import { sessionManager } from '@/lib/sessionSecurity';
+import { CSRFProtection, SecureErrorHandler, CSPHelper } from '@/lib/securityUtils';
 
 interface Profile {
   id: string;
@@ -74,6 +75,10 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   };
 
   useEffect(() => {
+    // Initialize security features
+    CSPHelper.setMetaCSP();
+    CSRFProtection.setToken();
+
     // Set up auth state listener FIRST
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
       async (event, session) => {
@@ -87,12 +92,17 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
           
           // Defer profile fetching to avoid blocking auth state change
           setTimeout(async () => {
-            const profileData = await fetchProfile(session.user.id);
-            setProfile(profileData);
+            try {
+              const profileData = await fetchProfile(session.user.id);
+              setProfile(profileData);
+            } catch (error) {
+              SecureErrorHandler.logError(error, 'Profile fetch during auth state change');
+            }
           }, 0);
         } else {
           // Stop session monitoring for unauthenticated users
           sessionManager.stopSessionMonitoring();
+          CSRFProtection.clearToken();
           setProfile(null);
         }
 
@@ -105,7 +115,9 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       if (session) {
         setSession(session);
         setUser(session.user);
-        fetchProfile(session.user.id).then(setProfile);
+        fetchProfile(session.user.id).then(setProfile).catch(error => {
+          SecureErrorHandler.logError(error, 'Initial profile fetch');
+        });
       }
       setLoading(false);
     });
@@ -114,35 +126,72 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
   }, []);
 
   const signUp = async (email: string, password: string, fullName?: string) => {
-    const redirectUrl = `${window.location.origin}/`;
-    
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: redirectUrl,
-        data: {
-          full_name: fullName
+    try {
+      const redirectUrl = `${window.location.origin}/`;
+      
+      const { error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: redirectUrl,
+          data: {
+            full_name: fullName
+          }
         }
-      }
-    });
+      });
 
-    return { error };
+      if (error) {
+        SecureErrorHandler.logError(error, 'Sign up attempt');
+        // Return sanitized error message
+        return { 
+          error: { 
+            ...error, 
+            message: SecureErrorHandler.getPublicErrorMessage(error) 
+          } 
+        };
+      }
+
+      return { error: null };
+    } catch (error) {
+      SecureErrorHandler.logError(error, 'Sign up error');
+      return { error: { message: 'An error occurred during sign up' } };
+    }
   };
 
   const signIn = async (email: string, password: string) => {
-    const { error } = await supabase.auth.signInWithPassword({
-      email,
-      password
-    });
+    try {
+      const { error } = await supabase.auth.signInWithPassword({
+        email,
+        password
+      });
 
-    return { error };
+      if (error) {
+        SecureErrorHandler.logError(error, 'Sign in attempt');
+        // Return sanitized error message
+        return { 
+          error: { 
+            ...error, 
+            message: SecureErrorHandler.getPublicErrorMessage(error) 
+          } 
+        };
+      }
+
+      return { error: null };
+    } catch (error) {
+      SecureErrorHandler.logError(error, 'Sign in error');
+      return { error: { message: 'An error occurred during sign in' } };
+    }
   };
 
   const signOut = async () => {
-    // Stop session monitoring before signing out
-    sessionManager.stopSessionMonitoring();
-    await supabase.auth.signOut();
+    try {
+      // Stop session monitoring before signing out
+      sessionManager.stopSessionMonitoring();
+      CSRFProtection.clearToken();
+      await supabase.auth.signOut();
+    } catch (error) {
+      SecureErrorHandler.logError(error, 'Sign out error');
+    }
   };
 
   const value = {
