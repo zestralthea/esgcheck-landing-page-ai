@@ -1,29 +1,29 @@
 import * as React from "react";
 import { cn } from "@/lib/utils";
 import { Card } from "@/components/ui/card";
+import { cardVariants, type CardVariantProps } from "@/lib/variants";
 
-interface GradientCardProps extends React.HTMLAttributes<HTMLDivElement> {
+interface GradientCardProps extends React.HTMLAttributes<HTMLDivElement>, CardVariantProps {
   children: React.ReactNode;
-  hoverEffect?: boolean;
   containerClassName?: string;
 }
 
 /**
  * A reusable card component with gradient styling and optional hover effects
- * Used throughout the application for consistent styling of card elements
+ * Uses cardVariants from variants.ts for consistent styling
  */
 export function GradientCard({
   children,
-  hoverEffect = true,
   className,
   containerClassName,
+  variant = "gradient",
+  hover = "full",
   ...props
 }: GradientCardProps) {
   return (
     <Card 
       className={cn(
-        "border border-border/20 shadow-premium bg-gradient-card backdrop-blur",
-        hoverEffect && "transition-all duration-500 hover:scale-105 hover:shadow-glow group",
+        cardVariants({ variant, hover }),
         className
       )}
       {...props}
