@@ -4,6 +4,27 @@
 
 **URL**: https://lovable.dev/projects/0d858abb-1f4a-40e7-a13c-f3647d2f1273
 
+## Environment Setup
+
+### Supabase Configuration
+
+This project uses Supabase for backend services. To run the project locally, you need to set up environment variables:
+
+1. Copy `.env.example` to `.env`:
+   ```sh
+   cp .env.example .env
+   ```
+
+2. Fill in your Supabase credentials in the `.env` file:
+   ```
+   VITE_SUPABASE_URL=your_supabase_project_url
+   VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
+   ```
+
+You can find these values in your Supabase project dashboard under Project Settings > API.
+
+> **Important**: Never commit your `.env` file to the repository. It's already added to `.gitignore`.
+
 ## How can I edit this code?
 
 There are several ways of editing your application.
