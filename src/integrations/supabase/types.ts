@@ -55,6 +55,7 @@ export type Database = {
           error_message: string | null
           id: string
           ip_address: unknown | null
+          is_signed_url: boolean | null
           success: boolean
           user_agent: string | null
           user_id: string | null
@@ -66,6 +67,7 @@ export type Database = {
           error_message?: string | null
           id?: string
           ip_address?: unknown | null
+          is_signed_url?: boolean | null
           success?: boolean
           user_agent?: string | null
           user_id?: string | null
@@ -77,6 +79,7 @@ export type Database = {
           error_message?: string | null
           id?: string
           ip_address?: unknown | null
+          is_signed_url?: boolean | null
           success?: boolean
           user_agent?: string | null
           user_id?: string | null
