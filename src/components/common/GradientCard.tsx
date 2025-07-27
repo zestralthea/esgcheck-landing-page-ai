@@ -1,11 +1,10 @@
-import { ReactNode } from "react";
+import * as React from "react";
 import { cn } from "@/lib/utils";
-import { Card, CardProps } from "@/components/ui/card";
+import { Card } from "@/components/ui/card";
 
-interface GradientCardProps extends CardProps {
-  children: ReactNode;
+interface GradientCardProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
   hoverEffect?: boolean;
-  className?: string;
   containerClassName?: string;
 }
 
@@ -28,4 +27,10 @@ export function GradientCard({
         className
       )}
       {...props}
-    ></Card>
+    >
+      <div className={cn("", containerClassName)}>
+        {children}
+      </div>
+    </Card>
+  );
+}
