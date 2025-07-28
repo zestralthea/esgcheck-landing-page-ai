@@ -4,6 +4,9 @@ import { supabase } from '@/integrations/supabase/client';
 import { sessionManager } from '@/lib/sessionSecurity';
 import { CSRFProtection, SecureErrorHandler, CSPHelper } from '@/lib/securityUtils';
 
+// Development mode flag - set to true to enable automatic login for testing
+const DEV_MODE = true; // Set to false in production
+
 interface Profile {
   id: string;
   email: string;
@@ -79,50 +82,83 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
     CSPHelper.setMetaCSP();
     CSRFProtection.setToken();
 
-    // Set up auth state listener FIRST
-    const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (event, session) => {
-        console.log('Auth state changed:', event, session?.user?.email);
-        setSession(session);
-        setUser(session?.user ?? null);
+    if (DEV_MODE) {
+      console.log('🔧 DEVELOPMENT MODE: Auto-login enabled');
+      // Create mock user and profile for development testing
+      const mockUser: User = {
+        id: 'dev-user-id-123',
+        app_metadata: {},
+        user_metadata: {},
+        aud: 'authenticated',
+        created_at: new Date().toISOString(),
+        email: 'dev@example.com',
+        phone: '',
+        role: 'authenticated',
+        updated_at: new Date().toISOString(),
+      };
 
-        if (session?.user) {
-          // Start session monitoring for authenticated users
-          sessionManager.startSessionMonitoring();
-          
-          // Defer profile fetching to avoid blocking auth state change
-          setTimeout(async () => {
-            try {
-              const profileData = await fetchProfile(session.user.id);
-              setProfile(profileData);
-            } catch (error) {
-              SecureErrorHandler.logError(error, 'Profile fetch during auth state change');
-            }
-          }, 0);
-        } else {
-          // Stop session monitoring for unauthenticated users
-          sessionManager.stopSessionMonitoring();
-          CSRFProtection.clearToken();
-          setProfile(null);
-        }
+      const mockProfile: Profile = {
+        id: 'dev-user-id-123',
+        email: 'dev@example.com',
+        full_name: 'Development User',
+        role: 'developer',
+        dashboard_access: true, // Important: This allows access to the dashboard
+        created_at: new Date().toISOString(),
+        updated_at: new Date().toISOString(),
+      };
 
-        setLoading(false);
-      }
-    );
-
-    // THEN check for existing session
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      if (session) {
-        setSession(session);
-        setUser(session.user);
-        fetchProfile(session.user.id).then(setProfile).catch(error => {
-          SecureErrorHandler.logError(error, 'Initial profile fetch');
-        });
-      }
+      // Set mock user and profile
+      setUser(mockUser);
+      setProfile(mockProfile);
+      setSession({ access_token: 'mock-token', refresh_token: 'mock-refresh', user: mockUser, expires_at: 9999999999 } as Session);
       setLoading(false);
-    });
+    } else {
+      // Normal authentication flow for production
+      // Set up auth state listener FIRST
+      const { data: { subscription } } = supabase.auth.onAuthStateChange(
+        async (event, session) => {
+          console.log('Auth state changed:', event, session?.user?.email);
+          setSession(session);
+          setUser(session?.user ?? null);
 
-    return () => subscription.unsubscribe();
+          if (session?.user) {
+            // Start session monitoring for authenticated users
+            sessionManager.startSessionMonitoring();
+            
+            // Defer profile fetching to avoid blocking auth state change
+            setTimeout(async () => {
+              try {
+                const profileData = await fetchProfile(session.user.id);
+                setProfile(profileData);
+              } catch (error) {
+                SecureErrorHandler.logError(error, 'Profile fetch during auth state change');
+              }
+            }, 0);
+          } else {
+            // Stop session monitoring for unauthenticated users
+            sessionManager.stopSessionMonitoring();
+            CSRFProtection.clearToken();
+            setProfile(null);
+          }
+
+          setLoading(false);
+        }
+      );
+
+      // THEN check for existing session
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+          setSession(session);
+          setUser(session.user);
+          fetchProfile(session.user.id).then(setProfile).catch(error => {
+            SecureErrorHandler.logError(error, 'Initial profile fetch');
+          });
+        }
+        setLoading(false);
+      });
+
+      return () => subscription.unsubscribe();
+    }
   }, []);
 
   const signUp = async (email: string, password: string, fullName?: string) => {
