@@ -1,8 +1,11 @@
-
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { GradientOverlay } from "@/components/common/GradientOverlay";
+import { FeatureIndicator, FeatureIndicatorGroup } from "@/components/common/FeatureIndicator";
+import { cn } from "@/lib/utils";
+import { buttonVariants } from "@/lib/variants";
 
 export default function Hero() {
   const { openModal } = useWaitlistModal();
@@ -21,9 +24,16 @@ export default function Hero() {
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
       
-      {/* Overlay for text readability */}
-      <div className="absolute inset-0 bg-gradient-to-br from-background/80 via-background/60 to-background/70 z-10"></div>
-      <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-success/10 z-20"></div>
+      {/* Overlays for text readability using our reusable component */}
+      <GradientOverlay 
+        type="gradient" 
+        opacity="medium" 
+        zIndex={10} 
+      />
+      <GradientOverlay 
+        className="bg-gradient-to-br from-primary/10 via-transparent to-success/10" 
+        zIndex={20} 
+      />
       
       <div className="container mx-auto px-4 relative z-30">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
@@ -40,27 +50,23 @@ export default function Hero() {
           </div>
           
           <div className="flex flex-col items-center justify-center space-y-2">
-            <Button variant="premium" size="lg" className="group" onClick={openModal}>
+            <Button 
+              variant="premium" 
+              size="lg" 
+              className="group"
+              onClick={openModal}
+            >
               {t('hero.joinWaitlist')}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
             <p className="text-sm text-muted-foreground">{t('waitlist.modal.disclaimer')}</p>
           </div>
           
-          <div className="flex flex-col sm:flex-row items-center justify-center space-y-4 sm:space-y-0 sm:space-x-8 text-sm text-muted-foreground">
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>{t('hero.uploadAnalyze')}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>{t('hero.resultsTime')}</span>
-            </div>
-            <div className="flex items-center space-x-2">
-              <div className="w-2 h-2 bg-success rounded-full"></div>
-              <span>{t('hero.frameworks')}</span>
-            </div>
-          </div>
+          <FeatureIndicatorGroup>
+            <FeatureIndicator text={t('hero.uploadAnalyze')} />
+            <FeatureIndicator text={t('hero.resultsTime')} />
+            <FeatureIndicator text={t('hero.frameworks')} />
+          </FeatureIndicatorGroup>
         </div>
       </div>
     </section>
