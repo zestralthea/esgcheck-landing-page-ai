@@ -193,10 +193,44 @@ export function ESGUploadPanel() {
         throw new Error(data.message || 'Upload failed');
       }
 
+      // Now that the file is uploaded, extract text for analysis
+      const reportText = await extractTextFromFile(file);
+      
+      // Update upload status
       toast({
         title: "ESG Report uploaded successfully",
-        description: "Your report is being processed for ESG analysis with enhanced security",
+        description: "Now analyzing your report with AI...",
       });
+      
+      // Call the analyze-esg-report function to process the report
+      try {
+        const { data: analysisData, error: analysisError } = await supabase.functions.invoke('analyze-esg-report', {
+          body: {
+            report_id: data.document.id,
+            report_text: reportText,
+            framework: selectedGRIStandards.length > 0 ? 'GRI' : 'general'
+          }
+        });
+        
+        if (analysisError) {
+          console.error('Analysis error:', analysisError);
+          toast({
+            title: "Report uploaded",
+            description: "Your report was uploaded, but there was an issue with the analysis. Our team will process it manually.",
+          });
+        } else {
+          toast({
+            title: "ESG Analysis Complete",
+            description: "Your report has been analyzed and is available in the Reports section.",
+          });
+        }
+      } catch (analysisError) {
+        console.error('Analysis error:', analysisError);
+        toast({
+          title: "Report uploaded",
+          description: "Your report was uploaded, but there was an issue with the analysis. Our team will process it manually.",
+        });
+      }
 
       // Reset form
       setFile(null);
