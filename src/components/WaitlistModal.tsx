@@ -130,10 +130,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                 type="submit" 
                 variant="hero" 
                 size="lg" 
-                className={cn(
-                  "w-full group",
-                  buttonVariants({ variant: "hero", size: "lg" })
-                )}
+                className="w-full group"
                 disabled={isLoading || isVerifying || (showWidget && !isVerified)}
               >
                 {isLoading || isVerifying ? (
