@@ -81,19 +81,55 @@ serve(async (req) => {
 
       // 2. Query similar chunks from Supabase
       console.log(`Querying match_guideline_chunks with framework: ${framework}`);
-      const { data: chunks, error } = await supabase.rpc("match_guideline_chunks", {
-        query_embedding: reportEmbedding,
-        match_threshold: 0.75,
-        match_count: 10,
-        framework_name: framework
-      });
       
-      if (error) {
-        console.error("Error querying match_guideline_chunks:", error);
-        throw error;
+      try {
+        // Step 2a: First check if the function exists to provide a clearer error
+        const { data: functionCheck, error: functionCheckError } = await supabase.rpc("check_function_exists", {
+          function_name: "match_guideline_chunks"
+        }).catch(e => {
+          console.error("Function existence check failed:", e);
+          return { data: null, error: e };
+        });
+        
+        console.log("Function check result:", functionCheck || "No result");
+        
+        if (functionCheckError) {
+          console.error("Cannot check if function exists:", functionCheckError);
+          // Continue anyway, as the function might still exist
+        }
+        
+        // Step 2b: Now try to call the actual function
+        console.log("Attempting to call match_guideline_chunks...");
+        const { data: chunks, error } = await supabase.rpc("match_guideline_chunks", {
+          query_embedding: reportEmbedding,
+          match_threshold: 0.75,
+          match_count: 10,
+          framework_name: framework
+        });
+        
+        if (error) {
+          console.error("Error querying match_guideline_chunks:", error);
+          
+          // Additional diagnostic info
+          console.error("Error details:", {
+            message: error.message,
+            hint: error.hint,
+            code: error.code,
+            details: error.details
+          });
+          
+          throw new Error(`Failed to query guidelines: ${error.message} (Code: ${error.code})`);
+        }
+        
+        console.log(`Found ${chunks?.length || 0} matching guideline chunks`);
+        
+        if (!chunks || chunks.length === 0) {
+          console.warn("No matching chunks found. Using default guidelines.");
+        }
+      } catch (matchError) {
+        console.error("Exception during guideline matching:", matchError);
+        throw new Error(`Guideline matching failed: ${matchError.message}`);
       }
-      
-      console.log(`Found ${chunks?.length || 0} matching guideline chunks`);
       
       // Merge the most relevant chunks if we have any
       if (chunks && chunks.length > 0) {
