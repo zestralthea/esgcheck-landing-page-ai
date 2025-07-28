@@ -83,6 +83,12 @@ export function ESGUploadPanel() {
             name: error.name,
             context: error.context
           });
+          setTestResult({
+            status: 'error',
+            message: `Edge function call failed: ${error.message || 'Unknown error'}`,
+            details: error,
+            responseTime: testEndTime - testStartTime
+          });
           toast({
             title: "Auto-Test Failed",
             description: `Edge function call failed: ${error.message || 'Unknown error'}`,
@@ -90,6 +96,12 @@ export function ESGUploadPanel() {
           });
         } else {
           console.log('✅ Auto-test call succeeded with result:', data);
+          setTestResult({
+            status: 'success',
+            message: 'Edge function was called successfully!',
+            details: data,
+            responseTime: testEndTime - testStartTime
+          });
           toast({
             title: "Auto-Test Successful",
             description: "Edge function was called successfully!",
