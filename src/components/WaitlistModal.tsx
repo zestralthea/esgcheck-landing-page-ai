@@ -8,7 +8,7 @@ import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
 import { useTurnstile } from "@/hooks/useTurnstile";
-import { waitlistSchema, type WaitlistFormData, sanitizeInput } from "@/lib/validationSchemas";
+import { waitlistFormSchema, type WaitlistFormValues, sanitizeInput } from "@/lib/validationSchemas";
 import { checkFormSubmissionLimit, getRemainingCooldown } from "@/lib/rateLimiting";
 
 interface WaitlistModalProps {
@@ -17,14 +17,14 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
-  const [formData, setFormData] = useState<WaitlistFormData>({
+  const [formData, setFormData] = useState<WaitlistFormValues>({
     name: "",
     email: "",
     company: ""
   });
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
-  const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof WaitlistFormData, string>>>({});
+  const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof WaitlistFormValues, string>>>({});
   const { toast } = useToast();
   const { t } = useLanguage();
   
@@ -59,12 +59,12 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     }
 
     // Validate form data
-    const validation = waitlistSchema.safeParse(formData);
+    const validation = waitlistFormSchema.safeParse(formData);
     if (!validation.success) {
-      const errors: Partial<Record<keyof WaitlistFormData, string>> = {};
+      const errors: Partial<Record<keyof WaitlistFormValues, string>> = {};
       validation.error.issues.forEach((issue) => {
         if (issue.path[0]) {
-          errors[issue.path[0] as keyof WaitlistFormData] = issue.message;
+          errors[issue.path[0] as keyof WaitlistFormValues] = issue.message;
         }
       });
       setValidationErrors(errors);
@@ -167,7 +167,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
     }));
     
     // Clear validation error for this field when user starts typing
-    if (validationErrors[name as keyof WaitlistFormData]) {
+    if (validationErrors[name as keyof WaitlistFormValues]) {
       setValidationErrors(prev => ({
         ...prev,
         [name]: undefined
