@@ -44,6 +44,74 @@ export function ESGUploadPanel() {
   const [selectedGRIStandards, setSelectedGRIStandards] = useState<string[]>([]);
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
+  
+  // Auto-test the edge function when component mounts
+  useEffect(() => {
+    const testEdgeFunction = async () => {
+      console.log('🔄 AUTO-TEST: Automatically testing analyze-esg-report edge function on component mount');
+      try {
+        const testStartTime = Date.now();
+        const { data, error } = await supabase.functions.invoke('analyze-esg-report', {
+          body: {
+            report_id: 'auto-test-123',
+            report_text: 'This is an automatic test report for ESG analysis to verify the edge function is working.',
+            framework: 'general'
+          }
+        });
+        const testEndTime = Date.now();
+        
+        console.log(`⏱️ Auto-test call to analyze-esg-report took ${testEndTime - testStartTime}ms to respond`);
+        
+        if (error) {
+          console.error('❌ Auto-test call failed with error:', error);
+          console.error('Error details:', {
+            status: error.status,
+            message: error.message,
+            name: error.name,
+            context: error.context
+          });
+          toast({
+            title: "Auto-Test Failed",
+            description: `Edge function call failed: ${error.message || 'Unknown error'}`,
+            variant: "destructive",
+          });
+        } else {
+          console.log('✅ Auto-test call succeeded with result:', data);
+          toast({
+            title: "Auto-Test Successful",
+            description: "Edge function was called successfully!",
+          });
+        }
+      } catch (testError: any) {
+        console.error('❌ Auto-test call exception:', testError);
+        console.error('Detailed test error:', {
+          message: testError.message,
+          stack: testError.stack,
+          name: testError.name,
+          cause: testError.cause,
+          code: testError.code,
+          response: testError.response ? {
+            status: testError.response.status,
+            statusText: testError.response.statusText,
+            headers: testError.response.headers,
+            url: testError.response.url
+          } : 'No response object'
+        });
+        toast({
+          title: "Auto-Test Failed",
+          description: `Exception: ${testError.message || 'Unknown error'}`,
+          variant: "destructive",
+        });
+      }
+    };
+    
+    // Run the test after a short delay to ensure component is fully mounted
+    const timer = setTimeout(() => {
+      testEdgeFunction();
+    }, 2000);
+    
+    return () => clearTimeout(timer);
+  }, [toast]);
 
   const validateFile = (selectedFile: File): boolean => {
     // File size validation (max 50MB)
