@@ -204,12 +204,19 @@ export function ESGUploadPanel() {
       
       // Call the analyze-esg-report function to process the report
       try {
-        console.log('Calling analyze-esg-report with:', {
+        console.log('✅ File uploaded successfully, document ID:', data.document.id);
+        console.log('📝 Extracted text length:', reportText.length);
+        console.log('🔄 Calling analyze-esg-report with:', {
           report_id: data.document.id,
+          report_text_sample: reportText.substring(0, 100) + '...',
           report_text_length: reportText.length,
           framework: selectedGRIStandards.length > 0 ? 'GRI' : 'general'
         });
         
+        // Log request being sent
+        console.log('📤 Sending request to analyze-esg-report edge function...');
+        
+        const analyzeStartTime = Date.now();
         const { data: analysisData, error: analysisError } = await supabase.functions.invoke('analyze-esg-report', {
           body: {
             report_id: data.document.id,
@@ -217,28 +224,58 @@ export function ESGUploadPanel() {
             framework: selectedGRIStandards.length > 0 ? 'GRI' : 'general'
           }
         });
+        const analyzeEndTime = Date.now();
+        
+        console.log(`⏱️ analyze-esg-report took ${analyzeEndTime - analyzeStartTime}ms to respond`);
         
         if (analysisError) {
-          console.error('Analysis error (from response):', analysisError);
+          console.error('❌ Analysis error (from response):', analysisError);
+          console.error('Error details:', {
+            status: analysisError.status,
+            message: analysisError.message,
+            name: analysisError.name,
+            context: analysisError.context
+          });
+          
+          await logESGAccess(data.document.id, false, `Analysis failed: ${analysisError.message}`);
+          
           toast({
             title: "Report uploaded",
             description: "Your report was uploaded, but there was an issue with the analysis. Our team will process it manually.",
           });
         } else {
-          console.log('Analysis completed successfully:', analysisData);
+          console.log('✅ Analysis completed successfully:', analysisData);
+          await logESGAccess(data.document.id, true);
+          
           toast({
             title: "ESG Analysis Complete",
             description: "Your report has been analyzed and is available in the Reports section.",
           });
         }
       } catch (analysisError: any) {
-        console.error('Analysis error (from exception):', analysisError);
-        console.error('Error details:', {
+        console.error('❌ Analysis error (from exception):', analysisError);
+        console.error('Detailed error information:', {
           message: analysisError.message,
           stack: analysisError.stack,
           name: analysisError.name,
-          cause: analysisError.cause
+          cause: analysisError.cause,
+          code: analysisError.code,
+          response: analysisError.response ? {
+            status: analysisError.response.status,
+            statusText: analysisError.response.statusText,
+            headers: analysisError.response.headers,
+          } : 'No response object'
         });
+        
+        // Try to log the error even when exception occurred
+        try {
+          if (data?.document?.id) {
+            await logESGAccess(data.document.id, false, `Exception: ${analysisError.message}`);
+          }
+        } catch (logError) {
+          console.error('Failed to log error:', logError);
+        }
+        
         toast({
           title: "Report uploaded",
           description: "Your report was uploaded, but there was an issue with the analysis. Our team will process it manually.",
