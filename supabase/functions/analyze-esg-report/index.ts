@@ -4,31 +4,57 @@ import OpenAI from "https://deno.land/x/openai@v4.24.0/mod.ts";
 import { createClient } from "https://esm.sh/@supabase/supabase-js@2";
 
 // Environment variables
-const supabase = createClient(
-  Deno.env.get("SUPABASE_URL") || "",
-  Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || ""
-);
-const openai = new OpenAI({
-  apiKey: Deno.env.get("OPENAI_API_KEY") || ""
-});
+const supabaseUrl = Deno.env.get("SUPABASE_URL") || "";
+const supabaseKey = Deno.env.get("SUPABASE_SERVICE_ROLE_KEY") || "";
+const openaiKey = Deno.env.get("OPENAI_API_KEY") || "";
 const PDFMONKEY_API_KEY = Deno.env.get("PDFMONKEY_API_KEY") || "";
 const PDFMONKEY_TEMPLATE_ID = Deno.env.get("PDFMONKEY_TEMPLATE_ID") || "";
 
+console.log("Environment check:", {
+  supabaseUrl: supabaseUrl ? "set" : "missing",
+  supabaseKey: supabaseKey ? "set" : "missing",
+  openaiKey: openaiKey ? "set" : "missing",
+  pdfmonkeyKey: PDFMONKEY_API_KEY ? "set" : "missing",
+  pdfmonkeyTemplate: PDFMONKEY_TEMPLATE_ID ? "set" : "missing"
+});
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+const openai = new OpenAI({
+  apiKey: openaiKey
+});
+
+// Enhanced CORS headers
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type"
+  "Access-Control-Allow-Methods": "GET, POST, OPTIONS",
+  "Access-Control-Allow-Headers": "authorization, x-client-info, apikey, content-type, accept, origin",
+  "Access-Control-Max-Age": "86400"
 };
 
 serve(async (req) => {
+  console.log(`Request received: ${req.method} ${req.url}`);
+  
   // Handle CORS preflight requests
   if (req.method === "OPTIONS") {
-    return new Response("ok", { headers: CORS_HEADERS });
+    console.log("Handling OPTIONS preflight request");
+    return new Response("ok", { 
+      headers: CORS_HEADERS,
+      status: 204 
+    });
   }
 
   try {
+    console.log("Parsing request body");
     const { report_id, report_text, framework = "GRI" } = await req.json();
     
+    console.log("Request data:", { 
+      report_id: report_id ? "provided" : "missing", 
+      report_text_length: report_text?.length || 0,
+      framework 
+    });
+    
     if (!report_text) {
+      console.error("Missing report_text in request");
       return new Response(JSON.stringify({
         error: "Missing report_text"
       }), {
@@ -41,26 +67,41 @@ serve(async (req) => {
     }
 
     // 1. Create embedding for report
-    const embeddingResp = await openai.embeddings.create({
-      model: "text-embedding-3-small",
-      input: report_text
-    });
-    const reportEmbedding = embeddingResp.data[0].embedding;
+    console.log("Creating embedding for report text");
+    try {
+      const embeddingResp = await openai.embeddings.create({
+        model: "text-embedding-3-small",
+        input: report_text
+      });
+      const reportEmbedding = embeddingResp.data[0].embedding;
+      console.log(`Successfully created embedding with ${reportEmbedding.length} dimensions`);
 
-    // 2. Query similar chunks from Supabase
-    const { data: chunks, error } = await supabase.rpc("match_guideline_chunks", {
-      query_embedding: reportEmbedding,
-      match_threshold: 0.75,
-      match_count: 10,
-      framework_name: framework
-    });
-    
-    if (error) throw error;
+      // 2. Query similar chunks from Supabase
+      console.log(`Querying match_guideline_chunks with framework: ${framework}`);
+      const { data: chunks, error } = await supabase.rpc("match_guideline_chunks", {
+        query_embedding: reportEmbedding,
+        match_threshold: 0.75,
+        match_count: 10,
+        framework_name: framework
+      });
+      
+      if (error) {
+        console.error("Error querying match_guideline_chunks:", error);
+        throw error;
+      }
+      
+      console.log(`Found ${chunks?.length || 0} matching guideline chunks`);
+    } catch (embeddingError) {
+      console.error("Error in embedding or matching process:", embeddingError);
+      throw embeddingError;
+    }
     
     // Merge the most relevant chunks
-    const guidelinesContext = chunks.map((c) => c.content).join("\n\n");
+    const guidelinesContext = chunks ? chunks.map((c) => c.content).join("\n\n") : "No guidelines found for the specified framework.";
+    console.log("Guidelines context assembled");
 
     // 3. Construct the final prompt
+    console.log("Constructing prompt for OpenAI");
     const systemPrompt = `
 You are an ESG analysis assistant. 
 Review the following ESG report and compare it with the guidelines provided. 
