@@ -73,6 +73,7 @@ export function ESGReportsTable() {
     if (!user) return;
 
     try {
+      // First, get the reports with their documents
       const { data, error } = await supabase
         .from('esg_reports')
         .select(`
@@ -96,20 +97,106 @@ export function ESGReportsTable() {
 
       if (error) throw error;
 
-      if (data) {
-        // Transform the data to match our interface
-        const transformedData = data.map(report => ({
-          ...report,
-          document: Array.isArray(report.documents) ? report.documents[0] : report.documents
-        })) as ESGReport[];
-        
-        setReports(transformedData);
+      if (!data || data.length === 0) {
+        setReports([]);
+        setLoading(false);
+        return;
       }
+
+      // Transform the data to match our interface
+      const transformedData = data.map(report => ({
+        ...report,
+        document: Array.isArray(report.documents) ? report.documents[0] : report.documents
+      })) as ESGReport[];
+      
+      // Now, fetch the analysis data for each report
+      const reportIds = transformedData.map(report => report.id);
+      const { data: analysisData, error: analysisError } = await supabase
+        .from('esg_report_analyses')
+        .select('id, report_id, pdf_document_id, created_at')
+        .in('report_id', reportIds);
+      
+      if (analysisError) {
+        console.error('Error fetching analysis data:', analysisError);
+      } else if (analysisData) {
+        // Create a map of report_id to analysis for quick lookup
+        const analysisMap = analysisData.reduce((acc, analysis) => {
+          acc[analysis.report_id] = analysis;
+          return acc;
+        }, {} as Record<string, any>);
+        
+        // Add analysis data to each report
+        transformedData.forEach(report => {
+          if (analysisMap[report.id]) {
+            report.analysis = analysisMap[report.id];
+          }
+        });
+      }
+      
+      setReports(transformedData);
     } catch (error) {
       console.error('Error fetching ESG reports:', error);
       toast({
         title: "Error loading reports",
         description: "Failed to load your ESG reports. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  // Download the AI analysis PDF from PDFMonkey
+  const downloadAnalysisPDF = async (report: ESGReport) => {
+    if (!report.analysis?.pdf_document_id) {
+      toast({
+        title: "Analysis not available",
+        description: "The AI analysis for this report is not yet available.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setLoading(true);
+      
+      // First, check if we need to get the download URL from PDFMonkey
+      if (!report.analysis.pdf_download_url) {
+        // Call our Supabase function to get the PDF download URL
+        const { data, error } = await supabase.functions.invoke('get-pdf-download-url', {
+          body: { 
+            pdf_document_id: report.analysis.pdf_document_id
+          }
+        });
+        
+        if (error) throw error;
+        
+        if (!data?.download_url) {
+          throw new Error("Failed to get PDF download URL");
+        }
+        
+        // Update our report with the download URL
+        await supabase
+          .from('esg_report_analyses')
+          .update({ pdf_download_url: data.download_url })
+          .eq('id', report.analysis.id);
+        
+        // Update local state
+        report.analysis.pdf_download_url = data.download_url;
+      }
+      
+      // Now use the download URL to fetch the PDF
+      window.open(report.analysis.pdf_download_url, '_blank');
+      
+      toast({
+        title: "Analysis PDF",
+        description: "Your ESG analysis PDF is being downloaded.",
+      });
+    } catch (error) {
+      console.error('Error downloading analysis PDF:', error);
+      toast({
+        title: "Download failed",
+        description: "Failed to download the analysis PDF. Please try again.",
         variant: "destructive",
       });
     } finally {
