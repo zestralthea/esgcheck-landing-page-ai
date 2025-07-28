@@ -1,6 +1,19 @@
 import { useState, useEffect } from 'react';
 import { supabase } from '@/integrations/supabase/client';
 
+// Development mode flag - set to true to enable features for testing
+// Keep in sync with DEV_MODE in AuthContext
+const DEV_MODE = true; // Set to false in production
+
+// Features to enable in development mode
+const DEV_ENABLED_FLAGS = [
+  'dashboard_enabled', 
+  'dashboard_beta_access',
+  'advanced_analytics',
+  'esg_upload_enabled',
+  'esg_analysis_enabled'
+];
+
 interface FeatureFlag {
   id: string;
   flag_name: string;
@@ -89,6 +102,13 @@ export const useFeatureFlags = () => {
   }, []);
 
   const isEnabled = (flagName: string): boolean => {
+    // In development mode, enable specific features for testing
+    if (DEV_MODE && DEV_ENABLED_FLAGS.includes(flagName)) {
+      console.log(`🔧 DEV MODE: Feature '${flagName}' forcibly enabled`);
+      return true;
+    }
+    
+    // Normal production logic
     // If still loading, we don't know the state yet
     if (loading) {
       return false;
