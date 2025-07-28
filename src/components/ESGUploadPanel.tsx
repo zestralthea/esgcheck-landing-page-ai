@@ -612,10 +612,11 @@ export function ESGUploadPanel() {
                       <summary className="cursor-pointer">Environment & Deployment Info</summary>
                       <div className="mt-1 p-2 bg-slate-800 text-white rounded overflow-auto">
                         <p>Function ID: 77f5fdcb-fb1b-4143-b0e2-576e8b9d7050</p>
-                        <p>URL: {supabase.supabaseUrl}/functions/v1/analyze-esg-report</p>
-                        <p>API Key: {supabase.supabaseKey ? "✅ Present" : "❌ Missing"}</p>
+                        <p>URL: https://equtqvlukqloqphhmblj.supabase.co/functions/v1/analyze-esg-report</p>
+                        <p>Auth: {supabase ? "✅ Client Initialized" : "❌ Client Missing"}</p>
                         <p>Method: POST</p>
                         <p>Required env vars: OPENAI_API_KEY, PDFMONKEY_API_KEY, PDFMONKEY_TEMPLATE_ID</p>
+                        <p>Status Code: {testResult.details?.status || "Unknown"}</p>
                       </div>
                     </details>
                   </div>
