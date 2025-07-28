@@ -68,6 +68,9 @@ serve(async (req) => {
 
     // 1. Create embedding for report
     console.log("Creating embedding for report text");
+    
+    let guidelinesContext = "No guidelines found for the specified framework.";
+    
     try {
       const embeddingResp = await openai.embeddings.create({
         model: "text-embedding-3-small",
@@ -91,13 +94,16 @@ serve(async (req) => {
       }
       
       console.log(`Found ${chunks?.length || 0} matching guideline chunks`);
+      
+      // Merge the most relevant chunks if we have any
+      if (chunks && chunks.length > 0) {
+        guidelinesContext = chunks.map((c) => c.content).join("\n\n");
+      }
     } catch (embeddingError) {
       console.error("Error in embedding or matching process:", embeddingError);
       throw embeddingError;
     }
     
-    // Merge the most relevant chunks
-    const guidelinesContext = chunks ? chunks.map((c) => c.content).join("\n\n") : "No guidelines found for the specified framework.";
     console.log("Guidelines context assembled");
 
     // 3. Construct the final prompt
