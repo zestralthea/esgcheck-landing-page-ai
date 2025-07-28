@@ -598,14 +598,27 @@ export function ESGUploadPanel() {
                       Response time: {testResult.responseTime}ms
                     </p>
                   )}
-                  {testResult.status === 'error' && testResult.details && (
+                  {testResult.details && (
                     <details className="mt-2">
-                      <summary className="text-xs cursor-pointer">View Error Details</summary>
-                      <pre className="text-xs mt-1 p-2 bg-slate-800 text-white rounded overflow-auto max-h-24">
+                      <summary className="text-xs cursor-pointer">View Response Details</summary>
+                      <pre className="text-xs mt-1 p-2 bg-slate-800 text-white rounded overflow-auto max-h-60">
                         {JSON.stringify(testResult.details, null, 2)}
                       </pre>
                     </details>
                   )}
+                  
+                  <div className="mt-2 text-xs">
+                    <details>
+                      <summary className="cursor-pointer">Environment & Deployment Info</summary>
+                      <div className="mt-1 p-2 bg-slate-800 text-white rounded overflow-auto">
+                        <p>Function ID: 77f5fdcb-fb1b-4143-b0e2-576e8b9d7050</p>
+                        <p>URL: {supabase.supabaseUrl}/functions/v1/analyze-esg-report</p>
+                        <p>API Key: {supabase.supabaseKey ? "✅ Present" : "❌ Missing"}</p>
+                        <p>Method: POST</p>
+                        <p>Required env vars: OPENAI_API_KEY, PDFMONKEY_API_KEY, PDFMONKEY_TEMPLATE_ID</p>
+                      </div>
+                    </details>
+                  </div>
                 </div>
               )}
               
