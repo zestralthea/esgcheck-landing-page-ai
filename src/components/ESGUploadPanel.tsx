@@ -573,12 +573,52 @@ export function ESGUploadPanel() {
             {/* Test button for direct function invocation */}
             <div className="border-t pt-4">
               <p className="text-sm text-muted-foreground mb-2">Troubleshooting Tools</p>
+              {/* Test Results Display */}
+              {testResult.status !== 'idle' && (
+                <div className={`p-3 border rounded-lg mb-3 ${
+                  testResult.status === 'running' ? 'bg-blue-50 border-blue-200' :
+                  testResult.status === 'success' ? 'bg-green-50 border-green-200' : 
+                  'bg-red-50 border-red-200'
+                }`}>
+                  <div className="flex items-center gap-2 mb-1">
+                    {testResult.status === 'running' && (
+                      <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
+                    )}
+                    {testResult.status === 'success' && <CheckCircle className="h-4 w-4 text-green-600" />}
+                    {testResult.status === 'error' && <AlertTriangle className="h-4 w-4 text-red-600" />}
+                    <span className="font-medium">
+                      {testResult.status === 'running' ? 'Testing Edge Function...' :
+                       testResult.status === 'success' ? 'Edge Function Test Successful' :
+                       'Edge Function Test Failed'}
+                    </span>
+                  </div>
+                  <p className="text-sm mb-1">{testResult.message}</p>
+                  {testResult.responseTime && (
+                    <p className="text-xs text-muted-foreground">
+                      Response time: {testResult.responseTime}ms
+                    </p>
+                  )}
+                  {testResult.status === 'error' && testResult.details && (
+                    <details className="mt-2">
+                      <summary className="text-xs cursor-pointer">View Error Details</summary>
+                      <pre className="text-xs mt-1 p-2 bg-slate-800 text-white rounded overflow-auto max-h-24">
+                        {JSON.stringify(testResult.details, null, 2)}
+                      </pre>
+                    </details>
+                  )}
+                </div>
+              )}
+              
               <Button 
                 type="button" 
                 variant="outline" 
                 className="w-full" 
                 onClick={async () => {
                   console.log('🧪 TEST: Directly calling analyze-esg-report edge function...');
+                  setTestResult({
+                    status: 'running',
+                    message: 'Testing analyze-esg-report edge function...'
+                  });
                   try {
                     const testStartTime = Date.now();
                     const { data, error } = await supabase.functions.invoke('analyze-esg-report', {
@@ -589,11 +629,18 @@ export function ESGUploadPanel() {
                       }
                     });
                     const testEndTime = Date.now();
+                    const responseTime = testEndTime - testStartTime;
                     
-                    console.log(`⏱️ Test call to analyze-esg-report took ${testEndTime - testStartTime}ms to respond`);
+                    console.log(`⏱️ Test call to analyze-esg-report took ${responseTime}ms to respond`);
                     
                     if (error) {
                       console.error('❌ Test call failed with error:', error);
+                      setTestResult({
+                        status: 'error',
+                        message: `Edge function call failed: ${error.message || 'Unknown error'}`,
+                        details: error,
+                        responseTime
+                      });
                       toast({
                         title: "Test Failed",
                         description: `Edge function call failed: ${error.message || 'Unknown error'}`,
@@ -601,6 +648,12 @@ export function ESGUploadPanel() {
                       });
                     } else {
                       console.log('✅ Test call succeeded with result:', data);
+                      setTestResult({
+                        status: 'success',
+                        message: 'Edge function was called successfully!',
+                        details: data,
+                        responseTime
+                      });
                       toast({
                         title: "Test Successful",
                         description: "Edge function was called successfully!",
@@ -608,17 +661,23 @@ export function ESGUploadPanel() {
                     }
                   } catch (testError: any) {
                     console.error('❌ Test call exception:', testError);
-                    console.error('Detailed test error:', {
+                    const errorDetails = {
                       message: testError.message,
-                      stack: testError.stack,
                       name: testError.name,
-                      cause: testError.cause,
                       code: testError.code,
                       response: testError.response ? {
                         status: testError.response.status,
                         statusText: testError.response.statusText
                       } : 'No response object'
+                    };
+                    console.error('Detailed test error:', errorDetails);
+                    
+                    setTestResult({
+                      status: 'error',
+                      message: `Exception: ${testError.message || 'Unknown error'}`,
+                      details: errorDetails
                     });
+                    
                     toast({
                       title: "Test Failed",
                       description: `Exception: ${testError.message || 'Unknown error'}`,
