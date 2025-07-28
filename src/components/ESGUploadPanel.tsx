@@ -44,6 +44,15 @@ export function ESGUploadPanel() {
   const [selectedGRIStandards, setSelectedGRIStandards] = useState<string[]>([]);
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
+  const [testResult, setTestResult] = useState<{
+    status: 'idle' | 'running' | 'success' | 'error';
+    message: string;
+    details?: any;
+    responseTime?: number;
+  }>({
+    status: 'idle',
+    message: 'Test not yet run'
+  });
   
   // Auto-test the edge function when component mounts
   useEffect(() => {
