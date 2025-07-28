@@ -369,13 +369,19 @@ export function ESGReportsTable() {
                         <DropdownMenuContent align="end">
                           <DropdownMenuItem onClick={() => downloadReport(report)}>
                             <Download className="h-4 w-4 mr-2" />
-                            Download
+                            Download Report
                           </DropdownMenuItem>
                           {report.status === 'completed' && (
-                            <DropdownMenuItem>
-                              <Eye className="h-4 w-4 mr-2" />
-                              View Analysis
-                            </DropdownMenuItem>
+                            <>
+                              <DropdownMenuItem onClick={() => downloadAnalysisPDF(report)}>
+                                <FileText className="h-4 w-4 mr-2" />
+                                Download Analysis PDF
+                              </DropdownMenuItem>
+                              <DropdownMenuItem>
+                                <Eye className="h-4 w-4 mr-2" />
+                                View Analysis
+                              </DropdownMenuItem>
+                            </>
                           )}
                         </DropdownMenuContent>
                       </DropdownMenu>
