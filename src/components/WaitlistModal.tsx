@@ -1,15 +1,14 @@
 
-import { useState } from "react";
+import { useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
-import { useToast } from "@/hooks/use-toast";
 import { CheckCircle, ArrowRight, Loader2 } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { TurnstileWidget } from "@/components/TurnstileWidget";
-import { useTurnstile } from "@/hooks/useTurnstile";
-import { waitlistFormSchema, type WaitlistFormValues, sanitizeInput } from "@/lib/validationSchemas";
-import { checkFormSubmissionLimit, getRemainingCooldown } from "@/lib/rateLimiting";
+import { useWaitlistForm } from "@/hooks/useWaitlistForm";
+import { type WaitlistFormValues } from "@/lib/validationSchemas";
+import { useState } from "react";
 
 interface WaitlistModalProps {
   isOpen: boolean;
@@ -17,170 +16,54 @@ interface WaitlistModalProps {
 }
 
 export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
-  const [formData, setFormData] = useState<WaitlistFormValues>({
-    name: "",
-    email: "",
-    company: ""
-  });
-  const [isSubmitted, setIsSubmitted] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
   const [validationErrors, setValidationErrors] = useState<Partial<Record<keyof WaitlistFormValues, string>>>({});
-  const { toast } = useToast();
   const { t } = useLanguage();
   
   const {
-    turnstileToken,
+    formData,
+    isSubmitted,
+    isLoading,
     isVerified,
     isVerifying,
     showWidget,
+    handleChange,
+    handleSubmit: submitWaitlistForm,
     handleTurnstileVerify,
     handleTurnstileError,
     handleTurnstileExpire,
-    resetTurnstile,
-    executeBackgroundVerification,
-  } = useTurnstile();
+  } = useWaitlistForm();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    // Clear previous validation errors
-    setValidationErrors({});
-    
-    // Check rate limiting
-    if (!checkFormSubmissionLimit('waitlist', formData.email)) {
-      const remainingTime = getRemainingCooldown('waitlist', formData.email);
-      const minutes = Math.ceil(remainingTime / 60000);
-      toast({
-        title: "Too Many Attempts",
-        description: `Please wait ${minutes} minute(s) before trying again.`,
-        variant: "destructive",
-      });
-      return;
-    }
-
-    // Validate form data
-    const validation = waitlistFormSchema.safeParse(formData);
-    if (!validation.success) {
-      const errors: Partial<Record<keyof WaitlistFormValues, string>> = {};
-      validation.error.issues.forEach((issue) => {
-        if (issue.path[0]) {
-          errors[issue.path[0] as keyof WaitlistFormValues] = issue.message;
-        }
-      });
-      setValidationErrors(errors);
-      toast({
-        title: "Validation Error",
-        description: "Please check your input and try again.",
-        variant: "destructive",
-      });
-      return;
-    }
-    
-    setIsLoading(true);
-    
-    try {
-      let token = turnstileToken;
-      
-      // Try background verification if not already verified
-      if (!isVerified) {
-        try {
-          token = await executeBackgroundVerification();
-        } catch (error) {
-          // Background verification failed, widget should now be visible
-          setIsLoading(false);
-          return;
-        }
-      }
-      
-      console.log('Submitting waitlist modal with token:', token);
-      
-      // Sanitize inputs before sending
-      const sanitizedData = {
-        name: sanitizeInput(formData.name),
-        email: sanitizeInput(formData.email),
-        company: formData.company ? sanitizeInput(formData.company) : ""
-      };
-      
-      const response = await fetch('https://equtqvlukqloqphhmblj.functions.supabase.co/verify-waitlist-signup', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          ...sanitizedData,
-          turnstileToken: token
-        })
-      });
-
-      const result = await response.json();
-      console.log('Server response:', result);
-      
-      if (!response.ok) {
-        if (result.code === '23505') {
-          toast({
-            title: "Already on the waitlist!",
-            description: "This email is already registered. We'll be in touch soon!",
-          });
-        } else if (result.error === 'Human verification failed') {
-          toast({
-            title: "Verification failed",
-            description: "Please complete the human verification challenge again.",
-            variant: "destructive",
-          });
-          resetTurnstile();
-          return;
-        } else {
-          throw new Error(result.error || 'Failed to join waitlist');
-        }
-      } else {
-        toast({
-          title: "Welcome to the waitlist!",
-          description: "Check your email for confirmation. We'll notify you when ESGCheck is ready for early access.",
-        });
-      }
-      
-      setIsSubmitted(true);
-      
-      setTimeout(() => {
-        setIsSubmitted(false);
-        setFormData({ name: "", email: "", company: "" });
-        resetTurnstile();
+  // Reset form and close modal after successful submission
+  useEffect(() => {
+    if (isSubmitted) {
+      const timer = setTimeout(() => {
         onClose();
       }, 3000);
-    } catch (error) {
-      console.error('Error adding to waitlist:', error);
-      toast({
-        title: "Something went wrong",
-        description: "Please try again later or contact support.",
-        variant: "destructive",
-      });
-    } finally {
-      setIsLoading(false);
+      
+      return () => clearTimeout(timer);
     }
-  };
+  }, [isSubmitted, onClose]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+  const handleFormChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    handleChange(e);
     
     // Clear validation error for this field when user starts typing
-    if (validationErrors[name as keyof WaitlistFormValues]) {
+    if (validationErrors[e.target.name as keyof WaitlistFormValues]) {
       setValidationErrors(prev => ({
         ...prev,
-        [name]: undefined
+        [e.target.name]: undefined
       }));
     }
   };
 
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setValidationErrors({});
+    submitWaitlistForm(e);
+  };
+
   const handleClose = () => {
     if (!isLoading) {
-      setIsSubmitted(false);
-      setFormData({ name: "", email: "", company: "" });
-      setValidationErrors({});
-      resetTurnstile();
       onClose();
     }
   };
