@@ -82,30 +82,21 @@ serve(async (req) => {
       // 2. Query similar chunks from Supabase
       console.log(`Querying match_guideline_chunks with framework: ${framework}`);
       
+      // Define chunks at the outer scope
+      let chunks: any[] | null = null;
+      
       try {
-        // Step 2a: First check if the function exists to provide a clearer error
-        const { data: functionCheck, error: functionCheckError } = await supabase.rpc("check_function_exists", {
-          function_name: "match_guideline_chunks"
-        }).catch(e => {
-          console.error("Function existence check failed:", e);
-          return { data: null, error: e };
-        });
-        
-        console.log("Function check result:", functionCheck || "No result");
-        
-        if (functionCheckError) {
-          console.error("Cannot check if function exists:", functionCheckError);
-          // Continue anyway, as the function might still exist
-        }
-        
-        // Step 2b: Now try to call the actual function
+        // Try calling the match_guideline_chunks function directly
         console.log("Attempting to call match_guideline_chunks...");
-        const { data: chunks, error } = await supabase.rpc("match_guideline_chunks", {
+        const { data: matchedChunks, error } = await supabase.rpc("match_guideline_chunks", {
           query_embedding: reportEmbedding,
           match_threshold: 0.75,
           match_count: 10,
           framework_name: framework
         });
+        
+        // Assign to the outer scoped variable
+        chunks = matchedChunks;
         
         if (error) {
           console.error("Error querying match_guideline_chunks:", error);
@@ -118,6 +109,23 @@ serve(async (req) => {
             details: error.details
           });
           
+          // Don't throw yet, log all potential issues first
+          console.error(`Failed to query guidelines: ${error.message} (Code: ${error.code})`);
+          
+          // Try a simpler query to test database connectivity
+          console.log("Testing database connectivity with simple query...");
+          const { data: testData, error: testError } = await supabase
+            .from('esg_guidelines')
+            .select('id')
+            .limit(1);
+            
+          if (testError) {
+            console.error("Database connectivity test failed:", testError);
+          } else {
+            console.log("Database connectivity test succeeded:", testData);
+          }
+          
+          // Now throw the original error
           throw new Error(`Failed to query guidelines: ${error.message} (Code: ${error.code})`);
         }
         
