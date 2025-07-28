@@ -34,6 +34,12 @@ interface ESGReport {
     file_size: number;
     storage_path: string;
   };
+  analysis?: {
+    id: string;
+    pdf_document_id: string;
+    pdf_download_url?: string;
+    created_at: string;
+  };
 }
 
 const statusConfig = {
