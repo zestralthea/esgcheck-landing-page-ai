@@ -58,6 +58,10 @@ export function ESGUploadPanel() {
   useEffect(() => {
     const testEdgeFunction = async () => {
       console.log('🔄 AUTO-TEST: Automatically testing analyze-esg-report edge function on component mount');
+      setTestResult({
+        status: 'running',
+        message: 'Testing edge function...'
+      });
       try {
         const testStartTime = Date.now();
         const { data, error } = await supabase.functions.invoke('analyze-esg-report', {
