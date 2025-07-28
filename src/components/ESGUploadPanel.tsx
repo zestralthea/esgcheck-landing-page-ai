@@ -472,9 +472,72 @@ export function ESGUploadPanel() {
             />
           </div>
 
-          <Button type="submit" disabled={uploading} className="w-full">
-            {uploading ? 'Uploading...' : 'Upload & Analyze Report'}
-          </Button>
+          <div className="space-y-4">
+            <Button type="submit" disabled={uploading} className="w-full">
+              {uploading ? 'Uploading...' : 'Upload & Analyze Report'}
+            </Button>
+            
+            {/* Test button for direct function invocation */}
+            <div className="border-t pt-4">
+              <p className="text-sm text-muted-foreground mb-2">Troubleshooting Tools</p>
+              <Button 
+                type="button" 
+                variant="outline" 
+                className="w-full" 
+                onClick={async () => {
+                  console.log('🧪 TEST: Directly calling analyze-esg-report edge function...');
+                  try {
+                    const testStartTime = Date.now();
+                    const { data, error } = await supabase.functions.invoke('analyze-esg-report', {
+                      body: {
+                        report_id: 'test-id-123',
+                        report_text: 'This is a test report for ESG analysis. It contains environmental, social, and governance test content.',
+                        framework: 'general'
+                      }
+                    });
+                    const testEndTime = Date.now();
+                    
+                    console.log(`⏱️ Test call to analyze-esg-report took ${testEndTime - testStartTime}ms to respond`);
+                    
+                    if (error) {
+                      console.error('❌ Test call failed with error:', error);
+                      toast({
+                        title: "Test Failed",
+                        description: `Edge function call failed: ${error.message || 'Unknown error'}`,
+                        variant: "destructive",
+                      });
+                    } else {
+                      console.log('✅ Test call succeeded with result:', data);
+                      toast({
+                        title: "Test Successful",
+                        description: "Edge function was called successfully!",
+                      });
+                    }
+                  } catch (testError: any) {
+                    console.error('❌ Test call exception:', testError);
+                    console.error('Detailed test error:', {
+                      message: testError.message,
+                      stack: testError.stack,
+                      name: testError.name,
+                      cause: testError.cause,
+                      code: testError.code,
+                      response: testError.response ? {
+                        status: testError.response.status,
+                        statusText: testError.response.statusText
+                      } : 'No response object'
+                    });
+                    toast({
+                      title: "Test Failed",
+                      description: `Exception: ${testError.message || 'Unknown error'}`,
+                      variant: "destructive",
+                    });
+                  }
+                }}
+              >
+                Test Edge Function
+              </Button>
+            </div>
+          </div>
         </form>
       </CardContent>
     </Card>
