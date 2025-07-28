@@ -204,6 +204,12 @@ export function ESGUploadPanel() {
       
       // Call the analyze-esg-report function to process the report
       try {
+        console.log('Calling analyze-esg-report with:', {
+          report_id: data.document.id,
+          report_text_length: reportText.length,
+          framework: selectedGRIStandards.length > 0 ? 'GRI' : 'general'
+        });
+        
         const { data: analysisData, error: analysisError } = await supabase.functions.invoke('analyze-esg-report', {
           body: {
             report_id: data.document.id,
@@ -213,19 +219,26 @@ export function ESGUploadPanel() {
         });
         
         if (analysisError) {
-          console.error('Analysis error:', analysisError);
+          console.error('Analysis error (from response):', analysisError);
           toast({
             title: "Report uploaded",
             description: "Your report was uploaded, but there was an issue with the analysis. Our team will process it manually.",
           });
         } else {
+          console.log('Analysis completed successfully:', analysisData);
           toast({
             title: "ESG Analysis Complete",
             description: "Your report has been analyzed and is available in the Reports section.",
           });
         }
-      } catch (analysisError) {
-        console.error('Analysis error:', analysisError);
+      } catch (analysisError: any) {
+        console.error('Analysis error (from exception):', analysisError);
+        console.error('Error details:', {
+          message: analysisError.message,
+          stack: analysisError.stack,
+          name: analysisError.name,
+          cause: analysisError.cause
+        });
         toast({
           title: "Report uploaded",
           description: "Your report was uploaded, but there was an issue with the analysis. Our team will process it manually.",
