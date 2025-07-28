@@ -42,8 +42,35 @@ supabase secrets set OPENAI_API_KEY="$OPENAI_API_KEY"
 supabase secrets set PDFMONKEY_API_KEY="$PDFMONKEY_API_KEY"
 supabase secrets set PDFMONKEY_TEMPLATE_ID="$PDFMONKEY_TEMPLATE_ID"
 
-# Step 3: Apply database migrations
-echo -e "\n${GREEN}Step 3: Applying database migrations...${NC}"
+# Step 3: Check and fix migration file names if needed
+echo -e "\n${GREEN}Step 3: Checking migration file names...${NC}"
+echo -e "${YELLOW}Supabase requires migration files to be named in the format <timestamp>_name.sql${NC}"
+
+# Check if any migration files have incorrect naming format
+INCORRECT_FILES=$(find supabase/migrations -name "[0-9]*-*.sql" | wc -l)
+
+if [ $INCORRECT_FILES -gt 0 ]; then
+    echo -e "${YELLOW}Found $INCORRECT_FILES migration files with incorrect naming format.${NC}"
+    echo -e "${YELLOW}Renaming migration files to the correct format...${NC}"
+    
+    # Rename migration files with incorrect format
+    find supabase/migrations -name "[0-9]*-*.sql" | while read file; do
+        filename=$(basename "$file")
+        if [[ $filename =~ ^([0-9]{14})-(.+)\.sql$ ]]; then
+            timestamp="${BASH_REMATCH[1]}"
+            rest="${BASH_REMATCH[2]}"
+            new_filename="${timestamp}_${rest}.sql"
+            new_path="supabase/migrations/$new_filename"
+            echo -e "  Renaming: ${YELLOW}$filename${NC} to ${GREEN}$new_filename${NC}"
+            mv "$file" "$new_path"
+        fi
+    done
+    
+    echo -e "${GREEN}Migration files renamed to the correct format.${NC}"
+fi
+
+# Step 4: Apply database migrations
+echo -e "\n${GREEN}Step 4: Applying database migrations...${NC}"
 echo -e "${YELLOW}This will create the esg_report_analyses table in your database.${NC}"
 read -p "Continue? (y/n): " CONTINUE
 if [[ $CONTINUE != "y" && $CONTINUE != "Y" ]]; then
@@ -54,16 +81,16 @@ fi
 echo -e "${GREEN}Running migrations...${NC}"
 supabase db push
 
-# Step 4: Deploy edge functions
-echo -e "\n${GREEN}Step 4: Deploying Edge Functions...${NC}"
+# Step 5: Deploy edge functions
+echo -e "\n${GREEN}Step 5: Deploying Edge Functions...${NC}"
 echo -e "${GREEN}Deploying analyze-esg-report function...${NC}"
 supabase functions deploy analyze-esg-report --no-verify-jwt
 
 echo -e "${GREEN}Deploying get-pdf-download-url function...${NC}"
 supabase functions deploy get-pdf-download-url --no-verify-jwt
 
-# Step 5: Verify deployment
-echo -e "\n${GREEN}Step 5: Verifying deployment...${NC}"
+# Step 6: Verify deployment
+echo -e "\n${GREEN}Step 6: Verifying deployment...${NC}"
 echo -e "${GREEN}Checking functions status...${NC}"
 supabase functions list
 
