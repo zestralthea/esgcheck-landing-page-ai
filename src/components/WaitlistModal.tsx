@@ -89,7 +89,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     name="name"
                     placeholder={t('waitlist.modal.namePlaceholder')}
                     value={formData.name}
-                    onChange={handleChange}
+                    onChange={handleFormChange}
                     required
                     className={`h-11 ${validationErrors.name ? 'border-destructive' : ''}`}
                   />
@@ -102,7 +102,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     name="company"
                     placeholder={t('waitlist.modal.companyPlaceholder')}
                     value={formData.company}
-                    onChange={handleChange}
+                    onChange={handleFormChange}
                     className={`h-11 ${validationErrors.company ? 'border-destructive' : ''}`}
                   />
                   {validationErrors.company && (
@@ -115,7 +115,7 @@ export default function WaitlistModal({ isOpen, onClose }: WaitlistModalProps) {
                     type="email"
                     placeholder={t('waitlist.modal.emailPlaceholder')}
                     value={formData.email}
-                    onChange={handleChange}
+                    onChange={handleFormChange}
                     required
                     className={`h-11 ${validationErrors.email ? 'border-destructive' : ''}`}
                   />
