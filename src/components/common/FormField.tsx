@@ -1,9 +1,8 @@
 import * as React from "react";
-import { Input, InputProps } from "@/components/ui/input";
+import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
-interface FormFieldProps extends InputProps {
-  name: string;
+interface FormFieldProps extends React.ComponentProps<"input"> {
   error?: string;
   label?: string;
 }
