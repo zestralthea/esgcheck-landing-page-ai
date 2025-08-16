@@ -15,16 +15,45 @@ ANALYZE esg_guidelines;
 ANALYZE esg_guideline_embeddings;
 
 -- Autovacuum tuning for high-write tables (adjust as needed)
-ALTER TABLE activity_logs SET (autovacuum_vacuum_scale_factor = 0.1);
-ALTER TABLE document_access_logs SET (autovacuum_vacuum_scale_factor = 0.1);
+-- NOTE: activity_logs and document_access_logs are partitioned tables.
+--       Storage parameters must be set per-partition, not on the parent.
 ALTER TABLE jobs SET (autovacuum_vacuum_scale_factor = 0.05);
 ALTER TABLE esg_analyses SET (autovacuum_vacuum_scale_factor = 0.1);
 
--- Set fillfactor for frequently updated tables
+-- Apply autovacuum settings to partitions of activity_logs and document_access_logs
+DO $$
+DECLARE
+  r record;
+BEGIN
+  -- activity_logs partitions
+  FOR r IN
+    SELECT c.relname
+    FROM pg_inherits i
+    JOIN pg_class c ON c.oid = i.inhrelid
+    JOIN pg_class p ON p.oid = i.inhparent
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE p.relname = 'activity_logs' AND n.nspname = 'public'
+  LOOP
+    EXECUTE format('ALTER TABLE public.%I SET (autovacuum_vacuum_scale_factor = 0.1, fillfactor = 95)', r.relname);
+  END LOOP;
+
+  -- document_access_logs partitions
+  FOR r IN
+    SELECT c.relname
+    FROM pg_inherits i
+    JOIN pg_class c ON c.oid = i.inhrelid
+    JOIN pg_class p ON p.oid = i.inhparent
+    JOIN pg_namespace n ON n.oid = c.relnamespace
+    WHERE p.relname = 'document_access_logs' AND n.nspname = 'public'
+  LOOP
+    EXECUTE format('ALTER TABLE public.%I SET (autovacuum_vacuum_scale_factor = 0.1, fillfactor = 95)', r.relname);
+  END LOOP;
+END;
+$$;
+
+-- Set fillfactor for frequently updated non-partitioned tables
 ALTER TABLE jobs SET (fillfactor = 80);
 ALTER TABLE esg_analyses SET (fillfactor = 90);
-ALTER TABLE activity_logs SET (fillfactor = 95);
-ALTER TABLE document_access_logs SET (fillfactor = 95);
 
 -- Composite indexes for common query patterns
 CREATE INDEX IF NOT EXISTS idx_reports_org_status_period 

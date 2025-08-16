@@ -34,10 +34,11 @@ BEGIN
   END LOOP;
 END $$;
 
--- 3) Reindex and analyze to ensure planner statistics are up to date
--- (Recommended after significant DDL changes)
-REINDEX DATABASE CURRENT_DATABASE;
-VACUUM ANALYZE;
+-- 3) Post-migration maintenance (manual)
+-- Reindexing and VACUUM cannot run inside transactional migration pipelines.
+-- If needed, run manually after deployment from a superuser session:
+--   -- REINDEX DATABASE <your_database_name>;
+--   -- VACUUM ANALYZE;
 
 -- 4) Optional: preview sizes of major tables to validate storage expectations
 -- (Use the monitoring view created earlier for better insight)

@@ -24,7 +24,7 @@ CREATE OR REPLACE FUNCTION search_guidelines(
   query_embedding vector(1536),
   match_threshold float DEFAULT 0.7,
   match_count int DEFAULT 10,
-  framework_code text DEFAULT NULL
+  p_framework_code text DEFAULT NULL
 )
 RETURNS TABLE (
   guideline_id uuid,
@@ -51,7 +51,7 @@ BEGIN
   JOIN esg_guidelines g ON g.id = ge.guideline_id
   JOIN esg_frameworks f ON f.id = g.framework_id
   WHERE 
-    (framework_code IS NULL OR f.code = framework_code)
+    (p_framework_code IS NULL OR f.code = p_framework_code)
     AND 1 - (ge.embedding <=> query_embedding) > match_threshold
   ORDER BY ge.embedding <=> query_embedding
   LIMIT match_count;

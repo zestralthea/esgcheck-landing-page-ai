@@ -26,8 +26,10 @@ CREATE TABLE jobs (
 );
 
 -- Indexes
-CREATE INDEX idx_jobs_ready ON jobs(priority DESC, scheduled_for) 
-  WHERE status IN ('pending', 'failed') AND scheduled_for <= now();
+-- Avoid non-IMMUTABLE functions like now() in partial index predicates.
+-- This index supports the worker query with a WHERE on status and a range on scheduled_for.
+CREATE INDEX idx_jobs_ready ON jobs (scheduled_for, priority DESC)
+  WHERE status IN ('pending', 'failed');
 CREATE INDEX idx_jobs_correlation ON jobs(correlation_id);
 CREATE INDEX idx_jobs_org ON jobs(organization_id) WHERE organization_id IS NOT NULL;
 CREATE INDEX idx_jobs_kind_status ON jobs(kind, status);
