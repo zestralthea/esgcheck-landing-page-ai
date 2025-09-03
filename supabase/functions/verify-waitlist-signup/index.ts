@@ -1,9 +1,10 @@
-import { serve } from "https://deno.land/std@0.190.0/http/server.ts";
-import { createClient } from "https://esm.sh/@supabase/supabase-js@2.51.0";
+import { createClient } from "jsr:@supabase/supabase-js@^2";
 
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Max-Age': '86400',
 };
 
 interface WaitlistRequest {
@@ -42,6 +43,7 @@ const verifyTurnstileToken = async (token: string): Promise<boolean> => {
 };
 
 const handler = async (req: Request): Promise<Response> => {
+  let requestId: string | undefined = undefined;
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
     return new Response(null, { headers: corsHeaders });
@@ -49,6 +51,7 @@ const handler = async (req: Request): Promise<Response> => {
 
   try {
     const { name, email, company, turnstileToken }: WaitlistRequest = await req.json();
+    requestId = crypto.randomUUID();
 
     // Verify required fields
     if (!name || !email || !turnstileToken) {
@@ -74,8 +77,17 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Initialize Supabase client
-    const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
-    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!;
+    const supabaseUrl = Deno.env.get('SUPABASE_URL');
+    const supabaseServiceKey = Deno.env.get('SUPABASE_SERVICE_ROLE_KEY');
+
+    if (!supabaseUrl || !supabaseServiceKey) {
+      console.error('Missing Supabase environment variables', { requestId, hasUrl: !!supabaseUrl, hasServiceKey: !!supabaseServiceKey });
+      return new Response(
+        JSON.stringify({ error: 'Server misconfiguration', requestId }),
+        { status: 500, headers: { 'Content-Type': 'application/json', ...corsHeaders } }
+      );
+    }
+
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
     // Insert into waitlist
@@ -103,19 +115,7 @@ const handler = async (req: Request): Promise<Response> => {
       throw error;
     }
 
-    // Send confirmation email
-    try {
-      const emailResponse = await supabase.functions.invoke('send-waitlist-confirmation', {
-        body: { name, email, company }
-      });
-      
-      if (emailResponse.error) {
-        console.error('Email sending error:', emailResponse.error);
-      }
-    } catch (emailError) {
-      console.error('Failed to send confirmation email:', emailError);
-      // Continue with success even if email fails
-    }
+    // Email confirmation is handled by a database webhook on INSERT into public.waitlist
 
     return new Response(
       JSON.stringify({ success: true, message: 'Successfully added to waitlist' }),
@@ -126,9 +126,20 @@ const handler = async (req: Request): Promise<Response> => {
     );
 
   } catch (error: any) {
-    console.error('Error in verify-waitlist-signup function:', error);
+    // Structured error logging
+    try {
+      const safe = {
+        requestId,
+        name: error?.name,
+        message: error?.message,
+        stack: error?.stack,
+      };
+      console.error('Error in verify-waitlist-signup function:', safe);
+    } catch (_) {
+      console.error('Error in verify-waitlist-signup function:', error);
+    }
     return new Response(
-      JSON.stringify({ error: error.message }),
+      JSON.stringify({ error: 'Internal server error', requestId }),
       {
         status: 500,
         headers: { 'Content-Type': 'application/json', ...corsHeaders },
@@ -137,4 +148,4 @@ const handler = async (req: Request): Promise<Response> => {
   }
 };
 
-serve(handler);
+Deno.serve(handler);

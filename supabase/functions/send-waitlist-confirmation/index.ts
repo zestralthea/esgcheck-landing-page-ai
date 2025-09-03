@@ -1,30 +1,118 @@
 import { createClient } from 'jsr:@supabase/supabase-js@^2';
 import nodemailer from 'npm:nodemailer@6.9.13';
-// Create Supabase client with service role
-const supabase = createClient(Deno.env.get('SUPABASE_URL'), Deno.env.get('SUPABASE_SERVICE_ROLE_KEY'));
-// SMTP configuration
+
+const supabase = createClient(
+  Deno.env.get('SUPABASE_URL')!,
+  Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+);
+
 const smtpConfig = {
   host: Deno.env.get('INFOMANIAK_SMTP_HOST'),
   port: parseInt(Deno.env.get('INFOMANIAK_SMTP_PORT') || '587'),
   secure: Deno.env.get('INFOMANIAK_SMTP_PORT') === '465',
   auth: {
     user: Deno.env.get('INFOMANIAK_SMTP_USER'),
-    pass: Deno.env.get('INFOMANIAK_SMTP_PASSWORD')
-  }
+    pass: Deno.env.get('INFOMANIAK_SMTP_PASSWORD'),
+  },
 };
-if (!smtpConfig.host || !smtpConfig.auth.user || !smtpConfig.auth.pass) {
-  console.error('Incomplete SMTP configuration');
+
+function validateConfig() {
+  const missing: string[] = [];
+  if (!smtpConfig.host) missing.push('INFOMANIAK_SMTP_HOST');
+  if (!smtpConfig.auth.user) missing.push('INFOMANIAK_SMTP_USER');
+  if (!smtpConfig.auth.pass) missing.push('INFOMANIAK_SMTP_PASSWORD');
+  if (!Deno.env.get('SUPABASE_URL')) missing.push('SUPABASE_URL');
+  if (!Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')) missing.push('SUPABASE_SERVICE_ROLE_KEY');
+  return missing;
 }
-// Core email job processor
-async function processJob(jobId) {
-  const { data: job, error: fetchError } = await supabase.from('background_jobs').select('*').eq('id', jobId).eq('status', 'pending').single();
-  if (fetchError || !job) {
-    console.error('Job fetch error:', fetchError);
-    return;
-  }
-  const { name, email } = job.payload;
-  const transporter = nodemailer.createTransport(smtpConfig);
+
+async function hmacHex(secret: string, body: string): Promise<string> {
+  const key = await crypto.subtle.importKey(
+    'raw',
+    new TextEncoder().encode(secret),
+    { name: 'HMAC', hash: 'SHA-256' },
+    false,
+    ['sign']
+  );
+  const signature = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(body));
+  return Array.from(new Uint8Array(signature))
+    .map((b) => b.toString(16).padStart(2, '0'))
+    .join('');
+}
+
+async function verifyWebhookSignature(req: Request, bodyText: string): Promise<boolean> {
+  const secret = Deno.env.get('SUPABASE_WEBHOOK_SECRET');
+  if (!secret) return true;
+  const header = req.headers.get('x-supabase-signature') || req.headers.get('X-Supabase-Signature');
+  if (!header) return false;
+  const expected = await hmacHex(secret, bodyText);
+  return header === expected;
+}
+
+type WebhookPayload = {
+  type?: string;
+  table?: string;
+  schema?: string;
+  record?: Record<string, unknown>;
+  old_record?: Record<string, unknown> | null;
+  new?: Record<string, unknown>;
+  data?: Record<string, unknown>;
+  [key: string]: unknown;
+};
+
+Deno.serve(async (req) => {
+  const requestId = crypto.randomUUID();
   try {
+    // Health check and preflight
+    if (req.method === 'OPTIONS') {
+      return new Response(null, { status: 204 });
+    }
+    if (req.method !== 'POST') {
+      return new Response(JSON.stringify({ error: 'Method not allowed', requestId }), {
+        status: 405,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const bodyText = await req.text();
+
+    // Optional signature verification
+    const valid = await verifyWebhookSignature(req, bodyText);
+    if (!valid) {
+      return new Response(JSON.stringify({ error: 'Invalid signature', requestId }), {
+        status: 401,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const payload: WebhookPayload = bodyText ? JSON.parse(bodyText) : {};
+
+    const rec = (payload.record || payload.new || payload.data || payload) as Record<string, unknown>;
+    const email = String(rec?.email || '');
+    const name =
+      String(rec?.name || rec?.full_name || '').trim() ||
+      (email.includes('@') ? email.split('@')[0] : 'there');
+    const company = (rec?.company || rec?.company_name || null) as string | null;
+    const id = rec?.id as string | undefined;
+
+    if (!email) {
+      return new Response(JSON.stringify({ error: 'Missing email in payload', requestId }), {
+        status: 400,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const missing = validateConfig();
+    if (missing.length) {
+      console.error('Missing configuration for email sending', { requestId, missing });
+      return new Response(JSON.stringify({ error: 'Server misconfiguration', requestId }), {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      });
+    }
+
+    const transporter = nodemailer.createTransport(smtpConfig as any);
+
     await transporter.sendMail({
       from: `"ESGCheck Team" <${Deno.env.get('INFOMANIAK_SMTP_FROM') || 'info@esgcheck.ch'}>`,
       to: email,
@@ -57,42 +145,33 @@ info@esgcheck.ch`,
           <hr style="border: none; border-top: 1px solid #ddd;" />
           <small style="font-size: 0.85em; color: #666;">If you received this message in error, you can safely ignore it.</small>
         </div>
-      `
+      `,
     });
-    await supabase.from('background_jobs').update({
-      status: 'completed',
-      completed_at: new Date().toISOString()
-    }).eq('id', job.id);
-  } catch (error) {
-    await supabase.from('background_jobs').update({
-      status: 'failed',
-      error_message: error.message
-    }).eq('id', job.id);
-    console.error('Email sending failed:', error);
-  }
-}
-//Listen for real-time inserts
-//Remove or comment out this real-time channel subscription
-// Manual trigger via HTTP (fallback or bulk batch)
-Deno.serve(async ()=>{
-  try {
-    const { data: jobs, error: fetchError } = await supabase.from('background_jobs').select('*').eq('job_type', 'send_waitlist_email').eq('status', 'pending').limit(10);
-    if (fetchError) throw fetchError;
-    for (const job of jobs){
-      await processJob(job.id);
+
+    // Update waitlist record if available
+   if (id) {
+      const { error: updError } = await supabase
+        .from('waitlist')
+        .update({
+          confirmation_status: 'sent',
+          confirmation_sent_at: new Date().toISOString(),
+        })
+        .eq('id', id);
+      if (updError) {
+        console.error('Failed to update waitlist confirmation fields', { requestId, error: updError });
+      }
     }
-    return new Response(JSON.stringify({
-      message: `Processed ${jobs.length} waitlist email jobs`,
-      processed: jobs.length
-    }), {
-      status: 200
+
+    return new Response(JSON.stringify({ ok: true, requestId }), {
+      status: 200,
+      headers: { 'Content-Type': 'application/json' },
     });
-  } catch (error) {
-    return new Response(JSON.stringify({
-      error: 'Failed to process waitlist emails',
-      details: error.message
-    }), {
-      status: 500
+  } catch (error: any) {
+    const safe = { requestId, name: error?.name, message: error?.message, stack: error?.stack };
+   console.error('send-waitlist-confirmation error', safe);
+    return new Response(JSON.stringify({ error: 'Internal server error', requestId }), {
+      status: 500,
+      headers: { 'Content-Type': 'application/json' },
     });
   }
 });
