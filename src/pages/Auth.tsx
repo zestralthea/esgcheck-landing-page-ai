@@ -8,7 +8,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
-import { useFeatureFlags } from '@/hooks/useFeatureFlags';
+
 
 const Auth = () => {
   const [email, setEmail] = useState('');
@@ -19,7 +19,6 @@ const Auth = () => {
   
   const { signIn, signUp, user } = useAuth();
   const { toast } = useToast();
-  const { isEnabled, isFlagLoaded, loading: flagsLoading } = useFeatureFlags();
   const navigate = useNavigate();
 
   // Redirect if already authenticated
@@ -29,48 +28,6 @@ const Auth = () => {
     }
   }, [user, navigate]);
 
-  // Debug logging for development
-  useEffect(() => {
-    const isDev = process.env.NODE_ENV === 'development';
-    console.log('🔧 Auth page debug:', {
-      flagsLoading,
-      isDev,
-      authAccessEnabled: isEnabled('auth_public_access'),
-      isFlagLoaded: isFlagLoaded('auth_public_access'),
-      allFlags: isEnabled
-    });
-  }, [flagsLoading, isEnabled, isFlagLoaded]);
-
-  // Redirect if auth access is disabled (only in production and after flag is loaded)
-  useEffect(() => {
-    const isDev = process.env.NODE_ENV === 'development';
-    
-    // In development mode, always allow access to auth page
-    if (isDev) {
-      console.log('🔧 DEV MODE: Auth page access allowed');
-      return;
-    }
-    
-    // In production, check feature flag
-    if (isFlagLoaded('auth_public_access') && !isEnabled('auth_public_access')) {
-      console.log('🚫 Auth access disabled, redirecting to home');
-      navigate('/');
-    }
-  }, [isEnabled, isFlagLoaded, navigate]);
-
-  // Show loading while checking feature flags (skip in development mode)
-  const isDev = process.env.NODE_ENV === 'development';
-  if (flagsLoading && !isDev) {
-    return (
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-background to-muted p-4">
-        <Card className="w-full max-w-md">
-          <CardContent className="p-6">
-            <div className="text-center">Loading...</div>
-          </CardContent>
-        </Card>
-      </div>
-    );
-  }
 
   const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
