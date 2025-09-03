@@ -11,7 +11,8 @@ const DEV_ENABLED_FLAGS = [
   'dashboard_beta_access',
   'advanced_analytics',
   'esg_upload_enabled',
-  'esg_analysis_enabled'
+  'esg_analysis_enabled',
+  'auth_public_access'
 ];
 
 interface FeatureFlag {
@@ -124,7 +125,9 @@ export const useFeatureFlags = () => {
   };
 
   const isFlagLoaded = (flagName: string): boolean => {
-    return !loading && flagName in flags;
+    // Return true when we've finished loading, regardless of whether the specific flag exists
+    // This allows missing flags to default to false gracefully
+    return !loading;
   };
 
   return {
