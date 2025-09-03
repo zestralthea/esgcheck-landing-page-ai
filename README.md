@@ -1,8 +1,70 @@
-# Welcome to your Lovable project
+# ESGCheck - AI-Powered ESG Reporting Platform
 
-## Project info
+## Project Overview
 
-**URL**: https://lovable.dev/projects/0d858abb-1f4a-40e7-a13c-f3647d2f1273
+ESGCheck is a comprehensive ESG (Environmental, Social, and Governance) reporting platform that helps organizations analyze, track, and improve their sustainability performance using AI-powered insights.
+
+**Live Demo**: https://lovable.dev/projects/0d858abb-1f4a-40e7-a13c-f3647d2f1273
+
+## Platform Capabilities
+
+### 🔍 ESG Report Analysis
+- **AI-Powered Analysis**: Automated ESG report processing using OpenAI
+- **Multi-Framework Support**: GRI, SASB, TCFD, CDP, IIRC standards
+- **Score Generation**: Automated Environmental, Social, and Governance scoring
+- **Gap Analysis**: Identify missing ESG disclosures and recommendations
+
+### 📊 Multi-Tenant Architecture  
+- **Organization Management**: Complete multi-tenant isolation
+- **Role-Based Access**: Owner, Admin, Member, Viewer permissions
+- **Secure Document Storage**: Enterprise-grade file management
+- **Audit Trails**: Comprehensive activity and access logging
+
+### 🤖 AI & Knowledge Base
+- **Vector Search**: Similarity matching for ESG guidelines
+- **Semantic Analysis**: AI-powered content understanding
+- **Framework Mapping**: Automatic standard alignment
+- **Insight Generation**: Actionable ESG recommendations
+
+### 📈 Analytics & Reporting
+- **Real-Time Dashboards**: Live performance monitoring
+- **Export Capabilities**: PDF, Excel, Word report generation
+- **Trend Analysis**: Historical ESG performance tracking  
+- **Benchmarking**: Industry and peer comparisons
+
+## Technical Architecture
+
+### Frontend Stack
+- **React + TypeScript**: Modern, type-safe development
+- **Vite**: Fast build tooling and development server
+- **Tailwind CSS**: Utility-first styling framework
+- **shadcn/ui**: High-quality component library
+
+### Backend Infrastructure (Supabase)
+- **PostgreSQL Database**: 30+ tables with comprehensive RLS
+- **Edge Functions**: 9 serverless functions for business logic
+- **Storage**: Secure document management with access controls
+- **Authentication**: JWT-based user management
+
+### Database Architecture
+- **Multi-Tenant Design**: Organization-based data isolation
+- **Partitioned Logging**: Auto-scaling audit trails
+- **Vector Search**: AI-powered similarity matching
+- **Job Queue System**: Async processing with retry logic
+- **Monitoring Views**: Real-time system health metrics
+
+## Documentation
+
+### Database Documentation
+- **[Database Schema](docs/database-schema-final.md)**: Complete table structure and relationships
+- **[Architecture Overview](docs/database-architecture-overview.md)**: System design and data flow
+- **[SQL Migrations](docs/sql-migrations.md)**: Database setup and migration scripts
+- **[Maintenance Guide](docs/database-maintenance.md)**: Operational procedures and best practices
+
+### Testing & Quality Assurance
+- **[Testing Plan](supabase-testing-plan.md)**: Comprehensive testing strategy
+- **[Testing Summary](supabase-mcp-testing-summary.md)**: Current test coverage and results
+- **[Structure Analysis](supabase-structure-analysis.md)**: Database implementation status
 
 ## Environment Setup
 
