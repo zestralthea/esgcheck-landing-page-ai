@@ -5,7 +5,7 @@ import { sessionManager } from '@/lib/sessionSecurity';
 import { CSRFProtection, SecureErrorHandler, CSPHelper } from '@/lib/securityUtils';
 
 // Development mode flag - set to true to enable automatic login for testing
-const DEV_MODE = false; // Set to false in production
+const DEV_MODE = true; // Set to false in production
 
 interface Profile {
   id: string;
@@ -107,7 +107,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         id: 'dev-user-id-123',
         email: 'dev@example.com',
         full_name: 'Development User',
-        role: 'developer',
+        role: 'admin',
         dashboard_access: true, // Important: This allows access to the dashboard
         created_at: new Date().toISOString(),
         updated_at: new Date().toISOString(),
