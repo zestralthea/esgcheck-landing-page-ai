@@ -5,7 +5,7 @@ import { sessionManager } from '@/lib/sessionSecurity';
 import { CSRFProtection, SecureErrorHandler, CSPHelper } from '@/lib/securityUtils';
 
 // Development mode flag - set to true to enable automatic login for testing
-const DEV_MODE = true; // Set to false in production
+const DEV_MODE = false; // Set to false in production
 
 interface Profile {
   id: string;
