@@ -36,15 +36,26 @@ const ESGReportAuditLog = () => {
         .select(`
           *,
           documents (
+            file_name,
             original_filename
           )
         `)
         .eq('access_type', 'esg_upload')
-        .order('accessed_at', { ascending: false })
+        .order('created_at', { ascending: false })
         .limit(20);
 
       if (error) throw error;
-      setLogs(data || []);
+      
+      // Map the data to include accessed_at field for backward compatibility
+      const logsWithAccessedAt = (data || []).map(log => ({
+        ...log,
+        accessed_at: log.accessed_at || log.created_at,
+        documents: {
+          original_filename: log.documents?.original_filename || log.documents?.file_name
+        }
+      }));
+      
+      setLogs(logsWithAccessedAt as any);
     } catch (error: any) {
       console.error('Error fetching ESG audit logs:', error);
       toast.error(error.message || "Error loading ESG audit logs");

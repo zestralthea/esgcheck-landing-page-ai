@@ -16,7 +16,7 @@ const DEV_ENABLED_FLAGS = [
 
 interface FeatureFlag {
   id: string;
-  flag_name: string;
+  name: string;  // Changed from flag_name to name to match database schema
   is_enabled: boolean;
   description: string | null;
   created_at: string;
@@ -40,7 +40,7 @@ export const useFeatureFlags = () => {
       }
 
       const flagsMap = data.reduce((acc, flag: FeatureFlag) => {
-        acc[flag.flag_name] = flag.is_enabled;
+        acc[flag.name] = flag.is_enabled;  // Changed from flag.flag_name to flag.name
         return acc;
       }, {} as Record<string, boolean>);
 
@@ -75,19 +75,19 @@ export const useFeatureFlags = () => {
             const updatedFlag = payload.new as FeatureFlag;
             setFlags(prev => ({
               ...prev,
-              [updatedFlag.flag_name]: updatedFlag.is_enabled
+              [updatedFlag.name]: updatedFlag.is_enabled  // Changed from flag_name to name
             }));
           } else if (payload.eventType === 'INSERT' && payload.new) {
             const newFlag = payload.new as FeatureFlag;
             setFlags(prev => ({
               ...prev,
-              [newFlag.flag_name]: newFlag.is_enabled
+              [newFlag.name]: newFlag.is_enabled  // Changed from flag_name to name
             }));
           } else if (payload.eventType === 'DELETE' && payload.old) {
             const deletedFlag = payload.old as FeatureFlag;
             setFlags(prev => {
               const updated = { ...prev };
-              delete updated[deletedFlag.flag_name];
+              delete updated[deletedFlag.name];  // Changed from flag_name to name
               return updated;
             });
           }

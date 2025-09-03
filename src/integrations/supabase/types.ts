@@ -247,6 +247,7 @@ export type Database = {
       document_access_logs: {
         Row: {
           access_type: string
+          accessed_at: string | null
           correlation_id: string | null
           created_at: string
           document_id: string
@@ -258,6 +259,7 @@ export type Database = {
         }
         Insert: {
           access_type: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id: string
@@ -269,6 +271,7 @@ export type Database = {
         }
         Update: {
           access_type?: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id?: string
@@ -298,6 +301,7 @@ export type Database = {
       document_access_logs_2025_08: {
         Row: {
           access_type: string
+          accessed_at: string | null
           correlation_id: string | null
           created_at: string
           document_id: string
@@ -309,6 +313,7 @@ export type Database = {
         }
         Insert: {
           access_type: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id: string
@@ -320,6 +325,7 @@ export type Database = {
         }
         Update: {
           access_type?: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id?: string
@@ -334,6 +340,7 @@ export type Database = {
       document_access_logs_2025_09: {
         Row: {
           access_type: string
+          accessed_at: string | null
           correlation_id: string | null
           created_at: string
           document_id: string
@@ -345,6 +352,7 @@ export type Database = {
         }
         Insert: {
           access_type: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id: string
@@ -356,6 +364,7 @@ export type Database = {
         }
         Update: {
           access_type?: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id?: string
@@ -370,6 +379,7 @@ export type Database = {
       document_access_logs_2025_10: {
         Row: {
           access_type: string
+          accessed_at: string | null
           correlation_id: string | null
           created_at: string
           document_id: string
@@ -381,6 +391,7 @@ export type Database = {
         }
         Insert: {
           access_type: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id: string
@@ -392,6 +403,7 @@ export type Database = {
         }
         Update: {
           access_type?: string
+          accessed_at?: string | null
           correlation_id?: string | null
           created_at?: string
           document_id?: string
@@ -416,9 +428,11 @@ export type Database = {
           metadata: Json | null
           mime_type: string | null
           organization_id: string | null
+          original_filename: string | null
           storage_path: string
           updated_at: string | null
           uploaded_by: string | null
+          user_id: string | null
         }
         Insert: {
           checksum?: string | null
@@ -432,9 +446,11 @@ export type Database = {
           metadata?: Json | null
           mime_type?: string | null
           organization_id?: string | null
+          original_filename?: string | null
           storage_path: string
           updated_at?: string | null
           uploaded_by?: string | null
+          user_id?: string | null
         }
         Update: {
           checksum?: string | null
@@ -448,9 +464,11 @@ export type Database = {
           metadata?: Json | null
           mime_type?: string | null
           organization_id?: string | null
+          original_filename?: string | null
           storage_path?: string
           updated_at?: string | null
           uploaded_by?: string | null
+          user_id?: string | null
         }
         Relationships: [
           {
@@ -477,6 +495,13 @@ export type Database = {
           {
             foreignKeyName: "documents_uploaded_by_fkey"
             columns: ["uploaded_by"]
+            isOneToOne: false
+            referencedRelation: "user_activity_summary"
+            referencedColumns: ["user_id"]
+          },
+          {
+            foreignKeyName: "documents_user_id_fkey"
+            columns: ["user_id"]
             isOneToOne: false
             referencedRelation: "user_activity_summary"
             referencedColumns: ["user_id"]
@@ -805,6 +830,47 @@ export type Database = {
         }
         Relationships: []
       }
+      esg_report_analyses: {
+        Row: {
+          analysis_data: Json
+          created_at: string | null
+          framework: string
+          id: string
+          pdf_document_id: string | null
+          pdf_download_url: string | null
+          report_id: string
+          updated_at: string | null
+        }
+        Insert: {
+          analysis_data?: Json
+          created_at?: string | null
+          framework?: string
+          id?: string
+          pdf_document_id?: string | null
+          pdf_download_url?: string | null
+          report_id: string
+          updated_at?: string | null
+        }
+        Update: {
+          analysis_data?: Json
+          created_at?: string | null
+          framework?: string
+          id?: string
+          pdf_document_id?: string | null
+          pdf_download_url?: string | null
+          report_id?: string
+          updated_at?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "esg_report_analyses_report_id_fkey"
+            columns: ["report_id"]
+            isOneToOne: false
+            referencedRelation: "esg_reports"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       esg_reports: {
         Row: {
           company_name: string | null
@@ -819,6 +885,7 @@ export type Database = {
           metadata: Json | null
           organization_id: string
           published_at: string | null
+          report_title: string | null
           report_type: string | null
           reporting_period_end: string
           reporting_period_start: string
@@ -826,6 +893,7 @@ export type Database = {
           tags: string[] | null
           title: string
           updated_at: string | null
+          user_id: string | null
           visibility: string | null
         }
         Insert: {
@@ -841,6 +909,7 @@ export type Database = {
           metadata?: Json | null
           organization_id: string
           published_at?: string | null
+          report_title?: string | null
           report_type?: string | null
           reporting_period_end: string
           reporting_period_start: string
@@ -848,6 +917,7 @@ export type Database = {
           tags?: string[] | null
           title: string
           updated_at?: string | null
+          user_id?: string | null
           visibility?: string | null
         }
         Update: {
@@ -863,6 +933,7 @@ export type Database = {
           metadata?: Json | null
           organization_id?: string
           published_at?: string | null
+          report_title?: string | null
           report_type?: string | null
           reporting_period_end?: string
           reporting_period_start?: string
@@ -870,6 +941,7 @@ export type Database = {
           tags?: string[] | null
           title?: string
           updated_at?: string | null
+          user_id?: string | null
           visibility?: string | null
         }
         Relationships: [
@@ -907,6 +979,13 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "organizations"
             referencedColumns: ["id"]
+          },
+          {
+            foreignKeyName: "esg_reports_user_id_fkey"
+            columns: ["user_id"]
+            isOneToOne: false
+            referencedRelation: "user_activity_summary"
+            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -1314,36 +1393,45 @@ export type Database = {
         Row: {
           avatar_url: string | null
           created_at: string | null
+          dashboard_access: boolean | null
           default_organization_id: string | null
+          email: string | null
           full_name: string | null
           id: string
           onboarding_completed: boolean | null
           phone_number: string | null
           preferences: Json | null
+          role: string | null
           timezone: string | null
           updated_at: string | null
         }
         Insert: {
           avatar_url?: string | null
           created_at?: string | null
+          dashboard_access?: boolean | null
           default_organization_id?: string | null
+          email?: string | null
           full_name?: string | null
           id: string
           onboarding_completed?: boolean | null
           phone_number?: string | null
           preferences?: Json | null
+          role?: string | null
           timezone?: string | null
           updated_at?: string | null
         }
         Update: {
           avatar_url?: string | null
           created_at?: string | null
+          dashboard_access?: boolean | null
           default_organization_id?: string | null
+          email?: string | null
           full_name?: string | null
           id?: string
           onboarding_completed?: boolean | null
           phone_number?: string | null
           preferences?: Json | null
+          role?: string | null
           timezone?: string | null
           updated_at?: string | null
         }

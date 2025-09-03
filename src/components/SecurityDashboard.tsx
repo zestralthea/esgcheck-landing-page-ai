@@ -49,8 +49,8 @@ const SecurityDashboard = () => {
       const { data: logsData, error: logsError } = await supabase
         .from('document_access_logs')
         .select('*')
-        .gte('accessed_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
-        .order('accessed_at', { ascending: false });
+        .gte('created_at', new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString())
+        .order('created_at', { ascending: false });
 
       if (logsError) {
         console.error('Error fetching access logs:', logsError);
@@ -67,6 +67,8 @@ const SecurityDashboard = () => {
       let signedUrlAccesses = 0;
 
       logsData?.forEach(log => {
+        const accessedAt = log.accessed_at || log.created_at;
+        
         // Track user activity
         if (log.user_id) {
           if (!userActivity[log.user_id]) {
@@ -74,22 +76,22 @@ const SecurityDashboard = () => {
               user_id: log.user_id,
               access_count: 0,
               distinct_documents: new Set(),
-              first_access: log.accessed_at,
-              last_access: log.accessed_at
+              first_access: accessedAt,
+              last_access: accessedAt
             };
           }
           userActivity[log.user_id].access_count++;
           userActivity[log.user_id].distinct_documents.add(log.document_id);
-          if (log.accessed_at < userActivity[log.user_id].first_access) {
-            userActivity[log.user_id].first_access = log.accessed_at;
+          if (accessedAt < userActivity[log.user_id].first_access) {
+            userActivity[log.user_id].first_access = accessedAt;
           }
-          if (log.accessed_at > userActivity[log.user_id].last_access) {
-            userActivity[log.user_id].last_access = log.accessed_at;
+          if (accessedAt > userActivity[log.user_id].last_access) {
+            userActivity[log.user_id].last_access = accessedAt;
           }
         }
 
         // Track hourly activity
-        const hour = new Date(log.accessed_at).getHours();
+        const hour = new Date(accessedAt).getHours();
         hourlyStats[hour] = (hourlyStats[hour] || 0) + 1;
 
         // Track access types

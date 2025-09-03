@@ -63,7 +63,13 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         return null;
       }
 
-      return data;
+      // Ensure all required fields are present with defaults
+      return {
+        ...data,
+        email: data.email || '',
+        role: data.role || 'user',
+        dashboard_access: data.dashboard_access ?? true
+      };
     } catch (error) {
       console.error('Error fetching profile:', error);
       return null;
@@ -129,7 +135,14 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
             setTimeout(async () => {
               try {
                 const profileData = await fetchProfile(session.user.id);
-                setProfile(profileData);
+                if (profileData) {
+                  setProfile({
+                    ...profileData,
+                    email: profileData.email || session.user.email || '',
+                    role: profileData.role || 'user',
+                    dashboard_access: profileData.dashboard_access ?? true
+                  });
+                }
               } catch (error) {
                 SecureErrorHandler.logError(error, 'Profile fetch during auth state change');
               }
@@ -150,7 +163,16 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
         if (session) {
           setSession(session);
           setUser(session.user);
-          fetchProfile(session.user.id).then(setProfile).catch(error => {
+          fetchProfile(session.user.id).then(profile => {
+            if (profile) {
+              setProfile({
+                ...profile,
+                email: profile.email || session.user.email || '',
+                role: profile.role || 'user',
+                dashboard_access: profile.dashboard_access ?? true
+              });
+            }
+          }).catch(error => {
             SecureErrorHandler.logError(error, 'Initial profile fetch');
           });
         }

@@ -78,21 +78,21 @@ export function ESGReportsTable() {
         .from('esg_reports')
         .select(`
           id,
+          title,
           report_title,
           report_type,
           status,
           reporting_period_start,
           reporting_period_end,
-          gri_standards,
+          tags,
           created_at,
           documents (
-            filename,
+            file_name,
             original_filename,
             file_size,
             storage_path
           )
         `)
-        .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
@@ -106,14 +106,16 @@ export function ESGReportsTable() {
       // Transform the data to match our interface
       const transformedData = data.map(report => ({
         ...report,
+        report_title: report.report_title || report.title,
+        gri_standards: report.tags || [],
         document: Array.isArray(report.documents) ? report.documents[0] : report.documents
       })) as ESGReport[];
       
-      // Now, fetch the analysis data for each report
+      // Now, fetch the analysis data for each report using esg_analyses table
       const reportIds = transformedData.map(report => report.id);
       const { data: analysisData, error: analysisError } = await supabase
-        .from('esg_report_analyses')
-        .select('id, report_id, pdf_document_id, created_at')
+        .from('esg_analyses')
+        .select('id, report_id, full_analysis, created_at')
         .in('report_id', reportIds);
       
       if (analysisError) {
@@ -121,7 +123,11 @@ export function ESGReportsTable() {
       } else if (analysisData) {
         // Create a map of report_id to analysis for quick lookup
         const analysisMap = analysisData.reduce((acc, analysis) => {
-          acc[analysis.report_id] = analysis;
+          acc[analysis.report_id] = {
+            id: analysis.id,
+            pdf_document_id: analysis.id, // Use analysis id as pdf document id
+            created_at: analysis.created_at
+          };
           return acc;
         }, {} as Record<string, any>);
         
@@ -175,11 +181,13 @@ export function ESGReportsTable() {
           throw new Error("Failed to get PDF download URL");
         }
         
-        // Update our report with the download URL
+        // Update our report with the download URL using jobs table instead
         await supabase
-          .from('esg_report_analyses')
-          .update({ pdf_download_url: data.download_url })
-          .eq('id', report.analysis.id);
+          .from('jobs')
+          .insert({
+            kind: 'pdf_download_url_update',
+            payload: { analysis_id: report.analysis.id, download_url: data.download_url }
+          });
         
         // Update local state
         report.analysis.pdf_download_url = data.download_url;

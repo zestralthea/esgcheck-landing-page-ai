@@ -78,7 +78,7 @@ const Admin = () => {
       const { error } = await supabase
         .from('feature_flags')
         .update({ is_enabled: !currentValue })
-        .eq('flag_name', flagName);
+        .eq('name', flagName);  // Changed from flag_name to name
 
       if (error) {
         console.error('Feature flag update error:', error);
