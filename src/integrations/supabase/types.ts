@@ -76,13 +76,6 @@ export type Database = {
             referencedRelation: "organizations"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "activity_logs_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
         ]
       }
       activity_logs_2025_08: {
@@ -289,13 +282,6 @@ export type Database = {
             referencedRelation: "documents"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "document_access_logs_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
         ]
       }
       document_access_logs_2025_08: {
@@ -491,20 +477,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "organizations"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "documents_uploaded_by_fkey"
-            columns: ["uploaded_by"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
-          {
-            foreignKeyName: "documents_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -946,13 +918,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "esg_reports_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
-          {
             foreignKeyName: "esg_reports_document_id_fkey"
             columns: ["document_id"]
             isOneToOne: false
@@ -979,13 +944,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "organizations"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "esg_reports_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -1098,13 +1056,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "feature_flags"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "feature_flag_users_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -1231,13 +1182,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "jobs_created_by_fkey"
-            columns: ["created_by"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
-          {
             foreignKeyName: "jobs_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
@@ -1299,13 +1243,6 @@ export type Database = {
         }
         Relationships: [
           {
-            foreignKeyName: "organization_members_invited_by_fkey"
-            columns: ["invited_by"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
-          {
             foreignKeyName: "organization_members_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
@@ -1325,13 +1262,6 @@ export type Database = {
             isOneToOne: false
             referencedRelation: "organizations"
             referencedColumns: ["id"]
-          },
-          {
-            foreignKeyName: "organization_members_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
           },
         ]
       }
@@ -1457,13 +1387,6 @@ export type Database = {
             referencedRelation: "organizations"
             referencedColumns: ["id"]
           },
-          {
-            foreignKeyName: "profiles_id_fkey"
-            columns: ["id"]
-            isOneToOne: true
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
         ]
       }
       security_audit_log: {
@@ -1503,15 +1426,7 @@ export type Database = {
           user_agent?: string | null
           user_id?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "security_audit_log_user_id_fkey"
-            columns: ["user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
-        ]
+        Relationships: []
       }
       system_settings: {
         Row: {
@@ -1595,15 +1510,7 @@ export type Database = {
           updated_at?: string | null
           use_case?: string | null
         }
-        Relationships: [
-          {
-            foreignKeyName: "waitlist_entries_converted_user_id_fkey"
-            columns: ["converted_user_id"]
-            isOneToOne: false
-            referencedRelation: "user_activity_summary"
-            referencedColumns: ["user_id"]
-          },
-        ]
+        Relationships: []
       }
     }
     Views: {
@@ -1684,19 +1591,6 @@ export type Database = {
           tablename: unknown | null
           total_bytes: number | null
           total_size_pretty: string | null
-        }
-        Relationships: []
-      }
-      user_activity_summary: {
-        Row: {
-          activity_count: number | null
-          analyses_run: number | null
-          email: string | null
-          first_activity_at: string | null
-          full_name: string | null
-          last_activity_at: string | null
-          reports_created: number | null
-          user_id: string | null
         }
         Relationships: []
       }

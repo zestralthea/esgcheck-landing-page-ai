@@ -4,8 +4,8 @@ import { supabase } from '@/integrations/supabase/client';
 import { sessionManager } from '@/lib/sessionSecurity';
 import { CSRFProtection, SecureErrorHandler, CSPHelper } from '@/lib/securityUtils';
 
-// Development mode flag - set to true to enable automatic login for testing
-const DEV_MODE = true; // Set to false in production
+// Development mode flag - DISABLED for production security
+const DEV_MODE = false; // CRITICAL: Must remain false in production
 
 interface Profile {
   id: string;
