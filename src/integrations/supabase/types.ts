@@ -59,7 +59,7 @@ export type Database = {
             foreignKeyName: "activity_logs_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
-            referencedRelation: "mv_organization_metrics"
+            referencedRelation: "organization_metrics"
             referencedColumns: ["organization_id"]
           },
           {
@@ -461,7 +461,7 @@ export type Database = {
             foreignKeyName: "documents_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
-            referencedRelation: "mv_organization_metrics"
+            referencedRelation: "organization_metrics"
             referencedColumns: ["organization_id"]
           },
           {
@@ -928,7 +928,7 @@ export type Database = {
             foreignKeyName: "esg_reports_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
-            referencedRelation: "mv_organization_metrics"
+            referencedRelation: "organization_metrics"
             referencedColumns: ["organization_id"]
           },
           {
@@ -1017,7 +1017,7 @@ export type Database = {
             foreignKeyName: "feature_flag_organizations_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
-            referencedRelation: "mv_organization_metrics"
+            referencedRelation: "organization_metrics"
             referencedColumns: ["organization_id"]
           },
           {
@@ -1185,7 +1185,7 @@ export type Database = {
             foreignKeyName: "jobs_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
-            referencedRelation: "mv_organization_metrics"
+            referencedRelation: "organization_metrics"
             referencedColumns: ["organization_id"]
           },
           {
@@ -1246,7 +1246,7 @@ export type Database = {
             foreignKeyName: "organization_members_organization_id_fkey"
             columns: ["organization_id"]
             isOneToOne: false
-            referencedRelation: "mv_organization_metrics"
+            referencedRelation: "organization_metrics"
             referencedColumns: ["organization_id"]
           },
           {
@@ -1370,7 +1370,7 @@ export type Database = {
             foreignKeyName: "profiles_default_organization_id_fkey"
             columns: ["default_organization_id"]
             isOneToOne: false
-            referencedRelation: "mv_organization_metrics"
+            referencedRelation: "organization_metrics"
             referencedColumns: ["organization_id"]
           },
           {
@@ -1514,44 +1514,7 @@ export type Database = {
       }
     }
     Views: {
-      active_queries: {
-        Row: {
-          application_name: string | null
-          client_addr: unknown | null
-          duration: unknown | null
-          pid: number | null
-          query_preview: string | null
-          query_start: string | null
-          state: string | null
-          usename: unknown | null
-        }
-        Relationships: []
-      }
-      index_usage: {
-        Row: {
-          idx_scan: number | null
-          idx_tup_fetch: number | null
-          idx_tup_read: number | null
-          index_size: string | null
-          indexname: unknown | null
-          schemaname: unknown | null
-          tablename: unknown | null
-        }
-        Relationships: []
-      }
-      job_queue_health: {
-        Row: {
-          avg_duration_seconds: number | null
-          count: number | null
-          kind: string | null
-          max_duration_seconds: number | null
-          newest_job_created_at: string | null
-          oldest_job_created_at: string | null
-          status: string | null
-        }
-        Relationships: []
-      }
-      mv_organization_metrics: {
+      organization_metrics: {
         Row: {
           avg_esg_score: number | null
           last_analysis_date: string | null
@@ -1578,19 +1541,6 @@ export type Database = {
           report_count: number | null
           subscription_tier: string | null
           total_storage_bytes: number | null
-        }
-        Relationships: []
-      }
-      table_sizes: {
-        Row: {
-          index_bytes: number | null
-          index_size_pretty: string | null
-          schemaname: unknown | null
-          table_bytes: number | null
-          table_size_pretty: string | null
-          tablename: unknown | null
-          total_bytes: number | null
-          total_size_pretty: string | null
         }
         Relationships: []
       }
@@ -1661,6 +1611,10 @@ export type Database = {
           unique_accessors: number
           view_count: number
         }[]
+      }
+      get_system_stats: {
+        Args: Record<PropertyKey, never>
+        Returns: Json
       }
       has_feature_access: {
         Args: { feature_name: string; org_uuid?: string; user_uuid?: string }
