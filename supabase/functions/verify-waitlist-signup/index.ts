@@ -90,14 +90,14 @@ const handler = async (req: Request): Promise<Response> => {
 
     const supabase = createClient(supabaseUrl, supabaseServiceKey);
 
-    // Insert into waitlist
+    // Insert into waitlist_entries (correct table name)
     const { error } = await supabase
-      .from('waitlist')
+      .from('waitlist_entries')
       .insert([
         {
-          name,
+          full_name: name,
           email,
-          company: company || null
+          company_name: company || null
         }
       ]);
 
