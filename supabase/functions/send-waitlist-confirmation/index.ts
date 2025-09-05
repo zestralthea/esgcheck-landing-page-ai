@@ -151,7 +151,7 @@ info@esgcheck.ch`,
     // Update waitlist record if available
    if (id) {
       const { error: updError } = await supabase
-        .from('waitlist')
+        .from('waitlist_entries')
         .update({
           confirmation_status: 'sent',
           confirmation_sent_at: new Date().toISOString(),

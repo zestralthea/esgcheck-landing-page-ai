@@ -1463,6 +1463,8 @@ export type Database = {
           approved_at: string | null
           company_name: string | null
           company_size: string | null
+          confirmation_sent_at: string | null
+          confirmation_status: string | null
           converted_at: string | null
           converted_user_id: string | null
           created_at: string | null
@@ -1480,6 +1482,8 @@ export type Database = {
           approved_at?: string | null
           company_name?: string | null
           company_size?: string | null
+          confirmation_sent_at?: string | null
+          confirmation_status?: string | null
           converted_at?: string | null
           converted_user_id?: string | null
           created_at?: string | null
@@ -1497,6 +1501,8 @@ export type Database = {
           approved_at?: string | null
           company_name?: string | null
           company_size?: string | null
+          confirmation_sent_at?: string | null
+          confirmation_status?: string | null
           converted_at?: string | null
           converted_user_id?: string | null
           created_at?: string | null
