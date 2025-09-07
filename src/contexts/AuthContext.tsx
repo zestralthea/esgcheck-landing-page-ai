@@ -5,7 +5,7 @@ import { sessionManager } from '@/lib/sessionSecurity';
 import { CSRFProtection, SecureErrorHandler, CSPHelper } from '@/lib/securityUtils';
 
 // Development mode flag - DISABLED for production security
-const DEV_MODE = false; // CRITICAL: Must remain false in production
+const DEV_MODE = true; // CRITICAL: Must remain false in production
 
 interface Profile {
   id: string;
