@@ -135,6 +135,47 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    console.log('User authenticated:', user.id);
+
+    // Get user's organization or assign default one
+    let organizationId: string;
+    
+    // Check if user has a profile with organization
+    const { data: profile } = await serviceSupabase
+      .from('profiles')
+      .select('default_organization_id')
+      .eq('id', user.id)
+      .single();
+
+    if (profile?.default_organization_id) {
+      organizationId = profile.default_organization_id;
+      console.log('Using user organization:', organizationId);
+    } else {
+      // Get development organization for users without specific organization
+      const { data: org } = await serviceSupabase
+        .from('organizations')
+        .select('id')
+        .eq('slug', 'dev-org')
+        .single();
+      
+      if (org) {
+        organizationId = org.id;
+        console.log('Using development organization:', organizationId);
+      } else {
+        console.error('No organization found for user');
+        return new Response(
+          JSON.stringify({ 
+            error: 'No organization found for user', 
+            details: 'User must be assigned to an organization' 
+          }),
+          {
+            status: 400,
+            headers: { 'Content-Type': 'application/json', ...corsHeaders },
+          }
+        );
+      }
+    }
+
     // Parse and validate request data
     const uploadData: FileUploadRequest = await req.json();
     
@@ -189,6 +230,7 @@ const handler = async (req: Request): Promise<Response> => {
     const { data: document, error: documentError } = await serviceSupabase
       .from('documents')
       .insert({
+        organization_id: organizationId,  // Add organization reference
         user_id: user.id,
         filename: uploadData.filename,
         file_name: uploadData.filename, // Keep both for compatibility
@@ -237,6 +279,7 @@ const handler = async (req: Request): Promise<Response> => {
     const { data: report, error: reportError } = await serviceSupabase
       .from('esg_reports')
       .insert({
+        organization_id: organizationId,  // Required field
         user_id: user.id,
         document_id: document.id,
         title: uploadData.reportTitle,

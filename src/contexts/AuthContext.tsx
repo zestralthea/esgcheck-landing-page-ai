@@ -92,7 +92,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       console.log('🔧 DEVELOPMENT MODE: Auto-login enabled');
       // Create mock user and profile for development testing
       const mockUser: User = {
-        id: 'dev-user-id-123',
+        id: '00000000-0000-0000-0000-000000000001',
         app_metadata: {},
         user_metadata: {},
         aud: 'authenticated',
@@ -104,7 +104,7 @@ export const AuthProvider: React.FC<{ children: React.ReactNode }> = ({ children
       };
 
       const mockProfile: Profile = {
-        id: 'dev-user-id-123',
+        id: '00000000-0000-0000-0000-000000000001',
         email: 'dev@example.com',
         full_name: 'Development User',
         role: 'admin',
