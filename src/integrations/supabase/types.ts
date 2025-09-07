@@ -409,15 +409,14 @@ export type Database = {
           file_name: string
           file_size: number
           file_type: string
+          filename: string | null
           id: string
           is_public: boolean | null
           metadata: Json | null
           mime_type: string | null
           organization_id: string | null
-          original_filename: string | null
           storage_path: string
           updated_at: string | null
-          uploaded_by: string | null
           user_id: string | null
         }
         Insert: {
@@ -427,15 +426,14 @@ export type Database = {
           file_name: string
           file_size: number
           file_type: string
+          filename?: string | null
           id?: string
           is_public?: boolean | null
           metadata?: Json | null
           mime_type?: string | null
           organization_id?: string | null
-          original_filename?: string | null
           storage_path: string
           updated_at?: string | null
-          uploaded_by?: string | null
           user_id?: string | null
         }
         Update: {
@@ -445,15 +443,14 @@ export type Database = {
           file_name?: string
           file_size?: number
           file_type?: string
+          filename?: string | null
           id?: string
           is_public?: boolean | null
           metadata?: Json | null
           mime_type?: string | null
           organization_id?: string | null
-          original_filename?: string | null
           storage_path?: string
           updated_at?: string | null
-          uploaded_by?: string | null
           user_id?: string | null
         }
         Relationships: [

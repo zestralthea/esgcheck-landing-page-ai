@@ -21,7 +21,7 @@ interface ESGAccessLog {
   accessed_at: string;
   error_message: string | null;
   documents: {
-    original_filename: string;
+    filename: string;
   } | null;
 }
 
@@ -36,8 +36,8 @@ const ESGReportAuditLog = () => {
         .select(`
           *,
           documents (
-            file_name,
-            original_filename
+            filename,
+            file_name
           )
         `)
         .eq('access_type', 'esg_upload')
@@ -51,7 +51,7 @@ const ESGReportAuditLog = () => {
         ...log,
         accessed_at: log.accessed_at || log.created_at,
         documents: {
-          original_filename: log.documents?.original_filename || log.documents?.file_name
+          filename: log.documents?.filename || log.documents?.file_name || 'Unknown File'
         }
       }));
       
@@ -204,7 +204,7 @@ const ESGReportAuditLog = () => {
                   </div>
                   
                   <p className="text-sm font-medium mb-1">
-                    {log.documents?.original_filename || 'ESG Report Upload'}
+                    {log.documents?.filename || 'ESG Report Upload'}
                   </p>
                   
                   {!log.success && log.error_message && (

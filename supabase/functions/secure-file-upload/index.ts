@@ -183,17 +183,22 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    console.log('Creating document record for user:', user.id);
+    
     // Create document record
     const { data: document, error: documentError } = await serviceSupabase
       .from('documents')
       .insert({
         user_id: user.id,
         filename: uploadData.filename,
-        original_filename: uploadData.filename,
+        file_name: uploadData.filename, // Keep both for compatibility
         storage_path: storagePath,
         mime_type: uploadData.mimeType,
         file_size: uploadData.fileSize,
-        description: uploadData.description,
+        file_type: uploadData.mimeType,
+        metadata: {
+          description: uploadData.description || ''
+        },
         is_public: false
       })
       .select()
@@ -201,13 +206,22 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (documentError) {
       // Clean up uploaded file on document creation failure
+      console.error('Document creation error details:', {
+        error: documentError,
+        user_id: user.id,
+        filename: uploadData.filename,
+        storage_path: storagePath
+      });
+      
       await serviceSupabase.storage
         .from('documents')
         .remove([storagePath]);
       
-      console.error('Document creation error:', documentError);
       return new Response(
-        JSON.stringify({ error: 'Document record creation failed' }),
+        JSON.stringify({ 
+          error: 'Document record creation failed',
+          details: documentError.message
+        }),
         {
           status: 500,
           headers: { 'Content-Type': 'application/json', ...corsHeaders },
@@ -215,17 +229,25 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    console.log('Document created successfully:', document.id);
+
+    console.log('Creating ESG report record for document:', document.id);
+    
     // Create ESG report record
     const { data: report, error: reportError } = await serviceSupabase
       .from('esg_reports')
       .insert({
         user_id: user.id,
         document_id: document.id,
-        report_title: uploadData.reportTitle,
+        title: uploadData.reportTitle,
+        report_title: uploadData.reportTitle, // Keep both for compatibility
         report_type: uploadData.reportType,
         reporting_period_start: uploadData.reportingPeriodStart,
         reporting_period_end: uploadData.reportingPeriodEnd,
-        gri_standards: uploadData.griStandards || [],
+        metadata: {
+          gri_standards: uploadData.griStandards || [],
+          description: uploadData.description || ''
+        },
         status: 'processing'
       })
       .select()
@@ -233,6 +255,12 @@ const handler = async (req: Request): Promise<Response> => {
 
     if (reportError) {
       // Clean up on report creation failure
+      console.error('ESG report creation error details:', {
+        error: reportError,
+        document_id: document.id,
+        report_title: uploadData.reportTitle
+      });
+      
       await serviceSupabase.storage
         .from('documents')
         .remove([storagePath]);
@@ -242,15 +270,19 @@ const handler = async (req: Request): Promise<Response> => {
         .delete()
         .eq('id', document.id);
       
-      console.error('ESG report creation error:', reportError);
       return new Response(
-        JSON.stringify({ error: 'ESG report creation failed' }),
+        JSON.stringify({ 
+          error: 'ESG report creation failed',
+          details: reportError.message
+        }),
         {
           status: 500,
           headers: { 'Content-Type': 'application/json', ...corsHeaders },
         }
       );
     }
+
+    console.log('ESG report created successfully:', report.id);
 
     // Log successful upload
     await serviceSupabase
