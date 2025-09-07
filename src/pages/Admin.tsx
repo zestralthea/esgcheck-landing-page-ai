@@ -9,6 +9,7 @@ import { useFeatureFlags } from '@/hooks/useFeatureFlags';
 import { supabase } from '@/integrations/supabase/client';
 import { useToast } from '@/hooks/use-toast';
 import { Lock, Users, Settings, Flag, Mail, CheckCircle } from 'lucide-react';
+import { AdminUserDeletion } from '@/components/AdminUserDeletion';
 
 interface User {
   id: string;
@@ -275,7 +276,7 @@ const Admin = () => {
       </header>
 
       <main className="container mx-auto px-4 py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
           {/* Feature Flags */}
           <Card>
             <CardHeader>
@@ -413,6 +414,11 @@ const Admin = () => {
               )}
             </CardContent>
           </Card>
+
+          {/* User Deletion */}
+          <div className="flex justify-center">
+            <AdminUserDeletion />
+          </div>
         </div>
 
         {/* Quick Stats */}
