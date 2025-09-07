@@ -121,6 +121,19 @@ class SecureErrorHandler {
       return 'Access denied';
     }
 
+    // Handle auth-specific errors
+    if (error?.code === 'user_already_exists' || error?.message?.includes('User already registered')) {
+      return 'An account with this email already exists. Please sign in instead.';
+    }
+
+    if (error?.message?.includes('Invalid login credentials')) {
+      return 'Invalid email or password. Please check your credentials and try again.';
+    }
+
+    if (error?.message?.includes('Email not confirmed')) {
+      return 'Please check your email and click the confirmation link before signing in.';
+    }
+
     if (error?.message?.includes('RLS')) {
       return 'Access denied';
     }
