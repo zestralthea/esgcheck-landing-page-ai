@@ -205,8 +205,9 @@ const handler = async (req: Request): Promise<Response> => {
     // Decode base64 file data
     const fileData = Uint8Array.from(atob(uploadData.file), c => c.charCodeAt(0));
 
-    // Upload file to storage
-    const { error: uploadError } = await serviceSupabase.storage
+    // Upload file to storage using user-authenticated client for RLS policies
+    console.log('Uploading file to storage:', storagePath);
+    const { error: uploadError } = await supabase.storage
       .from('documents')
       .upload(storagePath, fileData, {
         contentType: uploadData.mimeType,
@@ -255,7 +256,7 @@ const handler = async (req: Request): Promise<Response> => {
         storage_path: storagePath
       });
       
-      await serviceSupabase.storage
+      await supabase.storage
         .from('documents')
         .remove([storagePath]);
       
