@@ -82,12 +82,18 @@ const validateFileUpload = (data: FileUploadRequest): { isValid: boolean; errors
 };
 
 const handler = async (req: Request): Promise<Response> => {
+  console.log('=== SECURE FILE UPLOAD FUNCTION START ===');
+  console.log('Request method:', req.method);
+  console.log('Request URL:', req.url);
+  
   // Handle CORS preflight requests
   if (req.method === 'OPTIONS') {
+    console.log('Handling CORS preflight request');
     return new Response(null, { headers: corsHeaders });
   }
 
   if (req.method !== 'POST') {
+    console.log('Invalid method received:', req.method);
     return new Response(
       JSON.stringify({ error: 'Method not allowed' }),
       {
@@ -98,9 +104,15 @@ const handler = async (req: Request): Promise<Response> => {
   }
 
   try {
+    console.log('Processing POST request...');
+    
     // Initialize Supabase client with user token for auth check
     const authHeader = req.headers.get('Authorization');
+    console.log('Authorization header present:', !!authHeader);
+    console.log('Auth header format:', authHeader ? `${authHeader.substring(0, 20)}...` : 'none');
+    
     if (!authHeader) {
+      console.log('ERROR: No authorization header provided');
       return new Response(
         JSON.stringify({ error: 'Authentication required' }),
         {
@@ -112,6 +124,7 @@ const handler = async (req: Request): Promise<Response> => {
 
     const supabaseUrl = Deno.env.get('SUPABASE_URL')!;
     const supabaseAnonKey = Deno.env.get('SUPABASE_ANON_KEY')!;
+    console.log('Environment variables loaded - URL:', !!supabaseUrl, 'Anon Key:', !!supabaseAnonKey);
     
     const supabase = createClient(supabaseUrl, supabaseAnonKey, {
       auth: { persistSession: false },
@@ -122,12 +135,22 @@ const handler = async (req: Request): Promise<Response> => {
       }
     });
 
+    console.log('Supabase client created, verifying authentication...');
+
     // Verify user is authenticated
     const { data: { user }, error: authError } = await supabase.auth.getUser();
     
+    console.log('Auth check result:', {
+      userExists: !!user,
+      userId: user?.id,
+      userEmail: user?.email,
+      authError: authError?.message
+    });
+    
     if (authError || !user) {
+      console.log('ERROR: Authentication failed:', authError?.message || 'No user found');
       return new Response(
-        JSON.stringify({ error: 'Invalid authentication' }),
+        JSON.stringify({ error: 'Invalid authentication', details: authError?.message }),
         {
           status: 401,
           headers: { 'Content-Type': 'application/json', ...corsHeaders },
@@ -135,7 +158,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('User authenticated:', user.id);
+    console.log('✅ User authenticated successfully:', user.id);
 
     // Create service role client for database operations
     const serviceSupabase = createClient(
@@ -143,32 +166,48 @@ const handler = async (req: Request): Promise<Response> => {
       Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
     );
 
+    console.log('Service role client created, looking up organization...');
+
     // Get user's organization or assign default one
     let organizationId: string;
     
     // Check if user has a profile with organization
-    const { data: profile } = await serviceSupabase
+    const { data: profile, error: profileError } = await serviceSupabase
       .from('profiles')
       .select('default_organization_id')
       .eq('id', user.id)
       .single();
 
+    console.log('Profile lookup result:', {
+      profileExists: !!profile,
+      hasOrgId: !!profile?.default_organization_id,
+      orgId: profile?.default_organization_id,
+      profileError: profileError?.message
+    });
+
     if (profile?.default_organization_id) {
       organizationId = profile.default_organization_id;
-      console.log('Using user organization:', organizationId);
+      console.log('✅ Using user organization:', organizationId);
     } else {
+      console.log('No user organization found, looking for dev-org...');
       // Get development organization for users without specific organization
-      const { data: org } = await serviceSupabase
+      const { data: org, error: orgError } = await serviceSupabase
         .from('organizations')
         .select('id')
         .eq('slug', 'dev-org')
         .single();
       
+      console.log('Dev org lookup result:', {
+        orgExists: !!org,
+        orgId: org?.id,
+        orgError: orgError?.message
+      });
+      
       if (org) {
         organizationId = org.id;
-        console.log('Using development organization:', organizationId);
+        console.log('✅ Using development organization:', organizationId);
       } else {
-        console.error('No organization found for user');
+        console.error('❌ No organization found for user');
         return new Response(
           JSON.stringify({ 
             error: 'No organization found for user', 
@@ -183,11 +222,41 @@ const handler = async (req: Request): Promise<Response> => {
     }
 
     // Parse and validate request data
-    const uploadData: FileUploadRequest = await req.json();
+    console.log('Parsing request body...');
+    let uploadData: FileUploadRequest;
     
+    try {
+      uploadData = await req.json();
+      console.log('Request parsed successfully. File details:', {
+        filename: uploadData.filename,
+        mimeType: uploadData.mimeType,
+        fileSize: uploadData.fileSize,
+        reportTitle: uploadData.reportTitle,
+        reportType: uploadData.reportType,
+        hasFileData: !!uploadData.file,
+        fileSizeBytes: uploadData.file ? uploadData.file.length : 0
+      });
+    } catch (parseError) {
+      console.error('❌ Failed to parse request JSON:', parseError);
+      return new Response(
+        JSON.stringify({ error: 'Invalid JSON data', details: parseError.message }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        }
+      );
+    }
+    
+    console.log('Running server-side validation...');
     // Server-side validation
     const validation = validateFileUpload(uploadData);
+    console.log('Validation result:', {
+      isValid: validation.isValid,
+      errors: validation.errors
+    });
+    
     if (!validation.isValid) {
+      console.log('❌ Validation failed:', validation.errors);
       return new Response(
         JSON.stringify({ error: 'Validation failed', details: validation.errors }),
         {
@@ -197,27 +266,70 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
+    console.log('✅ Validation passed successfully');
+
     // Generate unique file path
     const fileId = crypto.randomUUID();
     const fileExtension = uploadData.filename.split('.').pop();
     const storagePath = `${user.id}/${fileId}.${fileExtension}`;
+    
+    console.log('Generated storage path:', storagePath);
+    console.log('File ID:', fileId);
 
     // Decode base64 file data
-    const fileData = Uint8Array.from(atob(uploadData.file), c => c.charCodeAt(0));
+    console.log('Decoding base64 file data...');
+    let fileData: Uint8Array;
+    
+    try {
+      fileData = Uint8Array.from(atob(uploadData.file), c => c.charCodeAt(0));
+      console.log('✅ File decoded successfully. Size:', fileData.length, 'bytes');
+    } catch (decodeError) {
+      console.error('❌ Failed to decode base64 file:', decodeError);
+      return new Response(
+        JSON.stringify({ error: 'Invalid file data', details: 'Base64 decode failed' }),
+        {
+          status: 400,
+          headers: { 'Content-Type': 'application/json', ...corsHeaders },
+        }
+      );
+    }
 
     // Upload file to storage using user-authenticated client for RLS policies
-    console.log('Uploading file to storage:', storagePath);
-    const { error: uploadError } = await supabase.storage
+    console.log('🚀 Starting storage upload...');
+    console.log('Storage details:', {
+      bucket: 'documents',
+      path: storagePath,
+      contentType: uploadData.mimeType,
+      fileSize: fileData.length,
+      userId: user.id
+    });
+    
+    const { data: uploadResult, error: uploadError } = await supabase.storage
       .from('documents')
       .upload(storagePath, fileData, {
         contentType: uploadData.mimeType,
         upsert: false
       });
 
+    console.log('Storage upload result:', {
+      success: !uploadError,
+      uploadResult: uploadResult,
+      error: uploadError
+    });
+
     if (uploadError) {
-      console.error('File upload error:', uploadError);
+      console.error('❌ File upload error:', {
+        message: uploadError.message,
+        statusCode: uploadError.statusCode,
+        error: uploadError.error,
+        name: uploadError.name
+      });
       return new Response(
-        JSON.stringify({ error: 'File upload failed' }),
+        JSON.stringify({ 
+          error: 'File upload failed', 
+          details: uploadError.message,
+          code: uploadError.statusCode
+        }),
         {
           status: 500,
           headers: { 'Content-Type': 'application/json', ...corsHeaders },
@@ -225,7 +337,17 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('Creating document record for user:', user.id);
+    console.log('✅ File uploaded successfully to storage:', storagePath);
+
+    console.log('📝 Creating document record...');
+    console.log('Document data:', {
+      organization_id: organizationId,
+      user_id: user.id,
+      filename: uploadData.filename,
+      storage_path: storagePath,
+      mime_type: uploadData.mimeType,
+      file_size: uploadData.fileSize
+    });
     
     // Create document record
     const { data: document, error: documentError } = await serviceSupabase
@@ -247,15 +369,26 @@ const handler = async (req: Request): Promise<Response> => {
       .select()
       .single();
 
+    console.log('Document creation result:', {
+      success: !documentError,
+      documentId: document?.id,
+      error: documentError
+    });
+
     if (documentError) {
       // Clean up uploaded file on document creation failure
-      console.error('Document creation error details:', {
+      console.error('❌ Document creation failed:', {
         error: documentError,
+        message: documentError.message,
+        code: documentError.code,
+        details: documentError.details,
+        hint: documentError.hint,
         user_id: user.id,
         filename: uploadData.filename,
         storage_path: storagePath
       });
       
+      console.log('🧹 Cleaning up uploaded file due to document creation failure');
       await supabase.storage
         .from('documents')
         .remove([storagePath]);
@@ -263,7 +396,9 @@ const handler = async (req: Request): Promise<Response> => {
       return new Response(
         JSON.stringify({ 
           error: 'Document record creation failed',
-          details: documentError.message
+          details: documentError.message,
+          code: documentError.code,
+          hint: documentError.hint
         }),
         {
           status: 500,
@@ -272,7 +407,7 @@ const handler = async (req: Request): Promise<Response> => {
       );
     }
 
-    console.log('Document created successfully:', document.id);
+    console.log('✅ Document created successfully:', document.id);
 
     console.log('Creating ESG report record for document:', document.id);
     
