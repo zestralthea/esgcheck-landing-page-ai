@@ -137,6 +137,12 @@ const handler = async (req: Request): Promise<Response> => {
 
     console.log('User authenticated:', user.id);
 
+    // Create service role client for database operations
+    const serviceSupabase = createClient(
+      supabaseUrl, 
+      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
+    );
+
     // Get user's organization or assign default one
     let organizationId: string;
     
@@ -190,12 +196,6 @@ const handler = async (req: Request): Promise<Response> => {
         }
       );
     }
-
-    // Create service role client for storage operations
-    const serviceSupabase = createClient(
-      supabaseUrl, 
-      Deno.env.get('SUPABASE_SERVICE_ROLE_KEY')!
-    );
 
     // Generate unique file path
     const fileId = crypto.randomUUID();
