@@ -1646,6 +1646,10 @@ export type Database = {
         }
         Returns: string
       }
+      make_user_admin: {
+        Args: { target_email: string }
+        Returns: Json
+      }
       manually_verify_user: {
         Args: { user_identifier: string }
         Returns: Json
