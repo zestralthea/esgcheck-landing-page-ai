@@ -69,6 +69,38 @@ export function ESGReportsTable() {
     }
   }, [user]);
 
+  useEffect(() => {
+    if (!user) return;
+
+    // Set up real-time subscription for new ESG reports
+    const channel = supabase
+      .channel('esg-reports')
+      .on(
+        'postgres_changes',
+        {
+          event: 'INSERT',
+          schema: 'public',
+          table: 'esg_reports'
+        },
+        () => {
+          fetchReports();
+        }
+      )
+      .subscribe();
+
+    // Listen for custom events as backup
+    const handleEsgReportUploaded = () => {
+      fetchReports();
+    };
+
+    window.addEventListener('esgReportUploaded', handleEsgReportUploaded);
+
+    return () => {
+      supabase.removeChannel(channel);
+      window.removeEventListener('esgReportUploaded', handleEsgReportUploaded);
+    };
+  }, [user]);
+
   const fetchReports = async () => {
     if (!user) return;
 

@@ -40,7 +40,7 @@ const ESGReportAuditLog = () => {
             file_name
           )
         `)
-        .eq('access_type', 'esg_upload')
+        .or('access_type.eq.esg_upload,access_type.eq.esg_upload_failed')
         .order('created_at', { ascending: false })
         .limit(20);
 
@@ -75,11 +75,13 @@ const ESGReportAuditLog = () => {
         {
           event: 'INSERT',
           schema: 'public',
-          table: 'document_access_logs',
-          filter: 'access_type=eq.esg_upload'
+          table: 'document_access_logs'
         },
-        () => {
-          fetchAuditLogs();
+        (payload) => {
+          // Only refetch if it's an ESG-related upload event
+          if (payload.new?.access_type?.includes('esg_upload')) {
+            fetchAuditLogs();
+          }
         }
       )
       .subscribe();
