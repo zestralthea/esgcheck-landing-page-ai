@@ -107,28 +107,10 @@ export function ESGReportsTable() {
     try {
       console.log('Fetching reports for user:', user.id);
       
-      // First, get the reports with their documents, filtered by user
-      const { data, error } = await supabase
-        .from('esg_reports')
-        .select(`
-          id,
-          title,
-          report_title,
-          report_type,
-          status,
-          reporting_period_start,
-          reporting_period_end,
-          tags,
-          created_at,
-          documents (
-            file_name,
-            filename,
-            file_size,
-            storage_path
-          )
-        `)
-        .eq('user_id', user.id)
-        .order('created_at', { ascending: false });
+      // Use RPC function to get reports with documents via proper JOIN
+      const { data, error } = await supabase.rpc('get_user_reports_with_documents', {
+        user_id: user.id
+      });
 
       if (error) throw error;
 
@@ -143,49 +125,122 @@ export function ESGReportsTable() {
       }
 
       // Transform the data to match our interface
-      const transformedData = data.map(report => ({
-        ...report,
-        report_title: report.report_title || report.title,
+      const transformedData = data.map((report: any) => ({
+        id: report.report_id,
+        report_title: report.report_title || report.title || 'Untitled Report',
+        report_type: report.report_type || 'sustainability',
+        status: report.status || 'draft',
+        reporting_period_start: report.reporting_period_start,
+        reporting_period_end: report.reporting_period_end,
+        created_at: report.created_at,
         gri_standards: report.tags || [],
-        document: Array.isArray(report.documents) ? report.documents[0] : report.documents
+        document: {
+          filename: report.filename || report.file_name,
+          original_filename: report.filename || report.file_name,
+          file_size: report.file_size || 0,
+          storage_path: report.storage_path
+        }
       })) as ESGReport[];
       
-      // Now, fetch the analysis data for each report using esg_analyses table
+      // Now, fetch the analysis data for each report
       const reportIds = transformedData.map(report => report.id);
-      const { data: analysisData, error: analysisError } = await supabase
-        .from('esg_analyses')
-        .select('id, report_id, full_analysis, created_at')
-        .in('report_id', reportIds);
-      
-      if (analysisError) {
-        console.error('Error fetching analysis data:', analysisError);
-      } else if (analysisData) {
-        // Create a map of report_id to analysis for quick lookup
-        const analysisMap = analysisData.reduce((acc, analysis) => {
-          acc[analysis.report_id] = {
-            id: analysis.id,
-            pdf_document_id: analysis.id, // Use analysis id as pdf document id
-            created_at: analysis.created_at
-          };
-          return acc;
-        }, {} as Record<string, any>);
+      if (reportIds.length > 0) {
+        const { data: analysisData, error: analysisError } = await supabase
+          .from('esg_analyses')
+          .select('id, report_id, created_at')
+          .in('report_id', reportIds);
         
-        // Add analysis data to each report
-        transformedData.forEach(report => {
-          if (analysisMap[report.id]) {
-            report.analysis = analysisMap[report.id];
-          }
-        });
+        if (analysisError) {
+          console.error('Error fetching analysis data:', analysisError);
+        } else if (analysisData) {
+          // Create a map of report_id to analysis for quick lookup
+          const analysisMap = analysisData.reduce((acc, analysis) => {
+            acc[analysis.report_id] = {
+              id: analysis.id,
+              pdf_document_id: analysis.id,
+              created_at: analysis.created_at
+            };
+            return acc;
+          }, {} as Record<string, any>);
+          
+          // Add analysis data to each report
+          transformedData.forEach(report => {
+            if (analysisMap[report.id]) {
+              report.analysis = analysisMap[report.id];
+            }
+          });
+        }
       }
       
       setReports(transformedData);
     } catch (error) {
       console.error('Error fetching ESG reports:', error);
-      toast({
-        title: "Error loading reports",
-        description: "Failed to load your ESG reports. Please try again.",
-        variant: "destructive",
-      });
+      
+      // Fallback: try direct SQL query approach
+      try {
+        console.log('Trying fallback query...');
+        const { data: fallbackData, error: fallbackError } = await supabase
+          .from('esg_reports')
+          .select('*')
+          .eq('user_id', user.id)
+          .order('created_at', { ascending: false });
+
+        if (fallbackError) throw fallbackError;
+
+        if (fallbackData && fallbackData.length > 0) {
+          // Get documents for these reports
+          const documentIds = fallbackData
+            .map(report => report.document_id)
+            .filter(id => id);
+
+          let documentsData = [];
+          if (documentIds.length > 0) {
+            const { data: docs, error: docsError } = await supabase
+              .from('documents')
+              .select('id, filename, file_name, file_size, storage_path')
+              .in('id', documentIds);
+            
+            if (!docsError) {
+              documentsData = docs || [];
+            }
+          }
+
+          // Create document map
+          const documentMap = documentsData.reduce((acc, doc) => {
+            acc[doc.id] = doc;
+            return acc;
+          }, {} as Record<string, any>);
+
+          // Transform fallback data
+          const transformedFallback = fallbackData.map((report: any) => ({
+            id: report.id,
+            report_title: report.report_title || report.title || 'Untitled Report',
+            report_type: report.report_type || 'sustainability',
+            status: report.status || 'draft',
+            reporting_period_start: report.reporting_period_start,
+            reporting_period_end: report.reporting_period_end,
+            created_at: report.created_at,
+            gri_standards: report.tags || [],
+            document: report.document_id && documentMap[report.document_id] ? {
+              filename: documentMap[report.document_id].filename || documentMap[report.document_id].file_name,
+              original_filename: documentMap[report.document_id].filename || documentMap[report.document_id].file_name,
+              file_size: documentMap[report.document_id].file_size || 0,
+              storage_path: documentMap[report.document_id].storage_path
+            } : null
+          })).filter(report => report.document); // Only include reports with documents
+
+          setReports(transformedFallback as ESGReport[]);
+        } else {
+          setReports([]);
+        }
+      } catch (fallbackError) {
+        console.error('Fallback query also failed:', fallbackError);
+        toast({
+          title: "Error loading reports",
+          description: "Failed to load your ESG reports. Please try again.",
+          variant: "destructive",
+        });
+      }
     } finally {
       setLoading(false);
     }
