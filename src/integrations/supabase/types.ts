@@ -1619,6 +1619,24 @@ export type Database = {
         Args: Record<PropertyKey, never>
         Returns: Json
       }
+      get_user_reports_with_documents: {
+        Args: { user_id: string }
+        Returns: {
+          created_at: string
+          file_name: string
+          file_size: number
+          filename: string
+          report_id: string
+          report_title: string
+          report_type: string
+          reporting_period_end: string
+          reporting_period_start: string
+          status: string
+          storage_path: string
+          tags: string[]
+          title: string
+        }[]
+      }
       has_feature_access: {
         Args: { feature_name: string; org_uuid?: string; user_uuid?: string }
         Returns: boolean
