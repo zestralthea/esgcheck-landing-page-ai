@@ -115,9 +115,9 @@ export function ESGReportsTable() {
       if (error) throw error;
 
       console.log('Raw reports data:', data);
-      console.log('Reports count:', data?.length || 0);
+      console.log('Reports count:', Array.isArray(data) ? data.length : 0);
 
-      if (!data || data.length === 0) {
+      if (!data || !Array.isArray(data) || data.length === 0) {
         console.log('No reports found for user');
         setReports([]);
         setLoading(false);
@@ -176,7 +176,7 @@ export function ESGReportsTable() {
     } catch (error) {
       console.error('Error fetching ESG reports:', error);
       
-      // Fallback: try direct SQL query approach
+      // Fallback: try direct query approach
       try {
         console.log('Trying fallback query...');
         const { data: fallbackData, error: fallbackError } = await supabase
