@@ -105,7 +105,9 @@ export function ESGReportsTable() {
     if (!user) return;
 
     try {
-      // First, get the reports with their documents
+      console.log('Fetching reports for user:', user.id);
+      
+      // First, get the reports with their documents, filtered by user
       const { data, error } = await supabase
         .from('esg_reports')
         .select(`
@@ -120,16 +122,21 @@ export function ESGReportsTable() {
           created_at,
           documents (
             file_name,
-            original_filename,
+            filename,
             file_size,
             storage_path
           )
         `)
+        .eq('user_id', user.id)
         .order('created_at', { ascending: false });
 
       if (error) throw error;
 
+      console.log('Raw reports data:', data);
+      console.log('Reports count:', data?.length || 0);
+
       if (!data || data.length === 0) {
+        console.log('No reports found for user');
         setReports([]);
         setLoading(false);
         return;
