@@ -110,14 +110,14 @@ export function ESGReportsTable() {
       // Use RPC function to get reports with documents via proper JOIN
       const { data, error } = await supabase.rpc('get_user_reports_with_documents', {
         user_id: user.id
-      });
+      }) as { data: any[] | null, error: any };
 
       if (error) throw error;
 
       console.log('Raw reports data:', data);
-      console.log('Reports count:', Array.isArray(data) ? data.length : 0);
+      console.log('Reports count:', data?.length || 0);
 
-      if (!data || !Array.isArray(data) || data.length === 0) {
+      if (!data || data.length === 0) {
         console.log('No reports found for user');
         setReports([]);
         setLoading(false);
