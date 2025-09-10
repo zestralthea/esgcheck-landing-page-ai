@@ -57,10 +57,10 @@ export function GradientOverlay({
       combined: "bg-gradient-to-br from-media-background/80 via-media-background/60 to-media-background/70 backdrop-blur-sm"
     },
     heavy: {
-      solid: "bg-media-background/90",
-      gradient: "bg-gradient-to-br from-media-background/90 via-media-background/80 to-media-background/90",
-      blur: "bg-media-background/70 backdrop-blur-lg",
-      combined: "bg-gradient-to-br from-media-background/90 via-media-background/80 to-media-background/90 backdrop-blur-md"
+      solid: "bg-media-background/95",
+      gradient: "bg-gradient-to-br from-media-background/95 via-media-background/90 to-media-background/95",
+      blur: "bg-media-background/80 backdrop-blur-lg",
+      combined: "bg-gradient-to-br from-media-background/95 via-media-background/90 to-media-background/95 backdrop-blur-md"
     }
   };
 

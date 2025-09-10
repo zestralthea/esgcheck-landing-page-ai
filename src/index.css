@@ -57,12 +57,12 @@ All colors MUST be HSL.
     --transition-spring: all 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
 
     /* Media overlay colors (darker for video/image backgrounds) */
-    --media-background: 150 28% 4%;
-    --media-card: 150 25% 6%;
-    --media-secondary: 150 22% 8%;
-    --media-muted: 150 20% 6%;
-    --media-border: 150 15% 10%;
-    --gradient-media-dark: linear-gradient(135deg, hsl(150 28% 4%) 0%, hsl(150 25% 6%) 100%);
+    --media-background: 150 28% 2%;
+    --media-card: 150 25% 3%;
+    --media-secondary: 150 22% 4%;
+    --media-muted: 150 20% 3%;
+    --media-border: 150 15% 6%;
+    --gradient-media-dark: linear-gradient(135deg, hsl(150 28% 2%) 0%, hsl(150 25% 3%) 100%);
 
     --sidebar-background: 150 26% 14%;
     --sidebar-foreground: 150 15% 85%;

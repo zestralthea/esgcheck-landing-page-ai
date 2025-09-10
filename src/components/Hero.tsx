@@ -32,7 +32,7 @@ export default function Hero() {
         mediaOverlay={true}
       />
       <GradientOverlay 
-        className="bg-gradient-to-br from-primary/10 via-transparent to-success/10" 
+        className="bg-gradient-to-br from-media-background/60 via-media-background/40 to-media-background/50" 
         zIndex={20} 
       />
       
