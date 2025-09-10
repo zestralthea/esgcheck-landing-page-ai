@@ -27,7 +27,7 @@ export default function AboutSection() {
   return (
     <section id="about" className="py-20 bg-muted/30 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Governance.jpg)' }}>
       {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-background/80 backdrop-blur-sm"></div>
+      <div className="absolute inset-0 bg-media-background/80 backdrop-blur-sm"></div>
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-6 mb-16">
           <h2 className="text-3xl md:text-4xl font-bold text-foreground">

@@ -29,6 +29,7 @@ export default function Hero() {
         type="gradient" 
         opacity="medium" 
         zIndex={10} 
+        mediaOverlay={true}
       />
       <GradientOverlay 
         className="bg-gradient-to-br from-primary/10 via-transparent to-success/10" 
