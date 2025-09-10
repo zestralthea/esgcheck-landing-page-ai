@@ -27,7 +27,7 @@ export default function Hero() {
       {/* Overlays for text readability using our reusable component */}
       <GradientOverlay 
         type="gradient" 
-        opacity="medium" 
+        opacity="heavy" 
         zIndex={10} 
         mediaOverlay={true}
       />

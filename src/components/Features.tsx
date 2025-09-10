@@ -38,7 +38,7 @@ export default function Features() {
 
   return (
     <section id="features" className="py-20 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Social.jpg)' }}>
-      <GradientOverlay type="blur" opacity="medium" mediaOverlay={true} />
+      <GradientOverlay type="blur" opacity="heavy" mediaOverlay={true} />
       
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeading 
