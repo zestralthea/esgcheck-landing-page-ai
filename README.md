@@ -61,6 +61,11 @@ ESGCheck is a comprehensive ESG (Environmental, Social, and Governance) reportin
 - **[SQL Migrations](docs/sql-migrations.md)**: Database setup and migration scripts
 - **[Maintenance Guide](docs/database-maintenance.md)**: Operational procedures and best practices
 
+### API Documentation
+- **[OpenAI API Specification](docs/openai/openai-api-specification.md)**: Complete API specification for OpenAI services
+- **[Supabase Documentation](docs/supabase/supabase-documentation.md)**: Comprehensive Supabase documentation including client libraries, RAG with permissions, and local development guides
+- **[PDFMonkey Documentation](docs/pdfmonkey/pdfmonkey-documentation.html)**: Official PDFMonkey API documentation for PDF generation
+
 ### Testing & Quality Assurance
 - **[Testing Plan](supabase-testing-plan.md)**: Comprehensive testing strategy
 - **[Testing Summary](supabase-mcp-testing-summary.md)**: Current test coverage and results

@@ -116,10 +116,83 @@ All colors MUST be HSL.
 
 @layer base {
   * {
-    @apply border-border;
+    /* Make all borders quieter by default */
+    @apply border-border/80;
   }
 
   body {
-    @apply bg-background text-foreground;
+    /* Improve global text readability */
+    @apply bg-background text-foreground antialiased leading-7 text-[17px];
+  }
+
+  /* Heading balance and tighter leading for display text */
+  h1, h2, h3, h4 {
+    text-wrap: balance;
+  }
+  h1 { @apply leading-tight tracking-tight; }
+  h2 { @apply leading-tight; }
+}
+
+@layer utilities {
+  /* Subtle text shadows for readability on media backgrounds */
+  .text-shadow {
+    text-shadow: 0 1px 2px hsl(0 0% 0% / 0.5);
+  }
+  .text-shadow-lg {
+    text-shadow: 0 2px 12px hsl(0 0% 0% / 0.55);
+  }
+
+  /* Hairline borders for seamless dividers */
+  .hairline { border-width: 0.5px; }
+  .hairline-b { border-bottom-width: 0.5px; }
+  .hairline-t { border-top-width: 0.5px; }
+  .hairline-l { border-left-width: 0.5px; }
+  .hairline-r { border-right-width: 0.5px; }
+
+  /* Ultra-hairline for HiDPI displays (subpixel) */
+  .ultra-hairline { border-width: 0.25px; }
+  .ultra-hairline-b { border-bottom-width: 0.25px; }
+  .ultra-hairline-t { border-top-width: 0.25px; }
+  .ultra-hairline-l { border-left-width: 0.25px; }
+  .ultra-hairline-r { border-right-width: 0.25px; }
+
+  /* Section edge fades to soften boundaries between media sections */
+  .edge-fade-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 7rem; /* 112px */
+    pointer-events: none;
+    background: linear-gradient(to bottom, rgba(0,0,0,0), hsl(var(--background)) 85%);
+  }
+  .edge-fade-top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 7rem; /* 112px */
+    pointer-events: none;
+    background: linear-gradient(to top, rgba(0,0,0,0), hsl(var(--background)) 85%);
+  }
+
+  /* Device-pixel hairline separators (crispest possible) */
+  .hairline-sep-b, .hairline-sep-t { position: relative; }
+  .hairline-sep-b::after, .hairline-sep-t::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: hsl(var(--border) / 0.14);
+    transform: scaleY(0.5); /* subpixel on 1x displays */
+    transform-origin: 0 0;
+    pointer-events: none;
+    z-index: 30;
+  }
+  .hairline-sep-b::after { bottom: 0; }
+  .hairline-sep-t::before { top: 0; }
+  @media (min-resolution: 2dppx) {
+    .hairline-sep-b::after, .hairline-sep-t::before { transform: none; }
   }
 }

@@ -25,19 +25,23 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/30 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Governance.jpg)' }}>
-      {/* Overlay for readability */}
-      <div className="absolute inset-0 bg-media-background/90 backdrop-blur-sm"></div>
+    <section id="about" className="py-20 bg-muted/30 relative bg-cover bg-center bg-no-repeat hairline-sep-t hairline-sep-b" style={{ backgroundImage: 'url(/Governance.jpg)' }}>
+      {/* Overlays tuned for static image background */}
+      <div className="absolute inset-0 bg-black/25 mix-blend-multiply"></div>
+      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.12)_40%,rgba(0,0,0,0.32)_80%)]"></div>
+      <div className="absolute inset-0 backdrop-blur-[2px]"></div>
+      {/* Feather from previous media section */}
+      <div className="edge-fade-top z-20 absolute inset-x-0 top-0" />
       <div className="container mx-auto px-4 relative z-10">
         <div className="text-center space-y-6 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground">
+          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-shadow-lg">
             {t('about.title')}
           </h2>
           <div className="max-w-4xl mx-auto space-y-4">
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-foreground/95 text-shadow">
               {t('about.description')}
             </p>
-            <p className="text-lg text-muted-foreground">
+            <p className="text-lg text-foreground/95 text-shadow">
               {t('about.team')}
             </p>
           </div>

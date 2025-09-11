@@ -4,20 +4,22 @@ import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from '@/components/ui/table';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
-import { 
-  FileText, 
-  Download, 
-  Eye, 
-  MoreHorizontal, 
+import {
+  FileText,
+  Download,
+  Eye,
+  MoreHorizontal,
   Calendar,
   CheckCircle,
   Clock,
   XCircle,
-  Edit
+  Edit,
+  Loader2
 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
 import { useToast } from '@/hooks/use-toast';
+import { format, parseISO } from 'date-fns';
 
 interface ESGReport {
   id: string;
@@ -62,6 +64,8 @@ export function ESGReportsTable() {
   const { toast } = useToast();
   const [reports, setReports] = useState<ESGReport[]>([]);
   const [loading, setLoading] = useState(true);
+  const [downloadingId, setDownloadingId] = useState<string | null>(null);
+  const [viewingId, setViewingId] = useState<string | null>(null);
 
   useEffect(() => {
     if (user) {
@@ -72,32 +76,50 @@ export function ESGReportsTable() {
   useEffect(() => {
     if (!user) return;
 
-    // Set up real-time subscription for new ESG reports
-    const channel = supabase
-      .channel('esg-reports')
-      .on(
-        'postgres_changes',
-        {
-          event: 'INSERT',
-          schema: 'public',
-          table: 'esg_reports'
-        },
-        () => {
-          fetchReports();
-        }
-      )
-      .subscribe();
+    let channel: any;
 
-    // Listen for custom events as backup
-    const handleEsgReportUploaded = () => {
-      fetchReports();
+    const setupSubscription = async () => {
+      channel = supabase
+        .channel('esg-reports')
+        .on(
+          'postgres_changes',
+          {
+            event: 'INSERT',
+            schema: 'public',
+            table: 'esg_reports',
+            filter: `user_id=eq.${user.id}`
+          },
+          () => {
+            fetchReports();
+          }
+        )
+        .on(
+          'postgres_changes',
+          {
+            event: 'UPDATE',
+            schema: 'public',
+            table: 'esg_reports',
+            filter: `user_id=eq.${user.id}`
+          },
+          () => {
+            fetchReports();
+          }
+        )
+        .subscribe((status) => {
+          if (status === 'SUBSCRIBED') {
+            console.log('Subscribed to ESG reports changes');
+          }
+        });
     };
 
-    window.addEventListener('esgReportUploaded', handleEsgReportUploaded);
+    setupSubscription();
 
     return () => {
-      supabase.removeChannel(channel);
-      window.removeEventListener('esgReportUploaded', handleEsgReportUploaded);
+      if (channel) {
+        supabase.removeChannel(channel).then(() => {
+          console.log('Unsubscribed from ESG reports changes');
+        });
+      }
     };
   }, [user]);
 
@@ -106,7 +128,7 @@ export function ESGReportsTable() {
 
     try {
       console.log('Fetching reports for user:', user.id);
-      
+
       // Use RPC function to get reports with documents via proper JOIN
       const { data, error } = await supabase.rpc('get_user_reports_with_documents', {
         user_id: user.id
@@ -141,15 +163,15 @@ export function ESGReportsTable() {
           storage_path: report.storage_path
         }
       })) as ESGReport[];
-      
+
       // Now, fetch the analysis data for each report
       const reportIds = transformedData.map(report => report.id);
       if (reportIds.length > 0) {
         const { data: analysisData, error: analysisError } = await supabase
-          .from('esg_analyses')
-          .select('id, report_id, created_at')
+          .from('esg_report_analyses')
+          .select('id, report_id, created_at, pdf_document_id')
           .in('report_id', reportIds);
-        
+
         if (analysisError) {
           console.error('Error fetching analysis data:', analysisError);
         } else if (analysisData) {
@@ -157,12 +179,12 @@ export function ESGReportsTable() {
           const analysisMap = analysisData.reduce((acc, analysis) => {
             acc[analysis.report_id] = {
               id: analysis.id,
-              pdf_document_id: analysis.id,
+              pdf_document_id: analysis.pdf_document_id || analysis.id,
               created_at: analysis.created_at
             };
             return acc;
           }, {} as Record<string, any>);
-          
+
           // Add analysis data to each report
           transformedData.forEach(report => {
             if (analysisMap[report.id]) {
@@ -171,76 +193,16 @@ export function ESGReportsTable() {
           });
         }
       }
-      
+
       setReports(transformedData);
     } catch (error) {
       console.error('Error fetching ESG reports:', error);
-      
-      // Fallback: try direct query approach
-      try {
-        console.log('Trying fallback query...');
-        const { data: fallbackData, error: fallbackError } = await supabase
-          .from('esg_reports')
-          .select('*')
-          .eq('user_id', user.id)
-          .order('created_at', { ascending: false });
 
-        if (fallbackError) throw fallbackError;
-
-        if (fallbackData && fallbackData.length > 0) {
-          // Get documents for these reports
-          const documentIds = fallbackData
-            .map(report => report.document_id)
-            .filter(id => id);
-
-          let documentsData = [];
-          if (documentIds.length > 0) {
-            const { data: docs, error: docsError } = await supabase
-              .from('documents')
-              .select('id, filename, file_name, file_size, storage_path')
-              .in('id', documentIds);
-            
-            if (!docsError) {
-              documentsData = docs || [];
-            }
-          }
-
-          // Create document map
-          const documentMap = documentsData.reduce((acc, doc) => {
-            acc[doc.id] = doc;
-            return acc;
-          }, {} as Record<string, any>);
-
-          // Transform fallback data
-          const transformedFallback = fallbackData.map((report: any) => ({
-            id: report.id,
-            report_title: report.report_title || report.title || 'Untitled Report',
-            report_type: report.report_type || 'sustainability',
-            status: report.status || 'draft',
-            reporting_period_start: report.reporting_period_start,
-            reporting_period_end: report.reporting_period_end,
-            created_at: report.created_at,
-            gri_standards: report.tags || [],
-            document: report.document_id && documentMap[report.document_id] ? {
-              filename: documentMap[report.document_id].filename || documentMap[report.document_id].file_name,
-              original_filename: documentMap[report.document_id].filename || documentMap[report.document_id].file_name,
-              file_size: documentMap[report.document_id].file_size || 0,
-              storage_path: documentMap[report.document_id].storage_path
-            } : null
-          })).filter(report => report.document); // Only include reports with documents
-
-          setReports(transformedFallback as ESGReport[]);
-        } else {
-          setReports([]);
-        }
-      } catch (fallbackError) {
-        console.error('Fallback query also failed:', fallbackError);
-        toast({
-          title: "Error loading reports",
-          description: "Failed to load your ESG reports. Please try again.",
-          variant: "destructive",
-        });
-      }
+      toast({
+        title: "Error loading reports",
+        description: "Failed to load your ESG reports. Please try again.",
+        variant: "destructive",
+      });
     } finally {
       setLoading(false);
     }
@@ -258,56 +220,77 @@ export function ESGReportsTable() {
     }
 
     try {
-      setLoading(true);
-      
-      // First, check if we need to get the download URL from PDFMonkey
-      if (!report.analysis.pdf_download_url) {
-        // Call our Supabase function to get the PDF download URL
-        const { data, error } = await supabase.functions.invoke('get-pdf-download-url', {
-          body: { 
-            pdf_document_id: report.analysis.pdf_document_id
-          }
-        });
-        
-        if (error) throw error;
-        
-        if (!data?.download_url) {
-          throw new Error("Failed to get PDF download URL");
-        }
-        
-        // Update our report with the download URL using jobs table instead
-        await supabase
-          .from('jobs')
-          .insert({
-            kind: 'pdf_download_url_update',
-            payload: { analysis_id: report.analysis.id, download_url: data.download_url }
-          });
-        
-        // Update local state
-        report.analysis.pdf_download_url = data.download_url;
-      }
-      
-      // Now use the download URL to fetch the PDF
-      window.open(report.analysis.pdf_download_url, '_blank');
-      
+      setDownloadingId(report.id);
+
+      // Try to construct the PDFMonkey download URL
+      const pdfDownloadUrl = `https://pdfmonkey.io/api/v1/documents/${report.analysis.pdf_document_id}/download`;
+
+      // Open the PDF in a new tab for viewing/downloading
+      window.open(pdfDownloadUrl, '_blank');
+
       toast({
         title: "Analysis PDF",
-        description: "Your ESG analysis PDF is being downloaded.",
+        description: "Your ESG analysis PDF is opening in a new tab.",
       });
     } catch (error) {
-      console.error('Error downloading analysis PDF:', error);
+      console.error('Error opening analysis PDF:', error);
       toast({
-        title: "Download failed",
-        description: "Failed to download the analysis PDF. Please try again.",
+        title: "PDF unavailable",
+        description: "The analysis PDF could not be retrieved. Please try again.",
         variant: "destructive",
       });
     } finally {
-      setLoading(false);
+      setDownloadingId(null);
+    }
+  };
+
+  // View analysis PDF inline
+  const viewAnalysisPDF = async (report: ESGReport) => {
+    if (!report.analysis?.pdf_document_id) {
+      toast({
+        title: "Analysis not available",
+        description: "The AI analysis for this report is not yet available.",
+        variant: "destructive",
+      });
+      return;
+    }
+
+    try {
+      setViewingId(report.id);
+
+      // For now, open in new tab - could be enhanced to show inline modal
+      const pdfDownloadUrl = `https://pdfmonkey.io/api/v1/documents/${report.analysis.pdf_document_id}/download`;
+      window.open(pdfDownloadUrl, '_blank');
+
+      toast({
+        title: "Analysis PDF",
+        description: "Opening your ESG analysis PDF...",
+      });
+    } catch (error) {
+      console.error('Error viewing analysis PDF:', error);
+      toast({
+        title: "PDF unavailable",
+        description: "The analysis PDF could not be opened. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setViewingId(null);
     }
   };
 
   const downloadReport = async (report: ESGReport) => {
+    if (!report.document?.storage_path) {
+      toast({
+        title: "Document not available",
+        description: "The original report document is not available.",
+        variant: "destructive",
+      });
+      return;
+    }
+
     try {
+      setDownloadingId(report.id);
+
       const { data, error } = await supabase.storage
         .from('documents')
         .download(report.document.storage_path);
@@ -335,6 +318,8 @@ export function ESGReportsTable() {
         description: "Failed to download the report. Please try again.",
         variant: "destructive",
       });
+    } finally {
+      setDownloadingId(null);
     }
   };
 
@@ -347,7 +332,11 @@ export function ESGReportsTable() {
   };
 
   const formatDate = (dateString: string) => {
-    return new Date(dateString).toLocaleDateString();
+    try {
+      return format(parseISO(dateString), 'MMM dd, yyyy');
+    } catch (error) {
+      return 'Invalid date';
+    }
   };
 
   if (loading) {
@@ -417,6 +406,8 @@ export function ESGReportsTable() {
               {reports.map((report) => {
                 const statusInfo = statusConfig[report.status as keyof typeof statusConfig];
                 const StatusIcon = statusInfo?.icon || Clock;
+                const isDownloading = downloadingId === report.id;
+                const isViewing = viewingId === report.id;
 
                 return (
                   <TableRow key={report.id}>
@@ -444,7 +435,7 @@ export function ESGReportsTable() {
                     </TableCell>
                     <TableCell>
                       <div className="text-xs text-muted-foreground">
-                        {report.gri_standards?.length > 0 
+                        {report.gri_standards?.length > 0
                           ? `${report.gri_standards.length} standards`
                           : 'None specified'
                         }
@@ -464,24 +455,42 @@ export function ESGReportsTable() {
                     <TableCell className="text-right">
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="sm">
-                            <MoreHorizontal className="h-4 w-4" />
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            aria-label="Report actions"
+                            disabled={isDownloading || isViewing}
+                          >
+                            {isDownloading || isViewing ? (
+                              <Loader2 className="h-4 w-4 animate-spin" />
+                            ) : (
+                              <MoreHorizontal className="h-4 w-4" />
+                            )}
                           </Button>
                         </DropdownMenuTrigger>
                         <DropdownMenuContent align="end">
-                          <DropdownMenuItem onClick={() => downloadReport(report)}>
+                          <DropdownMenuItem
+                            onClick={() => downloadReport(report)}
+                            disabled={isDownloading || !report.document}
+                          >
                             <Download className="h-4 w-4 mr-2" />
                             Download Report
                           </DropdownMenuItem>
                           {report.status === 'completed' && (
                             <>
-                              <DropdownMenuItem onClick={() => downloadAnalysisPDF(report)}>
-                                <FileText className="h-4 w-4 mr-2" />
-                                Download Analysis PDF
-                              </DropdownMenuItem>
-                              <DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => viewAnalysisPDF(report)}
+                                disabled={isViewing}
+                              >
                                 <Eye className="h-4 w-4 mr-2" />
                                 View Analysis
+                              </DropdownMenuItem>
+                              <DropdownMenuItem
+                                onClick={() => downloadAnalysisPDF(report)}
+                                disabled={isDownloading}
+                              >
+                                <FileText className="h-4 w-4 mr-2" />
+                                Download Analysis PDF
                               </DropdownMenuItem>
                             </>
                           )}

@@ -30,7 +30,7 @@ export function FeatureItem({
         <CardTitle className="text-xl text-center">{title}</CardTitle>
       </CardHeader>
       <CardContent className="text-center">
-        <CardDescription className="text-base text-center">
+        <CardDescription className="text-base leading-7 text-foreground/80 text-center">
           {description}
         </CardDescription>
       </CardContent>

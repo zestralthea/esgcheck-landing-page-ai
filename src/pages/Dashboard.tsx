@@ -12,6 +12,7 @@ import { ESGScoreSnapshot } from '@/components/ESGScoreSnapshot';
 import { ESGInsightsPanel } from '@/components/ESGInsightsPanel';
 import { ESGReportsTable } from '@/components/ESGReportsTable';
 import { ESGExportCenter } from '@/components/ESGExportCenter';
+import { PDFReportViewer } from '@/components/PDFReportViewer';
 import ESGReportAuditLog from '@/components/ESGReportAuditLog';
 
 const Dashboard = () => {
@@ -266,7 +267,10 @@ const Dashboard = () => {
           </TabsContent>
 
           <TabsContent value="insights">
-            <ESGInsightsPanel />
+            <div className="space-y-6">
+              <ESGInsightsPanel />
+              <PDFReportViewer />
+            </div>
           </TabsContent>
 
           <TabsContent value="export">

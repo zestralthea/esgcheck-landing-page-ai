@@ -12,7 +12,7 @@ export default function Hero() {
   const { t } = useLanguage();
   
   return (
-    <section className="py-20 bg-gradient-dark relative overflow-hidden min-h-screen flex items-center">
+    <section className="py-20 bg-gradient-dark relative overflow-hidden min-h-screen flex items-center hairline-sep-b">
       {/* Video Background */}
       <video
         src="/ESGCheck_hero_compressed.mp4"
@@ -31,21 +31,22 @@ export default function Hero() {
         zIndex={10} 
         mediaOverlay={true}
       />
+      {/* Multiply blend to uniformly reduce glare at ~20% overall */}
       <GradientOverlay 
-        className="bg-gradient-to-br from-media-background/60 via-media-background/40 to-media-background/50" 
-        zIndex={20} 
+        className="bg-black/20 mix-blend-multiply" 
+        zIndex={18} 
       />
       
       <div className="container mx-auto px-4 relative z-30">
         <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
           <div className="space-y-6">
-            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight">
+            <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight tracking-tight text-shadow-lg">
               {t('hero.title')}<br />
               <span className="bg-gradient-primary bg-clip-text text-transparent uppercase">
                 {t('hero.titleHighlight')}
               </span>
             </h1>
-            <p className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-lg md:text-xl leading-8 text-foreground/95 max-w-[65ch] mx-auto text-shadow">
               {t('hero.description')}
             </p>
           </div>
@@ -60,7 +61,7 @@ export default function Hero() {
               {t('hero.joinWaitlist')}
               <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
             </Button>
-            <p className="text-sm text-muted-foreground">{t('waitlist.modal.disclaimer')}</p>
+            <p className="text-sm text-foreground/80">{t('waitlist.modal.disclaimer')}</p>
           </div>
           
           <FeatureIndicatorGroup>
@@ -70,6 +71,8 @@ export default function Hero() {
           </FeatureIndicatorGroup>
         </div>
       </div>
+      {/* Feather into the next section to avoid a hard boundary */}
+      <div className="edge-fade-bottom z-20" />
     </section>
   );
 }

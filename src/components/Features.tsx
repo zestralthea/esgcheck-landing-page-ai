@@ -37,14 +37,22 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-20 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Social.jpg)' }}>
-      <GradientOverlay type="blur" opacity="heavy" mediaOverlay={true} />
+    <section id="features" className="py-20 relative bg-cover bg-center bg-no-repeat hairline-sep-t hairline-sep-b" style={{ backgroundImage: 'url(/Social.jpg)' }}>
+      {/* Readability overlays similar to hero, tuned for image background */}
+      <GradientOverlay className="bg-black/20 mix-blend-multiply" zIndex={5} />
+      {/* Minimal blur for stability without softness */}
+      <GradientOverlay type="blur" opacity="light" mediaOverlay={true} zIndex={6} />
+      <GradientOverlay className="bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.10)_40%,rgba(0,0,0,0.28)_80%)]" zIndex={7} />
+      {/* Feather from previous media section */}
+      <div className="edge-fade-top z-20" />
       
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeading 
           title={t('features.title')}
           description={t('features.subtitle')}
           secondaryDescription={t('features.subtitleTwo')}
+          titleClassName="text-shadow-lg"
+          descriptionClassName="text-shadow"
         />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16 justify-items-center max-w-5xl mx-auto">
@@ -87,6 +95,8 @@ export default function Features() {
           </div>
         </GradientCard>
       </div>
+      {/* Feather into the next section to avoid a hard boundary */}
+      <div className="edge-fade-bottom z-20" />
     </section>
   );
 }

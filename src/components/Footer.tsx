@@ -28,7 +28,7 @@ export default function Footer() {
   };
 
   return (
-    <footer className="border-t border-border bg-gradient-dark">
+    <footer className="hairline-sep-t bg-background">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-4 gap-8">
           <div className="space-y-4">
