@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { lazy, Suspense } from 'react';
+import IdleMount from '@/components/IdleMount';
 import { Navigate } from 'react-router-dom';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -7,13 +8,13 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { useAuth } from '@/contexts/AuthContext';
 import { useFeatureFlags } from '@/hooks/useFeatureFlags';
 import { Lock, Settings, BarChart3, Users, FileText, Bell, FolderOpen, Leaf, Upload, Download } from 'lucide-react';
-import { ESGUploadPanel } from '@/components/ESGUploadPanel';
-import { ESGScoreSnapshot } from '@/components/ESGScoreSnapshot';
-import { ESGInsightsPanel } from '@/components/ESGInsightsPanel';
-import { ESGReportsTable } from '@/components/ESGReportsTable';
-import { ESGExportCenter } from '@/components/ESGExportCenter';
-import { PDFReportViewer } from '@/components/PDFReportViewer';
-import ESGReportAuditLog from '@/components/ESGReportAuditLog';
+const ESGUploadPanel = lazy(() => import('@/components/ESGUploadPanel').then(m => ({ default: m.ESGUploadPanel })));
+const ESGScoreSnapshot = lazy(() => import('@/components/ESGScoreSnapshot').then(m => ({ default: m.ESGScoreSnapshot })));
+const ESGInsightsPanel = lazy(() => import('@/components/ESGInsightsPanel').then(m => ({ default: m.ESGInsightsPanel })));
+const ESGReportsTable = lazy(() => import('@/components/ESGReportsTable').then(m => ({ default: m.ESGReportsTable })));
+const ESGExportCenter = lazy(() => import('@/components/ESGExportCenter').then(m => ({ default: m.ESGExportCenter })));
+const PDFReportViewer = lazy(() => import('@/components/PDFReportViewer').then(m => ({ default: m.PDFReportViewer })));
+const ESGReportAuditLog = lazy(() => import('@/components/ESGReportAuditLog').then(m => ({ default: m.default })));
 
 const Dashboard = () => {
   const { user, profile, signOut, loading: authLoading } = useAuth();
@@ -115,7 +116,7 @@ const Dashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-background to-muted">
+    <div className="min-h-screen bg-gradient-to-br from-background to-muted" style={{ contain: 'paint' }}>
       {/* Header */}
       <header className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="container mx-auto px-4 py-4">
@@ -168,7 +169,7 @@ const Dashboard = () => {
         </div>
 
         {/* ESG Dashboard Tabs */}
-        <Tabs defaultValue="overview" className="space-y-6">
+        <Tabs defaultValue="overview" className="space-y-6" style={{ contentVisibility: 'auto', containIntrinsicSize: '1200px' as any }}>
           <TabsList className="grid w-full grid-cols-5">
             <TabsTrigger value="overview">Overview</TabsTrigger>
             <TabsTrigger value="upload">Upload</TabsTrigger>
@@ -181,8 +182,16 @@ const Dashboard = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Main Content Area */}
               <div className="lg:col-span-2 space-y-6">
-                <ESGScoreSnapshot />
-                <ESGInsightsPanel />
+                <Suspense fallback={<Card><CardContent>Loading insights…</CardContent></Card>}>
+                  <IdleMount delayMs={80}>
+                    <ESGScoreSnapshot />
+                  </IdleMount>
+                </Suspense>
+                <Suspense fallback={<Card><CardContent>Loading insights…</CardContent></Card>}>
+                  <IdleMount delayMs={100}>
+                    <ESGInsightsPanel />
+                  </IdleMount>
+                </Suspense>
               </div>
 
               {/* Sidebar */}
@@ -254,28 +263,52 @@ const Dashboard = () => {
           <TabsContent value="upload" className="space-y-6">
             <div className="grid gap-6 lg:grid-cols-3">
               <div className="lg:col-span-2">
-                <ESGUploadPanel />
+                <Suspense fallback={<Card><CardContent>Loading upload…</CardContent></Card>}>
+                  <IdleMount delayMs={120}>
+                    <ESGUploadPanel />
+                  </IdleMount>
+                </Suspense>
               </div>
               <div className="lg:col-span-1">
-                <ESGReportAuditLog />
+                <Suspense fallback={<Card><CardContent>Loading activity…</CardContent></Card>}>
+                  <IdleMount delayMs={140}>
+                    <ESGReportAuditLog />
+                  </IdleMount>
+                </Suspense>
               </div>
             </div>
           </TabsContent>
 
           <TabsContent value="reports">
-            <ESGReportsTable />
+            <Suspense fallback={<Card><CardContent>Loading reports…</CardContent></Card>}>
+              <IdleMount delayMs={160}>
+                <ESGReportsTable />
+              </IdleMount>
+            </Suspense>
           </TabsContent>
 
           <TabsContent value="insights">
             <div className="space-y-6">
-              <ESGInsightsPanel />
-              <PDFReportViewer />
+              <Suspense fallback={<Card><CardContent>Loading insights…</CardContent></Card>}>
+                <IdleMount delayMs={180}>
+                  <ESGInsightsPanel />
+                </IdleMount>
+              </Suspense>
+              <Suspense fallback={<Card><CardContent>Loading viewer…</CardContent></Card>}>
+                <IdleMount delayMs={220}>
+                  <PDFReportViewer />
+                </IdleMount>
+              </Suspense>
             </div>
           </TabsContent>
 
           <TabsContent value="export">
             <div className="max-w-4xl mx-auto">
-              <ESGExportCenter />
+              <Suspense fallback={<Card><CardContent>Loading export…</CardContent></Card>}>
+                <IdleMount delayMs={200}>
+                  <ESGExportCenter />
+                </IdleMount>
+              </Suspense>
             </div>
           </TabsContent>
         </Tabs>

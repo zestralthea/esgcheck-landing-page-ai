@@ -1,3 +1,4 @@
+import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
@@ -10,17 +11,39 @@ import { buttonVariants } from "@/lib/variants";
 export default function Hero() {
   const { openModal } = useWaitlistModal();
   const { t } = useLanguage();
-  
+  const videoRef = useRef<HTMLVideoElement | null>(null);
+  const [ready, setReady] = useState(false);
+
+  useEffect(() => {
+    // Safety timeout: don't block forever if video is slow
+    const timeout = setTimeout(() => setReady(true), 1200);
+    const v = videoRef.current;
+    if (v) {
+      const onReady = () => {
+        setReady(true);
+      };
+      v.addEventListener('loadeddata', onReady, { once: true });
+      v.addEventListener('canplaythrough', onReady, { once: true });
+      return () => {
+        clearTimeout(timeout);
+        v.removeEventListener('loadeddata', onReady as any);
+        v.removeEventListener('canplaythrough', onReady as any);
+      };
+    }
+    return () => clearTimeout(timeout);
+  }, []);
+
   return (
-    <section className="py-20 bg-gradient-dark relative overflow-hidden min-h-screen flex items-center hairline-sep-b">
+    <section className="py-20 bg-gradient-dark relative overflow-hidden min-h-screen flex items-center">
       {/* Video Background */}
       <video
+        ref={videoRef}
         src="/ESGCheck_hero_compressed.mp4"
         autoPlay
         loop
         muted
         playsInline
-        preload="metadata"
+        preload="auto"
         className="absolute inset-0 w-full h-full object-cover z-0"
       />
       
@@ -38,7 +61,12 @@ export default function Hero() {
       />
       
       <div className="container mx-auto px-4 relative z-30">
-        <div className="max-w-4xl mx-auto text-center space-y-8 animate-fade-in">
+        <div
+          className={cn(
+            "max-w-4xl mx-auto text-center space-y-8 transition-opacity duration-500 will-change-[opacity]",
+            ready ? "opacity-100" : "opacity-0"
+          )}
+        >
           <div className="space-y-6">
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-bold text-foreground leading-tight tracking-tight text-shadow-lg">
               {t('hero.title')}<br />
@@ -71,8 +99,8 @@ export default function Hero() {
           </FeatureIndicatorGroup>
         </div>
       </div>
-      {/* Feather into the next section to avoid a hard boundary */}
-      <div className="edge-fade-bottom z-20" />
+      {/* Stronger feather into the next section to mask rough boundary */}
+      <div className="edge-fade-strong-bottom z-20" />
     </section>
   );
 }

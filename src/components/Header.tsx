@@ -36,6 +36,19 @@ export default function Header() {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
 
+  const prefetchAuth = () => {
+    import('@/pages/Auth');
+  };
+  const prefetchDashboard = () => {
+    if (isEnabled('dashboard_enabled')) {
+      import('@/pages/Dashboard');
+      // Warm common heavy panels to avoid first-paint jank
+      import('@/components/ESGInsightsPanel');
+      import('@/components/ESGScoreSnapshot');
+      import('@/components/ESGReportsTable');
+    }
+  };
+
   const handleNavClick = (sectionId: string) => {
     if (isHomePage) {
       smoothScrollTo(sectionId);
@@ -88,7 +101,7 @@ export default function Header() {
                   {/* Dashboard button - only show if dashboard is enabled and user has access */}
                   {isEnabled('dashboard_enabled') && profile?.dashboard_access && (
                     <Button asChild variant="outline" size="sm">
-                      <Link to="/dashboard">Dashboard</Link>
+                      <Link to="/dashboard" onMouseEnter={prefetchDashboard} onFocus={prefetchDashboard}>Dashboard</Link>
                     </Button>
                   )}
                   
@@ -135,7 +148,7 @@ export default function Header() {
                     {t('header.joinWaitlist')}
                   </Button>
                   <Button asChild variant="outline" size="sm">
-                    <Link to="/auth">Sign In</Link>
+                    <Link to="/auth" onMouseEnter={prefetchAuth} onFocus={prefetchAuth}>Sign In</Link>
                   </Button>
                 </>
               )}

@@ -28,7 +28,7 @@ export function GradientCard({
       )}
       {...props}
     >
-      <div className={cn("", containerClassName)}>
+      <div className={cn("relative", containerClassName)}>
         {children}
       </div>
     </Card>

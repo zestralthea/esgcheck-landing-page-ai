@@ -37,14 +37,14 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-20 relative bg-cover bg-center bg-no-repeat hairline-sep-t hairline-sep-b" style={{ backgroundImage: 'url(/Social.jpg)' }}>
+    <section id="features" className="py-20 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Social.jpg)' }}>
       {/* Readability overlays similar to hero, tuned for image background */}
       <GradientOverlay className="bg-black/20 mix-blend-multiply" zIndex={5} />
       {/* Minimal blur for stability without softness */}
       <GradientOverlay type="blur" opacity="light" mediaOverlay={true} zIndex={6} />
       <GradientOverlay className="bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.10)_40%,rgba(0,0,0,0.28)_80%)]" zIndex={7} />
-      {/* Feather from previous media section */}
-      <div className="edge-fade-top z-20" />
+      {/* Stronger feather from previous media section */}
+      <div className="edge-fade-strong-top z-20" />
       
       <div className="container mx-auto px-4 relative z-10">
         <SectionHeading 
@@ -95,8 +95,8 @@ export default function Features() {
           </div>
         </GradientCard>
       </div>
-      {/* Feather into the next section to avoid a hard boundary */}
-      <div className="edge-fade-bottom z-20" />
+      {/* Stronger feather into the next section */}
+      <div className="edge-fade-strong-bottom z-20" />
     </section>
   );
 }

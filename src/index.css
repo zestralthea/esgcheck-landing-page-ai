@@ -134,6 +134,26 @@ All colors MUST be HSL.
 }
 
 @layer utilities {
+  /* During route transitions, disable expensive GPU effects */
+  .route-transitioning .backdrop-blur, 
+  .route-transitioning .backdrop-blur-sm, 
+  .route-transitioning .backdrop-blur-md, 
+  .route-transitioning .backdrop-blur-lg, 
+  .route-transitioning .backdrop-blur-xl {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .route-transitioning .shadow-premium, 
+  .route-transitioning .shadow-glow {
+    box-shadow: none !important;
+  }
+  .route-transitioning .ring-1, 
+  .route-transitioning .ring-2 {
+    box-shadow: none !important; /* reduce composite cost */
+  }
+  /* Ensure loader spinner keeps animating even when effects are reduced */
+  .route-loader .animate-spin { animation: spin 1s linear infinite !important; }
+
   /* Subtle text shadows for readability on media backgrounds */
   .text-shadow {
     text-shadow: 0 1px 2px hsl(0 0% 0% / 0.5);
@@ -162,14 +182,15 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     bottom: 0;
-    height: 12rem; /* slightly stronger, longer fade */
+    height: 12rem; /* compact fade area */
     pointer-events: none;
     background: linear-gradient(
       to bottom,
       hsl(var(--background) / 0.00) 0%,
-      hsl(var(--background) / 0.00) 40%,
-      hsl(var(--background) / 0.48) 72%,
-      hsl(var(--background) / 0.72) 100%
+      hsl(var(--background) / 0.00) 46%,
+      hsl(var(--background) / 0.68) 60%, /* aggressive middle coverage */
+      hsl(var(--background) / 0.80) 70%, /* peak around the middle */
+      hsl(var(--background) / 0.72) 100% /* slightly softer at the very end */
     );
   }
   .edge-fade-top {
@@ -177,13 +198,14 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     top: 0;
-    height: 12rem; /* slightly stronger, longer fade */
+    height: 12rem; /* compact fade area */
     pointer-events: none;
     background: linear-gradient(
       to top,
       hsl(var(--background) / 0.00) 0%,
-      hsl(var(--background) / 0.00) 40%,
-      hsl(var(--background) / 0.48) 72%,
+      hsl(var(--background) / 0.00) 46%,
+      hsl(var(--background) / 0.68) 60%,
+      hsl(var(--background) / 0.80) 70%,
       hsl(var(--background) / 0.72) 100%
     );
   }
@@ -212,14 +234,15 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     bottom: 0;
-    height: 16rem;
+    height: 8rem; /* compact strong fade area */
     pointer-events: none;
     background: linear-gradient(
       to bottom,
       hsl(var(--background) / 0.00) 0%,
-      hsl(var(--background) / 0.00) 50%,
-      hsl(var(--background) / 0.60) 82%,
-      hsl(var(--background) / 0.85) 100%
+      hsl(var(--background) / 0.00) 25%,
+      hsl(var(--background) / 0.10) 50%, /* very strong mid */
+      hsl(var(--background) / 0.8) 85%,
+      hsl(var(--background) / 1) 100%
     );
   }
   .edge-fade-strong-top {
@@ -227,14 +250,15 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     top: 0;
-    height: 16rem;
+    height: 8rem; /* compact strong fade area */
     pointer-events: none;
     background: linear-gradient(
       to top,
       hsl(var(--background) / 0.00) 0%,
-      hsl(var(--background) / 0.00) 50%,
-      hsl(var(--background) / 0.60) 82%,
-      hsl(var(--background) / 0.85) 100%
+      hsl(var(--background) / 0.00) 25%,
+      hsl(var(--background) / 0.10) 50%,
+      hsl(var(--background) / 0.8) 85%,
+      hsl(var(--background) / 1) 100%
     );
   }
 }

@@ -31,11 +31,18 @@ export default function WaitlistForm() {
           <SectionHeading
             title={t('waitlist.title')}
             description={t('waitlist.description')}
+            centered
+            titleClassName="text-center"
+            descriptionClassName="text-center mx-auto"
           />
           
-          <GradientCard variant="gradient" hover="none">
-            <CardHeader>
-              <CardTitle className="text-2xl">{t('waitlist.cardTitle')}</CardTitle>
+          <GradientCard
+            variant="default"
+            hover="none"
+            className="relative overflow-hidden bg-[hsl(var(--card)/0.35)] backdrop-blur-xl border border-border/30 ring-1 ring-white/5"
+          >
+            <CardHeader className="text-center">
+              <CardTitle className="text-2xl text-center">{t('waitlist.cardTitle')}</CardTitle>
             </CardHeader>
             <CardContent>
               {!isSubmitted ? (
@@ -100,10 +107,10 @@ export default function WaitlistForm() {
                       </>
                     )}
                   </Button>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground text-center">
                     {t('waitlist.modal.disclaimer')}
                   </p>
-                  <p className="text-xs text-success font-medium">
+                  <p className="text-xs text-success font-medium text-center">
                     {t('waitlist.modal.betaNote')}
                   </p>
                 </form>

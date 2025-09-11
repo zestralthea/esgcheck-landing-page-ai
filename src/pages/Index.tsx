@@ -7,6 +7,7 @@ import Footer from "@/components/Footer";
 import AboutSection from "@/components/AboutSection";
 import WaitlistModal from "@/components/WaitlistModal";
 import SEOHead from "@/components/SEOHead";
+import { Helmet } from 'react-helmet-async';
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 
@@ -47,6 +48,9 @@ const Index = () => {
   
   return (
     <div className="min-h-screen bg-background">
+      <Helmet>
+        <link rel="preload" as="video" href="/ESGCheck_hero_compressed.mp4" type="video/mp4" />
+      </Helmet>
       <SEOHead 
         structuredData={homeStructuredData}
       />
