@@ -1,4 +1,4 @@
-
+import { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -20,6 +20,15 @@ const smoothScrollTo = (elementId: string) => {
 };
 
 export default function Header() {
+  const [scrolled, setScrolled] = useState(false);
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 2);
+    };
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
   const { openModal } = useWaitlistModal();
   const { t } = useLanguage();
   const { user, profile, signOut } = useAuth();
@@ -37,7 +46,15 @@ export default function Header() {
   };
 
   return (
-    <header className="border-b border-border bg-gradient-dark backdrop-blur supports-[backdrop-filter]:bg-gradient-dark/90 sticky top-0 z-50">
+    <>
+      <header
+        className={
+          `hairline-sep-b fixed top-0 left-0 right-0 z-50 w-full backdrop-blur transition-colors duration-300 ` +
+          (scrolled
+            ? "bg-background/55 supports-[backdrop-filter]:bg-background/45"
+            : "bg-background/90 supports-[backdrop-filter]:bg-background/70")
+        }
+      >
       <div className="container mx-auto px-2 md:px-4 h-16 relative flex items-center">
         <Link to="/" className="flex items-center space-x-2">
           <img 
@@ -123,6 +140,9 @@ export default function Header() {
           <LanguageToggle />
         </div>
       </div>
-    </header>
+      </header>
+      {/* Spacer to offset fixed header height */}
+      <div className="h-16" />
+    </>
   );
 }
