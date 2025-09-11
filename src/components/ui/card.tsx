@@ -5,15 +5,23 @@ import { cn } from "@/lib/utils"
 const Card = React.forwardRef<
   HTMLDivElement,
   React.HTMLAttributes<HTMLDivElement>
->(({ className, ...props }, ref) => (
+>(({ className, children, ...props }, ref) => (
   <div
     ref={ref}
     className={cn(
-      "rounded-lg border bg-card text-card-foreground shadow-sm",
+      "relative overflow-hidden rounded-lg border border-border/40 bg-[hsl(var(--card)/0.45)] backdrop-blur-lg text-card-foreground shadow-sm",
       className
     )}
     {...props}
-  />
+  >
+    <div
+      aria-hidden
+      className="pointer-events-none absolute inset-0 bg-[hsl(var(--background)/0.06)] sm:bg-[hsl(var(--background)/0.08)] md:bg-[hsl(var(--background)/0.10)]"
+    />
+    <div className="relative">
+      {children}
+    </div>
+  </div>
 ))
 Card.displayName = "Card"
 

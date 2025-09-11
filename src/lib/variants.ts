@@ -37,12 +37,19 @@ export const buttonVariants = cva(
  * Provides consistent styling options for cards throughout the application
  */
 export const cardVariants = cva(
-  "rounded-lg border bg-card text-card-foreground shadow-sm",
+  "rounded-lg border border-border/40 bg-[hsl(var(--card)/0.45)] backdrop-blur-lg text-card-foreground shadow-sm",
   {
     variants: {
       variant: {
         default: "",
-        gradient: "border border-border/20 shadow-premium bg-gradient-card backdrop-blur",
+        gradient: [
+          "border border-border/20 shadow-premium",
+          // Translucent gradient (semi‑transparent stops) for modern glass look
+          "bg-gradient-to-br",
+          "from-[hsl(var(--card)/0.50)]",
+          "to-[hsl(var(--card)/0.60)]",
+          "backdrop-blur-lg"
+        ].join(" "),
         outline: "border-2",
         premium: "border border-border/20 shadow-premium bg-gradient-gold backdrop-blur",
       },

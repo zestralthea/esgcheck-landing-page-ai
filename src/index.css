@@ -162,18 +162,30 @@ All colors MUST be HSL.
     left: 0;
     right: 0;
     bottom: 0;
-    height: 7rem; /* 112px */
+    height: 12rem; /* slightly stronger, longer fade */
     pointer-events: none;
-    background: linear-gradient(to bottom, rgba(0,0,0,0), hsl(var(--background)) 85%);
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--background) / 0.00) 0%,
+      hsl(var(--background) / 0.00) 40%,
+      hsl(var(--background) / 0.48) 72%,
+      hsl(var(--background) / 0.72) 100%
+    );
   }
   .edge-fade-top {
     position: absolute;
     left: 0;
     right: 0;
     top: 0;
-    height: 7rem; /* 112px */
+    height: 12rem; /* slightly stronger, longer fade */
     pointer-events: none;
-    background: linear-gradient(to top, rgba(0,0,0,0), hsl(var(--background)) 85%);
+    background: linear-gradient(
+      to top,
+      hsl(var(--background) / 0.00) 0%,
+      hsl(var(--background) / 0.00) 40%,
+      hsl(var(--background) / 0.48) 72%,
+      hsl(var(--background) / 0.72) 100%
+    );
   }
 
   /* Device-pixel hairline separators (crispest possible) */
@@ -183,16 +195,46 @@ All colors MUST be HSL.
     position: absolute;
     left: 0;
     right: 0;
-    height: 1px;
-    background: hsl(var(--border) / 0.14);
-    transform: scaleY(0.5); /* subpixel on 1x displays */
+    height: 1px; /* thicker than ultra-hairline on 1x displays */
+    background: hsl(var(--border) / 0.12);
+    transform: none; /* render as a full device pixel line */
     transform-origin: 0 0;
     pointer-events: none;
     z-index: 30;
   }
   .hairline-sep-b::after { bottom: 0; }
   .hairline-sep-t::before { top: 0; }
-  @media (min-resolution: 2dppx) {
-    .hairline-sep-b::after, .hairline-sep-t::before { transform: none; }
+  /* On HiDPI this remains crisp; no transform needed */
+
+  /* Stronger fades to fully mask rough seams */
+  .edge-fade-strong-bottom {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 16rem;
+    pointer-events: none;
+    background: linear-gradient(
+      to bottom,
+      hsl(var(--background) / 0.00) 0%,
+      hsl(var(--background) / 0.00) 50%,
+      hsl(var(--background) / 0.60) 82%,
+      hsl(var(--background) / 0.85) 100%
+    );
+  }
+  .edge-fade-strong-top {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    height: 16rem;
+    pointer-events: none;
+    background: linear-gradient(
+      to top,
+      hsl(var(--background) / 0.00) 0%,
+      hsl(var(--background) / 0.00) 50%,
+      hsl(var(--background) / 0.60) 82%,
+      hsl(var(--background) / 0.85) 100%
+    );
   }
 }
