@@ -130,23 +130,9 @@ ALTER VIEW public.index_usage SET (security_barrier = on);
 ALTER VIEW public.organization_stats SET (security_barrier = on);
 
 -- 4. SECURE MATERIALIZED VIEW (1 issue)
--- Add RLS policy to materialized view
-ALTER MATERIALIZED VIEW public.mv_organization_metrics ENABLE ROW LEVEL SECURITY;
-
--- Create policy for mv_organization_metrics (users can only see their organization metrics)
-CREATE POLICY "Users can view their organization metrics" 
-ON public.mv_organization_metrics
-FOR SELECT 
-USING (
-  organization_id IN (
-    SELECT organization_id 
-    FROM organization_members 
-    WHERE user_id = auth.uid() 
-      AND accepted_at IS NOT NULL 
-      AND deleted_at IS NULL
-  )
-  OR public.is_admin()
-);
+-- Note: PostgreSQL does not support RLS on materialized views
+-- The materialized view should be secured at the application level or recreated as a regular view
+-- Skipping RLS policy creation for mv_organization_metrics
 
 -- 5. ADD COMMENTS FOR DOCUMENTATION
 COMMENT ON VIEW public.active_queries IS 'Administrative view: Currently executing database queries (admin access only)';

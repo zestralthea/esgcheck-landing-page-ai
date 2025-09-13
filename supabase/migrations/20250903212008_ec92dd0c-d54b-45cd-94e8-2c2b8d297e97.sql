@@ -31,35 +31,33 @@ ON public.waitlist_entries
 FOR INSERT 
 WITH CHECK (public.check_waitlist_rate_limit(email));
 
--- Enable RLS on activity log partition tables (contains user tracking data)
-ALTER TABLE public.activity_logs_2025_08 ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.activity_logs_2025_09 ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.activity_logs_2025_10 ENABLE ROW LEVEL SECURITY;
+-- Enable RLS on activity log partition tables (contains user tracking data) - only if they exist
+DO $$
+DECLARE
+    partition_table text;
+BEGIN
+    FOREACH partition_table IN ARRAY ARRAY['activity_logs_2025_08', 'activity_logs_2025_09', 'activity_logs_2025_10']
+    LOOP
+        IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = partition_table) THEN
+            EXECUTE format('ALTER TABLE public.%I ENABLE ROW LEVEL SECURITY', partition_table);
+            EXECUTE format('CREATE POLICY "%s_select" ON public.%I FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin())', partition_table, partition_table);
+        END IF;
+    END LOOP;
+END $$;
 
--- Create policies for activity log partitions (same as parent table)
-CREATE POLICY "activity_logs_2025_08_select" ON public.activity_logs_2025_08
-FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin());
-
-CREATE POLICY "activity_logs_2025_09_select" ON public.activity_logs_2025_09
-FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin());
-
-CREATE POLICY "activity_logs_2025_10_select" ON public.activity_logs_2025_10
-FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin());
-
--- Enable RLS on document access log partition tables (contains access patterns)
-ALTER TABLE public.document_access_logs_2025_08 ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.document_access_logs_2025_09 ENABLE ROW LEVEL SECURITY;
-ALTER TABLE public.document_access_logs_2025_10 ENABLE ROW LEVEL SECURITY;
-
--- Create policies for document access log partitions (users can only see their own access logs)
-CREATE POLICY "document_access_logs_2025_08_select" ON public.document_access_logs_2025_08
-FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin());
-
-CREATE POLICY "document_access_logs_2025_09_select" ON public.document_access_logs_2025_09
-FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin());
-
-CREATE POLICY "document_access_logs_2025_10_select" ON public.document_access_logs_2025_10
-FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin());
+-- Enable RLS on document access log partition tables (contains access patterns) - only if they exist
+DO $$
+DECLARE
+    partition_table text;
+BEGIN
+    FOREACH partition_table IN ARRAY ARRAY['document_access_logs_2025_08', 'document_access_logs_2025_09', 'document_access_logs_2025_10']
+    LOOP
+        IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = partition_table) THEN
+            EXECUTE format('ALTER TABLE public.%I ENABLE ROW LEVEL SECURITY', partition_table);
+            EXECUTE format('CREATE POLICY "%s_select" ON public.%I FOR SELECT USING ((user_id = auth.uid()) OR public.is_admin())', partition_table, partition_table);
+        END IF;
+    END LOOP;
+END $$;
 
 -- Fix SECURITY DEFINER functions by adding proper search path
 -- Update existing functions to be more secure

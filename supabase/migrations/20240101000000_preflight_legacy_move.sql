@@ -7,6 +7,12 @@
 -- 1) Ensure backup schema exists
 CREATE SCHEMA IF NOT EXISTS legacy_backup;
 
+-- Ensure required extensions are available early for downstream migrations
+-- Some earlier migrations rely on gen_random_uuid() or uuid_generate_v4()
+-- Having these enabled here avoids ordering issues during supabase start
+CREATE EXTENSION IF NOT EXISTS "pgcrypto";     -- provides gen_random_uuid()
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";    -- provides uuid_generate_v4()
+
 -- 2) Helper: function to move a table if it exists in public
 DO $$
 DECLARE

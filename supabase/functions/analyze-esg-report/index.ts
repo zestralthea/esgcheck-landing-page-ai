@@ -153,8 +153,8 @@ serve(async (req) => {
     // 3. Construct the final prompt
     console.log("Constructing prompt for OpenAI");
     const systemPrompt = `
-You are an ESG analysis assistant. 
-Review the following ESG report and compare it with the guidelines provided. 
+You are an ESG analysis assistant.
+Review the following ESG report and compare it with the guidelines provided.
 Extract material topics, identify gaps against the standards, and provide a structured JSON output with:
 - reasoning_steps
 - findings.extracted_material_topics
@@ -162,10 +162,20 @@ Extract material topics, identify gaps against the standards, and provide a stru
 - findings.scoring_rationale
 - findings.final_score
 - findings.summary
+- insights: array of insight objects with fields:
+  - type: "strength" | "weakness" | "opportunity" | "risk" | "recommendation" | "benchmark"
+  - title: string
+  - description: string
+  - priority: "low" | "medium" | "high" | "critical"
+  - category: "environmental" | "social" | "governance"
+  - actionable: boolean
+  - impact_score: number (0-10)
+  - implementation_effort: "low" | "medium" | "high"
 
 Important:
 - Base your evaluation ONLY on the provided report text and these guidelines.
 - Use equal weights for Environmental, Social, Governance (33% each).
+- Generate 6-12 insights covering different types and categories.
 - Provide JSON only, no additional explanation.
 `;
 
@@ -240,6 +250,7 @@ ${guidelinesContext}
         recommendations: [],
         risk_assessment: {},
         full_analysis: analysis,
+        insights: analysis.insights || [],
         confidence_score: 85,
         processing_time_ms: 5000,
         is_latest: true,

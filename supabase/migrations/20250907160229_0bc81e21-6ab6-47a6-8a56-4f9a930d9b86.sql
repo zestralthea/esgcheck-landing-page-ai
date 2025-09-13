@@ -1,4 +1,4 @@
--- Create development organization for testing
+-- Create development organization for testing (only if it doesn't exist)
 INSERT INTO organizations (
   id,
   name,

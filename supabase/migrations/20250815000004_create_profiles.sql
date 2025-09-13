@@ -1,7 +1,7 @@
 -- Migration: Create User Profiles Table
 -- Description: Extended user information beyond auth.users
 
-CREATE TABLE profiles (
+CREATE TABLE IF NOT EXISTS profiles (
   id uuid PRIMARY KEY REFERENCES auth.users(id) ON DELETE CASCADE,
   full_name text,
   avatar_url text,
@@ -15,7 +15,7 @@ CREATE TABLE profiles (
 );
 
 -- Indexes
-CREATE INDEX idx_profiles_default_org ON profiles(default_organization_id);
+-- CREATE INDEX idx_profiles_default_org ON profiles(default_organization_id);
 CREATE INDEX idx_profiles_created ON profiles(created_at DESC);
 
 -- Trigger to auto-create profile on user signup
@@ -36,4 +36,4 @@ CREATE TRIGGER on_auth_user_created
 
 -- Comments
 COMMENT ON TABLE profiles IS 'Extended user profile information';
-COMMENT ON COLUMN profiles.timezone IS 'IANA timezone identifier';
+-- COMMENT ON COLUMN profiles.timezone IS 'IANA timezone identifier';

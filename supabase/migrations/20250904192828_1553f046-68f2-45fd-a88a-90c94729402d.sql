@@ -87,56 +87,8 @@ $$;
 -- Note: We need to identify which specific views have SECURITY DEFINER
 -- This is a placeholder for views that may exist
 
--- Secure the materialized view by making it admin-only accessible
-CREATE OR REPLACE VIEW public.safe_organization_stats AS
-SELECT 
-    o.id as organization_id,
-    o.name as organization_name,
-    o.subscription_tier,
-    CASE 
-        WHEN public.is_admin() THEN member_count
-        ELSE NULL
-    END as member_count,
-    CASE 
-        WHEN public.is_admin() THEN report_count
-        ELSE NULL
-    END as report_count
-FROM organizations o
-LEFT JOIN (
-    SELECT 
-        organization_id,
-        COUNT(DISTINCT user_id) as member_count
-    FROM organization_members 
-    WHERE deleted_at IS NULL
-    GROUP BY organization_id
-) om ON o.id = om.organization_id
-LEFT JOIN (
-    SELECT 
-        organization_id,
-        COUNT(*) as report_count
-    FROM esg_reports
-    WHERE deleted_at IS NULL
-    GROUP BY organization_id
-) er ON o.id = er.organization_id
-WHERE o.deleted_at IS NULL;
-
--- Enable RLS on the safe view
-ALTER VIEW public.safe_organization_stats SET (security_invoker = on);
-
--- Create RLS policy for the safe view
-CREATE POLICY "Admin or own organization stats only"
-ON public.safe_organization_stats
-FOR SELECT
-TO authenticated
-USING (
-    public.is_admin() 
-    OR organization_id IN (
-        SELECT organization_id 
-        FROM organization_members 
-        WHERE user_id = auth.uid() 
-        AND deleted_at IS NULL
-    )
-);
+-- Note: Skipping organization stats view creation due to schema compatibility issues
+-- This view can be created manually if needed after schema stabilization
 
 -- Log this security improvement
 SELECT public.log_security_event(

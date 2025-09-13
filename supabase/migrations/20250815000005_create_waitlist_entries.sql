@@ -20,9 +20,9 @@ CREATE TABLE waitlist_entries (
 );
 
 -- Indexes
-CREATE INDEX idx_waitlist_email ON waitlist_entries(email);
-CREATE INDEX idx_waitlist_status ON waitlist_entries(status) WHERE status = 'pending';
-CREATE INDEX idx_waitlist_created ON waitlist_entries(created_at DESC);
+CREATE INDEX IF NOT EXISTS idx_waitlist_email ON waitlist_entries(email);
+CREATE INDEX IF NOT EXISTS idx_waitlist_status ON waitlist_entries(status) WHERE status = 'pending';
+CREATE INDEX IF NOT EXISTS idx_waitlist_created ON waitlist_entries(created_at DESC);
 
 -- Comments
 COMMENT ON TABLE waitlist_entries IS 'Waitlist signups and conversion tracking';

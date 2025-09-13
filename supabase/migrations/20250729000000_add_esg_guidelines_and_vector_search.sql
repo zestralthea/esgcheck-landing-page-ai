@@ -3,7 +3,7 @@ CREATE EXTENSION IF NOT EXISTS vector;
 
 -- Create table for ESG guidelines frameworks
 CREATE TABLE IF NOT EXISTS esg_guideline_frameworks (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   name VARCHAR NOT NULL UNIQUE,
   description TEXT,
   created_at TIMESTAMP WITH TIME ZONE DEFAULT now(),
@@ -12,7 +12,7 @@ CREATE TABLE IF NOT EXISTS esg_guideline_frameworks (
 
 -- Create table for ESG guideline chunks with vector embeddings
 CREATE TABLE IF NOT EXISTS esg_guideline_chunks (
-  id UUID PRIMARY KEY DEFAULT uuid_generate_v4(),
+  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
   framework_id UUID REFERENCES esg_guideline_frameworks(id) ON DELETE CASCADE,
   title VARCHAR NOT NULL,
   content TEXT NOT NULL,
@@ -26,41 +26,41 @@ CREATE TABLE IF NOT EXISTS esg_guideline_chunks (
 CREATE INDEX IF NOT EXISTS idx_esg_guideline_chunks_embedding ON esg_guideline_chunks USING ivfflat (embedding vector_l2_ops) WITH (lists = 100);
 
 -- Create the match_guideline_chunks function for similarity search
-CREATE OR REPLACE FUNCTION match_guideline_chunks(
-  query_embedding VECTOR(1536),
-  match_threshold FLOAT,
-  match_count INT,
-  framework_name VARCHAR
-)
-RETURNS TABLE (
-  id UUID,
-  title VARCHAR,
-  content TEXT,
-  similarity FLOAT
-)
-LANGUAGE plpgsql
-AS $$
-BEGIN
-  RETURN QUERY
-  SELECT
-    c.id,
-    c.title,
-    c.content,
-    1 - (c.embedding <-> query_embedding) AS similarity
-  FROM
-    esg_guideline_chunks c
-  JOIN
-    esg_guideline_frameworks f ON c.framework_id = f.id
-  WHERE
-    f.name = framework_name
-  AND
-    1 - (c.embedding <-> query_embedding) > match_threshold
-  ORDER BY
-    c.embedding <-> query_embedding
-  LIMIT
-    match_count;
-END;
-$$;
+-- CREATE OR REPLACE FUNCTION match_guideline_chunks(
+--   query_embedding VECTOR(1536),
+--   match_threshold FLOAT,
+--   match_count INT,
+--   framework_name VARCHAR
+-- )
+-- RETURNS TABLE (
+--   id UUID,
+--   title VARCHAR,
+--   content TEXT,
+--   similarity FLOAT
+-- )
+-- LANGUAGE plpgsql
+-- AS $$
+-- BEGIN
+--   RETURN QUERY
+--   SELECT
+--     c.id,
+--     c.title,
+--     c.content,
+--     1 - (c.embedding <-> query_embedding) AS similarity
+--   FROM
+--     esg_guideline_chunks c
+--   JOIN
+--     esg_guideline_frameworks f ON c.framework_id = f.id
+--   WHERE
+--     f.name = framework_name
+--   AND
+--     1 - (c.embedding <-> query_embedding) > match_threshold
+--   ORDER BY
+--     c.embedding <-> query_embedding
+--   LIMIT
+--     match_count;
+-- END;
+-- $$;
 
 -- Insert sample GRI framework
 INSERT INTO esg_guideline_frameworks (name, description)

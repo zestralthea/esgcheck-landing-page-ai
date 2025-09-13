@@ -10,10 +10,9 @@ import { useFeatureFlags } from '@/hooks/useFeatureFlags';
 import { Lock, Settings, BarChart3, Users, FileText, Bell, FolderOpen, Leaf, Upload, Download } from 'lucide-react';
 const ESGUploadPanel = lazy(() => import('@/components/ESGUploadPanel').then(m => ({ default: m.ESGUploadPanel })));
 const ESGScoreSnapshot = lazy(() => import('@/components/ESGScoreSnapshot').then(m => ({ default: m.ESGScoreSnapshot })));
-const ESGInsightsPanel = lazy(() => import('@/components/ESGInsightsPanel').then(m => ({ default: m.ESGInsightsPanel })));
+const AnalysisResultsCard = lazy(() => import('@/components/AnalysisResultsCard').then(m => ({ default: m.AnalysisResultsCard })));
 const ESGReportsTable = lazy(() => import('@/components/ESGReportsTable').then(m => ({ default: m.ESGReportsTable })));
 const ESGExportCenter = lazy(() => import('@/components/ESGExportCenter').then(m => ({ default: m.ESGExportCenter })));
-const PDFReportViewer = lazy(() => import('@/components/PDFReportViewer').then(m => ({ default: m.PDFReportViewer })));
 const ESGReportAuditLog = lazy(() => import('@/components/ESGReportAuditLog').then(m => ({ default: m.default })));
 
 const Dashboard = () => {
@@ -187,9 +186,9 @@ const Dashboard = () => {
                     <ESGScoreSnapshot />
                   </IdleMount>
                 </Suspense>
-                <Suspense fallback={<Card><CardContent>Loading insights…</CardContent></Card>}>
+                <Suspense fallback={<Card><CardContent>Loading analysis…</CardContent></Card>}>
                   <IdleMount delayMs={100}>
-                    <ESGInsightsPanel />
+                    <AnalysisResultsCard />
                   </IdleMount>
                 </Suspense>
               </div>
@@ -288,18 +287,11 @@ const Dashboard = () => {
           </TabsContent>
 
           <TabsContent value="insights">
-            <div className="space-y-6">
-              <Suspense fallback={<Card><CardContent>Loading insights…</CardContent></Card>}>
-                <IdleMount delayMs={180}>
-                  <ESGInsightsPanel />
-                </IdleMount>
-              </Suspense>
-              <Suspense fallback={<Card><CardContent>Loading viewer…</CardContent></Card>}>
-                <IdleMount delayMs={220}>
-                  <PDFReportViewer />
-                </IdleMount>
-              </Suspense>
-            </div>
+            <Suspense fallback={<Card><CardContent>Loading analysis results…</CardContent></Card>}>
+              <IdleMount delayMs={180}>
+                <AnalysisResultsCard />
+              </IdleMount>
+            </Suspense>
           </TabsContent>
 
           <TabsContent value="export">

@@ -173,7 +173,7 @@ DROP VIEW IF EXISTS public.auth_user_profiles CASCADE;
 
 -- 5. Secure the materialized view mv_organization_metrics
 -- Make sure it has proper RLS or is not exposed to the API if it contains sensitive data
-ALTER MATERIALIZED VIEW IF EXISTS public.mv_organization_metrics OWNER TO supabase_admin;
+-- Note: Skipping owner change due to permission restrictions
 
 -- 6. Add audit logging for security fixes
 INSERT INTO public.security_audit_log (

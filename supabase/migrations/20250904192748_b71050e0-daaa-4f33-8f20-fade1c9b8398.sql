@@ -4,7 +4,8 @@
 -- 1. Enable RLS on esg_guidelines table (currently disabled)
 ALTER TABLE public.esg_guidelines ENABLE ROW LEVEL SECURITY;
 
--- Create RLS policy for esg_guidelines (authenticated users can read)
+-- Create RLS policy for esg_guidelines (authenticated users can read) - only if it doesn't exist
+DROP POLICY IF EXISTS "Authenticated users can read ESG guidelines" ON public.esg_guidelines;
 CREATE POLICY "Authenticated users can read ESG guidelines"
 ON public.esg_guidelines
 FOR SELECT

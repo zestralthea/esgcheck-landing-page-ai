@@ -96,7 +96,7 @@ alter table "public"."waitlist_entries" drop column "confirmation_status";
 
 alter sequence "public"."guideline_chunks_id_seq" owned by "public"."guideline_chunks"."id";
 
-drop extension if exists "vector";
+
 
 CREATE UNIQUE INDEX background_jobs_pkey ON public.background_jobs USING btree (id);
 
@@ -158,7 +158,15 @@ alter table "public"."esg_insights" add constraint "esg_insights_priority_check"
 
 alter table "public"."esg_insights" validate constraint "esg_insights_priority_check";
 
-alter table "public"."esg_insights" add constraint "esg_insights_report_id_fkey" FOREIGN KEY (report_id) REFERENCES legacy_backup.esg_reports(id) ON DELETE CASCADE not valid;
+-- Only add foreign key if the referenced table exists
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    ALTER TABLE "public"."esg_insights" ADD CONSTRAINT "esg_insights_report_id_fkey" FOREIGN KEY (report_id) REFERENCES legacy_backup.esg_reports(id) ON DELETE CASCADE NOT VALID;
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    ALTER TABLE "public"."esg_insights" ADD CONSTRAINT "esg_insights_report_id_fkey" FOREIGN KEY (report_id) REFERENCES public.esg_reports(id) ON DELETE CASCADE NOT VALID;
+  END IF;
+END $$;
 
 alter table "public"."esg_insights" validate constraint "esg_insights_report_id_fkey";
 
@@ -170,7 +178,15 @@ alter table "public"."esg_scores" add constraint "esg_scores_confidence_level_ch
 
 alter table "public"."esg_scores" validate constraint "esg_scores_confidence_level_check";
 
-alter table "public"."esg_scores" add constraint "esg_scores_report_id_fkey" FOREIGN KEY (report_id) REFERENCES legacy_backup.esg_reports(id) ON DELETE CASCADE not valid;
+-- Only add foreign key if the referenced table exists
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    ALTER TABLE "public"."esg_scores" ADD CONSTRAINT "esg_scores_report_id_fkey" FOREIGN KEY (report_id) REFERENCES legacy_backup.esg_reports(id) ON DELETE CASCADE NOT VALID;
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    ALTER TABLE "public"."esg_scores" ADD CONSTRAINT "esg_scores_report_id_fkey" FOREIGN KEY (report_id) REFERENCES public.esg_reports(id) ON DELETE CASCADE NOT VALID;
+  END IF;
+END $$;
 
 alter table "public"."esg_scores" validate constraint "esg_scores_report_id_fkey";
 
@@ -409,30 +425,30 @@ END;
 $function$
 ;
 
-CREATE OR REPLACE FUNCTION public.match_guideline_chunks(query_embedding vector, match_threshold double precision, match_count integer, framework_name text)
- RETURNS TABLE(id bigint, content text, embedding vector, similarity double precision)
- LANGUAGE plpgsql
- STABLE
-AS $function$
-BEGIN
-  RETURN QUERY
-  SELECT
-    gc.id,
-    gc.content,
-    gc.embedding,
-    1 - (gc.embedding <=> query_embedding) AS similarity
-  FROM
-    guideline_chunks gc
-  WHERE
-    (framework_name IS NULL OR gc.framework = framework_name)
-    AND (1 - (gc.embedding <=> query_embedding)) > match_threshold
-  ORDER BY
-    gc.embedding <=> query_embedding
-  LIMIT
-    match_count;
-END;
-$function$
-;
+-- CREATE OR REPLACE FUNCTION public.match_guideline_chunks(query_embedding vector, match_threshold double precision, match_count integer, framework_name text)
+--  RETURNS TABLE(id bigint, content text, embedding vector, similarity double precision)
+--  LANGUAGE plpgsql
+--  STABLE
+-- AS $function$
+-- BEGIN
+--   RETURN QUERY
+--   SELECT
+--     gc.id,
+--     gc.content,
+--     gc.embedding,
+--     1 - (gc.embedding <=> query_embedding) AS similarity
+--   FROM
+--     guideline_chunks gc
+--   WHERE
+--     (framework_name IS NULL OR gc.framework = framework_name)
+--     AND (1 - (gc.embedding <=> query_embedding)) > match_threshold
+--   ORDER BY
+--     gc.embedding <=> query_embedding
+--   LIMIT
+--     match_count;
+-- END;
+-- $function$
+-- ;
 
 CREATE OR REPLACE FUNCTION public.send_waitlist_confirmation()
  RETURNS trigger
@@ -727,84 +743,86 @@ to public
 using (is_admin());
 
 
-create policy "System can create ESG insights"
-on "public"."esg_insights"
-as permissive
-for insert
-to public
-with check ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "System can create ESG insights" ON "public"."esg_insights" AS permissive FOR INSERT TO public WITH CHECK ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "System can create ESG insights" ON "public"."esg_insights" AS permissive FOR INSERT TO public WITH CHECK ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
 
-create policy "Users can delete insights for their own reports"
-on "public"."esg_insights"
-as permissive
-for delete
-to public
-using ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can delete insights for their own reports" ON "public"."esg_insights" AS permissive FOR DELETE TO public USING ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can delete insights for their own reports" ON "public"."esg_insights" AS permissive FOR DELETE TO public USING ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can update insights for their own reports" ON "public"."esg_insights" AS permissive FOR UPDATE TO public USING ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can update insights for their own reports" ON "public"."esg_insights" AS permissive FOR UPDATE TO public USING ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
-create policy "Users can update insights for their own reports"
-on "public"."esg_insights"
-as permissive
-for update
-to public
-using ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can view insights for their own reports" ON "public"."esg_insights" AS permissive FOR SELECT TO public USING ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can view insights for their own reports" ON "public"."esg_insights" AS permissive FOR SELECT TO public USING ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "System can create ESG scores" ON "public"."esg_scores" AS permissive FOR INSERT TO public WITH CHECK ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "System can create ESG scores" ON "public"."esg_scores" AS permissive FOR INSERT TO public WITH CHECK ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
-create policy "Users can view insights for their own reports"
-on "public"."esg_insights"
-as permissive
-for select
-to public
-using ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_insights.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can delete scores for their own reports" ON "public"."esg_scores" AS permissive FOR DELETE TO public USING ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can delete scores for their own reports" ON "public"."esg_scores" AS permissive FOR DELETE TO public USING ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can update scores for their own reports" ON "public"."esg_scores" AS permissive FOR UPDATE TO public USING ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can update scores for their own reports" ON "public"."esg_scores" AS permissive FOR UPDATE TO public USING ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
-create policy "System can create ESG scores"
-on "public"."esg_scores"
-as permissive
-for insert
-to public
-with check ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
-
-
-create policy "Users can delete scores for their own reports"
-on "public"."esg_scores"
-as permissive
-for delete
-to public
-using ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
-
-
-create policy "Users can update scores for their own reports"
-on "public"."esg_scores"
-as permissive
-for update
-to public
-using ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
-
-
-create policy "Users can view scores for their own reports"
-on "public"."esg_scores"
-as permissive
-for select
-to public
-using ((EXISTS ( SELECT 1
-   FROM legacy_backup.esg_reports
-  WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.user_id = auth.uid()) OR is_admin())))));
+-- Create RLS policies conditionally based on table existence
+DO $$
+BEGIN
+  IF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'legacy_backup' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can view scores for their own reports" ON "public"."esg_scores" AS permissive FOR SELECT TO public USING ((EXISTS ( SELECT 1 FROM legacy_backup.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  ELSIF EXISTS (SELECT 1 FROM information_schema.tables WHERE table_schema = 'public' AND table_name = 'esg_reports') THEN
+    CREATE POLICY "Users can view scores for their own reports" ON "public"."esg_scores" AS permissive FOR SELECT TO public USING ((EXISTS ( SELECT 1 FROM public.esg_reports WHERE ((esg_reports.id = esg_scores.report_id) AND ((esg_reports.created_by = auth.uid()) OR is_admin())))));
+  END IF;
+END $$;
 
 
 create policy "Admins can view all security audit logs"
@@ -826,5 +844,3 @@ with check (true);
 CREATE TRIGGER update_esg_insights_updated_at BEFORE UPDATE ON public.esg_insights FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
 
 CREATE TRIGGER update_esg_scores_updated_at BEFORE UPDATE ON public.esg_scores FOR EACH ROW EXECUTE FUNCTION update_updated_at_column();
-
-

@@ -1,35 +1,41 @@
 -- Migration: Create Feature Flags Tables
 -- Description: Dynamic feature toggles with user/org targeting
 
-CREATE TABLE feature_flags (
-  id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
-  name text UNIQUE NOT NULL,
-  description text,
-  is_enabled boolean DEFAULT false,
-  rollout_percentage integer DEFAULT 0 CHECK (rollout_percentage BETWEEN 0 AND 100),
-  metadata jsonb DEFAULT '{}',
-  created_at timestamptz DEFAULT now(),
-  updated_at timestamptz DEFAULT now()
-);
+-- Skip table creation if it already exists (to avoid schema conflicts)
+DO $$
+BEGIN
+  IF NOT EXISTS (SELECT 1 FROM information_schema.tables WHERE table_name = 'feature_flags' AND table_schema = 'public') THEN
+    CREATE TABLE feature_flags (
+      id uuid PRIMARY KEY DEFAULT gen_random_uuid(),
+      name text UNIQUE NOT NULL,
+      description text,
+      is_enabled boolean DEFAULT false,
+      rollout_percentage integer DEFAULT 0 CHECK (rollout_percentage BETWEEN 0 AND 100),
+      metadata jsonb DEFAULT '{}',
+      created_at timestamptz DEFAULT now(),
+      updated_at timestamptz DEFAULT now()
+    );
+  END IF;
+END $$;
 
 -- User-specific feature flags
-CREATE TABLE feature_flag_users (
+CREATE TABLE IF NOT EXISTS feature_flag_users (
   feature_flag_id uuid REFERENCES feature_flags(id) ON DELETE CASCADE,
   user_id uuid REFERENCES auth.users(id) ON DELETE CASCADE,
   PRIMARY KEY (feature_flag_id, user_id)
 );
 
 -- Organization-specific feature flags
-CREATE TABLE feature_flag_organizations (
+CREATE TABLE IF NOT EXISTS feature_flag_organizations (
   feature_flag_id uuid REFERENCES feature_flags(id) ON DELETE CASCADE,
   organization_id uuid REFERENCES organizations(id) ON DELETE CASCADE,
   PRIMARY KEY (feature_flag_id, organization_id)
 );
 
 -- Indexes
-CREATE INDEX idx_feature_flags_enabled ON feature_flags(name) WHERE is_enabled = true;
-CREATE INDEX idx_feature_flag_users_user ON feature_flag_users(user_id);
-CREATE INDEX idx_feature_flag_orgs_org ON feature_flag_organizations(organization_id);
+CREATE INDEX IF NOT EXISTS idx_feature_flags_enabled ON feature_flags(flag_name) WHERE is_enabled = true;
+CREATE INDEX IF NOT EXISTS idx_feature_flag_users_user ON feature_flag_users(user_id);
+CREATE INDEX IF NOT EXISTS idx_feature_flag_orgs_org ON feature_flag_organizations(organization_id);
 
 -- Helper function to check feature access
 CREATE OR REPLACE FUNCTION has_feature_access(
@@ -42,7 +48,7 @@ DECLARE
   flag_record feature_flags;
   has_access boolean := false;
 BEGIN
-  SELECT * INTO flag_record FROM feature_flags WHERE name = feature_name;
+  SELECT * INTO flag_record FROM feature_flags WHERE flag_name = feature_name;
   IF flag_record IS NULL THEN
     RETURN false;
   END IF;

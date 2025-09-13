@@ -82,7 +82,7 @@ BEGIN
 END;
 $$;
 
-CREATE OR REPLACE FUNCTION public.search_guidelines(query_embedding extensions.vector, match_threshold double precision DEFAULT 0.7, match_count integer DEFAULT 10, p_framework_code text DEFAULT NULL::text)
+CREATE OR REPLACE FUNCTION public.search_guidelines(query_embedding vector, match_threshold double precision DEFAULT 0.7, match_count integer DEFAULT 10, p_framework_code text DEFAULT NULL::text)
 RETURNS TABLE(guideline_id uuid, framework_code text, guideline_code text, title text, content text, chunk_index integer, similarity double precision)
 LANGUAGE plpgsql
 SET search_path TO 'public'

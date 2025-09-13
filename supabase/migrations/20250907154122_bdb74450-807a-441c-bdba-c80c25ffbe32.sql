@@ -11,10 +11,20 @@ ALTER TABLE public.documents DROP COLUMN IF EXISTS uploaded_by;
 -- The user_id column should be the primary foreign key to users
 -- Keep file_name as the main filename column
 
--- Add any missing constraints
-ALTER TABLE public.documents 
-  ADD CONSTRAINT documents_user_id_fkey 
-  FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE SET NULL;
+-- Add any missing constraints (only if they don't exist)
+DO $$
+BEGIN
+  IF NOT EXISTS (
+    SELECT 1 FROM information_schema.table_constraints
+    WHERE constraint_name = 'documents_user_id_fkey'
+    AND table_name = 'documents'
+    AND table_schema = 'public'
+  ) THEN
+    ALTER TABLE public.documents
+      ADD CONSTRAINT documents_user_id_fkey
+      FOREIGN KEY (user_id) REFERENCES auth.users(id) ON DELETE SET NULL;
+  END IF;
+END $$;
 
 -- Add proper indexes for performance
 CREATE INDEX IF NOT EXISTS idx_documents_user_id ON public.documents(user_id) WHERE deleted_at IS NULL;
