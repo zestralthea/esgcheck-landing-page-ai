@@ -43,7 +43,7 @@ export default function Header() {
     if (isEnabled('dashboard_enabled')) {
       import('@/pages/Dashboard');
       // Warm common heavy panels to avoid first-paint jank
-      import('@/components/ESGInsightsPanel');
+      import('@/components/AnalysisResultsCard');
       import('@/components/ESGScoreSnapshot');
       import('@/components/ESGReportsTable');
     }
