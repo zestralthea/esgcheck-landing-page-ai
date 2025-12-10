@@ -190,7 +190,7 @@ ${guidelinesContext}
     // 4. Call OpenAI with structured output request
     const completion = await openai.chat.completions.create({
       model: "gpt-4o-mini",
-      temperature: 0,
+      temperature: 1,
       messages: [
         {
           role: "system",
