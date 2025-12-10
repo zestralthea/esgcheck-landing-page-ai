@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -6,10 +6,11 @@ import { Label } from '@/components/ui/label';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import { Badge } from '@/components/ui/badge';
-import { Upload, FileText, Calendar, Target, Shield, CheckCircle, AlertTriangle } from 'lucide-react';
+import { Upload, FileText, Calendar, Target, Shield, CheckCircle } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { supabase } from '@/integrations/supabase/client';
 import { useAuth } from '@/contexts/AuthContext';
+import { config } from '@/config/env';
 
 const reportTypes = [
   { value: 'annual', label: 'Annual Report' },
@@ -44,99 +45,6 @@ export function ESGUploadPanel() {
   const [selectedGRIStandards, setSelectedGRIStandards] = useState<string[]>([]);
   const [description, setDescription] = useState('');
   const [uploading, setUploading] = useState(false);
-  const [testResult, setTestResult] = useState<{
-    status: 'idle' | 'running' | 'success' | 'error';
-    message: string;
-    details?: any;
-    responseTime?: number;
-  }>({
-    status: 'idle',
-    message: 'Test not yet run'
-  });
-  
-  // Auto-test the edge function when component mounts
-  useEffect(() => {
-    const testEdgeFunction = async () => {
-      console.log('🔄 AUTO-TEST: Automatically testing analyze-esg-report edge function on component mount');
-      setTestResult({
-        status: 'running',
-        message: 'Testing edge function...'
-      });
-      try {
-        const testStartTime = Date.now();
-        const { data, error } = await supabase.functions.invoke('analyze-esg-report', {
-          body: {
-            report_id: 'auto-test-123',
-            report_text: 'This is an automatic test report for ESG analysis to verify the edge function is working.',
-            framework: 'general'
-          }
-        });
-        const testEndTime = Date.now();
-        
-        console.log(`⏱️ Auto-test call to analyze-esg-report took ${testEndTime - testStartTime}ms to respond`);
-        
-        if (error) {
-          console.error('❌ Auto-test call failed with error:', error);
-          console.error('Error details:', {
-            status: error.status,
-            message: error.message,
-            name: error.name,
-            context: error.context
-          });
-          setTestResult({
-            status: 'error',
-            message: `Edge function call failed: ${error.message || 'Unknown error'}`,
-            details: error,
-            responseTime: testEndTime - testStartTime
-          });
-          toast({
-            title: "Auto-Test Failed",
-            description: `Edge function call failed: ${error.message || 'Unknown error'}`,
-            variant: "destructive",
-          });
-        } else {
-          console.log('✅ Auto-test call succeeded with result:', data);
-          setTestResult({
-            status: 'success',
-            message: 'Edge function was called successfully!',
-            details: data,
-            responseTime: testEndTime - testStartTime
-          });
-          toast({
-            title: "Auto-Test Successful",
-            description: "Edge function was called successfully!",
-          });
-        }
-      } catch (testError: any) {
-        console.error('❌ Auto-test call exception:', testError);
-        console.error('Detailed test error:', {
-          message: testError.message,
-          stack: testError.stack,
-          name: testError.name,
-          cause: testError.cause,
-          code: testError.code,
-          response: testError.response ? {
-            status: testError.response.status,
-            statusText: testError.response.statusText,
-            headers: testError.response.headers,
-            url: testError.response.url
-          } : 'No response object'
-        });
-        toast({
-          title: "Auto-Test Failed",
-          description: `Exception: ${testError.message || 'Unknown error'}`,
-          variant: "destructive",
-        });
-      }
-    };
-    
-    // Run the test after a short delay to ensure component is fully mounted
-    const timer = setTimeout(() => {
-      testEdgeFunction();
-    }, 2000);
-    
-    return () => clearTimeout(timer);
-  }, [toast]);
 
   const validateFile = (selectedFile: File): boolean => {
     // File size validation (max 50MB)
@@ -565,145 +473,9 @@ export function ESGUploadPanel() {
             />
           </div>
 
-          <div className="space-y-4">
-            <Button type="submit" disabled={uploading} className="w-full">
-              {uploading ? 'Uploading...' : 'Upload & Analyze Report'}
-            </Button>
-            
-            {/* Test button for direct function invocation */}
-            <div className="border-t pt-4">
-              <p className="text-sm text-muted-foreground mb-2">Troubleshooting Tools</p>
-              {/* Test Results Display */}
-              {testResult.status !== 'idle' && (
-                <div className={`p-3 border rounded-lg mb-3 ${
-                  testResult.status === 'running' ? 'bg-blue-50 border-blue-200' :
-                  testResult.status === 'success' ? 'bg-green-50 border-green-200' : 
-                  'bg-red-50 border-red-200'
-                }`}>
-                  <div className="flex items-center gap-2 mb-1">
-                    {testResult.status === 'running' && (
-                      <div className="animate-spin h-4 w-4 border-2 border-blue-500 border-t-transparent rounded-full"></div>
-                    )}
-                    {testResult.status === 'success' && <CheckCircle className="h-4 w-4 text-green-600" />}
-                    {testResult.status === 'error' && <AlertTriangle className="h-4 w-4 text-red-600" />}
-                    <span className="font-medium">
-                      {testResult.status === 'running' ? 'Testing Edge Function...' :
-                       testResult.status === 'success' ? 'Edge Function Test Successful' :
-                       'Edge Function Test Failed'}
-                    </span>
-                  </div>
-                  <p className="text-sm mb-1">{testResult.message}</p>
-                  {testResult.responseTime && (
-                    <p className="text-xs text-muted-foreground">
-                      Response time: {testResult.responseTime}ms
-                    </p>
-                  )}
-                  {testResult.details && (
-                    <details className="mt-2">
-                      <summary className="text-xs cursor-pointer">View Response Details</summary>
-                      <pre className="text-xs mt-1 p-2 bg-slate-800 text-white rounded overflow-auto max-h-60">
-                        {JSON.stringify(testResult.details, null, 2)}
-                      </pre>
-                    </details>
-                  )}
-                  
-                  <div className="mt-2 text-xs">
-                    <details>
-                      <summary className="cursor-pointer">Environment & Deployment Info</summary>
-                      <div className="mt-1 p-2 bg-slate-800 text-white rounded overflow-auto">
-                        <p>Function ID: 77f5fdcb-fb1b-4143-b0e2-576e8b9d7050</p>
-                        <p>URL: https://equtqvlukqloqphhmblj.supabase.co/functions/v1/analyze-esg-report</p>
-                        <p>Auth: {supabase ? "✅ Client Initialized" : "❌ Client Missing"}</p>
-                        <p>Method: POST</p>
-                        <p>Required env vars: OPENAI_API_KEY, PDFMONKEY_API_KEY, PDFMONKEY_TEMPLATE_ID</p>
-                        <p>Status Code: {testResult.details?.status || "Unknown"}</p>
-                      </div>
-                    </details>
-                  </div>
-                </div>
-              )}
-              
-              <Button 
-                type="button" 
-                variant="outline" 
-                className="w-full" 
-                onClick={async () => {
-                  console.log('🧪 TEST: Directly calling analyze-esg-report edge function...');
-                  setTestResult({
-                    status: 'running',
-                    message: 'Testing analyze-esg-report edge function...'
-                  });
-                  try {
-                    const testStartTime = Date.now();
-                    const { data, error } = await supabase.functions.invoke('analyze-esg-report', {
-                      body: {
-                        report_id: 'test-id-123',
-                        report_text: 'This is a test report for ESG analysis. It contains environmental, social, and governance test content.',
-                        framework: 'general'
-                      }
-                    });
-                    const testEndTime = Date.now();
-                    const responseTime = testEndTime - testStartTime;
-                    
-                    console.log(`⏱️ Test call to analyze-esg-report took ${responseTime}ms to respond`);
-                    
-                    if (error) {
-                      console.error('❌ Test call failed with error:', error);
-                      setTestResult({
-                        status: 'error',
-                        message: `Edge function call failed: ${error.message || 'Unknown error'}`,
-                        details: error,
-                        responseTime
-                      });
-                      toast({
-                        title: "Test Failed",
-                        description: `Edge function call failed: ${error.message || 'Unknown error'}`,
-                        variant: "destructive",
-                      });
-                    } else {
-                      console.log('✅ Test call succeeded with result:', data);
-                      setTestResult({
-                        status: 'success',
-                        message: 'Edge function was called successfully!',
-                        details: data,
-                        responseTime
-                      });
-                      toast({
-                        title: "Test Successful",
-                        description: "Edge function was called successfully!",
-                      });
-                    }
-                  } catch (testError: any) {
-                    console.error('❌ Test call exception:', testError);
-                    const errorDetails = {
-                      message: testError.message,
-                      name: testError.name,
-                      code: testError.code,
-                      response: testError.response ? {
-                        status: testError.response.status,
-                        statusText: testError.response.statusText
-                      } : 'No response object'
-                    };
-                    console.error('Detailed test error:', errorDetails);
-                    
-                    setTestResult({
-                      status: 'error',
-                      message: `Exception: ${testError.message || 'Unknown error'}`,
-                      details: errorDetails
-                    });
-                    
-                    toast({
-                      title: "Test Failed",
-                      description: `Exception: ${testError.message || 'Unknown error'}`,
-                      variant: "destructive",
-                    });
-                  }
-                }}
-              >
-                Test Edge Function
-              </Button>
-            </div>
-          </div>
+          <Button type="submit" disabled={uploading} className="w-full">
+            {uploading ? 'Uploading...' : 'Upload & Analyze Report'}
+          </Button>
         </form>
       </CardContent>
     </Card>

@@ -5,7 +5,10 @@
  * These provide TypeScript intellisense for import.meta.env
  */
 interface ImportMetaEnv {
-  // Add environment variables as needed
+  readonly MODE: string;
+  readonly VITE_SUPABASE_URL: string;
+  readonly VITE_SUPABASE_ANON_KEY: string;
+  // Add more environment variables as needed
 }
 
 interface ImportMeta {

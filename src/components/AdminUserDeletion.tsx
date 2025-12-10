@@ -7,6 +7,7 @@ import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Trash2 } from 'lucide-react';
 import { supabase } from '@/integrations/supabase/client';
 import { toast } from '@/hooks/use-toast';
+import { config } from '@/config/env';
 
 export const AdminUserDeletion = () => {
   const [email, setEmail] = useState('');
@@ -30,7 +31,7 @@ export const AdminUserDeletion = () => {
         throw new Error('Not authenticated');
       }
 
-      const response = await fetch(`https://equtqvlukqloqphhmblj.supabase.co/functions/v1/delete-user`, {
+      const response = await fetch(`${config.supabase.functionUrl}/delete-user`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

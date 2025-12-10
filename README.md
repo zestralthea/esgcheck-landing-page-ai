@@ -75,22 +75,59 @@ ESGCheck is a comprehensive ESG (Environmental, Social, and Governance) reportin
 
 ### Supabase Configuration
 
-This project uses Supabase for backend services. To run the project locally, you need to set up environment variables:
+This project uses Supabase for backend services. All configuration is managed through environment variables for security.
 
-1. Copy `.env.example` to `.env`:
+#### Quick Start
+
+1. **Copy the environment template**:
    ```sh
    cp .env.example .env
    ```
 
-2. Fill in your Supabase credentials in the `.env` file:
-   ```
+2. **Configure your credentials** in `.env`:
+   ```env
    VITE_SUPABASE_URL=your_supabase_project_url
    VITE_SUPABASE_ANON_KEY=your_supabase_anon_key
    ```
 
-You can find these values in your Supabase project dashboard under Project Settings > API.
+3. **Find your credentials** in Supabase Dashboard:
+   - Navigate to: Project Settings > API
+   - Copy your Project URL and anon/public key
 
-> **Important**: Never commit your `.env` file to the repository. It's already added to `.gitignore`.
+#### Environment Configuration System
+
+The application uses a centralized configuration loader ([`src/config/env.ts`](src/config/env.ts:1)) that:
+
+- **Validates** all required environment variables at startup
+- **Prevents** accidental use of production credentials in development
+- **Derives** Supabase Edge Function URLs automatically
+- **Fails fast** with clear error messages if configuration is missing
+
+#### Security Best Practices
+
+> **⚠️ CRITICAL**: Never commit your `.env` file to version control. It's already excluded via `.gitignore`.
+
+**For Development:**
+- Use a separate Supabase project (staging/dev) to avoid affecting production data
+- Rotate keys immediately if accidentally exposed
+- Never hard-code credentials in source files
+
+**For Production:**
+- Set environment variables through your deployment platform (Vercel, Netlify, etc.)
+- Use production Supabase project credentials only in production environments
+- Enable Row Level Security (RLS) policies on all tables
+
+#### Troubleshooting
+
+**"Missing required environment variable" error:**
+- Ensure `.env` file exists in project root
+- Verify `VITE_SUPABASE_URL` and `VITE_SUPABASE_ANON_KEY` are set
+- Restart the development server after changing `.env`
+
+**"Cannot use production Supabase URL" error:**
+- You're trying to use production credentials in development mode
+- Use a staging/dev Supabase project for local development
+- Or set `NODE_ENV=production` if you need to test production behavior locally
 
 ## How can I edit this code?
 
