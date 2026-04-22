@@ -12,12 +12,12 @@ interface SEOHeadProps {
 }
 
 export default function SEOHead({
-  title = "ESGCheck - AI-Powered ESG Report Insights for Startups and SMEs",
-  description = "Get AI-powered ESG report insights in minutes. ESGCheck helps startups, SMEs, and sustainability teams spot gaps, improve reporting clarity, and prepare for stronger ESG conversations.",
-  keywords = "ESG compliance, sustainability reporting, AI analysis, GRI, SASB, TCFD, environmental reporting, startup ESG, SME sustainability",
+  title = "ESGCheck - Practical ESG Assessment for Growing SMEs",
+  description = "Turn policies, internal records, and company reports into a credible first ESG assessment - with clear scores, visible gaps, and practical next steps. Built in Switzerland for growing SMEs.",
+  keywords = "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies",
   canonicalUrl = "https://esgcheck.lovable.app/",
   ogImage = "https://esgcheck.lovable.app/esgcheck_logo.svg",
-  ogImageAlt = "ESGCheck - AI-powered ESG report insights",
+  ogImageAlt = "ESGCheck - practical ESG assessment for growing SMEs",
   structuredData,
   noindex = false
 }: SEOHeadProps) {

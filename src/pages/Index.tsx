@@ -12,7 +12,7 @@ const homeStructuredData = {
   "@context": "https://schema.org",
   "@type": "SoftwareApplication",
   "name": "ESGCheck",
-  "description": "AI-powered ESG report insights for startups and SMEs",
+  "description": "Practical first ESG assessment for growing SMEs, built from the documents companies already have.",
   "url": "https://esgcheck.lovable.app/",
   "logo": "https://esgcheck.lovable.app/esgcheck_logo.svg",
   "applicationCategory": "BusinessApplication",
@@ -29,13 +29,13 @@ const homeStructuredData = {
     "url": "https://esgcheck.lovable.app/"
   },
   "featureList": [
-    "Automated ESG Report Analysis",
-    "Multi-Framework Support",
-    "Report Gap Detection",
-    "AI-Generated Improvement Suggestions",
+    "First ESG Score with Rationale",
+    "Strengths and Gap Identification",
+    "Practical Next Steps",
+    "Document-Based Assessment (GRI-first)",
     "Shareable ESG Summary"
   ],
-  "keywords": "ESG compliance, sustainability reporting, AI analysis, GRI, SASB, TCFD"
+  "keywords": "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies"
 };
 
 const Index = () => {

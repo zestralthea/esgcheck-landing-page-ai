@@ -67,67 +67,67 @@ const enTranslations = {
     joinWaitlist: "Request Early Access"
   },
   hero: {
-    title: "Make ESG Progress",
-    titleHighlight: "Visible",
-    description: "Upload your sustainability report and get instant, AI-powered insights. We help you spot gaps, improve alignment with global frameworks, and stay on track with clarity, not complexity.",
+    title: "Understand where you stand on",
+    titleHighlight: "ESG",
+    description: "Turn the policies, internal records, and company reports you already have into a credible first ESG assessment - with a clear score, visible gaps, and practical next steps.",
     joinWaitlist: "Request Early Access",
     uploadAnalyze: "Upload. Analyze. Improve.",
-    resultsTime: "Results in under 2 minutes",
-    frameworks: "Built on trusted frameworks (GRI, CSRD)"
+    resultsTime: "Structured output from your existing documents.",
+    frameworks: "GRI-first foundation, broader framework coverage evolving over time."
   },
   features: {
     title: "Get ESG clarity - without the complexity",
-    subtitle: "ESGCheck gives you instant, actionable insights from your sustainability reports.",
-    subtitleTwo: "No consultants, no spreadsheets, no waiting weeks for feedback.",
+    subtitle: "ESGCheck turns the documents growing SMEs already have into a structured first ESG view.",
+    subtitleTwo: "No heavy advisory process, no months of back-and-forth.",
     score: {
-      title: "A simple score that shows where you stand",
-      description: "Get an instant ESG performance score that is easy to understand and benchmark against industry standards."
+      title: "A clear first score",
+      description: "Get a structured ESG score grounded in your own documents, with the reasoning behind it."
     },
     risks: {
-      title: "Spot risks before investors or regulators do",
-      description: "Identify compliance gaps and potential issues before they become costly problems or regulatory violations."
+      title: "See where your gaps are",
+      description: "Identify missing or insufficient evidence in the areas that matter most to customers, partners, and lenders."
     },
     suggestions: {
-      title: "AI-generated suggestions tailored to your report",
-      description: "Receive specific, actionable recommendations based on your actual data and industry best practices."
+      title: "Practical next steps, not abstract advice",
+      description: "Clear recommendations on what to improve next, based on what your documents do and do not show."
     },
     summary: {
-      title: "A clean summary PDF you can share with your team",
-      description: "Export professional reports that communicate your ESG progress clearly to stakeholders and leadership."
+      title: "A shareable summary for your team",
+      description: "Export a clean overview you can bring to leadership, finance, and key stakeholders."
     },
     upload: {
-      title: "Upload once, get insights in minutes",
-      description: "Transform weeks of analysis into minutes. Just upload your report and get comprehensive insights instantly."
+      title: "Document-first workflow",
+      description: "Start from policies, internal records, and company reports - no new data collection needed to get a first view."
     },
     trust: {
-      frameworks: "Built on global ESG frameworks like GRI and CSRD",
-      frameworksDesc: "Industry-standard compliance foundation",
-      audit: "Not a certified audit, but your smartest first step toward one",
-      auditDesc: "Prepare confidently for formal assessments",
-      security: "Your data is never used to train models and stays secure",
-      securityDesc: "Complete privacy and data protection"
+      frameworks: "GRI-first foundation",
+      frameworksDesc: "Broader SME-relevant and Swiss/EU-aligned framework coverage planned over time.",
+      audit: "Not assurance or certification - a credible first assessment",
+      auditDesc: "Built to help you orient yourself and decide what to do next.",
+      security: "Privacy-conscious, Swiss-built",
+      securityDesc: "Designed around Swiss and EU expectations for handling sensitive company material; your data is never used to train models."
     }
   },
   about: {
     title: "Why we are building ESGCheck",
-    description: "We believe ESG transparency should be fast, accessible, and practical, not just reserved for large corporations with audit budgets. ESGCheck gives companies an easy starting point to track their environmental, social, and governance performance in real time, and improve over time.",
-    team: "We are a small, Swiss-based team using AI to bring ESG clarity to those who need it most: growing businesses, consultants, and early-stage sustainability teams.",
+    description: "Growing SMEs are facing ESG questions from customers, procurement teams, lenders, and investors before formal obligations always apply. Traditional ESG work can still feel too expensive and complex for smaller companies that need a practical way to understand where they stand.",
+    team: "We are a small, Swiss-based team building a practical ESG assessment for growing SMEs - founders, managing directors, and finance leads facing rising ESG expectations from customers, partners, lenders, and investors.",
     clarity: {
       title: "Clarity over Complexity",
       description: "We turn dense ESG data into simple, actionable insights."
     },
     improving: {
-      title: "Always Improving",
-      description: "Use ESGCheck before, between, or even without formal audits to keep progress on track."
+      title: "Credible starting point",
+      description: "A structured first view today, with stronger, expert-validated workflows coming as the product matures."
     },
     secure: {
-      title: "Secure and Trustworthy",
-      description: "Built on global frameworks (GRI, CSRD). Your data is always private."
+      title: "Privacy-conscious by design",
+      description: "GRI-first methodology. Built in Switzerland with privacy and trust at the core."
     }
   },
   waitlist: {
-    title: "Ready to Take the First Step Toward Real ESG Progress?",
-    description: "Be one of the first to try our AI-powered ESG health check. Upload your report, get actionable insights, and help us build something truly useful.",
+    title: "See where you stand on ESG",
+    description: "Join the early access group and help us validate a practical first ESG assessment for growing SMEs - built in Switzerland.",
     cardTitle: "Get Early Access to ESGCheck",
     ctaButton: "Email Us for Early Access",
     emailNote: "Tell us about your company and what ESG reporting challenge you want to solve. We will reply with beta access details.",
@@ -137,7 +137,7 @@ const enTranslations = {
     }
   },
   footer: {
-    description: "ESGCheck helps businesses make sense of their ESG reports with AI-powered insights and guidance, in minutes.",
+    description: "ESGCheck turns the documents growing SMEs already have into a credible first ESG assessment - built in Switzerland.",
     product: "Product",
     company: "Company",
     copyright: "Copyright 2026 ESGCheck. All rights reserved."
@@ -151,67 +151,67 @@ const deTranslations = {
     joinWaitlist: "Early Access anfragen"
   },
   hero: {
-    title: "ESG-Fortschritt",
-    titleHighlight: "sichtbar machen",
-    description: "Laden Sie Ihren Nachhaltigkeitsbericht hoch und erhalten Sie sofortige, KI-gestuetzte Einblicke. Wir helfen Ihnen, Luecken zu erkennen, die Ausrichtung an globalen Frameworks zu verbessern und mit Klarheit auf Kurs zu bleiben.",
+    title: "Verstehen Sie, wo Sie bei",
+    titleHighlight: "ESG stehen",
+    description: "Machen Sie aus vorhandenen Richtlinien, internen Unterlagen und Unternehmensberichten eine glaubwuerdige erste ESG-Einschaetzung - mit klarer Bewertung, sichtbaren Luecken und praktischen naechsten Schritten.",
     joinWaitlist: "Early Access anfragen",
     uploadAnalyze: "Hochladen. Analysieren. Verbessern.",
-    resultsTime: "Ergebnisse in unter 2 Minuten",
-    frameworks: "Basiert auf vertrauten Frameworks (GRI, CSRD)"
+    resultsTime: "Strukturierte Ergebnisse aus Ihren vorhandenen Dokumenten.",
+    frameworks: "GRI-Basis, breitere Framework-Abdeckung entsteht schrittweise."
   },
   features: {
     title: "ESG-Klarheit - ohne Komplexitaet",
-    subtitle: "ESGCheck liefert sofortige, umsetzbare Einblicke aus Ihren Nachhaltigkeitsberichten.",
-    subtitleTwo: "Keine Berater, keine Tabellen, kein wochenlanges Warten auf Feedback.",
+    subtitle: "ESGCheck macht aus den vorhandenen Dokumenten wachsender KMU eine strukturierte erste ESG-Sicht.",
+    subtitleTwo: "Kein schwerfaelliger Beratungsprozess, kein monatelanges Hin und Her.",
     score: {
-      title: "Eine einfache Bewertung, die zeigt, wo Sie stehen",
-      description: "Erhalten Sie sofort eine ESG-Leistungsbewertung, die leicht zu verstehen ist und mit Branchenstandards verglichen werden kann."
+      title: "Eine klare erste Bewertung",
+      description: "Erhalten Sie eine strukturierte ESG-Bewertung auf Basis Ihrer eigenen Dokumente, inklusive Begruendung."
     },
     risks: {
-      title: "Risiken erkennen, bevor Investoren oder Regulatoren es tun",
-      description: "Identifizieren Sie Compliance-Luecken und potenzielle Probleme, bevor sie kostspielig werden."
+      title: "Sehen Sie, wo Luecken bestehen",
+      description: "Erkennen Sie fehlende oder unzureichende Nachweise in den Bereichen, die fuer Kunden, Partner und Kreditgeber besonders wichtig sind."
     },
     suggestions: {
-      title: "KI-generierte Vorschlaege fuer Ihren Bericht",
-      description: "Erhalten Sie konkrete Empfehlungen basierend auf Ihren Daten und etablierten Best Practices."
+      title: "Praktische naechste Schritte statt abstrakter Ratschlaege",
+      description: "Klare Empfehlungen, was Sie als Naechstes verbessern koennen - basierend darauf, was Ihre Dokumente zeigen und was noch fehlt."
     },
     summary: {
-      title: "Eine klare Zusammenfassung fuer Ihr Team",
-      description: "Teilen Sie ESG-Fortschritt verstaendlich mit Stakeholdern und Fuehrungskraeften."
+      title: "Eine teilbare Zusammenfassung fuer Ihr Team",
+      description: "Exportieren Sie eine klare Uebersicht fuer Geschaeftsleitung, Finanzen und wichtige Stakeholder."
     },
     upload: {
-      title: "Einmal hochladen, Einblicke in Minuten erhalten",
-      description: "Verwandeln Sie wochenlange Analyse in Minuten. Laden Sie Ihren Bericht hoch und erhalten Sie sofort umfassende Einblicke."
+      title: "Dokumentenbasierter Workflow",
+      description: "Starten Sie mit Richtlinien, internen Unterlagen und Unternehmensberichten - ohne neue Datenerhebung fuer eine erste Sicht."
     },
     trust: {
-      frameworks: "Basiert auf globalen ESG-Frameworks wie GRI und CSRD",
-      frameworksDesc: "Branchenstandard als Grundlage",
-      audit: "Kein zertifiziertes Audit, aber ein starker erster Schritt",
-      auditDesc: "Bereiten Sie sich sicher auf formale Bewertungen vor",
-      security: "Ihre Daten werden niemals zum Training von Modellen verwendet",
-      securityDesc: "Datenschutz und Privatsphaere bleiben zentral"
+      frameworks: "GRI-Basis",
+      frameworksDesc: "Breitere KMU-relevante und Swiss/EU-ausgerichtete Framework-Abdeckung ist ueber die Zeit geplant.",
+      audit: "Keine Assurance oder Zertifizierung - eine glaubwuerdige erste Einschaetzung",
+      auditDesc: "Entwickelt, damit Sie sich orientieren und naechste Schritte entscheiden koennen.",
+      security: "Datenschutzbewusst, in der Schweiz gebaut",
+      securityDesc: "Ausgerichtet auf Schweizer und EU-Erwartungen im Umgang mit sensiblen Unternehmensunterlagen; Ihre Daten werden nie zum Training von Modellen genutzt."
     }
   },
   about: {
     title: "Warum wir ESGCheck entwickeln",
-    description: "Wir glauben, dass ESG-Transparenz schnell, zugaenglich und praktisch sein sollte. ESGCheck gibt Unternehmen einen einfachen Startpunkt, um Umwelt-, Sozial- und Governance-Leistung besser zu verstehen und zu verbessern.",
-    team: "Wir sind ein kleines Team aus der Schweiz und nutzen KI, um ESG-Klarheit fuer wachsende Unternehmen, Berater und Nachhaltigkeitsteams einfacher erreichbar zu machen.",
+    description: "Wachsende KMU werden von Kunden, Einkaufsteams, Kreditgebern und Investoren nach ESG gefragt, oft bevor formale Pflichten greifen. Klassische ESG-Arbeit wirkt fuer kleinere Unternehmen dennoch haeufig zu teuer und zu komplex, obwohl sie eine praktische Orientierung brauchen.",
+    team: "Wir sind ein kleines Team aus der Schweiz und bauen eine praktische ESG-Einschaetzung fuer wachsende KMU - Gruender, Geschaeftsfuehrende und Finanzverantwortliche, die steigenden ESG-Erwartungen von Kunden, Partnern, Kreditgebern und Investoren begegnen.",
     clarity: {
       title: "Klarheit statt Komplexitaet",
       description: "Wir verwandeln dichte ESG-Daten in einfache, umsetzbare Einblicke."
     },
     improving: {
-      title: "Kontinuierlich besser",
-      description: "Nutzen Sie ESGCheck vor, zwischen oder auch ohne formale Audits, um Fortschritt im Blick zu behalten."
+      title: "Glaubwuerdiger Startpunkt",
+      description: "Eine strukturierte erste Sicht heute, mit staerkeren, expertengestuetzten Workflows, wenn das Produkt reift."
     },
     secure: {
-      title: "Sicher und vertrauenswuerdig",
-      description: "Basiert auf globalen Frameworks (GRI, CSRD). Ihre Daten bleiben privat."
+      title: "Datenschutzbewusst von Anfang an",
+      description: "GRI-first Methodik. In der Schweiz gebaut, mit Datenschutz und Vertrauen im Zentrum."
     }
   },
   waitlist: {
-    title: "Bereit fuer den ersten Schritt zu echtem ESG-Fortschritt?",
-    description: "Testen Sie frueh unseren KI-gestuetzten ESG Health Check. Laden Sie Ihren Bericht hoch, erhalten Sie umsetzbare Einblicke und helfen Sie uns, ein wirklich nuetzliches Produkt zu bauen.",
+    title: "Sehen Sie, wo Sie bei ESG stehen",
+    description: "Werden Sie Teil der Early-Access-Gruppe und helfen Sie uns, eine praktische erste ESG-Einschaetzung fuer wachsende KMU zu validieren - gebaut in der Schweiz.",
     cardTitle: "Early Access fuer ESGCheck",
     ctaButton: "Early Access per E-Mail anfragen",
     emailNote: "Erzaehlen Sie uns kurz von Ihrem Unternehmen und Ihrer ESG-Herausforderung. Wir melden uns mit Details zum Beta-Zugang.",
@@ -221,7 +221,7 @@ const deTranslations = {
     }
   },
   footer: {
-    description: "ESGCheck hilft Unternehmen, ESG-Berichte mit KI-gestuetzten Einblicken und klarer Orientierung in Minuten zu verstehen.",
+    description: "ESGCheck macht aus den vorhandenen Dokumenten wachsender KMU eine glaubwuerdige erste ESG-Einschaetzung - gebaut in der Schweiz.",
     product: "Produkt",
     company: "Unternehmen",
     copyright: "Copyright 2026 ESGCheck. Alle Rechte vorbehalten."
@@ -235,67 +235,67 @@ const frTranslations = {
     joinWaitlist: "Demander un acces"
   },
   hero: {
-    title: "Rendre les progres ESG",
-    titleHighlight: "visibles",
-    description: "Telechargez votre rapport de durabilite et obtenez des informations instantanees alimentees par l'IA. Nous vous aidons a reperer les lacunes, ameliorer l'alignement avec les cadres mondiaux et avancer avec clarte.",
+    title: "Comprendre ou vous en etes sur",
+    titleHighlight: "l'ESG",
+    description: "Transformez les politiques, documents internes et rapports d'entreprise que vous avez deja en une premiere evaluation ESG credible - avec un score clair, des lacunes visibles et des prochaines etapes pratiques.",
     joinWaitlist: "Demander un acces",
     uploadAnalyze: "Telecharger. Analyser. Ameliorer.",
-    resultsTime: "Resultats en moins de 2 minutes",
-    frameworks: "Base sur des cadres fiables (GRI, CSRD)"
+    resultsTime: "Resultat structure a partir de vos documents existants.",
+    frameworks: "Base GRI d'abord, avec une couverture plus large qui evolue dans le temps."
   },
   features: {
     title: "Obtenez de la clarte ESG - sans complexite",
-    subtitle: "ESGCheck fournit des informations instantanees et exploitables a partir de vos rapports de durabilite.",
-    subtitleTwo: "Pas de consultants, pas de feuilles de calcul, pas d'attente de plusieurs semaines.",
+    subtitle: "ESGCheck transforme les documents que les PME en croissance possedent deja en une premiere vue ESG structuree.",
+    subtitleTwo: "Pas de processus de conseil lourd, pas de longs allers-retours.",
     score: {
-      title: "Un score simple qui montre ou vous en etes",
-      description: "Obtenez un score ESG facile a comprendre et a comparer aux standards du marche."
+      title: "Un premier score clair",
+      description: "Obtenez un score ESG structure fonde sur vos propres documents, avec le raisonnement qui l'explique."
     },
     risks: {
-      title: "Reperez les risques avant les investisseurs ou regulateurs",
-      description: "Identifiez les lacunes et les problemes potentiels avant qu'ils ne deviennent couteux."
+      title: "Voyez ou sont vos lacunes",
+      description: "Identifiez les preuves manquantes ou insuffisantes dans les domaines qui comptent le plus pour vos clients, partenaires et preteurs."
     },
     suggestions: {
-      title: "Suggestions IA adaptees a votre rapport",
-      description: "Recevez des recommandations concretes basees sur vos donnees et les meilleures pratiques."
+      title: "Des prochaines etapes pratiques, pas des conseils abstraits",
+      description: "Des recommandations claires sur ce qu'il faut ameliorer ensuite, selon ce que vos documents montrent ou ne montrent pas."
     },
     summary: {
-      title: "Un resume clair a partager avec votre equipe",
-      description: "Communiquez vos progres ESG clairement aux parties prenantes et a la direction."
+      title: "Un resume partageable pour votre equipe",
+      description: "Exportez une vue d'ensemble claire pour la direction, la finance et les parties prenantes cles."
     },
     upload: {
-      title: "Telechargez une fois, obtenez des informations en minutes",
-      description: "Transformez des semaines d'analyse en quelques minutes avec un rapport facile a lire."
+      title: "Un workflow centre sur les documents",
+      description: "Commencez avec vos politiques, documents internes et rapports d'entreprise - sans nouvelle collecte de donnees pour obtenir une premiere vue."
     },
     trust: {
-      frameworks: "Base sur les cadres ESG mondiaux comme GRI et CSRD",
-      frameworksDesc: "Une fondation conforme aux standards du secteur",
-      audit: "Pas un audit certifie, mais une premiere etape utile",
-      auditDesc: "Preparez-vous plus sereinement aux evaluations formelles",
-      security: "Vos donnees ne servent jamais a entrainer des modeles",
-      securityDesc: "Confidentialite et protection des donnees"
+      frameworks: "Base GRI d'abord",
+      frameworksDesc: "Une couverture plus large, adaptee aux PME et alignee avec la Suisse et l'UE, est prevue dans le temps.",
+      audit: "Ni assurance ni certification - une premiere evaluation credible",
+      auditDesc: "Concu pour vous aider a vous orienter et a decider quoi faire ensuite.",
+      security: "Confidentialite integree, construit en Suisse",
+      securityDesc: "Pense autour des attentes suisses et europeennes pour le traitement de documents d'entreprise sensibles; vos donnees ne servent jamais a entrainer des modeles."
     }
   },
   about: {
     title: "Pourquoi nous construisons ESGCheck",
-    description: "Nous pensons que la transparence ESG doit etre rapide, accessible et pratique. ESGCheck donne aux entreprises un point de depart simple pour comprendre et ameliorer leur performance environnementale, sociale et de gouvernance.",
-    team: "Nous sommes une petite equipe basee en Suisse et nous utilisons l'IA pour apporter plus de clarte ESG aux entreprises en croissance, consultants et equipes durabilite.",
+    description: "Les PME en croissance recoivent des questions ESG de clients, d'equipes achats, de preteurs et d'investisseurs avant meme que des obligations formelles ne s'appliquent. Le travail ESG traditionnel reste souvent trop couteux et trop complexe pour les petites entreprises qui ont besoin d'une orientation pratique.",
+    team: "Nous sommes une petite equipe basee en Suisse et nous construisons une evaluation ESG pratique pour les PME en croissance - fondateurs, directions generales et responsables finance confrontes aux attentes ESG croissantes de clients, partenaires, preteurs et investisseurs.",
     clarity: {
       title: "Clarte plutot que complexite",
       description: "Nous transformons des donnees ESG denses en informations simples et exploitables."
     },
     improving: {
-      title: "Toujours en progression",
-      description: "Utilisez ESGCheck avant, entre ou meme sans audits formels pour garder le cap."
+      title: "Un point de depart credible",
+      description: "Une premiere vue structuree aujourd'hui, avec des workflows plus solides et valides par des experts a mesure que le produit murit."
     },
     secure: {
-      title: "Securise et fiable",
-      description: "Base sur des cadres mondiaux (GRI, CSRD). Vos donnees restent privees."
+      title: "Confidentialite par conception",
+      description: "Methodologie GRI-first. Construit en Suisse avec confidentialite et confiance au coeur du produit."
     }
   },
   waitlist: {
-    title: "Pret a faire le premier pas vers de vrais progres ESG?",
-    description: "Soyez parmi les premiers a essayer notre verification ESG alimentee par l'IA. Telechargez votre rapport, obtenez des informations exploitables et aidez-nous a construire un produit vraiment utile.",
+    title: "Voyez ou vous en etes sur l'ESG",
+    description: "Rejoignez le groupe d'acces anticipe et aidez-nous a valider une premiere evaluation ESG pratique pour les PME en croissance - construite en Suisse.",
     cardTitle: "Obtenir un acces anticipe a ESGCheck",
     ctaButton: "Nous ecrire pour un acces anticipe",
     emailNote: "Decrivez votre entreprise et votre principal defi ESG. Nous repondrons avec les details de la beta.",
@@ -305,7 +305,7 @@ const frTranslations = {
     }
   },
   footer: {
-    description: "ESGCheck aide les entreprises a comprendre leurs rapports ESG avec des informations IA claires, en quelques minutes.",
+    description: "ESGCheck transforme les documents que les PME en croissance possedent deja en une premiere evaluation ESG credible - construite en Suisse.",
     product: "Produit",
     company: "Entreprise",
     copyright: "Copyright 2026 ESGCheck. Tous droits reserves."
