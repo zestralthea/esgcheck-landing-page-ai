@@ -181,7 +181,6 @@ All colors MUST be HSL.
     align-items: center;
     border: 1px solid;
     border-radius: 0.5rem;
-    display: none;
     font-family: inherit;
     font-size: 0.95rem;
     justify-content: center;
@@ -190,6 +189,10 @@ All colors MUST be HSL.
     padding: 0.75rem 1rem;
     text-align: center;
     width: 100%;
+  }
+
+  #waitlist .brevo-message.sib-form-message-panel--active {
+    display: flex;
   }
 
   #waitlist .brevo-message-error {

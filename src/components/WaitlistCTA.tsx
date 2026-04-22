@@ -69,10 +69,10 @@ export default function WaitlistCTA() {
                             <div className="entry__field">
                               <input
                                 className="input"
-                                type="email"
+                                type="text"
                                 id="EMAIL"
                                 name="EMAIL"
-                                autoComplete="email"
+                                autoComplete="off"
                                 placeholder="you@company.com"
                                 data-required="true"
                                 required
