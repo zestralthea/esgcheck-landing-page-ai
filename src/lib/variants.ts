@@ -16,7 +16,7 @@ export const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         hero: "bg-gradient-primary text-primary-foreground shadow-glow hover:shadow-glow/60 hover:scale-105 transition-all duration-300",
-        premium: "bg-gradient-gold text-primary-foreground shadow-premium hover:shadow-premium/80 hover:scale-105 transition-all duration-300",
+        premium: "bg-gradient-primary text-primary-foreground shadow-premium hover:shadow-premium/80 hover:scale-105 transition-all duration-300",
       },
       size: {
         default: "h-10 px-4 py-2",
@@ -51,7 +51,7 @@ export const cardVariants = cva(
           "backdrop-blur-lg"
         ].join(" "),
         outline: "border-2",
-        premium: "border border-border/20 shadow-premium bg-gradient-gold backdrop-blur",
+        premium: "border border-border/20 shadow-premium bg-gradient-primary backdrop-blur",
       },
       hover: {
         none: "",

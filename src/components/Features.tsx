@@ -37,7 +37,7 @@ export default function Features() {
   ];
 
   return (
-    <section id="features" className="py-20 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Social.jpg)' }}>
+    <section id="features" className="scroll-mt-16 py-20 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Social.jpg)' }}>
       {/* Readability overlays similar to hero, tuned for image background */}
       <GradientOverlay className="bg-black/20 mix-blend-multiply" zIndex={5} />
       {/* Minimal blur for stability without softness */}

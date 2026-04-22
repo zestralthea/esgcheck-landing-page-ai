@@ -1,0 +1,7 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(wc -l /c/Files/Agil/Project/ESGCheck/esgcheck-landing-page-ai/supabase/migrations/*.sql)"
+    ]
+  }
+}

@@ -1,36 +1,16 @@
-import { useLocation } from "react-router-dom";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { Link } from "react-router-dom";
 import LanguageToggle from "./LanguageToggle";
 
-const smoothScrollTo = (elementId: string) => {
-  const element = document.getElementById(elementId);
-  if (element) {
-    element.scrollIntoView({
-      behavior: 'smooth',
-      block: 'start'
-    });
-  }
-};
+const earlyAccessHref = "#waitlist";
+const contactHref = "mailto:hello@esgcheck.com?subject=ESGCheck%20early%20access";
 
 export default function Footer() {
-  const location = useLocation();
   const { t } = useLanguage();
-  const isHomePage = location.pathname === '/';
-  
-  const handleNavClick = (sectionId: string) => {
-    if (isHomePage) {
-      smoothScrollTo(sectionId);
-    } else {
-      // Navigate to home page with hash
-      window.location.href = `/#${sectionId}`;
-    }
-  };
 
   return (
     <footer className="hairline-sep-t bg-background">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-4 gap-8">
+        <div className="grid gap-8 md:grid-cols-[2fr_1fr_1fr]">
           <div className="space-y-4">
             <div className="flex items-center justify-between">
               <div className="flex items-center space-x-2">
@@ -50,12 +30,14 @@ export default function Footer() {
             <h4 className="font-semibold text-foreground mb-4">{t('footer.product')}</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <button 
-                  onClick={() => handleNavClick('features')}
-                  className="hover:text-foreground transition-colors cursor-pointer"
-                >
+                <a href="#features" className="hover:text-foreground transition-colors">
                   {t('header.features')}
-                </button>
+                </a>
+              </li>
+              <li>
+                <a href="#about" className="hover:text-foreground transition-colors">
+                  {t('header.about')}
+                </a>
               </li>
             </ul>
           </div>
@@ -64,40 +46,26 @@ export default function Footer() {
             <h4 className="font-semibold text-foreground mb-4">{t('footer.company')}</h4>
             <ul className="space-y-2 text-muted-foreground">
               <li>
-                <button 
-                  onClick={() => handleNavClick('about')}
-                  className="hover:text-foreground transition-colors cursor-pointer"
-                >
-                  {t('header.about')}
-                </button>
+                <a href="#waitlist" className="hover:text-foreground transition-colors">
+                  {t('header.joinWaitlist')}
+                </a>
               </li>
-            </ul>
-          </div>
-          
-          <div>
-            <h4 className="font-semibold text-foreground mb-4">{t('footer.legal')}</h4>
-            <ul className="space-y-2 text-muted-foreground">
-              <li><a href="#" className="hover:text-foreground transition-colors">{t('footer.privacy')}</a></li>
-              <li><a href="#" className="hover:text-foreground transition-colors">{t('footer.terms')}</a></li>
+              <li>
+                <a href={contactHref} className="hover:text-foreground transition-colors">
+                  hello@esgcheck.com
+                </a>
+              </li>
             </ul>
           </div>
         </div>
         
-        <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center">
+        <div className="border-t mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-muted-foreground text-sm">
             {t('footer.copyright')}
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              LinkedIn
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              Twitter
-            </a>
-            <a href="#" className="text-muted-foreground hover:text-foreground transition-colors">
-              GitHub
-            </a>
-          </div>
+          <a href={earlyAccessHref} className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+            {t('waitlist.ctaButton')}
+          </a>
         </div>
       </div>
     </footer>

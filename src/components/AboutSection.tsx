@@ -26,7 +26,7 @@ export default function AboutSection() {
   ];
 
   return (
-    <section id="about" className="py-20 bg-muted/30 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Governance.jpg)' }}>
+    <section id="about" className="scroll-mt-16 py-20 bg-muted/30 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Governance.jpg)' }}>
       {/* Overlays tuned for static image background */}
       <div className="absolute inset-0 bg-black/25 mix-blend-multiply"></div>
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.12)_40%,rgba(0,0,0,0.32)_80%)]"></div>

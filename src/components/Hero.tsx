@@ -1,15 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useWaitlistModal } from "@/hooks/useWaitlistModal";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { GradientOverlay } from "@/components/common/GradientOverlay";
 import { FeatureIndicator, FeatureIndicatorGroup } from "@/components/common/FeatureIndicator";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/lib/variants";
+
+const earlyAccessHref = "#waitlist";
 
 export default function Hero() {
-  const { openModal } = useWaitlistModal();
   const { t } = useLanguage();
   const videoRef = useRef<HTMLVideoElement | null>(null);
   const [ready, setReady] = useState(false);
@@ -26,8 +25,8 @@ export default function Hero() {
       v.addEventListener('canplaythrough', onReady, { once: true });
       return () => {
         clearTimeout(timeout);
-        v.removeEventListener('loadeddata', onReady as any);
-        v.removeEventListener('canplaythrough', onReady as any);
+        v.removeEventListener('loadeddata', onReady);
+        v.removeEventListener('canplaythrough', onReady);
       };
     }
     return () => clearTimeout(timeout);
@@ -80,14 +79,16 @@ export default function Hero() {
           </div>
           
           <div className="flex flex-col items-center justify-center space-y-2">
-            <Button 
+            <Button
+              asChild
               variant="premium" 
               size="lg" 
               className="group"
-              onClick={openModal}
             >
-              {t('hero.joinWaitlist')}
-              <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              <a href={earlyAccessHref}>
+                {t('hero.joinWaitlist')}
+                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+              </a>
             </Button>
             <p className="text-sm text-foreground/80">{t('waitlist.modal.disclaimer')}</p>
           </div>

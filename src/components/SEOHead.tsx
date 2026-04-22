@@ -1,5 +1,4 @@
-
-import { Helmet } from 'react-helmet-async';
+import { Helmet } from "react-helmet-async";
 
 interface SEOHeadProps {
   title?: string;
@@ -13,12 +12,12 @@ interface SEOHeadProps {
 }
 
 export default function SEOHead({
-  title = "ESGCheck – AI-Powered ESG Report Insights for Startups & SMEs",
-  description = "Transform your ESG compliance with AI-powered report analysis. Get instant insights across GRI, SASB, TCFD frameworks. Perfect for startups and SMEs. Try free analysis today.",
+  title = "ESGCheck - AI-Powered ESG Report Insights for Startups and SMEs",
+  description = "Get AI-powered ESG report insights in minutes. ESGCheck helps startups, SMEs, and sustainability teams spot gaps, improve reporting clarity, and prepare for stronger ESG conversations.",
   keywords = "ESG compliance, sustainability reporting, AI analysis, GRI, SASB, TCFD, environmental reporting, startup ESG, SME sustainability",
   canonicalUrl = "https://esgcheck.lovable.app/",
   ogImage = "https://esgcheck.lovable.app/esgcheck_logo.svg",
-  ogImageAlt = "ESGCheck - AI-Powered ESG Compliance Platform",
+  ogImageAlt = "ESGCheck - AI-powered ESG report insights",
   structuredData,
   noindex = false
 }: SEOHeadProps) {
@@ -31,8 +30,7 @@ export default function SEOHead({
       <meta name="keywords" content={keywords} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
       <link rel="canonical" href={canonicalUrl} />
-      
-      {/* Open Graph Tags */}
+
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:type" content="website" />
@@ -40,16 +38,13 @@ export default function SEOHead({
       <meta property="og:site_name" content="ESGCheck" />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:alt" content={ogImageAlt} />
-      
-      {/* Twitter Card Tags */}
+
       <meta name="twitter:card" content="summary_large_image" />
-      <meta name="twitter:site" content="@esgcheck" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
       <meta name="twitter:image:alt" content={ogImageAlt} />
-      
-      {/* Structured Data */}
+
       {structuredDataScript && (
         <script type="application/ld+json">
           {structuredDataScript}
