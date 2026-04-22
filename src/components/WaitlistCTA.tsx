@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Mail } from "lucide-react";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { GradientCard } from "@/components/common/GradientCard";
@@ -6,9 +7,121 @@ import { useLanguage } from "@/contexts/LanguageContext";
 
 const brevoFormAction =
   "https://f3345453.sibforms.com/serve/MUIFAG23m2tWDesGY_yFxoeJFq9SqBJbGkfm7K1Y2WgbezBpQPZHZ5jkKXnQeKVLTBQt-HGSPePgxZw7qzdOcTB10_BFteEH7OLjKq6wxN2HovLA-PBdBcGuidKDvh9HB6Om7Mn83v2je_l8qohOEbwakFPNIHIRPmEHbwjqxEg50p3vDJl1jdZ1_wkvu4jCp6CxVqdIJpprXyeeIw==";
+const brevoScriptId = "brevo-form-main";
+const brevoScriptSrc = "https://sibforms.com/forms/end-form/build/main.js";
+const turnstileSiteKey = "0x4AAAAAABmAJXX1tHQtUYp_";
+
+type TurnstileRenderOptions = {
+  sitekey: string;
+  callback?: (token: string) => void;
+  "error-callback"?: (errorCode: string) => void;
+  language?: string;
+  size?: "normal" | "compact" | "flexible";
+  theme?: "auto" | "light" | "dark";
+};
+
+type TurnstileApi = {
+  render: (container: HTMLElement | string, options: TurnstileRenderOptions) => string | undefined;
+  remove?: (widgetId: string) => void;
+  getResponse?: (widgetId?: string) => string;
+};
+
+declare global {
+  interface Window {
+    grecaptcha?: TurnstileApi;
+    handleCaptchaResponse?: () => void;
+    renderBrevoTurnstile?: () => boolean;
+    turnstile?: TurnstileApi;
+  }
+}
 
 export default function WaitlistCTA() {
   const { t } = useLanguage();
+
+  useEffect(() => {
+    const existingScript = document.getElementById(brevoScriptId);
+
+    if (!existingScript) {
+      const script = document.createElement("script");
+      script.id = brevoScriptId;
+      script.defer = true;
+      script.src = brevoScriptSrc;
+      document.body.appendChild(script);
+    }
+  }, []);
+
+  useEffect(() => {
+    let retryId: number | undefined;
+    let attempts = 0;
+
+    const renderBrevoTurnstile = () => {
+      const captcha = document.getElementById("sib-captcha");
+
+      if (!captcha) {
+        return false;
+      }
+
+      if (captcha.dataset.turnstileWidgetId || captcha.querySelector("iframe")) {
+        return true;
+      }
+
+      if (!window.turnstile?.render) {
+        return false;
+      }
+
+      window.grecaptcha = window.turnstile;
+
+      try {
+        const widgetId = window.turnstile.render(captcha, {
+          sitekey: turnstileSiteKey,
+          callback: () => window.handleCaptchaResponse?.(),
+          "error-callback": () => {
+            captcha.removeAttribute("data-turnstile-widget-id");
+          },
+          language: "en",
+          size: "flexible",
+          theme: "auto",
+        });
+
+        if (widgetId) {
+          captcha.dataset.turnstileWidgetId = widgetId;
+        }
+
+        return true;
+      } catch {
+        return Boolean(captcha.querySelector("iframe"));
+      }
+    };
+
+    window.renderBrevoTurnstile = renderBrevoTurnstile;
+
+    if (!renderBrevoTurnstile()) {
+      retryId = window.setInterval(() => {
+        attempts += 1;
+
+        if (renderBrevoTurnstile() || attempts >= 40) {
+          window.clearInterval(retryId);
+        }
+      }, 250);
+    }
+
+    return () => {
+      if (retryId) {
+        window.clearInterval(retryId);
+      }
+
+      if (window.renderBrevoTurnstile === renderBrevoTurnstile) {
+        delete window.renderBrevoTurnstile;
+      }
+
+      const captcha = document.getElementById("sib-captcha");
+      const widgetId = captcha?.dataset.turnstileWidgetId;
+
+      if (widgetId) {
+        window.turnstile?.remove?.(widgetId);
+      }
+    };
+  }, []);
 
   return (
     <section id="waitlist" className="scroll-mt-16 py-20 bg-gradient-accent relative">
@@ -140,11 +253,12 @@ export default function WaitlistCTA() {
                         <div className="form__entry entry_block">
                           <div className="form__label-row">
                             <div
-                              className="cf-turnstile g-recaptcha"
-                              data-sitekey="0x4AAAAAABmAJXX1tHQtUYp_"
+                              className="g-recaptcha"
+                              data-sitekey={turnstileSiteKey}
                               id="sib-captcha"
                               data-callback="handleCaptchaResponse"
                               data-language="en"
+                              data-size="flexible"
                             />
                           </div>
                           <label className="entry__error entry__error--primary" />

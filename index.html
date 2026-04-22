@@ -19,6 +19,7 @@
     />
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://esgcheck.lovable.app/" />
+    <link rel="preconnect" href="https://challenges.cloudflare.com" />
 
     <meta property="og:title" content="ESGCheck - AI-Powered ESG Report Insights for Startups and SMEs" />
     <meta
@@ -69,9 +70,17 @@
         }
         window.grecaptcha = window.turnstile;
       };
+      window.onBrevoTurnstileLoad = function onBrevoTurnstileLoad() {
+        window.grecaptcha = window.turnstile;
+        if (window.renderBrevoTurnstile) {
+          window.renderBrevoTurnstile();
+        }
+      };
     </script>
-    <script defer src="https://sibforms.com/forms/end-form/build/main.js"></script>
-    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+    <script
+      defer
+      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onBrevoTurnstileLoad"
+    ></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
