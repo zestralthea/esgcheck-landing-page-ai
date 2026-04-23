@@ -43,11 +43,23 @@ export default function Features() {
               descriptionClassName="max-w-none text-base md:text-lg"
             />
 
-            <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
-              {pressureCards.map((item) => (
+            <div className="grid justify-items-center gap-4 grid-cols-2 xl:grid-cols-6">
+              {pressureCards.map((item, index) => (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-border/80 bg-card px-4 py-5 text-left shadow-card"
+                  className={`mx-auto flex w-full max-w-[22rem] min-h-[10.5rem] flex-col justify-center rounded-2xl border border-border/80 bg-card px-4 py-5 text-center shadow-card xl:col-span-2 ${
+                    index === pressureCards.length - 1
+                      ? "col-span-2 w-[calc(50%-0.5rem)] xl:w-full"
+                      : ""
+                  } ${
+                    index === pressureCards.length - 2
+                      ? "xl:col-start-2"
+                      : ""
+                  } ${
+                    index === pressureCards.length - 1
+                      ? "xl:col-start-4"
+                      : ""
+                  }`}
                 >
                   <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary text-primary">
                     <item.icon className="h-5 w-5" />
@@ -59,8 +71,8 @@ export default function Features() {
               ))}
             </div>
 
-            <div className="mt-6 flex items-start gap-4 rounded-2xl border border-border/80 bg-[linear-gradient(180deg,hsl(var(--card))_0%,hsl(var(--secondary))_100%)] px-5 py-5 shadow-card">
-              <div className="mt-1 inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-primary/10 text-primary">
+            <div className="mt-6 flex items-center gap-4 rounded-2xl border border-border/80 bg-[linear-gradient(180deg,hsl(var(--card))_0%,hsl(var(--secondary))_100%)] px-5 py-5 shadow-card">
+              <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-primary/10 text-primary">
                 <Building2 className="h-5 w-5" />
               </div>
               <p className="text-base leading-7 text-foreground/75">

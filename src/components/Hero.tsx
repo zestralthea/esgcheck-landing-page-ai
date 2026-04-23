@@ -143,8 +143,8 @@ export default function Hero() {
                 <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.strengthsTitle")}</p>
                 <div className="mt-4 space-y-3">
                   {strengths.map((item) => (
-                    <div key={item} className="flex items-start gap-2.5 text-sm text-foreground/75">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 text-success" />
+                    <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
                       <span>{t(`hero.dashboard.strengths.${item}`)}</span>
                     </div>
                   ))}
@@ -154,8 +154,8 @@ export default function Hero() {
                   <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.gapsTitle")}</p>
                   <div className="mt-4 space-y-3">
                     {gaps.map((item) => (
-                      <div key={item} className="flex items-start gap-2.5 text-sm text-foreground/75">
-                        <AlertTriangle className="mt-0.5 h-4 w-4 text-amber-500" />
+                      <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
+                        <AlertTriangle className="h-4 w-4 shrink-0 text-amber-500" />
                         <span>{t(`hero.dashboard.gaps.${item}`)}</span>
                       </div>
                     ))}
@@ -167,8 +167,8 @@ export default function Hero() {
                 <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.nextStepsTitle")}</p>
                 <div className="mt-4 space-y-3">
                   {nextSteps.map((item) => (
-                    <div key={item} className="flex items-start gap-2.5 text-sm text-foreground/75">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 text-success" />
+                    <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
                       <span>{t(`hero.dashboard.nextSteps.${item}`)}</span>
                     </div>
                   ))}
@@ -182,8 +182,8 @@ export default function Hero() {
                 <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.missingTitle")}</p>
                 <div className="mt-4 space-y-3">
                   {missing.map((item) => (
-                    <div key={item} className="flex items-start gap-2.5 text-sm text-foreground/75">
-                      <FileSearch className="mt-0.5 h-4 w-4 text-muted-foreground" />
+                    <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
+                      <FileSearch className="h-4 w-4 shrink-0 text-muted-foreground" />
                       <span>{t(`hero.dashboard.missing.${item}`)}</span>
                     </div>
                   ))}
@@ -200,7 +200,7 @@ export default function Hero() {
           {highlightCards.map((item) => (
             <div
               key={item.id}
-              className="flex min-h-[4.5rem] items-center justify-center rounded-2xl border border-border/80 bg-card px-5 py-4 text-center text-sm font-semibold text-foreground shadow-card"
+              className="flex h-[4.5rem] items-center justify-center rounded-2xl border border-border/80 bg-card px-5 text-center text-sm font-semibold leading-tight text-foreground shadow-card"
             >
               {t(`hero.highlights.${item.id}`)}
             </div>

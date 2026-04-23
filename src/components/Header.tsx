@@ -27,11 +27,11 @@ export default function Header() {
     <>
       <header className="fixed inset-x-0 top-0 z-50">
         <div className="bg-primary text-primary-foreground">
-          <div className="container mx-auto flex min-h-9 flex-wrap items-center justify-center gap-x-5 gap-y-1 px-4 py-2 text-[11px] font-medium sm:text-xs">
+          <div className="container mx-auto flex min-h-9 flex-nowrap items-center justify-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] overflow-x-auto px-4 py-2 text-[clamp(0.5rem,0.8vw,0.75rem)] font-medium whitespace-nowrap">
             {trustItems.map((item) => (
-              <div key={item} className="flex items-center gap-1.5">
-                <CheckCircle2 className="h-3.5 w-3.5" />
-                <span>{item}</span>
+              <div key={item} className="flex items-center gap-[clamp(0.25rem,0.55vw,0.375rem)] whitespace-nowrap">
+                <CheckCircle2 className="h-[clamp(0.625rem,1vw,0.875rem)] w-[clamp(0.625rem,1vw,0.875rem)] shrink-0" />
+                <span className="leading-none">{item}</span>
               </div>
             ))}
           </div>
@@ -60,9 +60,11 @@ export default function Header() {
               ))}
             </nav>
 
-            <div className="flex h-full items-center gap-2 self-center leading-none">
-              <LanguageToggle showOnMobile />
-              <Button asChild variant="hero" size="sm" className="self-center rounded-xl px-4 leading-none">
+            <div className="flex h-full items-center justify-self-end gap-2 self-center leading-none">
+              <div className="shrink-0">
+                <LanguageToggle showOnMobile />
+              </div>
+              <Button asChild variant="hero" size="sm" className="hidden self-center rounded-xl px-4 leading-none md:inline-flex">
                 <a href={earlyAccessHref}>{t("header.joinWaitlist")}</a>
               </Button>
             </div>

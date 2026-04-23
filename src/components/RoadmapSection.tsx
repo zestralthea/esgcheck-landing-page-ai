@@ -49,15 +49,19 @@ export default function RoadmapSection() {
           ))}
         </div>
 
-        <div className="space-y-5 lg:hidden">
+        <div className="relative space-y-6 lg:hidden">
+          <div className="absolute bottom-0 left-[1.75rem] top-0 w-px -translate-x-1/2 bg-border" />
           {roadmapSteps.map((step, index) => (
-            <div key={step.id} className="relative pl-16">
-              {index < roadmapSteps.length - 1 ? (
-                <div className="absolute left-[23px] top-12 h-[calc(100%+0.75rem)] w-px bg-border" />
-              ) : null}
-              <div className="absolute left-0 top-0 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-card">
-                {index + 1}
+            <div
+              key={step.id}
+              className="grid grid-cols-[3.5rem_minmax(0,1fr)] items-center gap-4"
+            >
+              <div className="relative z-10 flex h-full min-h-[8.5rem] justify-center self-stretch">
+                <div className="relative top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground shadow-card">
+                  {index + 1}
+                </div>
               </div>
+
               <div className="rounded-2xl border border-border/80 bg-card px-5 py-5 shadow-card">
                 <div className="mb-3 inline-flex h-10 w-10 items-center justify-center rounded-2xl bg-secondary text-primary">
                   <step.icon className="h-5 w-5" />
