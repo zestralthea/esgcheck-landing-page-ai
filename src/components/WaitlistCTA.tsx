@@ -11,7 +11,7 @@ const brevoFormAction =
 const brevoScriptId = "brevo-form-main";
 const brevoScriptSrc = "https://sibforms.com/forms/end-form/build/main.js";
 const turnstileSiteKey = "0x4AAAAAABmAJXX1tHQtUYp_";
-const contactHref = "mailto:hello@esgcheck.com?subject=ESGCheck%20more%20information";
+const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20more%20information";
 
 type TurnstileRenderOptions = {
   sitekey: string;
@@ -145,7 +145,7 @@ export default function WaitlistCTA() {
           >
             <div className="relative bg-[linear-gradient(180deg,hsl(var(--secondary))_0%,hsl(var(--accent))_100%)] p-8 md:p-10">
               <div className="absolute left-0 top-0 h-28 w-28 rounded-full bg-primary/10 blur-3xl" />
-              <div className="relative flex flex-col items-end text-right">
+              <div className="relative flex flex-col items-start text-left lg:items-end lg:text-right">
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-card text-primary shadow-sm">
                   <Mail className="h-6 w-6" />
                 </div>
@@ -155,7 +155,7 @@ export default function WaitlistCTA() {
                 <p className="mt-4 max-w-sm text-base leading-8 text-foreground/72">
                   {t("waitlist.emailNote")}
                 </p>
-                <div className="mt-8 inline-flex max-w-full items-center gap-2 self-end rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm sm:px-5">
+                <div className="mt-8 inline-flex max-w-full items-center gap-2 self-start rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm sm:px-5 lg:self-end">
                   <ArrowRight className="h-4 w-4 text-primary" />
                   <span className="whitespace-nowrap sm:hidden">{t("waitlist.modal.disclaimerShort")}</span>
                   <span className="hidden whitespace-nowrap sm:inline">{t("waitlist.modal.disclaimer")}</span>
@@ -163,7 +163,7 @@ export default function WaitlistCTA() {
                 <p className="mt-4 max-w-sm text-sm leading-7 text-foreground/68">
                   {t("waitlist.modal.betaNote")}
                 </p>
-                <div className="mt-8 self-end">
+                <div className="mt-8 self-start lg:self-end">
                   <Button asChild variant="outline" size="lg" className="rounded-xl px-7">
                     <a href={contactHref}>{t("finalCta.secondary")}</a>
                   </Button>

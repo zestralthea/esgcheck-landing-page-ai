@@ -2,7 +2,7 @@ import { ArrowRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const contactHref = "mailto:hello@esgcheck.com?subject=ESGCheck%20more%20information";
+const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20more%20information";
 
 export default function FinalCTA() {
   const { t } = useLanguage();

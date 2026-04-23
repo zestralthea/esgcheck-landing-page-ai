@@ -76,7 +76,7 @@ export default function CredibilitySection() {
             <div className="space-y-5">
               {pillars.map((item) => (
                 <div key={item.id} className="flex items-center gap-3">
-                  <CheckCircle2 className="h-5 w-5 text-success" />
+                  <CheckCircle2 className="h-5 w-5 shrink-0 text-success" />
                   <div>
                     <h3 className="font-semibold text-foreground">
                       {t(`credibility.pillars.${item.id}.title`)}
