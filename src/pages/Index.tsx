@@ -7,51 +7,71 @@ import Footer from "@/components/Footer";
 import AboutSection from "@/components/AboutSection";
 import SEOHead from "@/components/SEOHead";
 import { Helmet } from "react-helmet-async";
-
-const homeStructuredData = {
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "ESGCheck",
-  "description": "Practical first ESG assessment for growing SMEs, built from the documents companies already have.",
-  "url": "https://esgcheck.lovable.app/",
-  "logo": "https://esgcheck.lovable.app/esgcheck_logo.svg",
-  "applicationCategory": "BusinessApplication",
-  "operatingSystem": "Web Browser",
-  "offers": {
-    "@type": "Offer",
-    "price": "0",
-    "priceCurrency": "USD",
-    "availability": "https://schema.org/InStock"
-  },
-  "provider": {
-    "@type": "Organization",
-    "name": "ESGCheck",
-    "url": "https://esgcheck.lovable.app/"
-  },
-  "featureList": [
-    "First ESG Score with Rationale",
-    "Strengths and Gap Identification",
-    "Practical Next Steps",
-    "Document-Based Assessment (GRI-first)",
-    "Shareable ESG Summary"
-  ],
-  "keywords": "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies"
-};
+import CredibilitySection from "@/components/CredibilitySection";
+import RoadmapSection from "@/components/RoadmapSection";
+import AudienceSection from "@/components/AudienceSection";
+import TeamSection from "@/components/TeamSection";
+import FAQSection from "@/components/FAQSection";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const Index = () => {
+  const { t, language } = useLanguage();
+  const structuredDataLanguage =
+    language === "de" ? "de-CH" : language === "fr" ? "fr-CH" : "en";
+
+  const homeStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "ESGCheck",
+    "description": t("seo.structuredData.description"),
+    "url": "https://esgcheck.lovable.app/",
+    "logo": "https://esgcheck.lovable.app/esgcheck_logo.svg",
+    "applicationCategory": "BusinessApplication",
+    "operatingSystem": "Web Browser",
+    "inLanguage": structuredDataLanguage,
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD",
+      "availability": "https://schema.org/InStock"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "ESGCheck",
+      "url": "https://esgcheck.lovable.app/"
+    },
+    "featureList": [
+      t("seo.structuredData.featureList.documentFirst"),
+      t("seo.structuredData.featureList.scoreRationale"),
+      t("seo.structuredData.featureList.strengthsGaps"),
+      t("seo.structuredData.featureList.nextSteps"),
+      t("seo.structuredData.featureList.swissPrivacy")
+    ],
+    "keywords": t("seo.keywords")
+  };
+
   return (
     <div className="min-h-screen bg-background">
       <Helmet>
-        <link rel="preload" as="video" href="/ESGCheck_hero_compressed.mp4" type="video/mp4" />
+        <link rel="preload" as="video" href="/ESGCheck_hero_compressed.webm" type="video/webm" />
       </Helmet>
-      <SEOHead 
+      <SEOHead
+        title={t("seo.title")}
+        description={t("seo.description")}
+        keywords={t("seo.keywords")}
+        ogImageAlt={t("seo.ogImageAlt")}
         structuredData={homeStructuredData}
       />
-      
+
       <Header />
       <Hero />
       <Features />
       <AboutSection />
+      <CredibilitySection />
+      <RoadmapSection />
+      <AudienceSection />
+      <TeamSection />
+      <FAQSection />
       <WaitlistCTA />
       <Footer />
     </div>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { Mail } from "lucide-react";
+import { ArrowRight, Mail } from "lucide-react";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
 import { GradientCard } from "@/components/common/GradientCard";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -10,6 +11,7 @@ const brevoFormAction =
 const brevoScriptId = "brevo-form-main";
 const brevoScriptSrc = "https://sibforms.com/forms/end-form/build/main.js";
 const turnstileSiteKey = "0x4AAAAAABmAJXX1tHQtUYp_";
+const contactHref = "mailto:hello@esgcheck.com?subject=ESGCheck%20more%20information";
 
 type TurnstileRenderOptions = {
   sitekey: string;
@@ -36,7 +38,7 @@ declare global {
 }
 
 export default function WaitlistCTA() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   useEffect(() => {
     const existingScript = document.getElementById(brevoScriptId);
@@ -78,7 +80,7 @@ export default function WaitlistCTA() {
           "error-callback": () => {
             captcha.removeAttribute("data-turnstile-widget-id");
           },
-          language: "en",
+          language,
           size: "flexible",
           theme: "auto",
         });
@@ -121,174 +123,195 @@ export default function WaitlistCTA() {
         window.turnstile?.remove?.(widgetId);
       }
     };
-  }, []);
+  }, [language]);
 
   return (
-    <section id="waitlist" className="scroll-mt-16 py-20 bg-gradient-accent relative">
+    <section id="waitlist" className="bg-background py-20">
       <div className="container mx-auto px-4">
-        <div className="max-w-2xl mx-auto">
+        <div className="mx-auto max-w-5xl">
           <SectionHeading
-            title={t('waitlist.title')}
-            description={t('waitlist.description')}
+            title={t("waitlist.title")}
+            description={t("waitlist.description")}
             centered
-            titleClassName="text-center"
-            descriptionClassName="text-center mx-auto"
+            className="mb-8"
+            descriptionClassName="text-base md:text-lg"
           />
 
           <GradientCard
-            variant="default"
+            variant="premium"
             hover="none"
-            className="relative overflow-hidden bg-[hsl(var(--card)/0.35)] backdrop-blur-xl border border-border/30 ring-1 ring-white/5"
+            className="overflow-hidden rounded-[32px] border border-border/80"
+            containerClassName="grid gap-0 lg:grid-cols-[1fr_3fr]"
           >
-            <CardHeader className="text-center">
-              <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-gradient-primary">
-                <Mail className="h-6 w-6 text-primary-foreground" />
-              </div>
-              <CardTitle className="text-2xl text-center">{t('waitlist.cardTitle')}</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="sib-form brevo-form-shell">
-                <div id="sib-form-container" className="sib-form-container">
-                  <div id="error-message" className="sib-form-message-panel brevo-message brevo-message-error">
-                    <div className="sib-form-message-panel__text sib-form-message-panel__text--center">
-                      <span className="sib-form-message-panel__inner-text">
-                        Your subscription could not be saved. Please try again.
-                      </span>
-                    </div>
-                  </div>
-                  <div id="success-message" className="sib-form-message-panel brevo-message brevo-message-success">
-                    <div className="sib-form-message-panel__text sib-form-message-panel__text--center">
-                      <span className="sib-form-message-panel__inner-text">
-                        Your subscription has been successful.
-                      </span>
-                    </div>
-                  </div>
-
-                  <div
-                    id="sib-container"
-                    className="sib-container--large sib-container--vertical brevo-container"
-                  >
-                    <form id="sib-form" method="POST" action={brevoFormAction} data-type="subscription">
-                      <div className="sib-form-block brevo-intro">
-                        <p className="brevo-helper">{t('waitlist.emailNote')}</p>
-                      </div>
-
-                      <div className="sib-input sib-form-block">
-                        <div className="form__entry entry_block">
-                          <div className="form__label-row">
-                            <label className="entry__label" htmlFor="EMAIL" data-required="*">
-                              Work email
-                            </label>
-                            <div className="entry__field">
-                              <input
-                                className="input"
-                                type="text"
-                                id="EMAIL"
-                                name="EMAIL"
-                                autoComplete="off"
-                                placeholder="you@company.com"
-                                data-required="true"
-                                required
-                              />
-                            </div>
-                          </div>
-
-                          <label className="entry__error entry__error--primary" />
-                          <label className="entry__specification">
-                            Provide your email address to request early access.
-                          </label>
-                        </div>
-                      </div>
-
-                      <div className="sib-optin sib-form-block" data-required="true">
-                        <div className="form__entry entry_mcq">
-                          <div className="form__label-row">
-                            <label className="entry__label" htmlFor="GDPR_FIELD" data-required="*">
-                              Opt-in
-                            </label>
-                            <div className="entry__choice">
-                              <label className="brevo-checkbox-row">
-                                <input
-                                  type="checkbox"
-                                  className="input_replaced"
-                                  value="1"
-                                  id="GDPR_FIELD"
-                                  name="GDPR_FIELD"
-                                  required
-                                />
-                                <span className="checkbox checkbox_tick_positive" />
-                                <span>
-                                  I agree to receive your newsletters and accept the data privacy statement.
-                                </span>
-                              </label>
-                            </div>
-                          </div>
-
-                          <label className="entry__error entry__error--primary" />
-                          <label className="entry__specification">
-                            You may unsubscribe at any time using the link in our newsletter.
-                          </label>
-                        </div>
-                      </div>
-
-                      <div className="sib-form__declaration">
-                        <div className="brevo-declaration-icon" aria-hidden="true">
-                          <Mail className="h-5 w-5" />
-                        </div>
-                        <p>
-                          We use Brevo as our marketing platform. By submitting this form you agree that
-                          the personal data you provided will be transferred to Brevo for processing in
-                          accordance with{" "}
-                          <a
-                            href="https://www.brevo.com/en/legal/privacypolicy/"
-                            target="_blank"
-                            rel="noreferrer"
-                          >
-                            Brevo&apos;s Privacy Policy.
-                          </a>
-                        </p>
-                      </div>
-
-                      <div className="sib-captcha sib-form-block">
-                        <div className="form__entry entry_block">
-                          <div className="form__label-row">
-                            <div
-                              className="g-recaptcha"
-                              data-sitekey={turnstileSiteKey}
-                              id="sib-captcha"
-                              data-callback="handleCaptchaResponse"
-                              data-language="en"
-                              data-size="flexible"
-                            />
-                          </div>
-                          <label className="entry__error entry__error--primary" />
-                        </div>
-                      </div>
-
-                      <div className="sib-form-block brevo-submit-row">
-                        <button
-                          className="sib-form-block__button sib-form-block__button-with-loader"
-                          form="sib-form"
-                          type="submit"
-                        >
-                          <svg
-                            className="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
-                            viewBox="0 0 512 512"
-                            aria-hidden="true"
-                          >
-                            <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
-                          </svg>
-                          {t('waitlist.ctaButton')}
-                        </button>
-                      </div>
-
-                      <input type="text" name="email_address_check" value="" className="input--hidden" readOnly />
-                      <input type="hidden" name="locale" value="en" />
-                    </form>
-                  </div>
+            <div className="relative bg-[linear-gradient(180deg,hsl(var(--secondary))_0%,hsl(var(--accent))_100%)] p-8 md:p-10">
+              <div className="absolute left-0 top-0 h-28 w-28 rounded-full bg-primary/10 blur-3xl" />
+              <div className="relative flex flex-col items-end text-right">
+                <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-card text-primary shadow-sm">
+                  <Mail className="h-6 w-6" />
+                </div>
+                <h3 className="mt-6 max-w-sm text-3xl font-semibold tracking-tight text-foreground">
+                  {t("waitlist.cardTitle")}
+                </h3>
+                <p className="mt-4 max-w-sm text-base leading-8 text-foreground/72">
+                  {t("waitlist.emailNote")}
+                </p>
+                <div className="mt-8 inline-flex max-w-full items-center gap-2 self-end rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm sm:px-5">
+                  <ArrowRight className="h-4 w-4 text-primary" />
+                  <span className="whitespace-nowrap">{t("waitlist.modal.disclaimer")}</span>
+                </div>
+                <p className="mt-4 max-w-sm text-sm leading-7 text-foreground/68">
+                  {t("waitlist.modal.betaNote")}
+                </p>
+                <div className="mt-8 self-end">
+                  <Button asChild variant="outline" size="lg" className="rounded-xl px-7">
+                    <a href={contactHref}>{t("finalCta.secondary")}</a>
+                  </Button>
                 </div>
               </div>
-            </CardContent>
+            </div>
+
+            <div className="min-w-0 overflow-hidden bg-card p-6 md:p-8">
+              <CardHeader className="px-0 pt-0">
+                <CardTitle className="text-2xl text-foreground">
+                  {t("waitlist.ctaButton")}
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="px-0 pb-0">
+                <div className="sib-form brevo-form-shell">
+                  <div id="sib-form-container" className="sib-form-container">
+                    <div id="error-message" className="sib-form-message-panel brevo-message brevo-message-error">
+                      <div className="sib-form-message-panel__text sib-form-message-panel__text--center">
+                        <span className="sib-form-message-panel__inner-text">
+                          {t("waitlist.form.error")}
+                        </span>
+                      </div>
+                    </div>
+                    <div id="success-message" className="sib-form-message-panel brevo-message brevo-message-success">
+                      <div className="sib-form-message-panel__text sib-form-message-panel__text--center">
+                        <span className="sib-form-message-panel__inner-text">
+                          {t("waitlist.form.success")}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div
+                      id="sib-container"
+                      className="sib-container--large sib-container--vertical brevo-container"
+                    >
+                      <form id="sib-form" method="POST" action={brevoFormAction} data-type="subscription">
+                        <div className="sib-input sib-form-block">
+                          <div className="form__entry entry_block">
+                            <div className="form__label-row">
+                              <label className="entry__label" htmlFor="EMAIL" data-required="*">
+                                {t("waitlist.form.emailLabel")}
+                              </label>
+                              <div className="entry__field">
+                                <input
+                                  className="input"
+                                  type="text"
+                                  id="EMAIL"
+                                  name="EMAIL"
+                                  autoComplete="off"
+                                  placeholder={t("waitlist.form.emailPlaceholder")}
+                                  data-required="true"
+                                  required
+                                />
+                              </div>
+                            </div>
+
+                            <label className="entry__error entry__error--primary" />
+                            <label className="entry__specification">
+                              {t("waitlist.form.emailHelp")}
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="sib-optin sib-form-block" data-required="true">
+                          <div className="form__entry entry_mcq">
+                            <div className="form__label-row">
+                              <label className="entry__label" htmlFor="GDPR_FIELD" data-required="*">
+                                {t("waitlist.form.optInLabel")}
+                              </label>
+                              <div className="entry__choice">
+                                <label className="brevo-checkbox-row">
+                                  <input
+                                    type="checkbox"
+                                    className="input_replaced"
+                                    value="1"
+                                    id="GDPR_FIELD"
+                                    name="GDPR_FIELD"
+                                    required
+                                  />
+                                  <span className="checkbox checkbox_tick_positive" />
+                                  <span>{t("waitlist.form.optInText")}</span>
+                                </label>
+                              </div>
+                            </div>
+
+                            <label className="entry__error entry__error--primary" />
+                            <label className="entry__specification">
+                              {t("waitlist.form.optInHelp")}
+                            </label>
+                          </div>
+                        </div>
+
+                        <div className="sib-form__declaration">
+                          <div className="brevo-declaration-icon" aria-hidden="true">
+                            <Mail className="h-5 w-5" />
+                          </div>
+                          <p>
+                            {t("waitlist.form.brevoDisclaimer")}{" "}
+                            <a
+                              href="https://www.brevo.com/en/legal/privacypolicy/"
+                              target="_blank"
+                              rel="noreferrer"
+                            >
+                              {t("waitlist.form.brevoLinkLabel")}
+                            </a>
+                          </p>
+                        </div>
+
+                        <div className="sib-captcha sib-form-block">
+                          <div className="form__entry entry_block">
+                            <div className="form__label-row">
+                              <div
+                                className="g-recaptcha"
+                                data-sitekey={turnstileSiteKey}
+                                id="sib-captcha"
+                                data-callback="handleCaptchaResponse"
+                                data-language={language}
+                                data-size="flexible"
+                              />
+                            </div>
+                            <label className="entry__error entry__error--primary" />
+                          </div>
+                        </div>
+
+                        <div className="sib-form-block brevo-submit-row">
+                          <button
+                            className="sib-form-block__button sib-form-block__button-with-loader"
+                            form="sib-form"
+                            type="submit"
+                          >
+                            <svg
+                              className="icon clickable__icon progress-indicator__icon sib-hide-loader-icon"
+                              viewBox="0 0 512 512"
+                              aria-hidden="true"
+                            >
+                              <path d="M460.116 373.846l-20.823-12.022c-5.541-3.199-7.54-10.159-4.663-15.874 30.137-59.886 28.343-131.652-5.386-189.946-33.641-58.394-94.896-95.833-161.827-99.676C261.028 55.961 256 50.751 256 44.352V20.309c0-6.904 5.808-12.337 12.703-11.982 83.556 4.306 160.163 50.864 202.11 123.677 42.063 72.696 44.079 162.316 6.031 236.832-3.14 6.148-10.75 8.461-16.728 5.01z" />
+                            </svg>
+                            {t("waitlist.ctaButton")}
+                          </button>
+                        </div>
+
+                        <input type="text" name="email_address_check" value="" className="input--hidden" readOnly />
+                        <input type="hidden" name="locale" value={language} />
+                      </form>
+                    </div>
+                  </div>
+                </div>
+              </CardContent>
+            </div>
           </GradientCard>
         </div>
       </div>

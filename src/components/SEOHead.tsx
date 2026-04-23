@@ -12,12 +12,12 @@ interface SEOHeadProps {
 }
 
 export default function SEOHead({
-  title = "ESGCheck - Practical ESG Assessment for Growing SMEs",
-  description = "Turn policies, internal records, and company reports into a credible first ESG assessment - with clear scores, visible gaps, and practical next steps. Built in Switzerland for growing SMEs.",
+  title = "ESGCheck - Practical ESG Assessment Platform for Growing SMEs",
+  description = "A practical ESG assessment platform for growing SMEs. Turn policies, internal records, and company reports into clear scores, visible gaps, and practical next steps.",
   keywords = "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies",
   canonicalUrl = "https://esgcheck.lovable.app/",
   ogImage = "https://esgcheck.lovable.app/esgcheck_logo.svg",
-  ogImageAlt = "ESGCheck - practical ESG assessment for growing SMEs",
+  ogImageAlt = "ESGCheck - practical ESG assessment platform for growing SMEs",
   structuredData,
   noindex = false
 }: SEOHeadProps) {

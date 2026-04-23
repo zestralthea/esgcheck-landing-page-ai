@@ -1,74 +1,98 @@
-
-import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { GradientCard } from "@/components/common/GradientCard";
-import { Lightbulb, Settings, Shield } from "lucide-react";
+import {
+  AlertTriangle,
+  BadgeCheck,
+  BarChart3,
+  FileCheck2,
+  FileSearch,
+  FolderOpen,
+  Lightbulb,
+  ShieldCheck,
+  TrendingUp,
+} from "lucide-react";
+import { SectionHeading } from "@/components/common/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
+
+const deliverableCards = [
+  { id: "score", icon: BarChart3 },
+  { id: "rationale", icon: FileCheck2 },
+  { id: "gaps", icon: AlertTriangle },
+  { id: "nextSteps", icon: Lightbulb },
+  { id: "strengths", icon: BadgeCheck },
+  { id: "evidence", icon: FileSearch },
+] as const;
+
+const reasons = [
+  { id: "practical", icon: BadgeCheck },
+  { id: "smes", icon: TrendingUp },
+  { id: "documentFirst", icon: FolderOpen },
+  { id: "privacy", icon: ShieldCheck },
+  { id: "progression", icon: BarChart3 },
+] as const;
 
 export default function AboutSection() {
   const { t } = useLanguage();
 
-  const valueCards = [
-    {
-      icon: Lightbulb,
-      title: t('about.clarity.title'),
-      description: t('about.clarity.description')
-    },
-    {
-      icon: Settings,
-      title: t('about.improving.title'),
-      description: t('about.improving.description')
-    },
-    {
-      icon: Shield,
-      title: t('about.secure.title'),
-      description: t('about.secure.description')
-    }
-  ];
-
   return (
-    <section id="about" className="scroll-mt-16 py-20 bg-muted/30 relative bg-cover bg-center bg-no-repeat" style={{ backgroundImage: 'url(/Governance.jpg)' }}>
-      {/* Overlays tuned for static image background */}
-      <div className="absolute inset-0 bg-black/25 mix-blend-multiply"></div>
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0)_0%,rgba(0,0,0,0.12)_40%,rgba(0,0,0,0.32)_80%)]"></div>
-      <div className="absolute inset-0 backdrop-blur-[2px]"></div>
-      {/* Stronger feather from previous media section */}
-      <div className="edge-fade-strong-top z-20 absolute inset-x-0 top-0" />
-      <div className="container mx-auto px-4 relative z-10">
-        <div className="text-center space-y-6 mb-16">
-          <h2 className="text-3xl md:text-4xl font-bold text-foreground text-shadow-lg">
-            {t('about.title')}
-          </h2>
-          <div className="max-w-4xl mx-auto space-y-4">
-            <p className="text-lg text-foreground/95 text-shadow">
-              {t('about.description')}
-            </p>
-            <p className="text-lg text-foreground/95 text-shadow">
-              {t('about.team')}
-            </p>
-          </div>
-        </div>
+    <section id="why-esgcheck" className="border-b border-border/70 bg-secondary/25 py-20">
+      <div className="container mx-auto px-4">
+        <div className="grid gap-14 xl:grid-cols-[1.15fr_0.85fr] xl:gap-16">
+          <div>
+            <SectionHeading
+              title={t("deliverables.title")}
+              centered={false}
+              className="mb-10"
+            />
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {valueCards.map((card, index) => (
-            <GradientCard
-              key={index}
-              variant="gradient"
-              hover="full"
-              className="text-center"
-            >
-              <CardHeader>
-                <div className="w-12 h-12 bg-gradient-primary rounded-lg flex items-center justify-center mb-4 group-hover:shadow-glow transition-all duration-300 mx-auto">
-                  <card.icon className="h-6 w-6 text-primary-foreground" />
+            <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
+              {deliverableCards.map((item) => (
+                <div
+                  key={item.id}
+                  className="rounded-2xl border border-border/80 bg-card px-5 py-5 shadow-card"
+                >
+                  <div className="mx-auto mb-4 flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary text-primary">
+                    <item.icon className="h-5 w-5" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-foreground">
+                    {t(`deliverables.items.${item.id}.title`)}
+                  </h3>
+                  <p className="mt-2 text-sm leading-6 text-foreground/70">
+                    {t(`deliverables.items.${item.id}.description`)}
+                  </p>
                 </div>
-                <CardTitle className="text-xl">{card.title}</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-muted-foreground">
-                  {card.description}
-                </p>
-              </CardContent>
-            </GradientCard>
-          ))}
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <SectionHeading
+              title={t("reasons.title")}
+              centered={false}
+              className="mb-10"
+            />
+
+            <div className="space-y-4">
+              {reasons.map((item) => (
+                <div
+                  key={item.id}
+                  className="rounded-2xl border border-border/80 bg-card px-5 py-5 shadow-card"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="inline-flex h-11 w-11 items-center justify-center rounded-2xl bg-secondary text-primary">
+                      <item.icon className="h-5 w-5" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {t(`reasons.items.${item.id}.title`)}
+                      </h3>
+                      <p className="mt-2 text-sm leading-6 text-foreground/70">
+                        {t(`reasons.items.${item.id}.description`)}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </div>
     </section>

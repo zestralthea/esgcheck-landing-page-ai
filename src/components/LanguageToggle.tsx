@@ -12,7 +12,7 @@ export default function LanguageToggle({ showOnMobile = false }: { showOnMobile?
   ];
 
   return (
-    <div className={`flex items-center space-x-1 bg-muted/50 rounded-md p-1 ${showOnMobile ? '' : 'hidden md:flex'}`}>
+    <div className={`inline-flex h-11 shrink-0 items-center justify-center gap-1 self-center rounded-full border border-border bg-background/90 p-1 shadow-sm ${showOnMobile ? '' : 'hidden md:flex'}`}>
       {languages.map(({ code, label }) => (
         <Button
           key={code}
@@ -20,10 +20,10 @@ export default function LanguageToggle({ showOnMobile = false }: { showOnMobile?
           size="sm"
           onClick={() => setLanguage(code)}
           className={`
-            px-3 py-1 text-xs font-medium transition-all duration-200
+            h-full rounded-full px-3 py-1 text-xs font-medium leading-none transition-all duration-200
             ${language === code 
               ? 'bg-primary text-primary-foreground shadow-sm' 
-              : 'hover:bg-muted text-muted-foreground hover:text-foreground'
+              : 'text-muted-foreground hover:bg-secondary hover:text-foreground'
             }
           `}
         >

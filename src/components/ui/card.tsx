@@ -9,15 +9,11 @@ const Card = React.forwardRef<
   <div
     ref={ref}
     className={cn(
-      "relative overflow-hidden rounded-lg border border-border/40 bg-[hsl(var(--card)/0.45)] backdrop-blur-lg text-card-foreground shadow-sm",
+      "relative overflow-hidden rounded-2xl border border-border/80 bg-card text-card-foreground shadow-card",
       className
     )}
     {...props}
   >
-    <div
-      aria-hidden
-      className="pointer-events-none absolute inset-0 bg-[hsl(var(--background)/0.06)] sm:bg-[hsl(var(--background)/0.08)] md:bg-[hsl(var(--background)/0.10)]"
-    />
     <div className="relative">
       {children}
     </div>
