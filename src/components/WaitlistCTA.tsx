@@ -157,7 +157,8 @@ export default function WaitlistCTA() {
                 </p>
                 <div className="mt-8 inline-flex max-w-full items-center gap-2 self-end rounded-full border border-border bg-card px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm sm:px-5">
                   <ArrowRight className="h-4 w-4 text-primary" />
-                  <span className="whitespace-nowrap">{t("waitlist.modal.disclaimer")}</span>
+                  <span className="whitespace-nowrap sm:hidden">{t("waitlist.modal.disclaimerShort")}</span>
+                  <span className="hidden whitespace-nowrap sm:inline">{t("waitlist.modal.disclaimer")}</span>
                 </div>
                 <p className="mt-4 max-w-sm text-sm leading-7 text-foreground/68">
                   {t("waitlist.modal.betaNote")}

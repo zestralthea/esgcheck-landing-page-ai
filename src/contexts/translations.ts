@@ -320,6 +320,7 @@ export const enTranslations = {
     },
     modal: {
       disclaimer: "Free during beta. No credit card required.",
+      disclaimerShort: "Free during beta.",
       betaNote:
         "Early testers get free access and help us build ESGCheck into the tool you need.",
     },
@@ -696,6 +697,7 @@ export const deTranslations = {
     },
     modal: {
       disclaimer: "Während der Beta kostenlos. Keine Kreditkarte erforderlich.",
+      disclaimerShort: "Während der Beta kostenlos.",
       betaNote:
         "Frühe Tester erhalten kostenlosen Zugang und helfen uns, ESGCheck gezielt weiterzuentwickeln.",
     },
@@ -1073,6 +1075,7 @@ export const frTranslations = {
     },
     modal: {
       disclaimer: "Gratuit pendant la bêta. Aucune carte bancaire requise.",
+      disclaimerShort: "Gratuit pendant la bêta.",
       betaNote:
         "Les premiers testeurs obtiennent un accès gratuit et nous aident à faire évoluer ESGCheck dans la bonne direction.",
     },
