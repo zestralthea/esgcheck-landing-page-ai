@@ -1,10 +1,12 @@
 import { useEffect } from "react";
+import { m, useReducedMotion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GradientCard } from "@/components/common/GradientCard";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { entranceEase, microSpring, revealLeft, revealRight, revealUp, viewportOnce } from "@/lib/motion";
 
 const brevoFormAction =
   "https://f3345453.sibforms.com/serve/MUIFAG23m2tWDesGY_yFxoeJFq9SqBJbGkfm7K1Y2WgbezBpQPZHZ5jkKXnQeKVLTBQt-HGSPePgxZw7qzdOcTB10_BFteEH7OLjKq6wxN2HovLA-PBdBcGuidKDvh9HB6Om7Mn83v2je_l8qohOEbwakFPNIHIRPmEHbwjqxEg50p3vDJl1jdZ1_wkvu4jCp6CxVqdIJpprXyeeIw==";
@@ -39,6 +41,7 @@ declare global {
 
 export default function WaitlistCTA() {
   const { t, language } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   useEffect(() => {
     const existingScript = document.getElementById(brevoScriptId);
@@ -129,21 +132,45 @@ export default function WaitlistCTA() {
     <section id="waitlist" className="bg-background py-20">
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-5xl">
-          <SectionHeading
-            title={t("waitlist.title")}
-            description={t("waitlist.description")}
-            centered
-            className="mb-8"
-            descriptionClassName="text-base md:text-lg"
-          />
-
-          <GradientCard
-            variant="premium"
-            hover="none"
-            className="overflow-hidden rounded-[32px] border border-border/80"
-            containerClassName="grid gap-0 lg:grid-cols-[1fr_3fr]"
+          <m.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={revealUp}
+            custom={shouldReduceMotion}
           >
-            <div className="relative bg-[linear-gradient(180deg,hsl(var(--secondary))_0%,hsl(var(--accent))_100%)] p-8 md:p-10">
+            <SectionHeading
+              title={t("waitlist.title")}
+              description={t("waitlist.description")}
+              centered
+              className="mb-8"
+              descriptionClassName="text-base md:text-lg"
+            />
+          </m.div>
+
+          <m.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={revealUp}
+            custom={shouldReduceMotion}
+            transition={shouldReduceMotion ? undefined : { duration: 0.6, ease: entranceEase }}
+          >
+            <GradientCard
+              variant="premium"
+              hover="none"
+              className="overflow-hidden rounded-[32px] border border-border/80"
+              containerClassName="grid gap-0 lg:grid-cols-[1fr_3fr]"
+            >
+            <m.div
+              className="relative bg-[linear-gradient(180deg,hsl(var(--secondary))_0%,hsl(var(--accent))_100%)] p-8 md:p-10"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              variants={revealLeft}
+              custom={shouldReduceMotion}
+              transition={shouldReduceMotion ? undefined : { delay: 0.1, duration: 0.56, ease: entranceEase }}
+            >
               <div className="absolute left-0 top-0 h-28 w-28 rounded-full bg-primary/10 blur-3xl" />
               <div className="relative flex flex-col items-start text-left lg:items-end lg:text-right">
                 <div className="inline-flex h-14 w-14 items-center justify-center rounded-2xl bg-card text-primary shadow-sm">
@@ -163,15 +190,27 @@ export default function WaitlistCTA() {
                 <p className="mt-4 max-w-sm text-sm leading-7 text-foreground/68">
                   {t("waitlist.modal.betaNote")}
                 </p>
-                <div className="mt-8 self-start lg:self-end">
+                <m.div
+                  className="mt-8 self-start lg:self-end"
+                  whileHover={shouldReduceMotion ? undefined : { y: -2, transition: { duration: 0.2 } }}
+                  whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
+                >
                   <Button asChild variant="outline" size="lg" className="rounded-xl px-7">
                     <a href={contactHref}>{t("finalCta.secondary")}</a>
                   </Button>
-                </div>
+                </m.div>
               </div>
-            </div>
+            </m.div>
 
-            <div className="min-w-0 overflow-hidden bg-card p-6 md:p-8">
+            <m.div
+              className="min-w-0 overflow-hidden bg-card p-6 md:p-8"
+              initial="hidden"
+              whileInView="visible"
+              viewport={viewportOnce}
+              variants={revealRight}
+              custom={shouldReduceMotion}
+              transition={shouldReduceMotion ? undefined : { delay: 0.18, duration: 0.56, ease: entranceEase }}
+            >
               <CardHeader className="px-0 pt-0">
                 <CardTitle className="text-2xl text-foreground">
                   {t("waitlist.ctaButton")}
@@ -312,8 +351,9 @@ export default function WaitlistCTA() {
                   </div>
                 </div>
               </CardContent>
-            </div>
+            </m.div>
           </GradientCard>
+          </m.div>
         </div>
       </div>
     </section>

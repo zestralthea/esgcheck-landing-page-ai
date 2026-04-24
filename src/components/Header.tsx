@@ -1,12 +1,15 @@
 import { CheckCircle2 } from "lucide-react";
+import { m, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { microSpring } from "@/lib/motion";
 import LanguageToggle from "./LanguageToggle";
 
 const earlyAccessHref = "#waitlist";
 
 export default function Header() {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   const trustItems = [
     t("header.trustStrip.swissBuilt"),
@@ -49,13 +52,15 @@ export default function Header() {
 
             <nav className="hidden h-full items-center justify-center gap-6 self-center lg:flex">
               {links.map((link) => (
-                <a
+                <m.a
                   key={link.href}
                   href={link.href}
                   className="inline-flex h-9 items-center leading-none text-sm font-medium text-foreground/75 transition-colors hover:text-foreground"
+                  whileHover={shouldReduceMotion ? undefined : { y: -1, transition: { duration: 0.18 } }}
+                  whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
                 >
                   {link.label}
-                </a>
+                </m.a>
               ))}
             </nav>
 
@@ -63,9 +68,14 @@ export default function Header() {
               <div className="shrink-0">
                 <LanguageToggle showOnMobile />
               </div>
-              <Button asChild variant="hero" size="sm" className="hidden self-center rounded-xl px-4 leading-none md:inline-flex">
-                <a href={earlyAccessHref}>{t("header.joinWaitlist")}</a>
-              </Button>
+              <m.div
+                whileHover={shouldReduceMotion ? undefined : { y: -2, transition: { duration: 0.2 } }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
+              >
+                <Button asChild variant="hero" size="sm" className="hidden self-center rounded-xl px-4 leading-none transition-[box-shadow,opacity] hover:shadow-glow md:inline-flex">
+                  <a href={earlyAccessHref}>{t("header.joinWaitlist")}</a>
+                </Button>
+              </m.div>
             </div>
           </div>
         </div>

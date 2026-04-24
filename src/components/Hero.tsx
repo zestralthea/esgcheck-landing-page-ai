@@ -1,6 +1,15 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, CheckCircle2, AlertTriangle, FileSearch } from "lucide-react";
+import { m, useReducedMotion } from "framer-motion";
+import {
+  cardHover,
+  entranceEase,
+  microSpring,
+  revealRight,
+  revealUp,
+  staggerContainer,
+} from "@/lib/motion";
 
 const scoreBreakdown = [
   { key: "environment", value: 64 },
@@ -9,14 +18,24 @@ const scoreBreakdown = [
 ];
 
 const ringDegrees = (Number("68") / 100) * 360;
+const ringProgress = Number("68") / 100;
+const ringRadius = 42;
+const ringCircumference = 2 * Math.PI * ringRadius;
+const ringOffset = ringCircumference * (1 - ringProgress);
 
 export default function Hero() {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   const strengths = ["policy", "opportunity", "conduct"] as const;
   const gaps = ["tracking", "suppliers", "oversight"] as const;
   const nextSteps = ["scope", "suppliers", "governance"] as const;
   const missing = ["inventory", "supplier", "board"] as const;
+  const proofItems = [
+    t("hero.proof.documentFirst"),
+    t("hero.proof.griFirst"),
+    t("hero.proof.swissPrivacy"),
+  ];
 
   return (
     <section id="product" className="relative overflow-hidden border-b border-border/70">
@@ -37,45 +56,84 @@ export default function Hero() {
 
       <div className="container relative mx-auto px-4 py-14 sm:py-20 lg:py-24">
         <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,1fr)_540px]">
-          <div className="max-w-2xl space-y-8">
+          <m.div
+            className="max-w-2xl space-y-8"
+            initial="hidden"
+            animate="visible"
+            variants={staggerContainer}
+            custom={shouldReduceMotion}
+          >
             <div className="space-y-5">
-              <h1 className="max-w-[12ch] text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl">
+              <m.h1
+                className="max-w-[12ch] text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+                variants={revealUp}
+                custom={shouldReduceMotion}
+              >
                 {t("hero.title")}
-              </h1>
-              <p className="max-w-[34rem] text-lg leading-8 text-foreground/72 sm:text-xl">
+              </m.h1>
+              <m.p
+                className="max-w-[34rem] text-lg leading-8 text-foreground/72 sm:text-xl"
+                variants={revealUp}
+                custom={shouldReduceMotion}
+              >
                 {t("hero.description")}
-              </p>
+              </m.p>
             </div>
 
-            <div className="flex flex-col gap-3 sm:flex-row">
-              <Button asChild variant="hero" size="lg" className="rounded-xl px-7">
-                <a href="#waitlist">
-                  {t("hero.primaryCta")}
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </a>
-              </Button>
-              <Button asChild variant="outline" size="lg" className="rounded-xl px-7">
-                <a href="#how-it-works">{t("hero.secondaryCta")}</a>
-              </Button>
-            </div>
+            <m.div
+              className="flex flex-col gap-3 sm:flex-row"
+              variants={revealUp}
+              custom={shouldReduceMotion}
+            >
+              <m.div
+                whileHover={shouldReduceMotion ? undefined : { y: -2, transition: { duration: 0.2 } }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
+              >
+                <Button asChild variant="hero" size="lg" className="rounded-xl px-7 transition-[box-shadow,opacity] hover:shadow-glow">
+                  <a href="#waitlist">
+                    {t("hero.primaryCta")}
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </a>
+                </Button>
+              </m.div>
+              <m.div
+                whileHover={shouldReduceMotion ? undefined : { y: -2, transition: { duration: 0.2 } }}
+                whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
+              >
+                <Button asChild variant="outline" size="lg" className="rounded-xl px-7 transition-shadow hover:shadow-card">
+                  <a href="#how-it-works">{t("hero.secondaryCta")}</a>
+                </Button>
+              </m.div>
+            </m.div>
 
-            <div className="flex flex-wrap gap-3 pt-2">
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-success" />
-                {t("hero.proof.documentFirst")}
-              </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-success" />
-                {t("hero.proof.griFirst")}
-              </div>
-              <div className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm">
-                <span className="h-2 w-2 rounded-full bg-success" />
-                {t("hero.proof.swissPrivacy")}
-              </div>
-            </div>
-          </div>
+            <m.div
+              className="flex flex-wrap gap-3 pt-2"
+              variants={staggerContainer}
+              custom={shouldReduceMotion}
+            >
+              {proofItems.map((item) => (
+                <m.div
+                  key={item}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm"
+                  variants={revealUp}
+                  custom={shouldReduceMotion}
+                  whileHover={shouldReduceMotion ? undefined : cardHover.whileHover}
+                  whileTap={shouldReduceMotion ? undefined : cardHover.whileTap}
+                >
+                  <span className="h-2 w-2 rounded-full bg-success" />
+                  {item}
+                </m.div>
+              ))}
+            </m.div>
+          </m.div>
 
-          <div className="rounded-[28px] border border-border/80 bg-card/95 p-5 shadow-elegant backdrop-blur-sm">
+          <m.div
+            className="rounded-[28px] border border-border/80 bg-card/95 p-5 shadow-elegant backdrop-blur-sm"
+            initial="hidden"
+            animate="visible"
+            variants={revealRight}
+            custom={shouldReduceMotion}
+          >
             <div className="flex items-center justify-between border-b border-border/70 pb-4">
               <div>
                 <p className="text-sm font-semibold text-foreground">{t("hero.dashboard.title")}</p>
@@ -86,7 +144,14 @@ export default function Hero() {
             </div>
 
             <div className="mt-5 grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
-              <div className="rounded-2xl border border-border/80 bg-background p-5">
+              <m.div
+                className="rounded-2xl border border-border/80 bg-background p-5"
+                initial="hidden"
+                animate="visible"
+                variants={revealUp}
+                custom={shouldReduceMotion}
+                transition={shouldReduceMotion ? undefined : { delay: 0.18, duration: 0.5, ease: entranceEase }}
+              >
                 <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.scoreTitle")}</p>
                 <div className="mt-4 flex items-center justify-between gap-4">
                   <div>
@@ -100,12 +165,36 @@ export default function Hero() {
                     </div>
                     <p className="mt-2 text-sm font-medium text-success">{t("hero.dashboard.scoreLabel")}</p>
                   </div>
-                  <div
-                    className="relative size-24 shrink-0 rounded-full"
-                    style={{
-                      background: `conic-gradient(hsl(var(--primary)) 0deg ${ringDegrees}deg, hsl(var(--secondary)) ${ringDegrees}deg 360deg)`,
-                    }}
-                  >
+                  <div className="relative size-24 shrink-0">
+                    <svg viewBox="0 0 96 96" className="-rotate-90">
+                      <circle
+                        cx="48"
+                        cy="48"
+                        r={ringRadius}
+                        fill="none"
+                        stroke="hsl(var(--secondary))"
+                        strokeWidth="12"
+                      />
+                      <m.circle
+                        cx="48"
+                        cy="48"
+                        r={ringRadius}
+                        fill="none"
+                        stroke="hsl(var(--primary))"
+                        strokeWidth="12"
+                        strokeLinecap="round"
+                        strokeDasharray={ringCircumference}
+                        initial={{
+                          strokeDashoffset: shouldReduceMotion ? ringOffset : ringCircumference,
+                        }}
+                        animate={{ strokeDashoffset: ringOffset }}
+                        transition={{
+                          duration: shouldReduceMotion ? 0.01 : 0.95,
+                          ease: entranceEase,
+                          delay: shouldReduceMotion ? 0 : 0.32,
+                        }}
+                      />
+                    </svg>
                     <div className="absolute inset-[10px] rounded-full bg-card" />
                   </div>
                 </div>
@@ -130,9 +219,16 @@ export default function Hero() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </m.div>
 
-              <div className="rounded-2xl border border-border/80 bg-background p-5">
+              <m.div
+                className="rounded-2xl border border-border/80 bg-background p-5"
+                initial="hidden"
+                animate="visible"
+                variants={revealUp}
+                custom={shouldReduceMotion}
+                transition={shouldReduceMotion ? undefined : { delay: 0.26, duration: 0.5, ease: entranceEase }}
+              >
                 <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.strengthsTitle")}</p>
                 <div className="mt-4 space-y-3">
                   {strengths.map((item) => (
@@ -154,9 +250,16 @@ export default function Hero() {
                     ))}
                   </div>
                 </div>
-              </div>
+              </m.div>
 
-              <div className="rounded-2xl border border-border/80 bg-background p-5">
+              <m.div
+                className="rounded-2xl border border-border/80 bg-background p-5"
+                initial="hidden"
+                animate="visible"
+                variants={revealUp}
+                custom={shouldReduceMotion}
+                transition={shouldReduceMotion ? undefined : { delay: 0.34, duration: 0.5, ease: entranceEase }}
+              >
                 <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.nextStepsTitle")}</p>
                 <div className="mt-4 space-y-3">
                   {nextSteps.map((item) => (
@@ -166,9 +269,16 @@ export default function Hero() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </m.div>
 
-              <div className="rounded-2xl border border-border/80 bg-background p-5">
+              <m.div
+                className="rounded-2xl border border-border/80 bg-background p-5"
+                initial="hidden"
+                animate="visible"
+                variants={revealUp}
+                custom={shouldReduceMotion}
+                transition={shouldReduceMotion ? undefined : { delay: 0.42, duration: 0.5, ease: entranceEase }}
+              >
                 <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.missingTitle")}</p>
                 <div className="mt-4 space-y-3">
                   {missing.map((item) => (
@@ -178,9 +288,9 @@ export default function Hero() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </m.div>
             </div>
-          </div>
+          </m.div>
         </div>
       </div>
     </section>

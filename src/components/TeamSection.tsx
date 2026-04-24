@@ -1,5 +1,7 @@
+import { m, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SectionHeading } from "@/components/common/SectionHeading";
+import { cardHover, entranceEase, revealUp, viewportOnce } from "@/lib/motion";
 
 const members = ["ali", "anastasia", "priyatna"] as const;
 
@@ -14,24 +16,41 @@ function getInitials(name: string) {
 
 export default function TeamSection() {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <section id="team" className="border-b border-border/70 bg-secondary/20 py-20">
       <div className="container mx-auto px-4">
-        <SectionHeading
-          title={t("team.title")}
-          centered={false}
-          className="mb-8"
-        />
+        <m.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={viewportOnce}
+          variants={revealUp}
+          custom={shouldReduceMotion}
+        >
+          <SectionHeading
+            title={t("team.title")}
+            centered={false}
+            className="mb-8"
+          />
+        </m.div>
 
         <div className="grid gap-4 lg:grid-cols-3">
-          {members.map((member) => {
+          {members.map((member, index) => {
             const name = t(`team.members.${member}.name`);
             const role = t(`team.members.${member}.role`);
             return (
-              <div
+              <m.div
                 key={member}
-                className="rounded-[28px] border border-border/80 bg-card p-6 shadow-card"
+                className="rounded-[28px] border border-border/80 bg-card p-6 shadow-card transition-shadow duration-200 hover:shadow-elegant"
+                initial="hidden"
+                whileInView="visible"
+                viewport={viewportOnce}
+                variants={revealUp}
+                custom={shouldReduceMotion}
+                transition={shouldReduceMotion ? undefined : { delay: index * 0.08, duration: 0.5, ease: entranceEase }}
+                whileHover={shouldReduceMotion ? undefined : cardHover.whileHover}
+                whileTap={shouldReduceMotion ? undefined : cardHover.whileTap}
               >
                 <div className="flex items-center gap-5">
                   <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-[24px] bg-[linear-gradient(180deg,hsl(var(--secondary))_0%,hsl(var(--accent))_100%)] text-2xl font-semibold tracking-tight text-primary">
@@ -47,7 +66,7 @@ export default function TeamSection() {
                     </p>
                   </div>
                 </div>
-              </div>
+              </m.div>
             );
           })}
         </div>

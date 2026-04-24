@@ -1,16 +1,26 @@
 import { ShieldCheck } from "lucide-react";
+import { m, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
+import { revealUp, viewportOnce } from "@/lib/motion";
 
 const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20contact";
 
 export default function Footer() {
   const { t } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
     <footer className="bg-primary text-primary-foreground">
       <div className="container mx-auto px-4 py-12">
         <div className="grid gap-8 md:grid-cols-[1.4fr_repeat(4,minmax(0,1fr))]">
-          <div className="space-y-4">
+          <m.div
+            className="space-y-4"
+            initial="hidden"
+            whileInView="visible"
+            viewport={viewportOnce}
+            variants={revealUp}
+            custom={shouldReduceMotion}
+          >
             <div className="flex items-center gap-3">
               <img
                 src="/esgcheck_logo.svg"
@@ -22,7 +32,7 @@ export default function Footer() {
             <p className="max-w-xs text-sm leading-7 text-primary-foreground/72">
               {t("footer.description")}
             </p>
-          </div>
+          </m.div>
 
           <div>
             <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-primary-foreground/80">
