@@ -18,13 +18,6 @@ export default function Hero() {
   const nextSteps = ["scope", "suppliers", "governance"] as const;
   const missing = ["inventory", "supplier", "board"] as const;
 
-  const highlightCards = [
-    { id: "readiness" },
-    { id: "pressure" },
-    { id: "credibility" },
-    { id: "assessment" },
-  ] as const;
-
   return (
     <section id="product" className="relative overflow-hidden border-b border-border/70">
       <video
@@ -173,9 +166,6 @@ export default function Hero() {
                     </div>
                   ))}
                 </div>
-                <a href="#how-it-works" className="mt-5 inline-flex text-sm font-semibold text-primary">
-                  {t("hero.dashboard.viewNextSteps")}
-                </a>
               </div>
 
               <div className="rounded-2xl border border-border/80 bg-background p-5">
@@ -188,23 +178,9 @@ export default function Hero() {
                     </div>
                   ))}
                 </div>
-                <a href="#waitlist" className="mt-5 inline-flex text-sm font-semibold text-primary">
-                  {t("hero.dashboard.viewMissingEvidence")}
-                </a>
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-10 grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-          {highlightCards.map((item) => (
-            <div
-              key={item.id}
-              className="flex h-[4.5rem] items-center justify-center rounded-2xl border border-border/80 bg-card px-5 text-center text-sm font-semibold leading-tight text-foreground shadow-card"
-            >
-              {t(`hero.highlights.${item.id}`)}
-            </div>
-          ))}
         </div>
       </div>
     </section>

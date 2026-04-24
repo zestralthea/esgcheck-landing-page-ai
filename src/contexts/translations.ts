@@ -8,15 +8,14 @@ export const enTranslations = {
     product: "Product",
     howItWorks: "How It Works",
     whyEsgCheck: "Why ESGCheck",
-    roadmap: "Roadmap",
     team: "Team",
     faq: "FAQ",
     joinWaitlist: "Get Early Access",
   },
   hero: {
-    title: "A practical ESG assessment platform for growing SMEs.",
+    title: "A practical ESG first assessment for growing SMEs.",
     description:
-      "Turn the documents you already have into a clear first ESG assessment with scores, visible gaps, and practical next steps.",
+      "Turn the company documents you already have into a clear first ESG assessment, with usable scores, visible gaps, and practical next steps.",
     primaryCta: "Get Early Access",
     secondaryCta: "See How It Works",
     proof: {
@@ -26,11 +25,11 @@ export const enTranslations = {
     },
     dashboard: {
       title: "ESG Overview",
-      filter: "All entries",
+      filter: "Example output",
       scoreTitle: "ESG Score",
       scoreValue: "68",
       scoreTotal: "/100",
-      scoreLabel: "Good start",
+      scoreLabel: "Good starting point",
       pillars: {
         environment: "Environment",
         social: "Social",
@@ -60,20 +59,12 @@ export const enTranslations = {
         supplier: "Supplier assessment records",
         board: "Board ESG oversight evidence",
       },
-      viewNextSteps: "View all next steps",
-      viewMissingEvidence: "View missing evidence",
-    },
-    highlights: {
-      readiness: "Built for SME readiness",
-      pressure: "Procurement and stakeholder pressure",
-      credibility: "Investor and lender credibility",
-      assessment: "Practical first assessment",
     },
   },
   needNow: {
     title: "Why companies need this now",
     description:
-      "For many SMEs, ESG pressure arrives long before a full reporting obligation does.",
+      "Many SMEs are being asked ESG questions before they have a full reporting setup in place.",
     items: {
       customerRequests: "Customer requests",
       procurement: "Procurement requirements",
@@ -82,7 +73,7 @@ export const enTranslations = {
       credibility: "Market credibility",
     },
     conclusion:
-      "Many companies do not need a heavy ESG system first. They need a clear view of where they stand, what they already have, what is missing, and what to improve next.",
+      "What teams need first is orientation: a credible starting point before they invest in heavier ESG work.",
   },
   howItWorks: {
     title: "How It Works",
@@ -90,48 +81,21 @@ export const enTranslations = {
       upload: {
         title: "Upload company materials",
         description:
-          "Policies, internal records, supplier information, and reports.",
+          "Policies, internal records, supplier information, and company reports.",
       },
       assess: {
-        title: "Assessment against structured ESG criteria",
+        title: "Assess against structured ESG criteria",
         description: "Organized around a practical, GRI-first foundation.",
       },
       receive: {
         title: "Receive a first structured assessment",
-        description: "Get a clear score, rationale, and evidence-based view.",
+        description:
+          "See a clear score, the reasoning behind it, and where evidence is still missing.",
       },
       act: {
-        title: "Act on next steps",
-        description: "See key gaps, priorities, and recommended actions.",
-      },
-    },
-  },
-  deliverables: {
-    title: "What you receive",
-    items: {
-      score: {
-        title: "ESG Score",
-        description: "An overall score with E, S, and G breakdown.",
-      },
-      rationale: {
-        title: "Score Rationale",
-        description: "Clear explanations behind your assessment.",
-      },
-      gaps: {
-        title: "Identified Gaps",
-        description: "Key gaps across ESG topics and requirements.",
-      },
-      nextSteps: {
-        title: "Practical Next Steps",
-        description: "Actionable recommendations you can work on.",
-      },
-      strengths: {
-        title: "Strengths Overview",
-        description: "What you are doing well, clearly highlighted.",
-      },
-      evidence: {
-        title: "Missing or Insufficient Evidence",
-        description: "What is missing so you know what to focus on.",
+        title: "Decide what to do next",
+        description:
+          "Prioritize the most relevant gaps, actions, and follow-up work.",
       },
     },
   },
@@ -139,84 +103,85 @@ export const enTranslations = {
     title: "Why ESGCheck",
     items: {
       practical: {
-        title: "Practical and easy to use",
+        title: "Practical from the start",
         description:
-          "Designed for real-world SME workflows, not complex systems.",
+          "Built to give teams a usable first assessment without a consultant-heavy process.",
       },
       smes: {
-        title: "Built for SMEs",
+        title: "Built for growing SMEs",
         description:
-          "Made for growing companies with limited time and resources.",
+          "Designed for companies with limited time, lean resources, and ESG processes that are still taking shape.",
       },
       documentFirst: {
-        title: "Document-first logic",
+        title: "Starts from existing documents",
         description:
-          "Works with the documents you already have, in the formats you use.",
+          "Works from the materials companies already have instead of forcing a new data-collection project first.",
       },
       privacy: {
-        title: "Privacy-conscious by design",
+        title: "Careful with sensitive materials",
         description:
-          "Sensitive data stays protected with a strong Swiss and EU privacy mindset.",
-      },
-      progression: {
-        title: "Credible progression path",
-        description:
-          "Built to evolve toward more robust ESG workflows and certification-oriented use cases.",
+          "Company documents can be sensitive, so the workflow is designed with careful handling in mind.",
       },
     },
   },
   credibility: {
-    title: "Credible by design",
+    title: "Built to be credible",
     intro:
-      "ESGCheck is built to provide a credible first ESG assessment. It does not overclaim formal assurance or certification today.",
+      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first assessment, not formal assurance, certification, or full reporting support.",
     pillars: {
       outputs: {
-        title: "Clear outputs",
-        description: "Transparent scores, gaps, and next steps.",
+        title: "Useful scope today",
+        description:
+          "A focused first assessment to help teams understand their position and decide on sensible next steps.",
       },
       methodology: {
-        title: "Grounded methodology",
-        description: "Practical, GRI-first foundation and structured criteria.",
+        title: "Structured methodology",
+        description:
+          "A practical, GRI-first foundation with consistent criteria across the workflow.",
       },
       positioning: {
-        title: "Responsible positioning",
-        description: "Honest about what we do today and where we are heading.",
+        title: "Clear positioning",
+        description:
+          "Explicit about current boundaries and careful not to overstate maturity, coverage, or certification status.",
       },
     },
-    privacyTitle: "Privacy & Trust",
+    privacyTitle: "Privacy & trust",
     privacyDescription:
-      "Sensitive ESG-related materials deserve careful handling. ESGCheck is built with a strong Swiss and EU privacy mindset.",
+      "Sensitive company documents are part of the workflow, so Swiss build quality and EU-aware privacy expectations shape product decisions from the start.",
     regionBadges: {
       swiss: "CH",
       europe: "EU",
     },
   },
   status: {
-    title: "Where the product stands today",
+    title: "How ESGCheck is progressing",
     items: {
       mvp: {
-        title: "Finished MVP",
-        description: "Core features are built and ready for validation.",
+        title: "MVP completed",
+        description:
+          "The core workflow is in place and ready to be tested against real usage.",
       },
       testing: {
-        title: "Internal end-to-end testing",
-        description: "End-to-end flows are being tested internally.",
+        title: "Internal testing underway",
+        description:
+          "End-to-end flows are being checked across the full experience.",
       },
       expert: {
-        title: "Expert validation next",
-        description: "Independent expert review is the next milestone.",
+        title: "Expert review next",
+        description:
+          "Independent expert input is the next step to strengthen result quality and credibility.",
       },
       readiness: {
-        title: "Approaching pilot readiness",
+        title: "Moving toward pilots",
         description:
-          "Beyond idea stage, with validation and trust-building still in progress.",
+          "Past idea stage, with reliability and trust still being proven before broader rollout.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "ESGCheck begins with first assessments and is designed to evolve into stronger, professionally usable ESG workflows over time.",
+      "The focus now is to validate reliability first, then widen the workflow in measured steps.",
     steps: {
       testing: "Internal end-to-end testing",
       validation: "Expert validation",
@@ -231,7 +196,7 @@ export const enTranslations = {
     founders: {
       title: "Founders & Managing Directors",
       description:
-        "For leaders facing customer, procurement, and growth pressure.",
+        "For leaders dealing with customer, procurement, and growth pressure before ESG is fully structured internally.",
     },
     finance: {
       title: "CFOs & Finance Leads",
@@ -270,7 +235,7 @@ export const enTranslations = {
       certification: {
         question: "Is ESGCheck a certification?",
         answer:
-          "Not today. It provides a credible first assessment and is designed to evolve over time.",
+          "Not today. It is a structured first assessment designed to help companies orient themselves and improve over time.",
       },
       documents: {
         question: "What documents can I upload?",
@@ -289,20 +254,20 @@ export const enTranslations = {
     },
   },
   finalCta: {
-    title: "Start with a clearer view of where you stand.",
+    title: "Request early access to ESGCheck.",
     description:
-      "Get early access to a practical, privacy-conscious ESG assessment platform built for growing SMEs.",
+      "Get in touch if you want to follow the product and see whether it could fit your workflow.",
     primary: "Get Early Access",
     secondary: "Request more information",
   },
   waitlist: {
-    title: "Start with a clearer view of where you stand.",
+    title: "Request early access.",
     description:
-      "Get early access to a practical, privacy-conscious ESG assessment platform built for growing SMEs.",
+      "If ESG questions are already showing up in customer, procurement, or financing conversations, we would like to understand where the pressure is coming from.",
     cardTitle: "What to expect",
     ctaButton: "Request Early Access to ESGCheck",
     emailNote:
-      "Share your work email to join the beta and receive access details.",
+      "Share your work email to join the beta and receive updates on access.",
     form: {
       emailLabel: "Work email",
       emailPlaceholder: "you@company.com",
@@ -322,20 +287,20 @@ export const enTranslations = {
       disclaimer: "Free during beta. No credit card required.",
       disclaimerShort: "Free during beta.",
       betaNote:
-        "Early testers get free access and help us build ESGCheck into the tool you need.",
+        "Early participants get free access and help us improve ESGCheck around real SME needs.",
     },
   },
   seo: {
-    title: "ESGCheck - Practical ESG Assessment Platform for Growing SMEs",
+    title: "ESGCheck | Practical ESG First Assessment for Growing SMEs",
     description:
-      "A practical ESG assessment platform for growing SMEs. Turn policies, internal records, and company reports into clear scores, visible gaps, and practical next steps.",
+      "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps.",
     keywords:
       "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies",
     ogImageAlt:
-      "ESGCheck - practical ESG assessment platform for growing SMEs",
+      "ESGCheck practical ESG first assessment platform for growing SMEs",
     structuredData: {
       description:
-        "A practical ESG assessment platform for growing SMEs, built from the documents companies already have.",
+        "A practical ESG first assessment platform for growing SMEs, built from the documents companies already have.",
       featureList: {
         documentFirst: "Document-first ESG assessment",
         scoreRationale: "ESG score with rationale",
@@ -357,7 +322,7 @@ export const enTranslations = {
   },
   footer: {
     description:
-      "Practical ESG assessment for growing SMEs, built in Switzerland.",
+      "Practical ESG first assessment for growing SMEs, built in Switzerland.",
     product: "Product",
     company: "Company",
     privacy: "Privacy",
@@ -372,21 +337,20 @@ export const deTranslations = {
   header: {
     trustStrip: {
       swissBuilt: "In der Schweiz entwickelt",
-      privacy: "Datenschutz im Fokus",
+      privacy: "Datenschutzbewusst",
       growingSmes: "Für wachsende KMU konzipiert",
     },
     product: "Produkt",
     howItWorks: "So funktioniert es",
     whyEsgCheck: "Warum ESGCheck",
-    roadmap: "Roadmap",
     team: "Team",
     faq: "FAQ",
     joinWaitlist: "Early Access anfragen",
   },
   hero: {
-    title: "Eine praxisnahe ESG-Einschätzungsplattform für wachsende KMU.",
+    title: "Die praxisnahe ESG-Ersteinschätzung für wachsende KMU.",
     description:
-      "Machen Sie aus bestehenden Unterlagen eine klare erste ESG-Einschätzung, mit Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
+      "Machen Sie aus bestehenden Unternehmensunterlagen eine klare erste ESG-Einschätzung, mit brauchbaren Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
     primaryCta: "Early Access anfragen",
     secondaryCta: "So funktioniert es",
     proof: {
@@ -396,7 +360,7 @@ export const deTranslations = {
     },
     dashboard: {
       title: "ESG-Überblick",
-      filter: "Alle Einträge",
+      filter: "Beispielausgabe",
       scoreTitle: "ESG Score",
       scoreValue: "68",
       scoreTotal: "/100",
@@ -416,7 +380,7 @@ export const deTranslations = {
       gaps: {
         tracking: "Tracking von THG-Emissionen",
         suppliers: "ESG-Beurteilungen von Lieferanten",
-        oversight: "ESG-Aufsicht auf Ebene Verwaltungsrat",
+        oversight: "ESG-Aufsicht im Verwaltungsrat",
       },
       nextStepsTitle: "Empfohlene nächste Schritte",
       nextSteps: {
@@ -430,29 +394,21 @@ export const deTranslations = {
         supplier: "Nachweise zu Lieferantenbeurteilungen",
         board: "Nachweise zur ESG-Aufsicht im Verwaltungsrat",
       },
-      viewNextSteps: "Alle nächsten Schritte ansehen",
-      viewMissingEvidence: "Fehlende Nachweise ansehen",
-    },
-    highlights: {
-      readiness: "Für die KMU-Readiness entwickelt",
-      pressure: "Druck aus Beschaffung und von Stakeholdern",
-      credibility: "Glaubwürdigkeit bei Investoren und Finanzierungspartnern",
-      assessment: "Praxisnahe Ersteinschätzung",
     },
   },
   needNow: {
     title: "Warum Unternehmen das jetzt brauchen",
     description:
-      "Bei vielen KMU entsteht ESG-Druck lange bevor eine formale Berichtspflicht greift.",
+      "Viele KMU erhalten ESG-Anfragen, bevor intern überhaupt ein vollständiges Reporting-Setup steht.",
     items: {
       customerRequests: "Kundenanfragen",
       procurement: "Anforderungen aus der Beschaffung",
       supplyChain: "Erwartungen entlang der Lieferkette",
       investors: "Fragen von Investoren und Finanzierungspartnern",
-      credibility: "Marktglaubwürdigkeit",
+      credibility: "Glaubwürdigkeit im Markt",
     },
     conclusion:
-      "Viele Unternehmen brauchen nicht zuerst ein schweres ESG-System. Sie brauchen einen klaren Blick darauf, wo sie stehen, was bereits vorhanden ist, was fehlt und was als Nächstes Priorität hat.",
+      "Was Teams zuerst brauchen, ist Einordnung: ein glaubwürdiger Ausgangspunkt, bevor grössere ESG-Aufwände sinnvoll werden.",
   },
   howItWorks: {
     title: "So funktioniert es",
@@ -460,51 +416,21 @@ export const deTranslations = {
       upload: {
         title: "Unternehmensunterlagen hochladen",
         description:
-          "Richtlinien, interne Unterlagen, Lieferanteninformationen und Berichte.",
+          "Richtlinien, interne Unterlagen, Lieferanteninformationen und Unternehmensberichte.",
       },
       assess: {
-        title: "Bewertung anhand strukturierter ESG-Kriterien",
+        title: "Anhand strukturierter ESG-Kriterien beurteilen",
         description: "Organisiert entlang einer praxisnahen, GRI-first Grundlage.",
       },
       receive: {
-        title: "Erste strukturierte Einschätzung erhalten",
+        title: "Eine erste strukturierte Einschätzung erhalten",
         description:
-          "Sie erhalten einen klaren Score, eine nachvollziehbare Begründung und einen evidenzbasierten Überblick.",
+          "Sie sehen einen klaren Score, die Begründung dazu und wo Nachweise noch fehlen.",
       },
       act: {
-        title: "Nächste Schritte angehen",
+        title: "Nächste Schritte festlegen",
         description:
           "Wesentliche Lücken, Prioritäten und empfohlene Massnahmen erkennen.",
-      },
-    },
-  },
-  deliverables: {
-    title: "Was Sie erhalten",
-    items: {
-      score: {
-        title: "ESG Score",
-        description: "Gesamt-Score mit Aufschlüsselung nach E, S und G.",
-      },
-      rationale: {
-        title: "Score-Begründung",
-        description: "Klare Einordnung, wie die Einschätzung zustande kommt.",
-      },
-      gaps: {
-        title: "Identifizierte Lücken",
-        description: "Wesentliche Lücken über ESG-Themen und Anforderungen hinweg.",
-      },
-      nextSteps: {
-        title: "Konkrete nächste Schritte",
-        description:
-          "Umsetzbare Empfehlungen, an denen Sie direkt weiterarbeiten können.",
-      },
-      strengths: {
-        title: "Überblick über Stärken",
-        description: "Was bereits gut aufgestellt ist, klar hervorgehoben.",
-      },
-      evidence: {
-        title: "Fehlende oder unzureichende Nachweise",
-        description: "Was fehlt, damit Sie die richtigen Prioritäten setzen können.",
       },
     },
   },
@@ -512,86 +438,85 @@ export const deTranslations = {
     title: "Warum ESGCheck",
     items: {
       practical: {
-        title: "Praxisnah und einfach nutzbar",
+        title: "Von Anfang an praxisnah",
         description:
-          "Für echte KMU-Workflows entwickelt, nicht für komplexe Enterprise-Systeme.",
+          "Für Teams entwickelt, die eine brauchbare Ersteinschätzung ohne beratungsintensiven Prozess brauchen.",
       },
       smes: {
-        title: "Für KMU gemacht",
+        title: "Für wachsende KMU gebaut",
         description:
-          "Für wachsende Unternehmen mit begrenzter Zeit und begrenzten Ressourcen.",
+          "Gedacht für Unternehmen mit wenig Zeit, schlanken Ressourcen und ESG-Abläufen, die sich noch entwickeln.",
       },
       documentFirst: {
-        title: "Dokumentenbasierte Logik",
+        title: "Startet mit vorhandenen Unterlagen",
         description:
-          "Arbeitet mit den Unterlagen, die bereits vorhanden sind, in den Formaten, die Sie heute nutzen.",
+          "Arbeitet mit dem, was bereits vorhanden ist, statt zuerst ein neues Datenerhebungsprojekt auszulösen.",
       },
       privacy: {
-        title: "Datenschutzbewusst von Beginn an",
+        title: "Sorgfältig mit sensiblen Unterlagen",
         description:
-          "Sensible Daten bleiben geschützt, mit klarem Fokus auf Schweizer und EU-Datenschutz.",
-      },
-      progression: {
-        title: "Glaubwürdiger Entwicklungspfad",
-        description:
-          "Ausgelegt auf die Weiterentwicklung zu belastbaren ESG-Workflows und zertifizierungsnahen Einsatzfällen.",
+          "Unternehmensdokumente können heikel sein. Deshalb ist der Workflow auf einen sorgfältigen Umgang ausgelegt.",
       },
     },
   },
   credibility: {
-    title: "Glaubwürdig aufgebaut",
+    title: "Auf Glaubwürdigkeit ausgelegt",
     intro:
-      "ESGCheck ist dafür entwickelt, eine glaubwürdige erste ESG-Einschätzung zu liefern, ohne heute formale Assurance oder Zertifizierung zu behaupten.",
+      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist eine strukturierte Ersteinschätzung, nicht formale Assurance, Zertifizierung oder vollständige Reporting-Unterstützung.",
     pillars: {
       outputs: {
-        title: "Klare Ergebnisse",
-        description: "Transparente Scores, Lücken und nächste Schritte.",
+        title: "Sinnvoller Umfang für heute",
+        description:
+          "Eine fokussierte Ersteinschätzung, die Teams bei der Einordnung und bei vernünftigen nächsten Schritten unterstützt.",
       },
       methodology: {
-        title: "Fundierte Methodik",
-        description: "Praxisnahe GRI-first Grundlage und strukturierte Kriterien.",
+        title: "Strukturierte Methodik",
+        description:
+          "Eine praxisnahe, GRI-first Grundlage mit konsistenten Kriterien über den Workflow hinweg.",
       },
       positioning: {
-        title: "Verantwortungsvolle Positionierung",
+        title: "Klare Positionierung",
         description:
-          "Klar darin, was ESGCheck heute leistet und wohin es sich entwickelt.",
+          "Transparent bei den heutigen Grenzen und bewusst zurückhaltend bei Reifegrad, Abdeckung oder Zertifizierungsstatus.",
       },
     },
     privacyTitle: "Datenschutz & Vertrauen",
     privacyDescription:
-      "Sensible ESG-Unterlagen verlangen einen sorgfältigen Umgang. ESGCheck wird mit einem klaren Fokus auf Schweizer und EU-Datenschutz entwickelt.",
+      "Sensible Unternehmensunterlagen sind Teil des Workflows. Deshalb prägen Schweizer Entwicklungsqualität und EU-orientierte Datenschutzanforderungen die Produktentscheidungen von Anfang an.",
     regionBadges: {
       swiss: "CH",
       europe: "EU",
     },
   },
   status: {
-    title: "Wo das Produkt heute steht",
+    title: "Wie sich ESGCheck weiterentwickelt",
     items: {
       mvp: {
-        title: "Fertiges MVP",
-        description: "Die Kernfunktionen sind gebaut und bereit für die Validierung.",
+        title: "MVP abgeschlossen",
+        description:
+          "Der Kern-Workflow steht und ist bereit, an realen Anwendungsfällen geprüft zu werden.",
       },
       testing: {
-        title: "Internes End-to-End-Testing",
-        description: "Die End-to-End-Abläufe werden intern geprüft.",
+        title: "Interne Tests laufen",
+        description:
+          "Die End-to-End-Abläufe werden über das gesamte Nutzungserlebnis hinweg geprüft.",
       },
       expert: {
-        title: "Expertenvalidierung als Nächstes",
+        title: "Expertenreview als Nächstes",
         description:
-          "Eine unabhängige fachliche Überprüfung ist der nächste Meilenstein.",
+          "Unabhängige fachliche Rückmeldungen sind der nächste Schritt, um Ergebnisqualität und Glaubwürdigkeit weiter zu stärken.",
       },
       readiness: {
-        title: "Auf dem Weg zu ersten Piloten",
+        title: "Auf dem Weg zu Piloten",
         description:
-          "Über die Ideenphase hinaus, mit laufender Validierung und weiterem Vertrauensaufbau.",
+          "Über die Ideenphase hinaus, während Zuverlässigkeit und Vertrauen vor einer breiteren Einführung belegt werden.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "ESGCheck startet mit ersten Einschätzungen und ist darauf ausgerichtet, sich mit der Zeit zu belastbaren, professionell nutzbaren ESG-Workflows weiterzuentwickeln.",
+      "Im Fokus steht jetzt zuerst die Validierung der Zuverlässigkeit und danach der schrittweise Ausbau des Workflows.",
     steps: {
       testing: "Internes End-to-End-Testing",
       validation: "Expertenvalidierung",
@@ -606,7 +531,7 @@ export const deTranslations = {
     founders: {
       title: "Gründer & Geschäftsführung",
       description:
-        "Für Entscheidungsträger, die Kunden-, Beschaffungs- und Wachstumsdruck spüren.",
+        "Für Verantwortliche, die Kunden-, Beschaffungs- und Wachstumsdruck spüren, bevor ESG intern sauber aufgestellt ist.",
     },
     finance: {
       title: "CFOs & Finance Leads",
@@ -645,7 +570,7 @@ export const deTranslations = {
       certification: {
         question: "Ist ESGCheck eine Zertifizierung?",
         answer:
-          "Noch nicht. ESGCheck liefert heute eine glaubwürdige erste Einschätzung und ist auf eine schrittweise Weiterentwicklung ausgelegt.",
+          "Heute nicht. ESGCheck ist eine strukturierte Ersteinschätzung, die Unternehmen bei der Einordnung und Weiterentwicklung unterstützen soll.",
       },
       documents: {
         question: "Welche Dokumente kann ich hochladen?",
@@ -660,25 +585,25 @@ export const deTranslations = {
       pricing: {
         question: "Wie sieht es mit der Preisgestaltung aus?",
         answer:
-          "Das Preismodell wird auf ein zugängliches KMU-Angebot ausgerichtet und anhand früher Validierung weiter geschärft.",
+          "Das Preismodell wird auf ein zugängliches KMU-Angebot ausgerichtet und durch frühe Validierung weiter geschärft.",
       },
     },
   },
   finalCta: {
-    title: "Starten Sie mit einem klareren Blick darauf, wo Sie stehen.",
+    title: "Early Access für ESGCheck anfragen.",
     description:
-      "Erhalten Sie frühen Zugang zu einer praxisnahen, datenschutzbewussten ESG-Einschätzungsplattform für wachsende KMU.",
+      "Melden Sie sich, wenn Sie verfolgen möchten, wie sich das Produkt entwickelt und ob es zu Ihrem Workflow passt.",
     primary: "Early Access anfragen",
     secondary: "Weitere Informationen anfragen",
   },
   waitlist: {
-    title: "Starten Sie mit einem klareren Blick darauf, wo Sie stehen.",
+    title: "Early Access anfragen.",
     description:
-      "Erhalten Sie frühen Zugang zu einer praxisnahen, datenschutzbewussten ESG-Einschätzungsplattform für wachsende KMU.",
-    cardTitle: "Was Sie erwartet",
+      "Wenn ESG-Fragen bereits in Kunden-, Beschaffungs- oder Finanzierungsgesprächen auftauchen, möchten wir besser verstehen, wo der Druck bei Ihnen entsteht.",
+    cardTitle: "Was Sie erwarten dürfen",
     ctaButton: "Early Access für ESGCheck anfragen",
     emailNote:
-      "Teilen Sie Ihre geschäftliche E-Mail-Adresse, um an der Beta teilzunehmen und die Zugangsinformationen zu erhalten.",
+      "Nutzen Sie Ihre geschäftliche E-Mail-Adresse, um zur Beta dazuzukommen und Updates zum Zugang zu erhalten.",
     form: {
       emailLabel: "Geschäftliche E-Mail-Adresse",
       emailPlaceholder: "sie@unternehmen.ch",
@@ -699,19 +624,20 @@ export const deTranslations = {
       disclaimer: "Während der Beta kostenlos. Keine Kreditkarte erforderlich.",
       disclaimerShort: "Während der Beta kostenlos.",
       betaNote:
-        "Frühe Tester erhalten kostenlosen Zugang und helfen uns, ESGCheck gezielt weiterzuentwickeln.",
+        "Frühe Teilnehmende erhalten kostenlosen Zugang und helfen uns, ESGCheck an realen KMU-Bedürfnissen auszurichten.",
     },
   },
   seo: {
-    title: "ESGCheck - Praxisnahe ESG-Einschätzung für wachsende KMU",
+    title: "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
     description:
-      "Praxisnahe ESG-Einschätzung für wachsende KMU. Machen Sie aus bestehenden Unterlagen klare Scores, sichtbare Lücken und konkrete nächste Schritte.",
+      "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
     keywords:
       "ESG-Einschätzung, ESG für KMU, GRI, Swiss ESG, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung, ESG für wachsende Unternehmen",
-    ogImageAlt: "ESGCheck - praxisnahe ESG-Einschätzung für wachsende KMU",
+    ogImageAlt:
+      "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
     structuredData: {
       description:
-        "Praxisnahe ESG-Einschätzung für wachsende KMU, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
+        "Eine praxisnahe ESG-Ersteinschätzung für wachsende KMU, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
       featureList: {
         documentFirst: "Dokumentenbasierte ESG-Einschätzung",
         scoreRationale: "ESG Score mit Begründung",
@@ -733,7 +659,7 @@ export const deTranslations = {
   },
   footer: {
     description:
-      "Praxisnahe ESG-Einschätzung für wachsende KMU, entwickelt in der Schweiz.",
+      "Praxisnahe ESG-Ersteinschätzung für wachsende KMU, entwickelt in der Schweiz.",
     product: "Produkt",
     company: "Unternehmen",
     privacy: "Datenschutz",
@@ -748,21 +674,20 @@ export const frTranslations = {
   header: {
     trustStrip: {
       swissBuilt: "Conçu en Suisse",
-      privacy: "Confidentialité intégrée",
-      growingSmes: "Conçu pour les PME en croissance",
+      privacy: "Confidentialité prise au sérieux",
+      growingSmes: "Pensé pour les PME en croissance",
     },
     product: "Produit",
     howItWorks: "Fonctionnement",
     whyEsgCheck: "Pourquoi ESGCheck",
-    roadmap: "Roadmap",
-    team: "Team",
+    team: "Équipe",
     faq: "FAQ",
     joinWaitlist: "Demander un accès anticipé",
   },
   hero: {
-    title: "Une plateforme d’évaluation ESG pragmatique pour les PME en croissance.",
+    title: "Une première évaluation ESG pragmatique pour les PME en croissance.",
     description:
-      "Transformez vos documents existants en une première évaluation ESG claire, avec des scores, des écarts visibles et des prochaines étapes concrètes.",
+      "Transformez les documents que vous avez déjà en une première évaluation ESG claire, avec des scores utiles, des écarts visibles et des prochaines étapes concrètes.",
     primaryCta: "Demander un accès anticipé",
     secondaryCta: "Voir le fonctionnement",
     proof: {
@@ -772,7 +697,7 @@ export const frTranslations = {
     },
     dashboard: {
       title: "Vue ESG",
-      filter: "Toutes les entrées",
+      filter: "Exemple de rendu",
       scoreTitle: "Score ESG",
       scoreValue: "68",
       scoreTotal: "/100",
@@ -792,7 +717,7 @@ export const frTranslations = {
       gaps: {
         tracking: "Suivi des émissions GES",
         suppliers: "Évaluations ESG des fournisseurs",
-        oversight: "Supervision ESG au niveau du conseil d’administration",
+        oversight: "Supervision ESG au niveau du conseil d'administration",
       },
       nextStepsTitle: "Prochaines étapes recommandées",
       nextSteps: {
@@ -802,85 +727,47 @@ export const frTranslations = {
       },
       missingTitle: "Justificatifs manquants",
       missing: {
-        inventory: "Données d’inventaire GES",
-        supplier: "Justificatifs d’évaluation des fournisseurs",
-        board: "Justificatifs de supervision ESG du conseil d’administration",
+        inventory: "Données d'inventaire GES",
+        supplier: "Justificatifs d'évaluation des fournisseurs",
+        board: "Justificatifs de supervision ESG du conseil d'administration",
       },
-      viewNextSteps: "Voir toutes les prochaines étapes",
-      viewMissingEvidence: "Voir les justificatifs manquants",
-    },
-    highlights: {
-      readiness: "Pensé pour la préparation des PME",
-      pressure: "Pression des achats et des parties prenantes",
-      credibility: "Crédibilité auprès des investisseurs et partenaires financiers",
-      assessment: "Première évaluation pragmatique",
     },
   },
   needNow: {
     title: "Pourquoi les entreprises en ont besoin maintenant",
     description:
-      "Pour de nombreuses PME, la pression ESG arrive bien avant une obligation formelle de reporting.",
+      "De nombreuses PME reçoivent des demandes ESG avant même d'avoir une organisation de reporting complète en place.",
     items: {
       customerRequests: "Demandes clients",
       procurement: "Exigences achats",
-      supplyChain: "Attentes de la chaîne d’approvisionnement",
+      supplyChain: "Attentes de la chaîne d'approvisionnement",
       investors: "Questions des investisseurs et partenaires financiers",
       credibility: "Crédibilité sur le marché",
     },
     conclusion:
-      "Beaucoup d’entreprises n’ont pas d’abord besoin d’un système ESG lourd. Elles ont besoin d’une vision claire de leur situation actuelle, de ce qu’elles ont déjà, de ce qui manque et de ce qu’il faut traiter en priorité.",
+      "Ce qu'il faut d'abord aux équipes, c'est un cadre de lecture: un point de départ crédible avant d'investir dans un dispositif ESG plus lourd.",
   },
   howItWorks: {
     title: "Fonctionnement",
     steps: {
       upload: {
-        title: "Transmettre les documents de l’entreprise",
+        title: "Transmettre les documents de l'entreprise",
         description:
-          "Politiques, documents internes, informations fournisseurs et rapports.",
+          "Politiques, documents internes, informations fournisseurs et rapports d'entreprise.",
       },
       assess: {
-        title: "Évaluation selon des critères ESG structurés",
-        description: "Organisée autour d’une base pratique, GRI-first.",
+        title: "Évaluer selon des critères ESG structurés",
+        description: "Organisée autour d'une base pratique, GRI-first.",
       },
       receive: {
         title: "Recevoir une première évaluation structurée",
         description:
-          "Obtenez un score clair, une explication lisible et une vue fondée sur les éléments disponibles.",
+          "Vous obtenez un score clair, son explication, et une vision de ce qui manque encore comme justificatifs.",
       },
       act: {
-        title: "Passer aux prochaines étapes",
+        title: "Décider des prochaines étapes",
         description:
-          "Repérez les principaux écarts, les priorités et les actions recommandées.",
-      },
-    },
-  },
-  deliverables: {
-    title: "Ce que vous recevez",
-    items: {
-      score: {
-        title: "Score ESG",
-        description: "Un score global avec ventilation E, S et G.",
-      },
-      rationale: {
-        title: "Explication du score",
-        description: "Des explications claires à l’appui de l’évaluation.",
-      },
-      gaps: {
-        title: "Écarts identifiés",
-        description: "Les principaux écarts à travers les thèmes et exigences ESG.",
-      },
-      nextSteps: {
-        title: "Prochaines étapes concrètes",
-        description: "Des recommandations concrètes sur lesquelles avancer.",
-      },
-      strengths: {
-        title: "Vue d’ensemble des points forts",
-        description: "Ce qui est déjà bien en place, clairement mis en évidence.",
-      },
-      evidence: {
-        title: "Justificatifs manquants ou insuffisants",
-        description:
-          "Ce qui manque pour savoir où concentrer vos efforts en priorité.",
+          "Repérez les écarts les plus importants, les priorités et les suites à donner.",
       },
     },
   },
@@ -888,87 +775,85 @@ export const frTranslations = {
     title: "Pourquoi ESGCheck",
     items: {
       practical: {
-        title: "Pratique et simple à utiliser",
+        title: "Pratique dès le départ",
         description:
-          "Conçu pour des workflows PME réels, pas pour des systèmes complexes.",
+          "Pensé pour donner aux équipes une première évaluation exploitable, sans processus de conseil lourd.",
       },
       smes: {
-        title: "Pensé pour les PME",
+        title: "Pensé pour les PME en croissance",
         description:
-          "Fait pour des entreprises en croissance avec un temps et des ressources limités.",
+          "Adapté aux entreprises qui ont peu de temps, des ressources limitées et des processus ESG encore en construction.",
       },
       documentFirst: {
-        title: "Logique fondée sur les documents",
+        title: "Part des documents existants",
         description:
-          "Fonctionne avec les documents déjà disponibles, dans les formats que vous utilisez aujourd’hui.",
+          "Travaille à partir des éléments déjà disponibles, sans imposer d'abord un nouveau chantier de collecte.",
       },
       privacy: {
-        title: "Confidentialité intégrée dès le départ",
+        title: "Attentif aux documents sensibles",
         description:
-          "Les données sensibles restent protégées, avec un fort réflexe suisse et européen en matière de confidentialité.",
-      },
-      progression: {
-        title: "Trajectoire d’évolution crédible",
-        description:
-          "Pensé pour évoluer vers des workflows ESG plus robustes et des usages orientés certification.",
+          "Les documents d'entreprise peuvent être sensibles. Le workflow est donc conçu pour un traitement soigneux.",
       },
     },
   },
   credibility: {
-    title: "Crédible par conception",
+    title: "Conçu pour rester crédible",
     intro:
-      "ESGCheck est conçu pour fournir une première évaluation ESG crédible, sans surpromettre aujourd’hui une assurance ou une certification formelle.",
+      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'une première évaluation structurée, pas d'une assurance formelle, d'une certification ou d'un support complet de reporting.",
     pillars: {
       outputs: {
-        title: "Sorties claires",
-        description: "Des scores, des écarts et des prochaines étapes transparents.",
+        title: "Un périmètre utile aujourd'hui",
+        description:
+          "Une première évaluation ciblée pour aider les équipes à se situer et à choisir des prochaines étapes cohérentes.",
       },
       methodology: {
-        title: "Méthodologie solide",
-        description: "Une base pratique GRI-first et des critères structurés.",
+        title: "Une méthode structurée",
+        description:
+          "Une base pratique, GRI-first, avec des critères cohérents tout au long du workflow.",
       },
       positioning: {
-        title: "Positionnement responsable",
+        title: "Un positionnement clair",
         description:
-          "Clair sur ce que nous faisons aujourd’hui et sur la direction prise.",
+          "Transparent sur les limites actuelles et volontairement prudent sur la maturité, la couverture ou le statut de certification.",
       },
     },
     privacyTitle: "Confidentialité & confiance",
     privacyDescription:
-      "Les documents ESG sensibles demandent un traitement attentif. ESGCheck est pensé avec un fort réflexe suisse et européen en matière de confidentialité.",
+      "Les documents sensibles font partie du workflow. C'est pourquoi les choix produit intègrent dès le départ des attentes suisses et européennes en matière de confidentialité.",
     regionBadges: {
       swiss: "CH",
       europe: "UE",
     },
   },
   status: {
-    title: "Où en est le produit aujourd’hui",
+    title: "Comment ESGCheck progresse",
     items: {
       mvp: {
-        title: "MVP terminé",
+        title: "MVP finalisé",
         description:
-          "Les fonctionnalités cœur sont en place et prêtes pour la validation.",
+          "Le coeur du workflow est en place et prêt à être confronté à des usages réels.",
       },
       testing: {
-        title: "Tests end-to-end internes",
-        description: "Les parcours complets sont testés en interne.",
+        title: "Tests internes en cours",
+        description:
+          "Les parcours end-to-end sont vérifiés sur l'ensemble de l'expérience.",
       },
       expert: {
-        title: "Validation experte ensuite",
+        title: "Revue experte ensuite",
         description:
-          "Une revue indépendante par des experts constitue la prochaine étape.",
+          "Le prochain jalon consiste à intégrer des retours d'experts indépendants pour renforcer la qualité et la crédibilité des résultats.",
       },
       readiness: {
-        title: "En route vers les premiers pilotes",
+        title: "En route vers les pilotes",
         description:
-          "Au-delà du stade de l’idée, avec validation et construction de la confiance encore en cours.",
+          "Au-delà du stade de l'idée, avec une fiabilité et une confiance encore à démontrer avant un déploiement plus large.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "ESGCheck démarre avec de premières évaluations et a été pensé pour évoluer, au fil du temps, vers des workflows ESG plus solides et réellement utiles en contexte professionnel.",
+      "L'objectif immédiat est de valider d'abord la fiabilité, puis d'élargir le workflow par étapes mesurées.",
     steps: {
       testing: "Tests end-to-end internes",
       validation: "Validation experte",
@@ -979,11 +864,11 @@ export const frTranslations = {
     },
   },
   audience: {
-    title: "À qui s’adresse ESGCheck",
+    title: "À qui ESGCheck s'adresse",
     founders: {
       title: "Fondateurs & Directions générales",
       description:
-        "Pour les responsables confrontés à la pression des clients, des achats et de la croissance.",
+        "Pour les responsables confrontés à la pression des clients, des achats et de la croissance avant que l'ESG soit structuré en interne.",
     },
     finance: {
       title: "CFOs & responsables finance",
@@ -1004,7 +889,7 @@ export const frTranslations = {
     members: {
       ali: {
         name: "Ali Priyatna",
-        role: "Produit, stratégie, direction d’entreprise",
+        role: "Produit, stratégie, direction d'entreprise",
       },
       anastasia: {
         name: "Anastasia Kurer",
@@ -1022,12 +907,12 @@ export const frTranslations = {
       certification: {
         question: "ESGCheck est-il une certification ?",
         answer:
-          "Pas aujourd’hui. ESGCheck fournit une première évaluation crédible et a été pensé pour évoluer dans le temps.",
+          "Pas aujourd'hui. ESGCheck est une première évaluation structurée conçue pour aider les entreprises à se situer et à progresser avec le temps.",
       },
       documents: {
         question: "Quels documents puis-je transmettre ?",
         answer:
-          "Des politiques, des documents internes, des informations fournisseurs et des rapports d’entreprise.",
+          "Des politiques, des documents internes, des informations fournisseurs et des rapports d'entreprise.",
       },
       audience: {
         question: "Pour qui ESGCheck a-t-il été conçu ?",
@@ -1035,27 +920,27 @@ export const frTranslations = {
           "Pour des PME en croissance, en particulier dans des contextes B2B suisses et DACH.",
       },
       pricing: {
-        question: "Qu’en est-il de la tarification ?",
+        question: "Qu'en est-il de la tarification ?",
         answer:
           "Le modèle tarifaire évolue vers une formule accessible aux PME et sera affiné au fil de la validation initiale.",
       },
     },
   },
   finalCta: {
-    title: "Commencez avec une vision plus claire de votre situation.",
+    title: "Demander un accès anticipé à ESGCheck.",
     description:
-      "Obtenez un accès anticipé à une plateforme d’évaluation ESG pragmatique et attentive à la confidentialité, pensée pour les PME en croissance.",
+      "Contactez-nous si vous souhaitez suivre l'évolution du produit et voir s'il pourrait convenir à votre workflow.",
     primary: "Demander un accès anticipé",
-    secondary: "Demander plus d’informations",
+    secondary: "Demander plus d'informations",
   },
   waitlist: {
-    title: "Commencez avec une vision plus claire de votre situation.",
+    title: "Demander un accès anticipé.",
     description:
-      "Obtenez un accès anticipé à une plateforme d’évaluation ESG pragmatique et attentive à la confidentialité, pensée pour les PME en croissance.",
+      "Si des questions ESG apparaissent déjà dans vos échanges clients, achats ou financement, nous aimerions mieux comprendre d'où vient cette pression chez vous.",
     cardTitle: "À quoi vous attendre",
     ctaButton: "Demander un accès anticipé à ESGCheck",
     emailNote:
-      "Partagez votre adresse e-mail professionnelle pour rejoindre la bêta et recevoir les informations d’accès.",
+      "Partagez votre adresse e-mail professionnelle pour rejoindre la bêta et recevoir des informations sur l'accès.",
     form: {
       emailLabel: "Adresse e-mail professionnelle",
       emailPlaceholder: "vous@entreprise.ch",
@@ -1063,12 +948,12 @@ export const frTranslations = {
         "Indiquez votre adresse e-mail pour demander un accès anticipé.",
       optInLabel: "Consentement",
       optInText:
-        "J’accepte de recevoir vos newsletters et j’accepte la déclaration de confidentialité.",
+        "J'accepte de recevoir vos newsletters et j'accepte la déclaration de confidentialité.",
       optInHelp:
         "Vous pouvez vous désinscrire à tout moment via le lien présent dans la newsletter.",
       success: "Votre inscription a bien été enregistrée.",
       error:
-        "Votre inscription n’a pas pu être enregistrée. Veuillez réessayer.",
+        "Votre inscription n'a pas pu être enregistrée. Veuillez réessayer.",
       brevoDisclaimer:
         "Nous utilisons Brevo comme plateforme marketing. En soumettant ce formulaire, vous acceptez que les données personnelles fournies soient transférées à Brevo pour traitement, conformément à",
       brevoLinkLabel: "la politique de confidentialité de Brevo.",
@@ -1077,20 +962,20 @@ export const frTranslations = {
       disclaimer: "Gratuit pendant la bêta. Aucune carte bancaire requise.",
       disclaimerShort: "Gratuit pendant la bêta.",
       betaNote:
-        "Les premiers testeurs obtiennent un accès gratuit et nous aident à faire évoluer ESGCheck dans la bonne direction.",
+        "Les premiers participants obtiennent un accès gratuit et nous aident à faire évoluer ESGCheck autour de besoins PME réels.",
     },
   },
   seo: {
-    title: "ESGCheck - Évaluation ESG pragmatique pour les PME en croissance",
+    title: "ESGCheck | Première évaluation ESG pragmatique pour les PME en croissance",
     description:
-      "Évaluation ESG pragmatique pour les PME en croissance. Transformez vos documents existants en scores clairs, écarts visibles et prochaines étapes concrètes.",
+      "Transformez vos documents d'entreprise en une première évaluation ESG claire avec des scores structurés, des écarts visibles et des prochaines étapes concrètes.",
     keywords:
       "évaluation ESG, ESG pour PME, GRI, Swiss ESG, évaluation de durabilité, évaluation ESG fondée sur les documents, ESG pour entreprises en croissance",
     ogImageAlt:
-      "ESGCheck - évaluation ESG pragmatique pour les PME en croissance",
+      "ESGCheck première évaluation ESG pragmatique pour les PME en croissance",
     structuredData: {
       description:
-        "Plateforme d’évaluation ESG pragmatique pour les PME en croissance, fondée sur les documents dont les entreprises disposent déjà.",
+        "Une plateforme de première évaluation ESG pragmatique pour les PME en croissance, fondée sur les documents dont les entreprises disposent déjà.",
       featureList: {
         documentFirst: "Évaluation ESG fondée sur les documents",
         scoreRationale: "Score ESG avec explication",
@@ -1112,7 +997,7 @@ export const frTranslations = {
   },
   footer: {
     description:
-      "Évaluation ESG pragmatique pour les PME en croissance, conçue en Suisse.",
+      "Première évaluation ESG pragmatique pour les PME en croissance, conçue en Suisse.",
     product: "Produit",
     company: "Entreprise",
     privacy: "Confidentialité",

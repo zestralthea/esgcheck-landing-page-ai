@@ -1,7 +1,7 @@
 import { ShieldCheck } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
-const contactHref = "mailto:hello@esgcheck.com?subject=ESGCheck%20early%20access";
+const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20contact";
 
 export default function Footer() {
   const { t } = useLanguage();

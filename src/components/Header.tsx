@@ -18,7 +18,6 @@ export default function Header() {
     { href: "#product", label: t("header.product") },
     { href: "#how-it-works", label: t("header.howItWorks") },
     { href: "#why-esgcheck", label: t("header.whyEsgCheck") },
-    { href: "#roadmap", label: t("header.roadmap") },
     { href: "#team", label: t("header.team") },
     { href: "#faq", label: t("header.faq") },
   ];

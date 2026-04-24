@@ -8,7 +8,6 @@ import AboutSection from "@/components/AboutSection";
 import SEOHead from "@/components/SEOHead";
 import { Helmet } from "react-helmet-async";
 import CredibilitySection from "@/components/CredibilitySection";
-import RoadmapSection from "@/components/RoadmapSection";
 import AudienceSection from "@/components/AudienceSection";
 import TeamSection from "@/components/TeamSection";
 import FAQSection from "@/components/FAQSection";
@@ -68,7 +67,6 @@ const Index = () => {
       <Features />
       <AboutSection />
       <CredibilitySection />
-      <RoadmapSection />
       <AudienceSection />
       <TeamSection />
       <FAQSection />
