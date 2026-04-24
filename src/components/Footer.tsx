@@ -15,7 +15,7 @@ export default function Footer() {
               <img
                 src="/esgcheck_logo.svg"
                 alt="ESGCheck Logo"
-                className="h-8 w-8 rounded-lg bg-white/95 p-1"
+                className="h-10 w-10 drop-shadow-[0_12px_18px_hsl(140_18%_10%/0.28)]"
               />
               <span className="text-2xl font-semibold tracking-tight">ESGCheck</span>
             </div>

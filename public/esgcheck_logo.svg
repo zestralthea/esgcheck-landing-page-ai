@@ -1,20 +1,30 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
-  <defs>
-    <linearGradient id="gradientPrimary" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="hsl(158, 64%, 35%)" />
-      <stop offset="50%" stop-color="hsl(158, 80%, 55%)" />
-      <stop offset="100%" stop-color="hsl(140, 60%, 45%)" />
-    </linearGradient>
-  </defs>
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
+  <rect
+    x="0.5"
+    y="0.5"
+    width="23"
+    height="23"
+    rx="6"
+    fill="hsl(144, 35%, 26%)"
+    stroke="hsl(144, 28%, 32%)"
+  />
+  <rect x="1.25" y="1.25" width="21.5" height="21.5" rx="5.25" fill="hsl(0, 0%, 100%)" opacity="0.035" />
 
-  <!-- Background -->
-  <rect x="0" y="0" width="24" height="24" rx="4" fill="url(#gradientPrimary)" />
-
-  <!-- Scaled-down icon centered at 75% size -->
-  <g transform="translate(3 3) scale(0.75)">
-    <path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
-          fill="none" stroke="hsl(223, 17%, 8%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-    <path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
-          fill="none" stroke="hsl(223, 17%, 8%)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+  <g transform="translate(2.2 2.2) scale(0.82)">
+    <path
+      d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"
+      stroke="hsl(96, 24%, 96%)"
+      stroke-width="2.1"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+    <path
+      d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"
+      stroke="hsl(96, 24%, 96%)"
+      stroke-width="2.1"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      opacity="0.95"
+    />
   </g>
 </svg>
