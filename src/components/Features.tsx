@@ -41,7 +41,7 @@ export default function Features() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="how-it-works" className="border-b border-border/70 bg-background py-20">
+    <section id="how-it-works" className="overflow-x-hidden border-b border-border/70 bg-background py-20">
       <div className="container mx-auto px-4">
         <div className="grid gap-14 xl:grid-cols-[1.15fr_0.85fr] xl:gap-16">
           <div>

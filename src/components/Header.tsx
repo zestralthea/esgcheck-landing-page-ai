@@ -8,6 +8,7 @@ import LanguageToggle, { type LanguageToggleMode } from "./LanguageToggle";
 
 const earlyAccessHref = "#waitlist";
 const desktopBreakpoint = 1024;
+const trustStripScrollThreshold = 4;
 
 function LanguageToggleMeasure({ mode }: { mode: LanguageToggleMode }) {
   if (mode === "full") {
@@ -70,7 +71,12 @@ export default function Header() {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const [languageToggleMode, setLanguageToggleMode] = useState<LanguageToggleMode>("full");
+  const [headerStackHeight, setHeaderStackHeight] = useState(108);
+  const [trustStripHeight, setTrustStripHeight] = useState(36);
+  const [showTrustStrip, setShowTrustStrip] = useState(true);
 
+  const trustStripInnerRef = useRef<HTMLDivElement>(null);
+  const headerRef = useRef<HTMLElement>(null);
   const headerRowRef = useRef<HTMLDivElement>(null);
   const brandMeasureRef = useRef<HTMLDivElement>(null);
   const fullActionsMeasureRef = useRef<HTMLDivElement>(null);
@@ -154,83 +160,164 @@ export default function Header() {
     };
   }, []);
 
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const trustStrip = trustStripInnerRef.current;
+    const header = headerRef.current;
+
+    if (!trustStrip || !header) {
+      return;
+    }
+
+    const updateHeaderStackHeight = () => {
+      const nextTrustStripHeight = trustStrip.offsetHeight;
+      const nextHeaderHeight = nextTrustStripHeight + header.offsetHeight;
+
+      setTrustStripHeight((current) =>
+        current === nextTrustStripHeight ? current : nextTrustStripHeight
+      );
+      setHeaderStackHeight((current) =>
+        current === nextHeaderHeight ? current : nextHeaderHeight
+      );
+      document.documentElement.style.setProperty("--header-height", `${nextHeaderHeight}px`);
+    };
+
+    updateHeaderStackHeight();
+
+    const resizeObserver = new ResizeObserver(updateHeaderStackHeight);
+    resizeObserver.observe(trustStrip);
+    resizeObserver.observe(header);
+
+    window.addEventListener("resize", updateHeaderStackHeight);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", updateHeaderStackHeight);
+      document.documentElement.style.removeProperty("--header-height");
+    };
+  }, []);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const updateTrustStripVisibility = () => {
+      const nextShowTrustStrip = window.scrollY <= trustStripScrollThreshold;
+
+      setShowTrustStrip((current) =>
+        current === nextShowTrustStrip ? current : nextShowTrustStrip
+      );
+    };
+
+    let frameId = 0;
+    const scheduleTrustStripVisibilityUpdate = () => {
+      window.cancelAnimationFrame(frameId);
+      frameId = window.requestAnimationFrame(updateTrustStripVisibility);
+    };
+
+    updateTrustStripVisibility();
+    window.addEventListener("scroll", scheduleTrustStripVisibilityUpdate, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", scheduleTrustStripVisibilityUpdate);
+      window.cancelAnimationFrame(frameId);
+    };
+  }, []);
+
   return (
     <>
-      <div className="bg-primary text-primary-foreground">
-        <div className="container mx-auto flex min-h-9 flex-nowrap items-center justify-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] overflow-x-auto px-4 py-2 whitespace-nowrap text-[clamp(0.5rem,0.8vw,0.75rem)] font-medium">
-          {trustItems.map((item) => (
-            <div key={item} className="flex items-center gap-[clamp(0.25rem,0.55vw,0.375rem)] whitespace-nowrap">
-              <CheckCircle2 className="h-[clamp(0.625rem,1vw,0.875rem)] w-[clamp(0.625rem,1vw,0.875rem)] shrink-0" />
-              <span className="leading-none">{item}</span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <header className="relative sticky top-0 z-40 border-b border-border/80 bg-background/95 shadow-card backdrop-blur-md">
+      <div className="fixed inset-x-0 top-0 z-50">
         <div
-          ref={headerRowRef}
-          className="container mx-auto grid h-[72px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 lg:grid-cols-[auto_1fr_auto]"
+          aria-hidden={!showTrustStrip}
+          className={`overflow-hidden bg-primary text-primary-foreground transition-[max-height,opacity,transform] duration-300 ease-out ${
+            showTrustStrip ? "opacity-100 translate-y-0" : "pointer-events-none -translate-y-2 opacity-0"
+          }`}
+          style={{ maxHeight: showTrustStrip ? trustStripHeight : 0 }}
         >
-          <a href="#product" className="flex h-full min-w-0 items-center gap-3 self-center overflow-hidden">
-            <img
-              src="/esgcheck_logo.svg"
-              alt="ESGCheck Logo"
-              className="h-8 w-8 shrink-0"
-            />
-            <span className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight text-foreground">
-              ESGCheck
-            </span>
-          </a>
+          <div ref={trustStripInnerRef} className="container mx-auto flex min-h-9 flex-nowrap items-center justify-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] overflow-x-auto px-4 py-2 whitespace-nowrap text-[clamp(0.5rem,0.8vw,0.75rem)] font-medium">
+            {trustItems.map((item) => (
+              <div key={item} className="flex items-center gap-[clamp(0.25rem,0.55vw,0.375rem)] whitespace-nowrap">
+                <CheckCircle2 className="h-[clamp(0.625rem,1vw,0.875rem)] w-[clamp(0.625rem,1vw,0.875rem)] shrink-0" />
+                <span className="leading-none">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
 
-          <nav className="hidden h-full items-center justify-center gap-6 self-center lg:flex">
-            {links.map((link) => (
-              <m.a
-                key={link.href}
-                href={link.href}
-                className="inline-flex h-9 items-center text-sm font-medium leading-none text-foreground/75 transition-colors hover:text-foreground"
-                whileHover={shouldReduceMotion ? undefined : { y: -1, transition: { duration: 0.18 } }}
+        <header
+          ref={headerRef}
+          className="border border-border/80 bg-background/95 shadow-card backdrop-blur-md"
+        >
+          <div
+            ref={headerRowRef}
+            className="container mx-auto grid h-[72px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 lg:grid-cols-[auto_1fr_auto]"
+          >
+            <a href="#product" className="flex h-full min-w-0 items-center gap-3 self-center overflow-hidden">
+              <img
+                src="/esgcheck_logo.svg"
+                alt="ESGCheck Logo"
+                className="h-8 w-8 shrink-0"
+              />
+              <span className="whitespace-nowrap text-2xl font-semibold leading-none tracking-tight text-foreground">
+                ESGCheck
+              </span>
+            </a>
+
+            <nav className="hidden h-full items-center justify-center gap-6 self-center lg:flex">
+              {links.map((link) => (
+                <m.a
+                  key={link.href}
+                  href={link.href}
+                  className="inline-flex h-9 items-center text-sm font-medium leading-none text-foreground/75 transition-colors hover:text-foreground"
+                  whileHover={shouldReduceMotion ? undefined : { y: -1, transition: { duration: 0.18 } }}
+                  whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
+                >
+                  {link.label}
+                </m.a>
+              ))}
+            </nav>
+
+            <div className="flex h-full items-center justify-self-end gap-2 self-center leading-none">
+              <m.div
+                whileHover={shouldReduceMotion ? undefined : { y: -2, transition: { duration: 0.2 } }}
                 whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
               >
-                {link.label}
-              </m.a>
-            ))}
-          </nav>
-
-          <div className="flex h-full items-center justify-self-end gap-2 self-center leading-none">
-            <m.div
-              whileHover={shouldReduceMotion ? undefined : { y: -2, transition: { duration: 0.2 } }}
-              whileTap={shouldReduceMotion ? undefined : { scale: 0.98, transition: microSpring }}
-            >
-              <Button asChild variant="hero" size="sm" className="hidden self-center rounded-xl px-4 leading-none transition-[box-shadow,opacity] hover:shadow-glow md:inline-flex">
-                <a href={earlyAccessHref}>{t("header.joinWaitlist")}</a>
-              </Button>
-            </m.div>
-            <div className="shrink-0">
-              <LanguageToggle mode={languageToggleMode} />
+                <Button asChild variant="hero" size="sm" className="hidden self-center rounded-xl px-4 leading-none transition-[box-shadow,opacity] hover:shadow-glow md:inline-flex">
+                  <a href={earlyAccessHref}>{t("header.joinWaitlist")}</a>
+                </Button>
+              </m.div>
+              <div className="shrink-0">
+                <LanguageToggle mode={languageToggleMode} />
+              </div>
             </div>
           </div>
-        </div>
 
-        <div className="pointer-events-none absolute left-4 top-0 -z-10 flex w-max flex-col gap-2 opacity-0">
-          <div
-            ref={brandMeasureRef}
-            className="flex items-center gap-3 whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
-          >
-            <img src="/esgcheck_logo.svg" alt="" className="h-8 w-8 shrink-0" />
-            <span>ESGCheck</span>
+          <div className="pointer-events-none absolute left-4 top-0 -z-10 flex w-max flex-col gap-2 opacity-0">
+            <div
+              ref={brandMeasureRef}
+              className="flex items-center gap-3 whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
+            >
+              <img src="/esgcheck_logo.svg" alt="" className="h-8 w-8 shrink-0" />
+              <span>ESGCheck</span>
+            </div>
+            <div ref={fullActionsMeasureRef}>
+              <ActionMeasure mode="full" ctaLabel={t("header.joinWaitlist")} />
+            </div>
+            <div ref={compactActionsMeasureRef}>
+              <ActionMeasure mode="compact" ctaLabel={t("header.joinWaitlist")} />
+            </div>
+            <div ref={iconActionsMeasureRef}>
+              <ActionMeasure mode="icon" ctaLabel={t("header.joinWaitlist")} />
+            </div>
           </div>
-          <div ref={fullActionsMeasureRef}>
-            <ActionMeasure mode="full" ctaLabel={t("header.joinWaitlist")} />
-          </div>
-          <div ref={compactActionsMeasureRef}>
-            <ActionMeasure mode="compact" ctaLabel={t("header.joinWaitlist")} />
-          </div>
-          <div ref={iconActionsMeasureRef}>
-            <ActionMeasure mode="icon" ctaLabel={t("header.joinWaitlist")} />
-          </div>
-        </div>
-      </header>
+        </header>
+      </div>
+
+      <div aria-hidden="true" style={{ height: headerStackHeight }} />
     </>
   );
 }

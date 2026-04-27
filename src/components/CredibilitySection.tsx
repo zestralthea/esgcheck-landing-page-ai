@@ -79,7 +79,7 @@ export default function CredibilitySection() {
   const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="roadmap" className="border-b border-border/70 bg-background py-20">
+    <section id="roadmap" className="overflow-x-hidden border-b border-border/70 bg-background py-20">
       <div className="container mx-auto space-y-14 px-4">
         <div className="grid gap-5 lg:grid-cols-3">
           <m.div
