@@ -1,17 +1,21 @@
 import * as DropdownMenu from "@radix-ui/react-dropdown-menu";
 import { Check, ChevronDown, Languages } from "lucide-react";
 import { LayoutGroup, m, useReducedMotion } from "framer-motion";
-import { useLanguage, Language } from "@/contexts/LanguageContext";
+import {
+  languageMetadata,
+  supportedLanguages,
+  useLanguage,
+  type Language,
+} from "@/contexts/LanguageContext";
 import { cn } from "@/lib/utils";
 import { microSpring } from "@/lib/motion";
 
 export type LanguageToggleMode = "full" | "compact" | "icon";
 
-const languages: { code: Language; label: string }[] = [
-  { code: "en", label: "EN" },
-  { code: "de", label: "DE" },
-  { code: "fr", label: "FR" }
-];
+const languages: { code: Language; label: string }[] = supportedLanguages.map((code) => ({
+  code,
+  label: languageMetadata[code].label,
+}));
 
 function LanguageMenuItems({
   language,

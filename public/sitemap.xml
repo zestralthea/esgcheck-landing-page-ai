@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+  xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://esgcheck.ch/de/</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://esgcheck.ch/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://esgcheck.ch/en/" />
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://esgcheck.ch/fr/" />
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://esgcheck.ch/it/" />
+    <xhtml:link rel="alternate" hreflang="rm-CH" href="https://esgcheck.ch/rm/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://esgcheck.ch/de/" />
+  </url>
+  <url>
+    <loc>https://esgcheck.ch/en/</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://esgcheck.ch/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://esgcheck.ch/en/" />
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://esgcheck.ch/fr/" />
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://esgcheck.ch/it/" />
+    <xhtml:link rel="alternate" hreflang="rm-CH" href="https://esgcheck.ch/rm/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://esgcheck.ch/de/" />
+  </url>
+  <url>
+    <loc>https://esgcheck.ch/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://esgcheck.ch/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://esgcheck.ch/en/" />
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://esgcheck.ch/fr/" />
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://esgcheck.ch/it/" />
+    <xhtml:link rel="alternate" hreflang="rm-CH" href="https://esgcheck.ch/rm/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://esgcheck.ch/de/" />
+  </url>
+  <url>
+    <loc>https://esgcheck.ch/it/</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://esgcheck.ch/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://esgcheck.ch/en/" />
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://esgcheck.ch/fr/" />
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://esgcheck.ch/it/" />
+    <xhtml:link rel="alternate" hreflang="rm-CH" href="https://esgcheck.ch/rm/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://esgcheck.ch/de/" />
+  </url>
+  <url>
+    <loc>https://esgcheck.ch/rm/</loc>
+    <xhtml:link rel="alternate" hreflang="de-CH" href="https://esgcheck.ch/de/" />
+    <xhtml:link rel="alternate" hreflang="en" href="https://esgcheck.ch/en/" />
+    <xhtml:link rel="alternate" hreflang="fr-CH" href="https://esgcheck.ch/fr/" />
+    <xhtml:link rel="alternate" hreflang="it-CH" href="https://esgcheck.ch/it/" />
+    <xhtml:link rel="alternate" hreflang="rm-CH" href="https://esgcheck.ch/rm/" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://esgcheck.ch/de/" />
+  </url>
+</urlset>

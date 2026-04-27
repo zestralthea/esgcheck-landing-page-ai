@@ -3,10 +3,26 @@ import {
   deTranslations,
   enTranslations,
   frTranslations,
+  itTranslations,
+  rmTranslations,
   type TranslationDictionary,
 } from "./translations";
 
-export type Language = "en" | "de" | "fr";
+export const siteBaseUrl = "https://esgcheck.ch";
+export const supportedLanguages = ["de", "en", "fr", "it", "rm"] as const;
+export type Language = (typeof supportedLanguages)[number];
+export const defaultLanguage: Language = "de";
+
+export const languageMetadata: Record<
+  Language,
+  { label: string; htmlLang: string; hrefLang: string; path: string }
+> = {
+  de: { label: "DE", htmlLang: "de-CH", hrefLang: "de-CH", path: "de" },
+  en: { label: "EN", htmlLang: "en", hrefLang: "en", path: "en" },
+  fr: { label: "FR", htmlLang: "fr-CH", hrefLang: "fr-CH", path: "fr" },
+  it: { label: "IT", htmlLang: "it-CH", hrefLang: "it-CH", path: "it" },
+  rm: { label: "RM", htmlLang: "rm-CH", hrefLang: "rm-CH", path: "rm" },
+};
 
 interface LanguageContextType {
   language: Language;
@@ -48,12 +64,28 @@ interface LanguageProviderProps {
 }
 
 export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) => {
-  const [language, setLanguage] = useState<Language>("en");
+  const [language, setLanguageState] = useState<Language>(() =>
+    typeof window === "undefined"
+      ? defaultLanguage
+      : getLanguageFromPathname(window.location.pathname)
+  );
+
+  useEffect(() => {
+    const syncLanguageFromLocation = () => {
+      setLanguageState(getLanguageFromPathname(window.location.pathname));
+    };
+
+    window.addEventListener("popstate", syncLanguageFromLocation);
+
+    return () => {
+      window.removeEventListener("popstate", syncLanguageFromLocation);
+    };
+  }, []);
 
   useEffect(() => {
     const formRuntime = getTranslations(language).formRuntime;
 
-    document.documentElement.lang = language;
+    document.documentElement.lang = languageMetadata[language].htmlLang;
     window.LOCALE = language;
     window.REQUIRED_CODE_ERROR_MESSAGE = formRuntime.requiredCodeErrorMessage;
     window.EMAIL_INVALID_MESSAGE = formRuntime.invalidMessage;
@@ -71,6 +103,21 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
       },
     };
   }, [language]);
+
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const nextUrl = getLocalizedUrl(lang, window.location);
+    const currentUrl = `${window.location.pathname}${window.location.search}${window.location.hash}`;
+
+    if (nextUrl !== currentUrl) {
+      window.history.pushState({}, "", nextUrl);
+    }
+  };
 
   const t = (key: string): string => {
     const translations = getTranslations(language);
@@ -95,12 +142,35 @@ const getNestedValue = (obj: Record<string, unknown>, path: string): string | un
   return typeof value === "string" ? value : undefined;
 };
 
-const getTranslations = (lang: Language): TranslationDictionary => {
+export const getLocalePath = (lang: Language) => `/${languageMetadata[lang].path}/`;
+
+export const getLocaleUrl = (lang: Language) => `${siteBaseUrl}${getLocalePath(lang)}`;
+
+export const getLanguageFromPathname = (pathname: string): Language => {
+  const segment = pathname.split("/").filter(Boolean)[0];
+
+  return isSupportedLanguage(segment) ? segment : defaultLanguage;
+};
+
+const getLocalizedUrl = (lang: Language, location: Location) => {
+  const nextPath = getLocalePath(lang);
+
+  return `${nextPath}${location.search}${location.hash}`;
+};
+
+const isSupportedLanguage = (value: string | undefined): value is Language =>
+  supportedLanguages.includes(value as Language);
+
+export const getTranslations = (lang: Language): TranslationDictionary => {
   switch (lang) {
     case "de":
       return deTranslations;
     case "fr":
       return frTranslations;
+    case "it":
+      return itTranslations;
+    case "rm":
+      return rmTranslations;
     case "en":
     default:
       return enTranslations;

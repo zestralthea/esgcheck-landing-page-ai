@@ -7,17 +7,19 @@ interface SEOHeadProps {
   canonicalUrl?: string;
   ogImage?: string;
   ogImageAlt?: string;
-  structuredData?: object;
+  alternateLinks?: Array<{ hrefLang: string; href: string }>;
+  structuredData?: object | object[];
   noindex?: boolean;
 }
 
 export default function SEOHead({
-  title = "ESGCheck - Practical ESG Assessment Platform for Growing SMEs",
-  description = "A practical ESG assessment platform for growing SMEs. Turn policies, internal records, and company reports into clear scores, visible gaps, and practical next steps.",
-  keywords = "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies",
-  canonicalUrl = "https://esgcheck.lovable.app/",
-  ogImage = "https://esgcheck.lovable.app/esgcheck_logo.svg",
-  ogImageAlt = "ESGCheck - practical ESG assessment platform for growing SMEs",
+  title = "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+  description = "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
+  keywords = "ESG-Einschätzung, ESG für KMU, GRI, Swiss ESG, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung, ESG für wachsende Unternehmen",
+  canonicalUrl = "https://esgcheck.ch/de/",
+  ogImage = "https://esgcheck.ch/esgcheck_logo.svg",
+  ogImageAlt = "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+  alternateLinks = [],
   structuredData,
   noindex = false
 }: SEOHeadProps) {
@@ -30,6 +32,9 @@ export default function SEOHead({
       <meta name="keywords" content={keywords} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
       <link rel="canonical" href={canonicalUrl} />
+      {alternateLinks.map(({ hrefLang, href }) => (
+        <link key={hrefLang} rel="alternate" hrefLang={hrefLang} href={href} />
+      ))}
 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />

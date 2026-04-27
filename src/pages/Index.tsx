@@ -11,43 +11,98 @@ import CredibilitySection from "@/components/CredibilitySection";
 import AudienceSection from "@/components/AudienceSection";
 import TeamSection from "@/components/TeamSection";
 import FAQSection from "@/components/FAQSection";
-import { useLanguage } from "@/contexts/LanguageContext";
+import {
+  defaultLanguage,
+  getLocaleUrl,
+  languageMetadata,
+  siteBaseUrl,
+  supportedLanguages,
+  useLanguage,
+} from "@/contexts/LanguageContext";
+
+const faqItems = ["certification", "documents", "audience", "pricing"] as const;
 
 const Index = () => {
   const { t, language } = useLanguage();
-  const structuredDataLanguage =
-    language === "de" ? "de-CH" : language === "fr" ? "fr-CH" : "en";
+  const structuredDataLanguage = languageMetadata[language].hrefLang;
+  const canonicalUrl = getLocaleUrl(language);
+  const logoUrl = `${siteBaseUrl}/esgcheck_logo.svg`;
+  const organizationId = `${siteBaseUrl}/#organization`;
+  const websiteId = `${siteBaseUrl}/#website`;
+  const alternateLinks = [
+    ...supportedLanguages.map((lang) => ({
+      hrefLang: languageMetadata[lang].hrefLang,
+      href: getLocaleUrl(lang),
+    })),
+    {
+      hrefLang: "x-default",
+      href: getLocaleUrl(defaultLanguage),
+    },
+  ];
 
-  const homeStructuredData = {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "ESGCheck",
-    "description": t("seo.structuredData.description"),
-    "url": "https://esgcheck.lovable.app/",
-    "logo": "https://esgcheck.lovable.app/esgcheck_logo.svg",
-    "applicationCategory": "BusinessApplication",
-    "operatingSystem": "Web Browser",
-    "inLanguage": structuredDataLanguage,
-    "offers": {
-      "@type": "Offer",
-      "price": "0",
-      "priceCurrency": "USD",
-      "availability": "https://schema.org/InStock"
-    },
-    "provider": {
+  const homeStructuredData = [
+    {
+      "@context": "https://schema.org",
       "@type": "Organization",
+      "@id": organizationId,
       "name": "ESGCheck",
-      "url": "https://esgcheck.lovable.app/"
+      "url": siteBaseUrl,
+      "logo": logoUrl,
     },
-    "featureList": [
-      t("seo.structuredData.featureList.documentFirst"),
-      t("seo.structuredData.featureList.scoreRationale"),
-      t("seo.structuredData.featureList.strengthsGaps"),
-      t("seo.structuredData.featureList.nextSteps"),
-      t("seo.structuredData.featureList.swissPrivacy")
-    ],
-    "keywords": t("seo.keywords")
-  };
+    {
+      "@context": "https://schema.org",
+      "@type": "WebSite",
+      "@id": websiteId,
+      "name": "ESGCheck",
+      "url": siteBaseUrl,
+      "inLanguage": structuredDataLanguage,
+      "publisher": {
+        "@id": organizationId,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "SoftwareApplication",
+      "name": "ESGCheck",
+      "description": t("seo.structuredData.description"),
+      "url": canonicalUrl,
+      "logo": logoUrl,
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web Browser",
+      "inLanguage": structuredDataLanguage,
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "CHF",
+        "availability": "https://schema.org/InStock"
+      },
+      "provider": {
+        "@id": organizationId
+      },
+      "featureList": [
+        t("seo.structuredData.featureList.documentFirst"),
+        t("seo.structuredData.featureList.scoreRationale"),
+        t("seo.structuredData.featureList.strengthsGaps"),
+        t("seo.structuredData.featureList.nextSteps"),
+        t("seo.structuredData.featureList.swissPrivacy")
+      ],
+      "keywords": t("seo.keywords")
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "url": `${canonicalUrl}#faq`,
+      "inLanguage": structuredDataLanguage,
+      "mainEntity": faqItems.map((item) => ({
+        "@type": "Question",
+        "name": t(`faq.items.${item}.question`),
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": t(`faq.items.${item}.answer`),
+        },
+      })),
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-background">
@@ -58,7 +113,10 @@ const Index = () => {
         title={t("seo.title")}
         description={t("seo.description")}
         keywords={t("seo.keywords")}
+        canonicalUrl={canonicalUrl}
+        ogImage={logoUrl}
         ogImageAlt={t("seo.ogImageAlt")}
+        alternateLinks={alternateLinks}
         structuredData={homeStructuredData}
       />
 

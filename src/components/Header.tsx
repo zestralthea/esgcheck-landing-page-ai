@@ -2,7 +2,7 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { CheckCircle2, ChevronDown, Languages } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { languageMetadata, supportedLanguages, useLanguage } from "@/contexts/LanguageContext";
 import { microSpring } from "@/lib/motion";
 import LanguageToggle, { type LanguageToggleMode } from "./LanguageToggle";
 
@@ -10,12 +10,13 @@ const earlyAccessHref = "#waitlist";
 const compactLanguageToggleBreakpoint = 640;
 const desktopBreakpoint = 1024;
 const trustStripScrollThreshold = 4;
+const languageLabels = supportedLanguages.map((code) => languageMetadata[code].label);
 
 function LanguageToggleMeasure({ mode }: { mode: LanguageToggleMode }) {
   if (mode === "full") {
     return (
       <div className="inline-flex h-11 shrink-0 items-center justify-center gap-1 rounded-full border border-border bg-background/90 p-1 shadow-sm">
-        {["EN", "DE", "FR"].map((label, index) => (
+        {languageLabels.map((label, index) => (
           <span
             key={label}
             className={
@@ -35,7 +36,7 @@ function LanguageToggleMeasure({ mode }: { mode: LanguageToggleMode }) {
     return (
       <div className="inline-flex h-11 shrink-0 items-center justify-center gap-1 rounded-full border border-border bg-background/90 p-1 shadow-sm">
         <span className="inline-flex h-full min-w-[3.1rem] items-center justify-center rounded-full bg-primary px-3 text-xs font-medium leading-none text-primary-foreground shadow-sm">
-          EN
+          DE
         </span>
         <span className="inline-flex h-full min-w-[2.75rem] items-center justify-center rounded-full px-2.5 text-foreground/75">
           <ChevronDown className="h-3.5 w-3.5" />

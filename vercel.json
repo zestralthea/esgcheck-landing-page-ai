@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/(de|en|fr|it|rm)/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/(de|en|fr|it|rm)/(.*)",
+      "destination": "/index.html"
+    }
+  ]
+}

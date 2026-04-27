@@ -21,7 +21,7 @@ Allow: /
 Crawl-delay: 2
 
 # Sitemap
-Sitemap: https://esgcheck.lovable.app/sitemap.xml
+Sitemap: https://esgcheck.ch/sitemap.xml
 
 # Block AI training crawlers (optional)
 User-agent: GPTBot
