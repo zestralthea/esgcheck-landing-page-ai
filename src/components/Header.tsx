@@ -2,11 +2,10 @@ import { useLayoutEffect, useRef, useState } from "react";
 import { CheckCircle2, ChevronDown, Languages } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { languageMetadata, supportedLanguages, useLanguage } from "@/contexts/LanguageContext";
+import { getLocalePath, languageMetadata, supportedLanguages, useLanguage } from "@/contexts/LanguageContext";
 import { microSpring } from "@/lib/motion";
 import LanguageToggle, { type LanguageToggleMode } from "./LanguageToggle";
 
-const earlyAccessHref = "#waitlist";
 const trustStripScrollThreshold = 4;
 const languageLabels = supportedLanguages.map((code) => languageMetadata[code].label);
 const preferredLanguageToggleModes = ["compact", "icon"] as const;
@@ -69,7 +68,7 @@ function ActionMeasure({
 }
 
 export default function Header() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const [languageToggleMode, setLanguageToggleMode] = useState<LanguageToggleMode>("compact");
   const [headerStackHeight, setHeaderStackHeight] = useState(108);
@@ -90,12 +89,16 @@ export default function Header() {
     t("header.trustStrip.growingSmes"),
   ];
 
+  const homePath = getLocalePath(language);
+  const sectionHref = (hash: string) => `${homePath}${hash}`;
+  const earlyAccessHref = sectionHref("#waitlist");
+
   const links = [
-    { href: "#product", label: t("header.product") },
-    { href: "#how-it-works", label: t("header.howItWorks") },
-    { href: "#why-esgcheck", label: t("header.whyEsgCheck") },
-    { href: "#team", label: t("header.team") },
-    { href: "#faq", label: t("header.faq") },
+    { href: sectionHref("#product"), label: t("header.product") },
+    { href: sectionHref("#how-it-works"), label: t("header.howItWorks") },
+    { href: sectionHref("#why-esgcheck"), label: t("header.whyEsgCheck") },
+    { href: sectionHref("#team"), label: t("header.team") },
+    { href: sectionHref("#faq"), label: t("header.faq") },
   ];
 
   useLayoutEffect(() => {
@@ -251,7 +254,7 @@ export default function Header() {
             ref={headerRowRef}
             className="container mx-auto grid h-[72px] grid-cols-[minmax(0,1fr)_auto] items-center gap-4 px-4 lg:grid-cols-[auto_1fr_auto]"
           >
-            <a href="#product" className="flex h-full min-w-0 items-center gap-3 self-center overflow-hidden">
+            <a href={sectionHref("#product")} className="flex h-full min-w-0 items-center gap-3 self-center overflow-hidden">
               <img
                 src="/esgcheck_logo.svg"
                 alt="ESGCheck Logo"

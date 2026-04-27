@@ -1,13 +1,15 @@
 import { ShieldCheck } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { getLocalePath, useLanguage } from "@/contexts/LanguageContext";
 import { revealUp, viewportOnce } from "@/lib/motion";
 
 const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20contact";
 
 export default function Footer() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
+  const homePath = getLocalePath(language);
+  const sectionHref = (hash: string) => `${homePath}${hash}`;
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -39,8 +41,8 @@ export default function Footer() {
               {t("footer.product")}
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
-              <li><a href="#product" className="hover:text-primary-foreground">{t("header.product")}</a></li>
-              <li><a href="#how-it-works" className="hover:text-primary-foreground">{t("header.howItWorks")}</a></li>
+              <li><a href={sectionHref("#product")} className="hover:text-primary-foreground">{t("header.product")}</a></li>
+              <li><a href={sectionHref("#how-it-works")} className="hover:text-primary-foreground">{t("header.howItWorks")}</a></li>
             </ul>
           </div>
 
@@ -49,8 +51,8 @@ export default function Footer() {
               {t("footer.company")}
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
-              <li><a href="#why-esgcheck" className="hover:text-primary-foreground">{t("header.whyEsgCheck")}</a></li>
-              <li><a href="#team" className="hover:text-primary-foreground">{t("header.team")}</a></li>
+              <li><a href={sectionHref("#why-esgcheck")} className="hover:text-primary-foreground">{t("header.whyEsgCheck")}</a></li>
+              <li><a href={sectionHref("#team")} className="hover:text-primary-foreground">{t("header.team")}</a></li>
             </ul>
           </div>
 
@@ -59,7 +61,7 @@ export default function Footer() {
               {t("footer.privacy")}
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
-              <li><a href="#faq" className="hover:text-primary-foreground">{t("header.faq")}</a></li>
+              <li><a href={sectionHref("#faq")} className="hover:text-primary-foreground">{t("header.faq")}</a></li>
               <li><a href={contactHref} className="hover:text-primary-foreground">{t("footer.contact")}</a></li>
             </ul>
           </div>
@@ -69,7 +71,7 @@ export default function Footer() {
               {t("footer.earlyAccess")}
             </h4>
             <a
-              href="#waitlist"
+              href={sectionHref("#waitlist")}
               className="inline-flex items-center rounded-xl bg-white px-4 py-3 text-sm font-semibold text-primary shadow-sm transition hover:bg-white/95"
             >
               {t("header.joinWaitlist")}

@@ -5,13 +5,15 @@ import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { GradientCard } from "@/components/common/GradientCard";
 import { SectionHeading } from "@/components/common/SectionHeading";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { getLocalePath, useLanguage } from "@/contexts/LanguageContext";
 import { entranceEase, microSpring, revealLeft, revealRight, revealUp, viewportOnce } from "@/lib/motion";
 
 const brevoFormAction =
   "https://f3345453.sibforms.com/serve/MUIFAG23m2tWDesGY_yFxoeJFq9SqBJbGkfm7K1Y2WgbezBpQPZHZ5jkKXnQeKVLTBQt-HGSPePgxZw7qzdOcTB10_BFteEH7OLjKq6wxN2HovLA-PBdBcGuidKDvh9HB6Om7Mn83v2je_l8qohOEbwakFPNIHIRPmEHbwjqxEg50p3vDJl1jdZ1_wkvu4jCp6CxVqdIJpprXyeeIw==";
 const brevoScriptId = "brevo-form-main";
 const brevoScriptSrc = "https://sibforms.com/forms/end-form/build/main.js";
+const brevoSuccessClassName = "sib-form-message-panel--active";
+const brevoSuccessRedirectDelay = 650;
 const turnstileSiteKey = "0x4AAAAAABmAJXX1tHQtUYp_";
 const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20more%20information";
 
@@ -124,6 +126,43 @@ export default function WaitlistCTA() {
 
       if (widgetId) {
         window.turnstile?.remove?.(widgetId);
+      }
+    };
+  }, [language]);
+
+  useEffect(() => {
+    const successMessage = document.getElementById("success-message");
+
+    if (!successMessage) {
+      return;
+    }
+
+    let redirectId: number | undefined;
+    const redirectPath = getLocalePath(language, "confirmation");
+
+    const redirectAfterBrevoSuccess = () => {
+      if (!successMessage.classList.contains(brevoSuccessClassName) || redirectId) {
+        return;
+      }
+
+      redirectId = window.setTimeout(() => {
+        window.location.assign(redirectPath);
+      }, brevoSuccessRedirectDelay);
+    };
+
+    redirectAfterBrevoSuccess();
+
+    const observer = new MutationObserver(redirectAfterBrevoSuccess);
+    observer.observe(successMessage, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => {
+      observer.disconnect();
+
+      if (redirectId) {
+        window.clearTimeout(redirectId);
       }
     };
   }, [language]);
@@ -345,6 +384,7 @@ export default function WaitlistCTA() {
                         </div>
 
                         <input type="text" name="email_address_check" value="" className="input--hidden" readOnly />
+                        <input type="hidden" name="LANGUAGE" value={language} />
                         <input type="hidden" name="locale" value={language} />
                       </form>
                     </div>

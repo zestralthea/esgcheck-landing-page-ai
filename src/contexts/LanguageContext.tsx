@@ -12,6 +12,7 @@ export const siteBaseUrl = "https://esgcheck.ch";
 export const supportedLanguages = ["de", "en", "fr", "it", "rm"] as const;
 export type Language = (typeof supportedLanguages)[number];
 export const defaultLanguage: Language = "de";
+export type SitePage = "home" | "confirmation";
 
 export const languageMetadata: Record<
   Language,
@@ -142,9 +143,14 @@ const getNestedValue = (obj: Record<string, unknown>, path: string): string | un
   return typeof value === "string" ? value : undefined;
 };
 
-export const getLocalePath = (lang: Language) => `/${languageMetadata[lang].path}/`;
+export const getLocalePath = (lang: Language, page: SitePage = "home") => {
+  const localePath = `/${languageMetadata[lang].path}/`;
 
-export const getLocaleUrl = (lang: Language) => `${siteBaseUrl}${getLocalePath(lang)}`;
+  return page === "confirmation" ? `${localePath}confirmation/` : localePath;
+};
+
+export const getLocaleUrl = (lang: Language, page: SitePage = "home") =>
+  `${siteBaseUrl}${getLocalePath(lang, page)}`;
 
 export const getLanguageFromPathname = (pathname: string): Language => {
   const segment = pathname.split("/").filter(Boolean)[0];
@@ -152,8 +158,14 @@ export const getLanguageFromPathname = (pathname: string): Language => {
   return isSupportedLanguage(segment) ? segment : defaultLanguage;
 };
 
+export const getSitePageFromPathname = (pathname: string): SitePage => {
+  const [, pageSegment] = pathname.split("/").filter(Boolean);
+
+  return pageSegment === "confirmation" ? "confirmation" : "home";
+};
+
 const getLocalizedUrl = (lang: Language, location: Location) => {
-  const nextPath = getLocalePath(lang);
+  const nextPath = getLocalePath(lang, getSitePageFromPathname(location.pathname));
 
   return `${nextPath}${location.search}${location.hash}`;
 };
