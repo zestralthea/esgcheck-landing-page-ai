@@ -7,10 +7,9 @@ import { microSpring } from "@/lib/motion";
 import LanguageToggle, { type LanguageToggleMode } from "./LanguageToggle";
 
 const earlyAccessHref = "#waitlist";
-const compactLanguageToggleBreakpoint = 640;
-const desktopBreakpoint = 1024;
 const trustStripScrollThreshold = 4;
 const languageLabels = supportedLanguages.map((code) => languageMetadata[code].label);
+const preferredLanguageToggleModes = ["compact", "icon"] as const;
 
 function LanguageToggleMeasure({ mode }: { mode: LanguageToggleMode }) {
   if (mode === "full") {
@@ -72,7 +71,7 @@ function ActionMeasure({
 export default function Header() {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
-  const [languageToggleMode, setLanguageToggleMode] = useState<LanguageToggleMode>("full");
+  const [languageToggleMode, setLanguageToggleMode] = useState<LanguageToggleMode>("compact");
   const [headerStackHeight, setHeaderStackHeight] = useState(108);
   const [trustStripHeight, setTrustStripHeight] = useState(36);
   const [showTrustStrip, setShowTrustStrip] = useState(true);
@@ -115,11 +114,6 @@ export default function Header() {
     }
 
     const pickBestMode = () => {
-      if (window.innerWidth >= desktopBreakpoint) {
-        setLanguageToggleMode((current) => (current === "full" ? current : "full"));
-        return;
-      }
-
       const rowWidth = row.clientWidth;
       const brandWidth = brand.offsetWidth;
       const columnGap = Number.parseFloat(getComputedStyle(row).columnGap || "0") || 0;
@@ -128,15 +122,10 @@ export default function Header() {
         compact: compactActions.offsetWidth,
         icon: iconActions.offsetWidth,
       };
-
       const nextMode =
-        window.innerWidth < compactLanguageToggleBreakpoint
-          ? (["compact", "icon"] as const).find(
-              (mode) => brandWidth + actionWidths[mode] + columnGap <= rowWidth
-            ) ?? "icon"
-          : (["full", "compact", "icon"] as const).find(
-              (mode) => brandWidth + actionWidths[mode] + columnGap <= rowWidth
-            ) ?? "icon";
+        preferredLanguageToggleModes.find(
+          (mode) => brandWidth + actionWidths[mode] + columnGap <= rowWidth
+        ) ?? "icon";
 
       setLanguageToggleMode((current) => (current === nextMode ? current : nextMode));
     };
