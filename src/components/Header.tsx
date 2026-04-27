@@ -7,6 +7,7 @@ import { microSpring } from "@/lib/motion";
 import LanguageToggle, { type LanguageToggleMode } from "./LanguageToggle";
 
 const earlyAccessHref = "#waitlist";
+const compactLanguageToggleBreakpoint = 640;
 const desktopBreakpoint = 1024;
 const trustStripScrollThreshold = 4;
 
@@ -128,9 +129,13 @@ export default function Header() {
       };
 
       const nextMode =
-        (["full", "compact", "icon"] as const).find(
-          (mode) => brandWidth + actionWidths[mode] + columnGap <= rowWidth
-        ) ?? "icon";
+        window.innerWidth < compactLanguageToggleBreakpoint
+          ? (["compact", "icon"] as const).find(
+              (mode) => brandWidth + actionWidths[mode] + columnGap <= rowWidth
+            ) ?? "icon"
+          : (["full", "compact", "icon"] as const).find(
+              (mode) => brandWidth + actionWidths[mode] + columnGap <= rowWidth
+            ) ?? "icon";
 
       setLanguageToggleMode((current) => (current === nextMode ? current : nextMode));
     };

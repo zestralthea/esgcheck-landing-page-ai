@@ -53,7 +53,7 @@ export default function LanguageToggle({ mode }: { mode: LanguageToggleMode }) {
   if (mode === "full") {
     return (
       <LayoutGroup id="language-toggle">
-        <div className="inline-flex h-11 shrink-0 items-center justify-center gap-1 self-center rounded-full border border-border bg-background/90 p-1 shadow-sm">
+        <div className="inline-flex h-11 shrink-0 items-center justify-center gap-1 self-center rounded-full border border-border bg-transparent p-1 shadow-sm">
           {languages.map(({ code, label }) => {
             const isActive = language === code;
 
@@ -92,12 +92,12 @@ export default function LanguageToggle({ mode }: { mode: LanguageToggleMode }) {
   }
 
   const iconTriggerClasses =
-    "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-background/90 text-foreground shadow-sm ring-offset-background transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
+    "inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-border bg-transparent text-foreground shadow-sm ring-offset-background transition-colors duration-200 hover:bg-secondary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2";
 
   if (mode === "compact") {
     return (
       <DropdownMenu.Root modal={false}>
-        <div className="inline-flex h-11 shrink-0 items-center justify-center gap-1 rounded-full border border-border bg-background/90 p-1 shadow-sm">
+        <div className="inline-flex h-11 shrink-0 items-center justify-center gap-1 rounded-full border border-border bg-transparent p-1 shadow-sm">
           <div className="inline-flex h-full min-w-[3.1rem] items-center justify-center rounded-full bg-primary px-3 text-xs font-medium leading-none text-primary-foreground shadow-sm">
             {activeLanguage.label}
           </div>
