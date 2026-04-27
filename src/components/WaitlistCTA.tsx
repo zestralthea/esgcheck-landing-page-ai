@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { type FormEvent, useEffect, useRef, useState } from "react";
 import { m, useReducedMotion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -10,17 +10,24 @@ import { entranceEase, microSpring, revealLeft, revealRight, revealUp, viewportO
 
 const brevoFormAction =
   "https://f3345453.sibforms.com/serve/MUIFAG23m2tWDesGY_yFxoeJFq9SqBJbGkfm7K1Y2WgbezBpQPZHZ5jkKXnQeKVLTBQt-HGSPePgxZw7qzdOcTB10_BFteEH7OLjKq6wxN2HovLA-PBdBcGuidKDvh9HB6Om7Mn83v2je_l8qohOEbwakFPNIHIRPmEHbwjqxEg50p3vDJl1jdZ1_wkvu4jCp6CxVqdIJpprXyeeIw==";
-const brevoScriptId = "brevo-form-main";
-const brevoScriptSrc = "https://sibforms.com/forms/end-form/build/main.js";
-const brevoSuccessClassName = "sib-form-message-panel--active";
-const brevoSuccessRedirectDelay = 650;
 const turnstileSiteKey = "0x4AAAAAABmAJXX1tHQtUYp_";
+const turnstileResponseField = "cf-turnstile-response";
 const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20more%20information";
+
+type FormStatus = "idle" | "submitting" | "success" | "error";
+type BrevoResponse = {
+  success?: boolean;
+  redirect?: string;
+  message?: string;
+  errors?: Record<string, string>;
+};
 
 type TurnstileRenderOptions = {
   sitekey: string;
   callback?: (token: string) => void;
   "error-callback"?: (errorCode: string) => void;
+  "expired-callback"?: () => void;
+  "timeout-callback"?: () => void;
   language?: string;
   size?: "normal" | "compact" | "flexible";
   theme?: "auto" | "light" | "dark";
@@ -30,6 +37,7 @@ type TurnstileApi = {
   render: (container: HTMLElement | string, options: TurnstileRenderOptions) => string | undefined;
   remove?: (widgetId: string) => void;
   getResponse?: (widgetId?: string) => string;
+  reset?: (widgetId?: string) => void;
 };
 
 declare global {
@@ -44,31 +52,48 @@ declare global {
 export default function WaitlistCTA() {
   const { t, language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
+  const [formStatus, setFormStatus] = useState<FormStatus>("idle");
+  const turnstileWidgetIdRef = useRef<string | undefined>();
+  const turnstileTokenRef = useRef("");
 
   useEffect(() => {
-    const existingScript = document.getElementById(brevoScriptId);
-
-    if (!existingScript) {
-      const script = document.createElement("script");
-      script.id = brevoScriptId;
-      script.defer = true;
-      script.src = brevoScriptSrc;
-      document.body.appendChild(script);
-    }
-  }, []);
+    setFormStatus("idle");
+  }, [language]);
 
   useEffect(() => {
     let retryId: number | undefined;
     let attempts = 0;
+    let isMounted = true;
+
+    const clearTurnstile = () => {
+      const captcha = document.getElementById("sib-captcha");
+      const widgetId = turnstileWidgetIdRef.current;
+
+      if (widgetId) {
+        try {
+          window.turnstile?.remove?.(widgetId);
+        } catch {
+          // Turnstile may already have removed the widget during a language change.
+        }
+      }
+
+      turnstileWidgetIdRef.current = undefined;
+      turnstileTokenRef.current = "";
+
+      if (captcha) {
+        captcha.removeAttribute("data-turnstile-widget-id");
+        captcha.innerHTML = "";
+      }
+    };
 
     const renderBrevoTurnstile = () => {
       const captcha = document.getElementById("sib-captcha");
 
-      if (!captcha) {
+      if (!captcha || !isMounted) {
         return false;
       }
 
-      if (captcha.dataset.turnstileWidgetId || captcha.querySelector("iframe")) {
+      if (turnstileWidgetIdRef.current && captcha.querySelector("iframe")) {
         return true;
       }
 
@@ -79,11 +104,25 @@ export default function WaitlistCTA() {
       window.grecaptcha = window.turnstile;
 
       try {
+        captcha.removeAttribute("data-turnstile-widget-id");
+        captcha.innerHTML = "";
+        turnstileTokenRef.current = "";
+
         const widgetId = window.turnstile.render(captcha, {
           sitekey: turnstileSiteKey,
-          callback: () => window.handleCaptchaResponse?.(),
+          callback: (token) => {
+            turnstileTokenRef.current = token;
+            window.handleCaptchaResponse?.();
+          },
           "error-callback": () => {
+            turnstileTokenRef.current = "";
             captcha.removeAttribute("data-turnstile-widget-id");
+          },
+          "expired-callback": () => {
+            turnstileTokenRef.current = "";
+          },
+          "timeout-callback": () => {
+            turnstileTokenRef.current = "";
           },
           language,
           size: "flexible",
@@ -91,10 +130,11 @@ export default function WaitlistCTA() {
         });
 
         if (widgetId) {
+          turnstileWidgetIdRef.current = widgetId;
           captcha.dataset.turnstileWidgetId = widgetId;
         }
 
-        return true;
+        return Boolean(widgetId) || Boolean(captcha.querySelector("iframe"));
       } catch {
         return Boolean(captcha.querySelector("iframe"));
       }
@@ -113,6 +153,8 @@ export default function WaitlistCTA() {
     }
 
     return () => {
+      isMounted = false;
+
       if (retryId) {
         window.clearInterval(retryId);
       }
@@ -121,51 +163,93 @@ export default function WaitlistCTA() {
         delete window.renderBrevoTurnstile;
       }
 
-      const captcha = document.getElementById("sib-captcha");
-      const widgetId = captcha?.dataset.turnstileWidgetId;
-
-      if (widgetId) {
-        window.turnstile?.remove?.(widgetId);
-      }
+      clearTurnstile();
     };
   }, [language]);
 
-  useEffect(() => {
-    const successMessage = document.getElementById("success-message");
+  const resetTurnstile = () => {
+    turnstileTokenRef.current = "";
 
-    if (!successMessage) {
+    if (turnstileWidgetIdRef.current && window.turnstile?.reset) {
+      window.turnstile.reset(turnstileWidgetIdRef.current);
       return;
     }
 
-    let redirectId: number | undefined;
-    const redirectPath = getLocalePath(language, "confirmation");
+    const captcha = document.getElementById("sib-captcha");
 
-    const redirectAfterBrevoSuccess = () => {
-      if (!successMessage.classList.contains(brevoSuccessClassName) || redirectId) {
+    if (captcha && turnstileWidgetIdRef.current) {
+      try {
+        window.turnstile?.remove?.(turnstileWidgetIdRef.current);
+      } catch {
+        // Fall through and try a clean render below.
+      }
+    }
+
+    turnstileWidgetIdRef.current = undefined;
+    captcha?.removeAttribute("data-turnstile-widget-id");
+    if (captcha) {
+      captcha.innerHTML = "";
+    }
+
+    window.renderBrevoTurnstile?.();
+  };
+
+  const handleFormChange = () => {
+    if (formStatus !== "submitting") {
+      setFormStatus("idle");
+    }
+  };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+
+    if (formStatus === "submitting") {
+      return;
+    }
+
+    const form = event.currentTarget;
+
+    if (!form.reportValidity()) {
+      setFormStatus("error");
+      return;
+    }
+
+    const turnstileToken =
+      turnstileTokenRef.current || window.turnstile?.getResponse?.(turnstileWidgetIdRef.current) || "";
+
+    if (!turnstileToken) {
+      setFormStatus("error");
+      return;
+    }
+
+    const formData = new FormData(form);
+    formData.set("LANGUAGE", language);
+    formData.set("locale", language);
+    formData.set(turnstileResponseField, turnstileToken);
+
+    setFormStatus("submitting");
+
+    try {
+      const response = await fetch(`${brevoFormAction}?isAjax=1`, {
+        method: "POST",
+        body: formData,
+      });
+      const responseText = await response.text();
+      const result = JSON.parse(responseText) as BrevoResponse;
+
+      if (!response.ok || !result.success) {
+        setFormStatus("error");
+        resetTurnstile();
         return;
       }
 
-      redirectId = window.setTimeout(() => {
-        window.location.assign(redirectPath);
-      }, brevoSuccessRedirectDelay);
-    };
-
-    redirectAfterBrevoSuccess();
-
-    const observer = new MutationObserver(redirectAfterBrevoSuccess);
-    observer.observe(successMessage, {
-      attributes: true,
-      attributeFilter: ["class"],
-    });
-
-    return () => {
-      observer.disconnect();
-
-      if (redirectId) {
-        window.clearTimeout(redirectId);
-      }
-    };
-  }, [language]);
+      setFormStatus("success");
+      window.location.assign(getLocalePath(language, "confirmation"));
+    } catch {
+      setFormStatus("error");
+      resetTurnstile();
+    }
+  };
 
   return (
     <section id="waitlist" className="bg-background py-20">
@@ -258,14 +342,24 @@ export default function WaitlistCTA() {
               <CardContent className="px-0 pb-0">
                 <div className="sib-form brevo-form-shell">
                   <div id="sib-form-container" className="sib-form-container">
-                    <div id="error-message" className="sib-form-message-panel brevo-message brevo-message-error">
+                    <div
+                      id="error-message"
+                      className={`sib-form-message-panel brevo-message brevo-message-error ${
+                        formStatus === "error" ? "sib-form-message-panel--active" : ""
+                      }`}
+                    >
                       <div className="sib-form-message-panel__text sib-form-message-panel__text--center">
                         <span className="sib-form-message-panel__inner-text">
                           {t("waitlist.form.error")}
                         </span>
                       </div>
                     </div>
-                    <div id="success-message" className="sib-form-message-panel brevo-message brevo-message-success">
+                    <div
+                      id="success-message"
+                      className={`sib-form-message-panel brevo-message brevo-message-success ${
+                        formStatus === "success" ? "sib-form-message-panel--active" : ""
+                      }`}
+                    >
                       <div className="sib-form-message-panel__text sib-form-message-panel__text--center">
                         <span className="sib-form-message-panel__inner-text">
                           {t("waitlist.form.success")}
@@ -277,7 +371,15 @@ export default function WaitlistCTA() {
                       id="sib-container"
                       className="sib-container--large sib-container--vertical brevo-container"
                     >
-                      <form id="sib-form" method="POST" action={brevoFormAction} data-type="subscription">
+                      <form
+                        id="sib-form"
+                        method="POST"
+                        action={brevoFormAction}
+                        data-type="subscription"
+                        noValidate
+                        onChange={handleFormChange}
+                        onSubmit={handleSubmit}
+                      >
                         <div className="sib-input sib-form-block">
                           <div className="form__entry entry_block">
                             <div className="form__label-row">
@@ -287,10 +389,10 @@ export default function WaitlistCTA() {
                               <div className="entry__field">
                                 <input
                                   className="input"
-                                  type="text"
+                                  type="email"
                                   id="EMAIL"
                                   name="EMAIL"
-                                  autoComplete="off"
+                                  autoComplete="email"
                                   placeholder={t("waitlist.form.emailPlaceholder")}
                                   data-required="true"
                                   required
@@ -369,6 +471,7 @@ export default function WaitlistCTA() {
                         <div className="sib-form-block brevo-submit-row">
                           <button
                             className="sib-form-block__button sib-form-block__button-with-loader"
+                            disabled={formStatus === "submitting"}
                             form="sib-form"
                             type="submit"
                           >
