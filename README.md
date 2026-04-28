@@ -1,6 +1,6 @@
 # ESGCheck Landing Page
 
-Single-page React/Vite landing page for ESGCheck. It presents the hero, feature highlights, about section, early-access CTA, and footer.
+React/Vite landing page for ESGCheck. The app includes localized landing pages, an early-access signup flow, a pre-confirmation page, and a post-confirmation thank-you page.
 
 ## Stack
 
@@ -9,6 +9,18 @@ Single-page React/Vite landing page for ESGCheck. It presents the hero, feature 
 - Vite
 - Tailwind CSS
 - shadcn-style local UI primitives
+
+## Project Structure
+
+- `src/components/` - reusable page sections, shared layout pieces, and local UI primitives
+- `src/pages/` - route-level pages: landing page, email confirmation page, and thank-you page
+- `src/contexts/` - language routing and translation dictionaries
+- `src/lib/` - shared utilities and motion presets
+- `public/` - deployed static assets served from the site root
+- `docs/email/` - Brevo email templates
+- `docs/guides/` - project guides, including localization guidance
+- `docs/product/` - product and positioning source documents
+- `docs/assets/` - supporting documentation assets that are not served directly
 
 ## Local Development
 
@@ -38,4 +50,4 @@ npm run preview
 
 ## Environment
 
-No environment variables are required. The early-access CTA opens an email draft to `hello@esgcheck.com`.
+No environment variables are required for the frontend build. The early-access form is embedded through Brevo.
