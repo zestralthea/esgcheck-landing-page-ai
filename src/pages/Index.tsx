@@ -114,7 +114,6 @@ const Index = () => {
         description={t("seo.description")}
         keywords={t("seo.keywords")}
         canonicalUrl={canonicalUrl}
-        ogImage={logoUrl}
         ogImageAlt={t("seo.ogImageAlt")}
         alternateLinks={alternateLinks}
         structuredData={homeStructuredData}

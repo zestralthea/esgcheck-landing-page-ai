@@ -30,7 +30,6 @@ export default function Confirmation() {
   const { t, language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const canonicalUrl = getLocaleUrl(language, "confirmation");
-  const logoUrl = "https://esgcheck.ch/esgcheck_logo.svg";
   const alternateLinks = [
     ...supportedLanguages.map((lang) => ({
       hrefLang: languageMetadata[lang].hrefLang,
@@ -71,7 +70,6 @@ export default function Confirmation() {
         description={t("confirmation.seo.description")}
         keywords={t("seo.keywords")}
         canonicalUrl={canonicalUrl}
-        ogImage={logoUrl}
         ogImageAlt={t("seo.ogImageAlt")}
         alternateLinks={alternateLinks}
         noindex

@@ -6,6 +6,9 @@ interface SEOHeadProps {
   keywords?: string;
   canonicalUrl?: string;
   ogImage?: string;
+  ogImageType?: string;
+  ogImageWidth?: number;
+  ogImageHeight?: number;
   ogImageAlt?: string;
   alternateLinks?: Array<{ hrefLang: string; href: string }>;
   structuredData?: object | object[];
@@ -17,7 +20,10 @@ export default function SEOHead({
   description = "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
   keywords = "ESG-Einschätzung, ESG für KMU, GRI, Swiss ESG, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung, ESG für wachsende Unternehmen",
   canonicalUrl = "https://esgcheck.ch/de/",
-  ogImage = "https://esgcheck.ch/esgcheck_logo.svg",
+  ogImage = "https://esgcheck.ch/og-image.jpg",
+  ogImageType = "image/jpeg",
+  ogImageWidth = 1200,
+  ogImageHeight = 630,
   ogImageAlt = "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
   alternateLinks = [],
   structuredData,
@@ -42,6 +48,10 @@ export default function SEOHead({
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content="ESGCheck" />
       <meta property="og:image" content={ogImage} />
+      <meta property="og:image:secure_url" content={ogImage} />
+      <meta property="og:image:type" content={ogImageType} />
+      <meta property="og:image:width" content={String(ogImageWidth)} />
+      <meta property="og:image:height" content={String(ogImageHeight)} />
       <meta property="og:image:alt" content={ogImageAlt} />
 
       <meta name="twitter:card" content="summary_large_image" />
