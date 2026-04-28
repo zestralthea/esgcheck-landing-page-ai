@@ -2,7 +2,6 @@ import {
   ArrowRight,
   BarChart3,
   Check,
-  CircleHelp,
   Home,
   Leaf,
   MailCheck,
@@ -100,7 +99,7 @@ export default function Confirmation() {
 
           <div className="my-8 h-px w-full bg-border/80" />
 
-          <div className="mx-auto grid max-w-xl gap-5 text-left sm:grid-cols-[5.5rem_1fr] sm:items-start">
+          <div className="mx-auto grid max-w-xl gap-5 text-left sm:grid-cols-[5.5rem_1fr] sm:items-center">
             <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-primary/10 text-primary sm:mx-0">
               <Send className="h-8 w-8" strokeWidth={1.8} />
             </div>
@@ -115,9 +114,9 @@ export default function Confirmation() {
           </div>
 
           <div className="mx-auto mt-7 max-w-xl rounded-lg border border-border/80 bg-secondary/55 p-5 text-left">
-            <div className="flex flex-col gap-4 sm:flex-row sm:items-start">
-              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-primary text-primary">
-                <CircleHelp className="h-6 w-6" />
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center">
+              <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border-2 border-primary text-[1.35rem] font-semibold leading-none text-primary">
+                ?
               </div>
               <div>
                 <h2 className="text-base font-semibold tracking-tight text-foreground">
