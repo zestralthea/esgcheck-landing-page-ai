@@ -5,6 +5,9 @@ interface SEOHeadProps {
   description?: string;
   keywords?: string;
   canonicalUrl?: string;
+  author?: string;
+  publishedTime?: string;
+  modifiedTime?: string;
   ogImage?: string;
   ogImageType?: string;
   ogImageWidth?: number;
@@ -20,6 +23,9 @@ export default function SEOHead({
   description = "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
   keywords = "ESG-Einschätzung, ESG für KMU, GRI, Swiss ESG, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung, ESG für wachsende Unternehmen",
   canonicalUrl = "https://esgcheck.ch/de/",
+  author = "ESGCheck",
+  publishedTime = "2026-04-28T00:00:00+02:00",
+  modifiedTime = "2026-04-28T00:00:00+02:00",
   ogImage = "https://esgcheck.ch/og-image.jpg",
   ogImageType = "image/jpeg",
   ogImageWidth = 1200,
@@ -37,6 +43,8 @@ export default function SEOHead({
       <meta name="description" content={description} />
       <meta name="keywords" content={keywords} />
       <meta name="robots" content={noindex ? "noindex, nofollow" : "index, follow"} />
+      <meta name="author" content={author} />
+      <meta name="date" content={publishedTime} />
       <link rel="canonical" href={canonicalUrl} />
       {alternateLinks.map(({ hrefLang, href }) => (
         <link key={hrefLang} rel="alternate" hrefLang={hrefLang} href={href} />
@@ -47,6 +55,10 @@ export default function SEOHead({
       <meta property="og:type" content="website" />
       <meta property="og:url" content={canonicalUrl} />
       <meta property="og:site_name" content="ESGCheck" />
+      <meta property="article:author" content={author} />
+      <meta property="article:published_time" content={publishedTime} />
+      <meta property="article:modified_time" content={modifiedTime} />
+      <meta property="og:updated_time" content={modifiedTime} />
       <meta property="og:image" content={ogImage} />
       <meta property="og:image:secure_url" content={ogImage} />
       <meta property="og:image:type" content={ogImageType} />

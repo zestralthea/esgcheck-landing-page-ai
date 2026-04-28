@@ -29,6 +29,8 @@ const Index = () => {
   const logoUrl = `${siteBaseUrl}/esgcheck_logo.svg`;
   const organizationId = `${siteBaseUrl}/#organization`;
   const websiteId = `${siteBaseUrl}/#website`;
+  const webpageId = `${canonicalUrl}#webpage`;
+  const pagePublishedTime = "2026-04-28T00:00:00+02:00";
   const alternateLinks = [
     ...supportedLanguages.map((lang) => ({
       hrefLang: languageMetadata[lang].hrefLang,
@@ -58,6 +60,26 @@ const Index = () => {
       "inLanguage": structuredDataLanguage,
       "publisher": {
         "@id": organizationId,
+      },
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "WebPage",
+      "@id": webpageId,
+      "name": t("seo.title"),
+      "description": t("seo.description"),
+      "url": canonicalUrl,
+      "inLanguage": structuredDataLanguage,
+      "datePublished": pagePublishedTime,
+      "dateModified": pagePublishedTime,
+      "author": {
+        "@id": organizationId,
+      },
+      "publisher": {
+        "@id": organizationId,
+      },
+      "isPartOf": {
+        "@id": websiteId,
       },
     },
     {
