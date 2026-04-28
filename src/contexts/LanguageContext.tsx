@@ -159,7 +159,8 @@ export const getLanguageFromPathname = (pathname: string): Language => {
 };
 
 export const getSitePageFromPathname = (pathname: string): SitePage => {
-  const [, pageSegment] = pathname.split("/").filter(Boolean);
+  const segments = pathname.split("/").filter(Boolean);
+  const pageSegment = isSupportedLanguage(segments[0]) ? segments[1] : segments[0];
 
   return pageSegment === "confirmation" ? "confirmation" : "home";
 };

@@ -311,48 +311,51 @@ export const enTranslations = {
     },
   },
   confirmation: {
-    status: "Request received",
-    title: "Thank you for requesting early access.",
+    status: "Almost there.",
+    title: "Please confirm your email address.",
     description:
-      "Your request has been submitted. We will review it and send updates about ESGCheck access to the email address you provided.",
-    primaryCta: "Return to ESGCheck",
-    secondaryCta: "Contact us",
-    nextTitle: "What happens next",
+      "Thank you for your interest in ESGCheck. We have just sent you an email with a confirmation link.",
+    primaryCta: "Learn more about ESGCheck",
+    secondaryCta: "Back to homepage",
+    nextTitle: "What happens next:",
     nextDescription:
-      "Early access is being handled carefully so we can learn from real SME workflows without overstating what the product can do today.",
+      "Please click the link in the email to confirm your early-access request and receive updates about ESGCheck.",
+    helpTitle: "No email received?",
+    helpDescription:
+      "Please also check your spam or promotions folder. If the email does not arrive, contact us at info@esgcheck.ch.",
     steps: {
       review: {
-        title: "We review the request",
+        title: "For SMEs & startups",
         description:
-          "We look at incoming requests to understand the company context and where ESG pressure is showing up.",
+          "ESG reporting that is oriented around your needs.",
       },
       update: {
-        title: "You receive an update by email",
+        title: "Swiss privacy",
         description:
-          "We will contact you with access information or relevant product updates as the beta opens further.",
+          "Your data remains secure in Switzerland or the EU.",
       },
       prepare: {
-        title: "You can prepare existing documents",
+        title: "Fast & accessible",
         description:
-          "Policies, internal records, supplier information, and company reports are the kinds of materials ESGCheck is designed to start from.",
+          "Automated analyses at a fair price.",
       },
     },
-    trustTitle: "Built for a careful first ESG assessment",
+    trustTitle: "Making ESG easier together.",
     trustDescription:
-      "ESGCheck is being built in Switzerland for practical, document-first ESG orientation with privacy-conscious handling of sensitive company materials.",
+      "ESGCheck helps growing teams approach ESG with practical orientation, privacy-conscious handling, and clear next steps.",
     trust: {
-      swissBuilt: "Swiss-built",
-      privacy: "Privacy-conscious",
-      growingSmes: "Designed for growing SMEs",
+      swissBuilt: "For SMEs & startups",
+      privacy: "Swiss privacy",
+      growingSmes: "Fast & accessible",
     },
-    finalTitle: "Want to revisit the product overview?",
+    finalTitle: "Want to learn more about ESGCheck?",
     finalDescription:
       "You can return to the landing page to review how ESGCheck turns existing company documents into clear scores, visible gaps, and practical next steps.",
-    finalCta: "Back to early access",
+    finalCta: "Learn more about ESGCheck",
     seo: {
-      title: "Request Received | ESGCheck",
+      title: "Please Confirm Your Email | ESGCheck",
       description:
-        "Your ESGCheck early access request has been received. We will send updates about access by email.",
+        "Please confirm your ESGCheck early-access request using the link sent to your email address.",
     },
   },
   formRuntime: {
@@ -699,48 +702,51 @@ export const deTranslations = {
     },
   },
   confirmation: {
-    status: "Anfrage erhalten",
-    title: "Vielen Dank für Ihre Early-Access-Anfrage.",
+    status: "Fast geschafft.",
+    title: "Bitte bestätigen Sie Ihre E-Mail-Adresse.",
     description:
-      "Ihre Anfrage wurde übermittelt. Wir prüfen sie und senden Updates zum ESGCheck-Zugang an die angegebene E-Mail-Adresse.",
-    primaryCta: "Zurück zu ESGCheck",
-    secondaryCta: "Kontakt aufnehmen",
-    nextTitle: "Was als Nächstes passiert",
+      "Vielen Dank für Ihr Interesse an ESGCheck. Wir haben Ihnen soeben eine E-Mail mit einem Bestätigungslink gesendet.",
+    primaryCta: "Mehr über ESGCheck erfahren",
+    secondaryCta: "Zurück zur Startseite",
+    nextTitle: "So geht es weiter:",
     nextDescription:
-      "Early Access wird sorgfältig vergeben, damit wir aus realen KMU-Workflows lernen, ohne die heutigen Produktmöglichkeiten zu überzeichnen.",
+      "Bitte klicken Sie auf den Link in der E-Mail, um Ihre Early-Access-Anfrage zu bestätigen und Updates zu ESGCheck zu erhalten.",
+    helpTitle: "Keine E-Mail erhalten?",
+    helpDescription:
+      "Bitte prüfen Sie auch Ihren Spam- oder Promotions-Ordner. Falls die E-Mail nicht ankommt, können Sie uns unter info@esgcheck.ch kontaktieren.",
     steps: {
       review: {
-        title: "Wir prüfen die Anfrage",
+        title: "Für KMU & Startups",
         description:
-          "Wir betrachten eingehende Anfragen, um den Unternehmenskontext und den Ursprung des ESG-Drucks besser zu verstehen.",
+          "ESG-Reporting, das sich an Ihren Bedürfnissen orientiert.",
       },
       update: {
-        title: "Sie erhalten ein Update per E-Mail",
+        title: "Schweizer Datenschutz",
         description:
-          "Wir melden uns mit Zugangsinformationen oder relevanten Produktupdates, sobald die Beta weiter geöffnet wird.",
+          "Ihre Daten bleiben sicher - in der Schweiz oder der EU.",
       },
       prepare: {
-        title: "Sie können bestehende Unterlagen vorbereiten",
+        title: "Schnell & erschwinglich",
         description:
-          "Richtlinien, interne Aufzeichnungen, Lieferanteninformationen und Unternehmensberichte sind Materialien, mit denen ESGCheck starten soll.",
+          "Automatisierte Analysen zu einem fairen Preis.",
       },
     },
-    trustTitle: "Entwickelt für eine sorgfältige erste ESG-Einschätzung",
+    trustTitle: "Gemeinsam ESG einfacher machen.",
     trustDescription:
-      "ESGCheck wird in der Schweiz für eine praxisnahe, dokumentenbasierte ESG-Orientierung entwickelt, mit datenschutzbewusstem Umgang mit sensiblen Unternehmensunterlagen.",
+      "ESGCheck unterstützt wachsende Teams mit praxisnaher Orientierung, datenschutzbewusstem Umgang und konkreten nächsten Schritten.",
     trust: {
-      swissBuilt: "In der Schweiz entwickelt",
-      privacy: "Datenschutzbewusst",
-      growingSmes: "Für wachsende KMU konzipiert",
+      swissBuilt: "Für KMU & Startups",
+      privacy: "Schweizer Datenschutz",
+      growingSmes: "Schnell & erschwinglich",
     },
-    finalTitle: "Möchten Sie die Produktübersicht nochmals ansehen?",
+    finalTitle: "Möchten Sie mehr über ESGCheck erfahren?",
     finalDescription:
       "Sie können zur Landing Page zurückkehren und nochmals ansehen, wie ESGCheck bestehende Unternehmensunterlagen in klare Scores, sichtbare Lücken und konkrete nächste Schritte übersetzt.",
-    finalCta: "Zurück zu Early Access",
+    finalCta: "Mehr über ESGCheck erfahren",
     seo: {
-      title: "Anfrage erhalten | ESGCheck",
+      title: "E-Mail-Adresse bestätigen | ESGCheck",
       description:
-        "Ihre ESGCheck Early-Access-Anfrage wurde erhalten. Wir senden Updates zum Zugang per E-Mail.",
+        "Bitte bestätigen Sie Ihre ESGCheck Early-Access-Anfrage über den Link in der gesendeten E-Mail.",
     },
   },
   formRuntime: {
@@ -1082,48 +1088,51 @@ export const frTranslations = {
     },
   },
   confirmation: {
-    status: "Demande reçue",
-    title: "Merci pour votre demande d'accès anticipé.",
+    status: "Presque terminé.",
+    title: "Veuillez confirmer votre adresse e-mail.",
     description:
-      "Votre demande a été transmise. Nous allons l'examiner et envoyer les informations liées à l'accès ESGCheck à l'adresse e-mail indiquée.",
-    primaryCta: "Retour à ESGCheck",
-    secondaryCta: "Nous contacter",
-    nextTitle: "Ce qui se passe ensuite",
+      "Merci pour votre intérêt pour ESGCheck. Nous venons de vous envoyer un e-mail avec un lien de confirmation.",
+    primaryCta: "En savoir plus sur ESGCheck",
+    secondaryCta: "Retour à l'accueil",
+    nextTitle: "La suite :",
     nextDescription:
-      "L'accès anticipé est géré avec soin afin d'apprendre de workflows PME réels, sans surestimer ce que le produit peut faire aujourd'hui.",
+      "Veuillez cliquer sur le lien dans l'e-mail pour confirmer votre demande d'accès anticipé et recevoir les mises à jour d'ESGCheck.",
+    helpTitle: "Vous n'avez pas reçu d'e-mail ?",
+    helpDescription:
+      "Veuillez aussi vérifier votre dossier spam ou promotions. Si l'e-mail n'arrive pas, contactez-nous à info@esgcheck.ch.",
     steps: {
       review: {
-        title: "Nous examinons la demande",
+        title: "Pour PME & startups",
         description:
-          "Nous regardons les demandes entrantes pour mieux comprendre le contexte de l'entreprise et l'origine de la pression ESG.",
+          "Un reporting ESG orienté autour de vos besoins.",
       },
       update: {
-        title: "Vous recevez une mise à jour par e-mail",
+        title: "Confidentialité suisse",
         description:
-          "Nous vous contacterons avec des informations d'accès ou des nouvelles produit pertinentes lorsque la bêta s'ouvrira davantage.",
+          "Vos données restent protégées en Suisse ou dans l'UE.",
       },
       prepare: {
-        title: "Vous pouvez préparer vos documents existants",
+        title: "Rapide & accessible",
         description:
-          "Politiques, documents internes, informations fournisseurs et rapports d'entreprise font partie des matériaux à partir desquels ESGCheck est conçu pour démarrer.",
+          "Des analyses automatisées à un prix équitable.",
       },
     },
-    trustTitle: "Conçu pour une première évaluation ESG prudente",
+    trustTitle: "Rendre l'ESG plus simple ensemble.",
     trustDescription:
-      "ESGCheck est développé en Suisse pour une orientation ESG pratique, fondée sur les documents, avec un traitement attentif des informations d'entreprise sensibles.",
+      "ESGCheck aide les équipes en croissance avec une orientation pratique, une gestion attentive des données et des prochaines étapes claires.",
     trust: {
-      swissBuilt: "Conçu en Suisse",
-      privacy: "Confidentialité prise au sérieux",
-      growingSmes: "Pensé pour les PME en croissance",
+      swissBuilt: "Pour PME & startups",
+      privacy: "Confidentialité suisse",
+      growingSmes: "Rapide & accessible",
     },
-    finalTitle: "Souhaitez-vous revoir l'aperçu du produit ?",
+    finalTitle: "Souhaitez-vous en savoir plus sur ESGCheck ?",
     finalDescription:
       "Vous pouvez revenir à la landing page pour revoir comment ESGCheck transforme des documents d'entreprise existants en scores clairs, écarts visibles et prochaines étapes concrètes.",
-    finalCta: "Retour à l'accès anticipé",
+    finalCta: "En savoir plus sur ESGCheck",
     seo: {
-      title: "Demande reçue | ESGCheck",
+      title: "Confirmez votre adresse e-mail | ESGCheck",
       description:
-        "Votre demande d'accès anticipé à ESGCheck a été reçue. Nous enverrons les informations d'accès par e-mail.",
+        "Veuillez confirmer votre demande d'accès anticipé à ESGCheck avec le lien envoyé par e-mail.",
     },
   },
   formRuntime: {
@@ -1464,48 +1473,51 @@ export const itTranslations: TranslationDictionary = {
     },
   },
   confirmation: {
-    status: "Richiesta ricevuta",
-    title: "Grazie per aver richiesto l'accesso anticipato.",
+    status: "Quasi fatto.",
+    title: "Conferma il tuo indirizzo email.",
     description:
-      "La tua richiesta è stata inviata. La esamineremo e manderemo gli aggiornamenti sull'accesso a ESGCheck all'indirizzo email indicato.",
-    primaryCta: "Torna a ESGCheck",
-    secondaryCta: "Contattaci",
-    nextTitle: "Cosa succede ora",
+      "Grazie per il tuo interesse per ESGCheck. Ti abbiamo appena inviato un'email con un link di conferma.",
+    primaryCta: "Scopri di più su ESGCheck",
+    secondaryCta: "Torna alla home",
+    nextTitle: "Come procedere:",
     nextDescription:
-      "L'accesso anticipato viene gestito con attenzione per imparare da workflow reali delle PMI, senza sovrastimare ciò che il prodotto può fare oggi.",
+      "Clicca sul link nell'email per confermare la richiesta di accesso anticipato e ricevere aggiornamenti su ESGCheck.",
+    helpTitle: "Non hai ricevuto l'email?",
+    helpDescription:
+      "Controlla anche la cartella spam o promozioni. Se l'email non arriva, puoi contattarci a info@esgcheck.ch.",
     steps: {
       review: {
-        title: "Esaminiamo la richiesta",
+        title: "Per PMI e startup",
         description:
-          "Valutiamo le richieste in arrivo per capire il contesto aziendale e da dove nasce la pressione ESG.",
+          "Reporting ESG orientato alle tue esigenze.",
       },
       update: {
-        title: "Ricevi un aggiornamento via email",
+        title: "Privacy svizzera",
         description:
-          "Ti contatteremo con informazioni sull'accesso o aggiornamenti di prodotto rilevanti quando la beta sarà aperta ulteriormente.",
+          "I tuoi dati restano protetti in Svizzera o nell'UE.",
       },
       prepare: {
-        title: "Puoi preparare i documenti esistenti",
+        title: "Rapido e accessibile",
         description:
-          "Policy, registri interni, informazioni sui fornitori e report aziendali sono materiali da cui ESGCheck è progettato per partire.",
+          "Analisi automatizzate a un prezzo equo.",
       },
     },
-    trustTitle: "Sviluppato per una prima valutazione ESG attenta",
+    trustTitle: "Rendere l'ESG più semplice insieme.",
     trustDescription:
-      "ESGCheck è sviluppato in Svizzera per un orientamento ESG pratico e basato sui documenti, con attenzione alla gestione di materiali aziendali sensibili.",
+      "ESGCheck aiuta i team in crescita con orientamento pratico, gestione attenta dei dati e prossimi passi chiari.",
     trust: {
-      swissBuilt: "Sviluppato in Svizzera",
-      privacy: "Attento alla privacy",
-      growingSmes: "Pensato per PMI in crescita",
+      swissBuilt: "Per PMI e startup",
+      privacy: "Privacy svizzera",
+      growingSmes: "Rapido e accessibile",
     },
-    finalTitle: "Vuoi rivedere la panoramica del prodotto?",
+    finalTitle: "Vuoi saperne di più su ESGCheck?",
     finalDescription:
       "Puoi tornare alla landing page per rivedere come ESGCheck trasforma documenti aziendali esistenti in punteggi chiari, lacune visibili e prossimi passi concreti.",
-    finalCta: "Torna all'accesso anticipato",
+    finalCta: "Scopri di più su ESGCheck",
     seo: {
-      title: "Richiesta ricevuta | ESGCheck",
+      title: "Conferma il tuo indirizzo email | ESGCheck",
       description:
-        "La tua richiesta di accesso anticipato a ESGCheck è stata ricevuta. Manderemo gli aggiornamenti sull'accesso via email.",
+        "Conferma la richiesta di accesso anticipato a ESGCheck tramite il link inviato via email.",
     },
   },
   formRuntime: {
@@ -1846,48 +1858,51 @@ export const rmTranslations: TranslationDictionary = {
     },
   },
   confirmation: {
-    status: "Dumonda retschavida",
-    title: "Grazia fitg per Vossa dumonda d'access anticipà.",
+    status: "Prest fatg.",
+    title: "Confermai per plaschair Vossa adressa dad e-mail.",
     description:
-      "Vossa dumonda è vegnida tramessa. Nus la controllain e tramettain updates davart l'access ad ESGCheck a l'adressa dad e-mail inditgada.",
-    primaryCta: "Enavos tar ESGCheck",
-    secondaryCta: "Contactar nus",
-    nextTitle: "Tge capita sco proxim",
+      "Grazia fitg per Voss interess per ESGCheck. Nus avain gist tramess in e-mail cun in link da conferma.",
+    primaryCta: "Dapli davart ESGCheck",
+    secondaryCta: "Enavos a la pagina iniziala",
+    nextTitle: "Uschia vai vinavant:",
     nextDescription:
-      "L'access anticipà vegn gestì cun quita per emprender da workflows reals da PMI, senza survalitar quai ch'il product po far oz.",
+      "Cliccai per plaschair sin il link en l'e-mail per confermar Vossa dumonda d'access anticipà e survegnir updates davart ESGCheck.",
+    helpTitle: "Nagin e-mail retschavì?",
+    helpDescription:
+      "Controllai per plaschair era Voss ordinatur da spam u promoziuns. Sche l'e-mail n'arriva betg, pudais Vus contactar nus sut info@esgcheck.ch.",
     steps: {
       review: {
-        title: "Nus controllain la dumonda",
+        title: "Per PMI e startups",
         description:
-          "Nus guardain las dumondas che arrivan per chapir il context da l'interpresa e nua che la pressiun ESG nascha.",
+          "Reporting ESG che s'orientescha a Voss basegns.",
       },
       update: {
-        title: "Vus survegnis in update per e-mail",
+        title: "Protecziun da datas svizra",
         description:
-          "Nus As contactain cun infurmaziuns d'access u cun updates relevants dal product cur che la beta vegn averta vinavant.",
+          "Vossas datas restan segiras en Svizra u en l'UE.",
       },
       prepare: {
-        title: "Vus pudais preparar documents existents",
+        title: "Svelt ed accessibel",
         description:
-          "Directivas, records interns, infurmaziuns da furniturs e rapports d'interpresa èn materials cun ils quals ESGCheck duai pudair cumenzar.",
+          "Analisis automatisadas ad in pretsch fair.",
       },
     },
-    trustTitle: "Sviluppà per ina emprima valitaziun ESG precauta",
+    trustTitle: "Far ESG pli simpel ensemen.",
     trustDescription:
-      "ESGCheck vegn sviluppà en Svizra per ina orientaziun ESG pratica e basada sin documents, cun attenziun per il tractament da materials sensibels d'interpresa.",
+      "ESGCheck gida teams che creschan cun orientaziun pratica, tractament attent da datas e proxims pass clers.",
     trust: {
-      swissBuilt: "Sviluppà en Svizra",
-      privacy: "Attent a la protecziun da datas",
-      growingSmes: "Concepì per PMI che creschan",
+      swissBuilt: "Per PMI e startups",
+      privacy: "Protecziun da datas svizra",
+      growingSmes: "Svelt ed accessibel",
     },
-    finalTitle: "Vulais Vus vesair anc ina giada la survista dal product?",
+    finalTitle: "Vulais Vus savair dapli davart ESGCheck?",
     finalDescription:
       "Vus pudais turnar a la landing page per vesair co ESGCheck transfurma documents d'interpresa existents en punctaziuns cleras, largias visiblas e proxims pass concrets.",
-    finalCta: "Enavos tar l'access anticipà",
+    finalCta: "Dapli davart ESGCheck",
     seo: {
-      title: "Dumonda retschavida | ESGCheck",
+      title: "Confermar l'adressa dad e-mail | ESGCheck",
       description:
-        "Vossa dumonda d'access anticipà ad ESGCheck è vegnida retschavida. Nus tramettain updates davart l'access per e-mail.",
+        "Confermai per plaschair Vossa dumonda d'access anticipà ad ESGCheck cun il link tramess per e-mail.",
     },
   },
   formRuntime: {
