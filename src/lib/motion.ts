@@ -5,7 +5,7 @@ type ReducedMotion = boolean | undefined;
 export const viewportOnce = {
   once: true,
   amount: 0.18,
-  margin: "0px 0px -35% 0px",
+  margin: "0px 0px -10% 0px",
 } as const;
 
 export const entranceEase = [0.22, 1, 0.36, 1] as const;
