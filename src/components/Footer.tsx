@@ -26,10 +26,13 @@ export default function Footer() {
             <p className="max-w-xs text-sm leading-7 text-primary-foreground/72">
               {t("footer.description")}
             </p>
+            <p className="text-xs leading-5 text-primary-foreground/55">
+              {t("footer.tagline")}
+            </p>
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-primary-foreground/80">
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
               {t("footer.product")}
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
@@ -39,7 +42,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-primary-foreground/80">
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
               {t("footer.company")}
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
@@ -49,7 +52,7 @@ export default function Footer() {
           </div>
 
           <div>
-            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.16em] text-primary-foreground/80">
+            <h4 className="mb-4 text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
               {t("footer.privacy")}
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
@@ -59,7 +62,7 @@ export default function Footer() {
           </div>
 
           <div className="space-y-4">
-            <h4 className="text-sm font-semibold uppercase tracking-[0.16em] text-primary-foreground/80">
+            <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
               {t("footer.earlyAccess")}
             </h4>
             <a

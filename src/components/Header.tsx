@@ -236,10 +236,10 @@ export default function Header() {
           }`}
           style={{ maxHeight: showTrustStrip ? trustStripHeight : 0 }}
         >
-          <div ref={trustStripInnerRef} className="container mx-auto flex min-h-9 flex-nowrap items-center justify-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] overflow-x-auto px-4 py-2 whitespace-nowrap text-[clamp(0.5rem,0.8vw,0.75rem)] font-medium">
+          <div ref={trustStripInnerRef} className="container mx-auto flex min-h-9 flex-nowrap items-center justify-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] overflow-x-auto px-4 py-2 whitespace-nowrap text-[clamp(0.625rem,0.85vw,0.8rem)] font-medium">
             {trustItems.map((item) => (
               <div key={item} className="flex items-center gap-[clamp(0.25rem,0.55vw,0.375rem)] whitespace-nowrap">
-                <CheckCircle2 className="h-[clamp(0.625rem,1vw,0.875rem)] w-[clamp(0.625rem,1vw,0.875rem)] shrink-0" />
+                <CheckCircle2 className="h-[clamp(0.7rem,1.05vw,0.95rem)] w-[clamp(0.7rem,1.05vw,0.95rem)] shrink-0" />
                 <span className="leading-none">{item}</span>
               </div>
             ))}

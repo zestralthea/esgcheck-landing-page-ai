@@ -47,7 +47,7 @@ const roadmapSteps = [
 
 function MountainMark() {
   return (
-    <svg viewBox="0 0 200 90" className="h-20 w-full text-primary/15">
+    <svg viewBox="0 0 200 90" className="h-20 w-full text-primary/22">
       <path
         d="M5 85 L45 35 L70 60 L98 20 L130 55 L150 40 L188 85"
         fill="none"
@@ -96,7 +96,7 @@ export default function CredibilitySection() {
               <h2 className="text-3xl font-semibold tracking-tight text-foreground">
                 {t("credibility.title")}
               </h2>
-              <p className="text-base leading-7 text-foreground/72">
+              <p className="text-base leading-[1.7] text-foreground/72">
                 {t("credibility.intro")}
               </p>
             </div>
@@ -150,14 +150,14 @@ export default function CredibilitySection() {
             <h3 className="mt-5 text-2xl font-semibold tracking-tight text-foreground">
               {t("credibility.privacyTitle")}
             </h3>
-            <p className="mt-3 text-sm leading-7 text-foreground/72">
+            <p className="mt-3 text-sm leading-[1.7] text-foreground/72">
               {t("credibility.privacyDescription")}
             </p>
             <div className="mt-6 flex gap-3">
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-card text-sm font-semibold text-primary shadow-sm">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-card text-sm font-semibold text-primary shadow-sm ring-1 ring-primary/15">
                 {t("credibility.regionBadges.swiss")}
               </div>
-              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-card text-sm font-semibold text-primary shadow-sm">
+              <div className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-card text-sm font-semibold text-primary shadow-sm ring-1 ring-primary/15">
                 {t("credibility.regionBadges.europe")}
               </div>
             </div>
@@ -228,7 +228,7 @@ export default function CredibilitySection() {
                   custom={shouldReduceMotion}
                   transition={shouldReduceMotion ? undefined : { delay: 0.2 + index * 0.08, duration: 0.5, ease: entranceEase }}
                 >
-                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-card">
+                  <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-primary text-sm font-semibold text-primary-foreground shadow-card tabular-nums">
                     {index + 1}
                   </div>
                   <div className="mx-auto mt-6 inline-flex h-12 w-12 items-center justify-center rounded-2xl bg-card text-primary shadow-sm">
@@ -262,7 +262,7 @@ export default function CredibilitySection() {
                   transition={shouldReduceMotion ? undefined : { delay: 0.2 + index * 0.08, duration: 0.54, ease: entranceEase }}
                 >
                   <div className="relative z-10 flex h-full min-h-[8.5rem] justify-center self-stretch">
-                    <div className="relative top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground shadow-card">
+                    <div className="relative top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground shadow-card tabular-nums">
                       {index + 1}
                     </div>
                   </div>

@@ -7,7 +7,7 @@ import {
 import { m, useReducedMotion } from "framer-motion";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
-import { cardHover, entranceEase, revealUp, viewportOnce } from "@/lib/motion";
+import { cardHover, entranceEase, microSpring, revealUp, viewportOnce } from "@/lib/motion";
 
 const reasons = [
   { id: "practical", icon: BadgeCheck },
@@ -51,10 +51,13 @@ export default function AboutSection() {
               whileHover={shouldReduceMotion ? undefined : cardHover.whileHover}
               whileTap={shouldReduceMotion ? undefined : cardHover.whileTap}
             >
-              <div className="flex items-start gap-4">
-                <div className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-secondary text-primary">
+              <div className="flex items-center gap-4">
+                <m.div
+                  className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl bg-secondary text-primary"
+                  whileHover={shouldReduceMotion ? undefined : { scale: 1.06, transition: microSpring }}
+                >
                   <item.icon className="h-5 w-5" />
-                </div>
+                </m.div>
                 <div>
                   <h3 className="text-lg font-semibold text-foreground">
                     {t(`reasons.items.${item.id}.title`)}

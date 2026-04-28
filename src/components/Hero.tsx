@@ -1,6 +1,14 @@
 import { useLanguage } from "@/contexts/LanguageContext";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, CheckCircle2, AlertTriangle, FileSearch } from "lucide-react";
+import {
+  AlertTriangle,
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  FileSearch,
+  FileText,
+  ShieldCheck,
+} from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import {
   cardHover,
@@ -32,10 +40,10 @@ export default function Hero() {
   const nextSteps = ["scope", "suppliers", "governance"] as const;
   const missing = ["inventory", "supplier", "board"] as const;
   const proofItems = [
-    t("hero.proof.documentFirst"),
-    t("hero.proof.griFirst"),
-    t("hero.proof.swissPrivacy"),
-  ];
+    { label: t("hero.proof.documentFirst"), icon: FileText },
+    { label: t("hero.proof.griFirst"), icon: BookOpen },
+    { label: t("hero.proof.swissPrivacy"), icon: ShieldCheck },
+  ] as const;
 
   return (
     <section id="product" className="relative overflow-hidden border-b border-border/70">
@@ -65,14 +73,14 @@ export default function Hero() {
           >
             <div className="space-y-5">
               <m.h1
-                className="max-w-[12ch] text-balance text-4xl font-semibold leading-[1.05] tracking-tight text-foreground sm:text-5xl lg:text-6xl"
+                className="max-w-[12ch] text-balance text-4xl font-semibold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl lg:tracking-[-0.015em]"
                 variants={revealUp}
                 custom={shouldReduceMotion}
               >
                 {t("hero.title")}
               </m.h1>
               <m.p
-                className="max-w-[34rem] text-lg leading-8 text-foreground/72 sm:text-xl"
+                className="max-w-[34rem] text-lg leading-[1.7] text-foreground/72 sm:text-xl"
                 variants={revealUp}
                 custom={shouldReduceMotion}
               >
@@ -111,17 +119,17 @@ export default function Hero() {
               variants={staggerContainer}
               custom={shouldReduceMotion}
             >
-              {proofItems.map((item) => (
+              {proofItems.map(({ label, icon: Icon }) => (
                 <m.div
-                  key={item}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/75 shadow-sm"
+                  key={label}
+                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/85 shadow-sm"
                   variants={revealUp}
                   custom={shouldReduceMotion}
                   whileHover={shouldReduceMotion ? undefined : cardHover.whileHover}
                   whileTap={shouldReduceMotion ? undefined : cardHover.whileTap}
                 >
-                  <span className="h-2 w-2 rounded-full bg-success" />
-                  {item}
+                  <Icon className="h-3.5 w-3.5 text-primary" />
+                  {label}
                 </m.div>
               ))}
             </m.div>
@@ -134,11 +142,14 @@ export default function Hero() {
             variants={revealRight}
             custom={shouldReduceMotion}
           >
-            <div className="flex items-center justify-between border-b border-border/70 pb-4">
+            <div className="flex items-center justify-between gap-3 border-b border-border/70 pb-4">
               <div>
                 <p className="text-sm font-semibold text-foreground">{t("hero.dashboard.title")}</p>
+                <p className="mt-1 text-[11px] font-medium uppercase tracking-[0.12em] text-muted-foreground">
+                  {t("hero.dashboard.previewLabel")}
+                </p>
               </div>
-              <div className="rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium text-foreground/70">
+              <div className="shrink-0 self-center rounded-full border border-border bg-secondary px-3 py-1 text-xs font-medium leading-none text-foreground/70">
                 {t("hero.dashboard.filter")}
               </div>
             </div>
@@ -156,10 +167,10 @@ export default function Hero() {
                 <div className="mt-4 flex items-center justify-between gap-4">
                   <div>
                     <div className="flex items-end gap-1">
-                      <span className="text-5xl font-semibold tracking-tight text-foreground">
+                      <span className="text-5xl font-semibold tracking-tight text-foreground tabular-nums">
                         {t("hero.dashboard.scoreValue")}
                       </span>
-                      <span className="pb-1 text-xl font-medium text-muted-foreground">
+                      <span className="pb-1 text-xl font-medium text-muted-foreground tabular-nums">
                         {t("hero.dashboard.scoreTotal")}
                       </span>
                     </div>
@@ -203,7 +214,7 @@ export default function Hero() {
                   {scoreBreakdown.map((item) => (
                     <div key={item.key} className="space-y-2">
                       <div>
-                        <span className="block text-[10px] font-medium uppercase leading-4 tracking-[0.08em] text-muted-foreground sm:text-[11px]">
+                        <span className="block text-[10px] font-medium uppercase leading-4 tracking-[0.12em] text-muted-foreground sm:text-[11px]">
                           {t(`hero.dashboard.pillars.${item.key}`)}
                         </span>
                       </div>
@@ -213,7 +224,7 @@ export default function Hero() {
                           style={{ width: `${item.value}%` }}
                         />
                       </div>
-                      <span className="block text-xs font-semibold text-foreground">
+                      <span className="block text-xs font-semibold text-foreground tabular-nums">
                         {item.value}/100
                       </span>
                     </div>

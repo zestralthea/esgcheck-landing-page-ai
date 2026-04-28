@@ -30,10 +30,10 @@ const pressureCards = [
 ] as const;
 
 const steps = [
-  { id: "upload", icon: Upload, number: "01" },
-  { id: "assess", icon: ClipboardList, number: "02" },
-  { id: "receive", icon: BarChart3, number: "03" },
-  { id: "act", icon: Target, number: "04" },
+  { id: "upload", icon: Upload, number: "1" },
+  { id: "assess", icon: ClipboardList, number: "2" },
+  { id: "receive", icon: BarChart3, number: "3" },
+  { id: "act", icon: Target, number: "4" },
 ] as const;
 
 export default function Features() {
@@ -151,7 +151,7 @@ export default function Features() {
                   transition={shouldReduceMotion ? undefined : { delay: 0.18 + index * 0.1, duration: 0.56, ease: entranceEase }}
                 >
                   <div className="relative z-10 flex h-full min-h-[12rem] justify-center self-stretch">
-                    <div className="relative top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground">
+                    <div className="relative top-1/2 z-10 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-primary text-xs font-semibold text-primary-foreground tabular-nums">
                       {step.number}
                     </div>
                   </div>

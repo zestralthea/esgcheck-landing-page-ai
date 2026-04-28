@@ -26,6 +26,7 @@ export const enTranslations = {
     dashboard: {
       title: "ESG Overview",
       filter: "Example output",
+      previewLabel: "Illustrative output preview",
       scoreTitle: "ESG Score",
       scoreValue: "68",
       scoreTotal: "/100",
@@ -399,6 +400,7 @@ export const enTranslations = {
   footer: {
     description:
       "Practical ESG first assessment for growing SMEs, built in Switzerland.",
+    tagline: "Built in Switzerland · Privacy-conscious by design",
     product: "Product",
     company: "Company",
     privacy: "Privacy",
@@ -443,6 +445,7 @@ export const deTranslations = {
     dashboard: {
       title: "ESG-Überblick",
       filter: "Beispielausgabe",
+      previewLabel: "Beispielhafte Ergebnisansicht",
       scoreTitle: "ESG Score",
       scoreValue: "68",
       scoreTotal: "/100",
@@ -818,6 +821,7 @@ export const deTranslations = {
   footer: {
     description:
       "Praxisnahe ESG-Ersteinschätzung für wachsende KMU, entwickelt in der Schweiz.",
+    tagline: "In der Schweiz entwickelt · Datenschutzbewusst gestaltet",
     product: "Produkt",
     company: "Unternehmen",
     privacy: "Datenschutz",
@@ -856,6 +860,7 @@ export const frTranslations = {
     dashboard: {
       title: "Vue ESG",
       filter: "Exemple de rendu",
+      previewLabel: "Aperçu illustratif du résultat",
       scoreTitle: "Score ESG",
       scoreValue: "68",
       scoreTotal: "/100",
@@ -1232,6 +1237,7 @@ export const frTranslations = {
   footer: {
     description:
       "Première évaluation ESG pragmatique pour les PME en croissance, conçue en Suisse.",
+    tagline: "Conçu en Suisse · Confidentialité dès la conception",
     product: "Produit",
     company: "Entreprise",
     privacy: "Confidentialité",
@@ -1270,6 +1276,7 @@ export const itTranslations: TranslationDictionary = {
     dashboard: {
       title: "Panoramica ESG",
       filter: "Esempio di risultato",
+      previewLabel: "Anteprima illustrativa del risultato",
       scoreTitle: "Punteggio ESG",
       scoreValue: "68",
       scoreTotal: "/100",
@@ -1645,6 +1652,7 @@ export const itTranslations: TranslationDictionary = {
   footer: {
     description:
       "Prima valutazione ESG pratica per PMI in crescita, sviluppata in Svizzera.",
+    tagline: "Sviluppato in Svizzera · Privacy by design",
     product: "Prodotto",
     company: "Azienda",
     privacy: "Privacy",
@@ -1683,6 +1691,7 @@ export const rmTranslations: TranslationDictionary = {
     dashboard: {
       title: "Survista ESG",
       filter: "Exempel da resultat",
+      previewLabel: "Vista exemplara dal resultat",
       scoreTitle: "Punctaziun ESG",
       scoreValue: "68",
       scoreTotal: "/100",
@@ -2058,6 +2067,7 @@ export const rmTranslations: TranslationDictionary = {
   footer: {
     description:
       "Emprima valitaziun ESG pragmatica per PMI che creschan, sviluppada en Svizra.",
+    tagline: "Sviluppà en Svizra · Protecziun da datas dapi il cumenzament",
     product: "Product",
     company: "Interpresa",
     privacy: "Protecziun da datas",
