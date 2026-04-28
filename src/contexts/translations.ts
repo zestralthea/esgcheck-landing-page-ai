@@ -358,6 +358,34 @@ export const enTranslations = {
         "Please confirm your ESGCheck early-access request using the link sent to your email address.",
     },
   },
+  thankYou: {
+    title: "Thank you for signing up",
+    description:
+      "Your email address has been confirmed. From now on, you will occasionally receive relevant updates about ESGCheck, early access, and ESG topics for SMEs.",
+    primaryCta: "Learn more about ESGCheck",
+    cards: {
+      product: {
+        title: "Product updates",
+        description: "News about the product and its development.",
+      },
+      insights: {
+        title: "ESG insights",
+        description: "Practical content on ESG, regulation, and SMEs.",
+      },
+      access: {
+        title: "Early access",
+        description: "Information about tests, launch, and early access.",
+      },
+    },
+    unsubscribeNote:
+      "You can unsubscribe at any time using the unsubscribe link in our emails.",
+    footerTagline: "ESG reporting made simple, affordable, Swiss.",
+    seo: {
+      title: "Thank You for Signing Up | ESGCheck",
+      description:
+        "Your ESGCheck email address has been confirmed. Thank you for signing up for updates.",
+    },
+  },
   formRuntime: {
     requiredCodeErrorMessage: "Please choose a country code",
     invalidMessage:
@@ -749,6 +777,34 @@ export const deTranslations = {
         "Bitte bestätigen Sie Ihre ESGCheck Early-Access-Anfrage über den Link in der gesendeten E-Mail.",
     },
   },
+  thankYou: {
+    title: "Vielen Dank für Ihre Anmeldung",
+    description:
+      "Ihre E-Mail-Adresse wurde erfolgreich bestätigt. Ab sofort erhalten Sie gelegentlich relevante Updates zu ESGCheck, Early Access und ESG-Themen für KMU.",
+    primaryCta: "Mehr über ESGCheck erfahren",
+    cards: {
+      product: {
+        title: "Produkt-Updates",
+        description: "Neuigkeiten zum Produkt und zur Entwicklung.",
+      },
+      insights: {
+        title: "ESG Einblicke",
+        description: "Praktische Inhalte zu ESG, Regulierung und KMU.",
+      },
+      access: {
+        title: "Früher Zugang",
+        description: "Informationen zu Tests, Launch und Early Access.",
+      },
+    },
+    unsubscribeNote:
+      "Sie können sich jederzeit über den Abmeldelink in unseren E-Mails abmelden.",
+    footerTagline: "ESG Reporting einfach, erschwinglich und schweizerisch.",
+    seo: {
+      title: "Vielen Dank für Ihre Anmeldung | ESGCheck",
+      description:
+        "Ihre E-Mail-Adresse für ESGCheck wurde bestätigt. Vielen Dank für Ihre Anmeldung zu Updates.",
+    },
+  },
   formRuntime: {
     requiredCodeErrorMessage: "Bitte wählen Sie eine Ländervorwahl aus",
     invalidMessage:
@@ -1133,6 +1189,34 @@ export const frTranslations = {
       title: "Confirmez votre adresse e-mail | ESGCheck",
       description:
         "Veuillez confirmer votre demande d'accès anticipé à ESGCheck avec le lien envoyé par e-mail.",
+    },
+  },
+  thankYou: {
+    title: "Merci pour votre inscription",
+    description:
+      "Votre adresse e-mail a été confirmée. Vous recevrez désormais occasionnellement des mises à jour pertinentes sur ESGCheck, l'accès anticipé et les sujets ESG pour PME.",
+    primaryCta: "En savoir plus sur ESGCheck",
+    cards: {
+      product: {
+        title: "Mises à jour produit",
+        description: "Nouveautés sur le produit et son développement.",
+      },
+      insights: {
+        title: "Éclairages ESG",
+        description: "Contenus pratiques sur l'ESG, la réglementation et les PME.",
+      },
+      access: {
+        title: "Accès anticipé",
+        description: "Informations sur les tests, le lancement et l'accès anticipé.",
+      },
+    },
+    unsubscribeNote:
+      "Vous pouvez vous désabonner à tout moment via le lien de désinscription dans nos e-mails.",
+    footerTagline: "Reporting ESG simple, accessible et suisse.",
+    seo: {
+      title: "Merci pour votre inscription | ESGCheck",
+      description:
+        "Votre adresse e-mail ESGCheck a été confirmée. Merci pour votre inscription aux mises à jour.",
     },
   },
   formRuntime: {
@@ -1520,6 +1604,34 @@ export const itTranslations: TranslationDictionary = {
         "Conferma la richiesta di accesso anticipato a ESGCheck tramite il link inviato via email.",
     },
   },
+  thankYou: {
+    title: "Grazie per la tua iscrizione",
+    description:
+      "Il tuo indirizzo email è stato confermato. D'ora in poi riceverai occasionalmente aggiornamenti rilevanti su ESGCheck, accesso anticipato e temi ESG per PMI.",
+    primaryCta: "Scopri di più su ESGCheck",
+    cards: {
+      product: {
+        title: "Aggiornamenti prodotto",
+        description: "Novità sul prodotto e sul suo sviluppo.",
+      },
+      insights: {
+        title: "Approfondimenti ESG",
+        description: "Contenuti pratici su ESG, regolamentazione e PMI.",
+      },
+      access: {
+        title: "Accesso anticipato",
+        description: "Informazioni su test, lancio e accesso anticipato.",
+      },
+    },
+    unsubscribeNote:
+      "Puoi annullare l'iscrizione in qualsiasi momento tramite il link di disiscrizione nelle nostre email.",
+    footerTagline: "Reporting ESG semplice, accessibile e svizzero.",
+    seo: {
+      title: "Grazie per la tua iscrizione | ESGCheck",
+      description:
+        "Il tuo indirizzo email per ESGCheck è stato confermato. Grazie per esserti iscritto agli aggiornamenti.",
+    },
+  },
   formRuntime: {
     requiredCodeErrorMessage: "Scegli un prefisso internazionale",
     invalidMessage:
@@ -1903,6 +2015,34 @@ export const rmTranslations: TranslationDictionary = {
       title: "Confermar l'adressa dad e-mail | ESGCheck",
       description:
         "Confermai per plaschair Vossa dumonda d'access anticipà ad ESGCheck cun il link tramess per e-mail.",
+    },
+  },
+  thankYou: {
+    title: "Grazia fitg per Vossa annunzia",
+    description:
+      "Vossa adressa dad e-mail è vegnida confermada. Da qua davent survegnis Vus mintgatant updates relevants davart ESGCheck, access anticipà e temas ESG per PMI.",
+    primaryCta: "Dapli davart ESGCheck",
+    cards: {
+      product: {
+        title: "Updates dal product",
+        description: "Novitads davart il product e ses svilup.",
+      },
+      insights: {
+        title: "Invistas ESG",
+        description: "Cuntegns pratics davart ESG, regulaziun e PMI.",
+      },
+      access: {
+        title: "Access anticipà",
+        description: "Infurmaziuns davart tests, launch ed access anticipà.",
+      },
+    },
+    unsubscribeNote:
+      "Vus pudais As annunziar giu da tut temp cun il link d'annullaziun en noss e-mails.",
+    footerTagline: "Reporting ESG simpel, accessibel e svizzer.",
+    seo: {
+      title: "Grazia fitg per Vossa annunzia | ESGCheck",
+      description:
+        "Vossa adressa dad e-mail per ESGCheck è vegnida confermada. Grazia fitg per Vossa annunzia als updates.",
     },
   },
   formRuntime: {

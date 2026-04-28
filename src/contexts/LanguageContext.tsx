@@ -12,7 +12,7 @@ export const siteBaseUrl = "https://esgcheck.ch";
 export const supportedLanguages = ["de", "en", "fr", "it", "rm"] as const;
 export type Language = (typeof supportedLanguages)[number];
 export const defaultLanguage: Language = "de";
-export type SitePage = "home" | "confirmation";
+export type SitePage = "home" | "confirmation" | "thankYou";
 
 export const languageMetadata: Record<
   Language,
@@ -146,7 +146,15 @@ const getNestedValue = (obj: Record<string, unknown>, path: string): string | un
 export const getLocalePath = (lang: Language, page: SitePage = "home") => {
   const localePath = `/${languageMetadata[lang].path}/`;
 
-  return page === "confirmation" ? `${localePath}confirmation/` : localePath;
+  if (page === "confirmation") {
+    return `${localePath}confirmation/`;
+  }
+
+  if (page === "thankYou") {
+    return `${localePath}thank-you/`;
+  }
+
+  return localePath;
 };
 
 export const getLocaleUrl = (lang: Language, page: SitePage = "home") =>
@@ -162,7 +170,11 @@ export const getSitePageFromPathname = (pathname: string): SitePage => {
   const segments = pathname.split("/").filter(Boolean);
   const pageSegment = isSupportedLanguage(segments[0]) ? segments[1] : segments[0];
 
-  return pageSegment === "confirmation" ? "confirmation" : "home";
+  if (pageSegment === "confirmation") {
+    return "confirmation";
+  }
+
+  return pageSegment === "thank-you" || pageSegment === "subscribed" ? "thankYou" : "home";
 };
 
 const getLocalizedUrl = (lang: Language, location: Location) => {
