@@ -91,7 +91,8 @@ export default function Header() {
     t("header.trustStrip.privacy"),
     t("header.trustStrip.growingSmes"),
   ];
-  const visibleTrustItems = trustItems.slice(trustItems.length - visibleTrustItemCount);
+  const trustItemCount = trustItems.length;
+  const visibleTrustItems = trustItems.slice(trustItemCount - visibleTrustItemCount);
 
   const homePath = getLocalePath(language);
   const sectionHref = (hash: string) => `${homePath}${hash}`;
@@ -178,13 +179,13 @@ export default function Header() {
       const availableWidth = trustStrip.clientWidth;
       const gap = Number.parseFloat(getComputedStyle(trustStripMeasure).columnGap || "0") || 0;
       const itemWidths = trustItemMeasureRefs.current
-        .slice(0, trustItems.length)
+        .slice(0, trustItemCount)
         .map((item) => item?.offsetWidth ?? 0);
 
-      let nextVisibleCount = trustItems.length;
+      let nextVisibleCount = trustItemCount;
 
       while (nextVisibleCount > 1) {
-        const visibleWidths = itemWidths.slice(trustItems.length - nextVisibleCount);
+        const visibleWidths = itemWidths.slice(trustItemCount - nextVisibleCount);
         const totalWidth =
           visibleWidths.reduce((sum, width) => sum + width, 0) + gap * (nextVisibleCount - 1);
 
@@ -227,7 +228,7 @@ export default function Header() {
       window.removeEventListener("resize", scheduleVisibleTrustItemsUpdate);
       window.cancelAnimationFrame(frameId);
     };
-  }, [language]);
+  }, [language, trustItemCount]);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") {

@@ -1,12 +1,68 @@
 {
-  "rewrites": [
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "redirects": [
     {
-      "source": "/(de|en|fr|it|rm)/",
-      "destination": "/index.html"
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.esgcheck.ch"
+        }
+      ],
+      "destination": "https://esgcheck.ch/de/",
+      "permanent": true
     },
     {
-      "source": "/(de|en|fr|it|rm)/(.*)",
-      "destination": "/index.html"
+      "source": "/:path*",
+      "has": [
+        {
+          "type": "host",
+          "value": "www.esgcheck.ch"
+        }
+      ],
+      "destination": "https://esgcheck.ch/:path*",
+      "permanent": true
+    },
+    {
+      "source": "/",
+      "destination": "/de/",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(de|en|fr|it|rm)",
+      "destination": "/:locale/",
+      "permanent": true
+    },
+    {
+      "source": "/:locale(de|en|fr|it|rm)/:flow(confirmation|thank-you)",
+      "destination": "/:locale/:flow/",
+      "permanent": true
+    },
+    {
+      "source": "/subscribed",
+      "destination": "/de/thank-you/",
+      "permanent": true
+    },
+    {
+      "source": "/thank-you",
+      "destination": "/de/thank-you/",
+      "permanent": true
+    },
+    {
+      "source": "/confirmation",
+      "destination": "/de/confirmation/",
+      "permanent": true
+    }
+  ],
+  "headers": [
+    {
+      "source": "/:locale(de|en|fr|it|rm)/:flow(confirmation|thank-you)/",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex, nofollow"
+        }
+      ]
     }
   ]
 }

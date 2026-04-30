@@ -31,6 +31,7 @@ const Index = () => {
   const websiteId = `${siteBaseUrl}/#website`;
   const webpageId = `${canonicalUrl}#webpage`;
   const pagePublishedTime = "2026-04-28T00:00:00+02:00";
+  const pageModifiedTime = "2026-04-30T00:00:00+02:00";
   const alternateLinks = [
     ...supportedLanguages.map((lang) => ({
       hrefLang: languageMetadata[lang].hrefLang,
@@ -71,7 +72,7 @@ const Index = () => {
       "url": canonicalUrl,
       "inLanguage": structuredDataLanguage,
       "datePublished": pagePublishedTime,
-      "dateModified": pagePublishedTime,
+      "dateModified": pageModifiedTime,
       "author": {
         "@id": organizationId,
       },
@@ -136,6 +137,8 @@ const Index = () => {
         description={t("seo.description")}
         keywords={t("seo.keywords")}
         canonicalUrl={canonicalUrl}
+        publishedTime={pagePublishedTime}
+        modifiedTime={pageModifiedTime}
         ogImageAlt={t("seo.ogImageAlt")}
         alternateLinks={alternateLinks}
         structuredData={homeStructuredData}
