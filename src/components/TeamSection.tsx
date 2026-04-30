@@ -7,7 +7,7 @@ import { image } from "framer-motion/client";
 const members = [
   { id: "ali", imageSrc: "/team/ali-priyatna-portrait.jpg" },
   { id: "anastasia" },
-  { id: "priyatna", imageSrc: "/team/priyatna-priyatna.jpg" },
+  { id: "priyatna", imageSrc: "/team/priyatna-priyatna.jpeg" },
 ] as const;
 
 function getInitials(name: string) {
