@@ -32,10 +32,41 @@ const ringRadius = 42;
 const ringCircumference = 2 * Math.PI * ringRadius;
 const ringOffset = ringCircumference * (1 - ringProgress);
 
+const nonBreakingHyphen = "\u2011";
+const protectedHyphenatedTerms = [
+  "ESG-Ersteinschätzung",
+  "ESG-Einschätzung",
+  "B2B-KMU",
+] as const;
+
+const protectedTermPattern = new RegExp(
+  `(${protectedHyphenatedTerms.map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, "\\$&")).join("|")})`,
+  "g"
+);
+
+const protectKeyTermBreaks = (value: string) =>
+  protectedHyphenatedTerms.reduce(
+    (text, term) => text.replaceAll(term, term.replaceAll("-", nonBreakingHyphen)),
+    value
+  );
+
+const renderProtectedKeyTerms = (value: string, className: string) =>
+  value.split(protectedTermPattern).map((part, index) =>
+    protectedHyphenatedTerms.includes(part as (typeof protectedHyphenatedTerms)[number]) ? (
+      <span key={`${part}-${index}`} className={className}>
+        {part.replaceAll("-", nonBreakingHyphen)}
+      </span>
+    ) : (
+      part
+    )
+  );
+
 export default function Hero() {
   const { t } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
 
+  const heroTitle = t("hero.title");
+  const heroDescription = protectKeyTermBreaks(t("hero.description"));
   const strengths = ["policy", "opportunity", "conduct"] as const;
   const gaps = ["tracking", "suppliers", "oversight"] as const;
   const nextSteps = ["scope", "suppliers", "governance"] as const;
@@ -48,26 +79,26 @@ export default function Hero() {
   ] as const;
 
   return (
-    <section id="product" className="relative overflow-hidden border-b border-border/70">
+    <section id="product" className="relative isolate overflow-hidden border-b border-border/70">
       <video
         autoPlay
         loop
         muted
         playsInline
         preload="auto"
-        className="absolute inset-0 h-full w-full object-cover opacity-20"
+        className="absolute inset-0 z-0 h-full w-full object-cover opacity-20"
       >
         <source src="/ESGCheck_hero_compressed.webm" type="video/webm" />
         <source src="/ESGCheck_hero_compressed.mp4" type="video/mp4" />
       </video>
-      <div className="absolute inset-0 bg-[linear-gradient(120deg,hsl(var(--background))/0.97_0%,hsl(var(--background))/0.94_45%,hsl(var(--background))/0.90_100%)]" />
-      <div className="absolute inset-y-0 right-0 hidden w-1/2 bg-[radial-gradient(circle_at_top_right,hsl(var(--accent))/0.65_0%,transparent_60%)] lg:block" />
-      <div className="absolute inset-x-0 bottom-0 h-28 bg-[linear-gradient(180deg,transparent_0%,hsl(var(--background))_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-0 bg-[linear-gradient(120deg,hsl(var(--background))/0.97_0%,hsl(var(--background))/0.94_45%,hsl(var(--background))/0.90_100%)]" />
+      <div className="pointer-events-none absolute inset-0 z-0 hidden bg-[radial-gradient(circle_at_84%_8%,hsl(var(--accent))/0.58_0%,hsl(var(--accent))/0.26_30%,transparent_62%)] lg:block" />
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 z-0 h-28 bg-[linear-gradient(180deg,transparent_0%,hsl(var(--background))_100%)]" />
 
-      <div className="container relative mx-auto px-4 py-14 sm:py-20 lg:py-24">
-        <div className="grid items-center gap-10 xl:grid-cols-[minmax(0,1fr)_540px]">
+      <div className="container relative z-10 mx-auto px-4 py-14 sm:py-20 lg:py-20">
+        <div className="grid min-w-0 grid-cols-[minmax(0,1fr)] items-center gap-10 xl:grid-cols-[minmax(0,1fr)_540px]">
           <m.div
-            className="max-w-2xl space-y-8"
+            className="min-w-0 max-w-2xl space-y-8"
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
@@ -75,18 +106,18 @@ export default function Hero() {
           >
             <div className="space-y-5">
               <m.h1
-                className="max-w-[12ch] text-balance text-4xl font-semibold leading-[1.05] text-foreground sm:text-5xl lg:text-6xl lg:tracking-[-0.015em]"
+                className="max-w-[16ch] text-balance text-3xl font-semibold leading-[1.08] text-foreground min-[430px]:text-4xl sm:text-5xl lg:text-6xl"
                 variants={revealUp}
                 custom={shouldReduceMotion}
               >
-                {t("hero.title")}
+                {renderProtectedKeyTerms(heroTitle, "whitespace-nowrap text-[0.92em] sm:text-[1em]")}
               </m.h1>
               <m.p
-                className="max-w-[34rem] text-lg leading-[1.7] text-foreground/72 sm:text-xl"
+                className="min-w-0 max-w-[34rem] text-lg leading-[1.7] text-foreground/72 sm:text-xl"
                 variants={revealUp}
                 custom={shouldReduceMotion}
               >
-                {t("hero.description")}
+                {heroDescription}
               </m.p>
             </div>
 
@@ -124,21 +155,21 @@ export default function Hero() {
               {proofItems.map(({ label, icon: Icon }) => (
                 <m.div
                   key={label}
-                  className="inline-flex items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/85 shadow-sm"
+                  className="inline-flex max-w-full items-center gap-2 rounded-full border border-border bg-background/85 px-4 py-2 text-sm font-medium text-foreground/85 shadow-sm"
                   variants={revealUp}
                   custom={shouldReduceMotion}
                   whileHover={shouldReduceMotion ? undefined : cardHover.whileHover}
                   whileTap={shouldReduceMotion ? undefined : cardHover.whileTap}
                 >
                   <Icon className="h-3.5 w-3.5 text-primary" />
-                  {label}
+                  <span className="min-w-0">{label}</span>
                 </m.div>
               ))}
             </m.div>
           </m.div>
 
           <m.div
-            className="rounded-[28px] border border-border/80 bg-card/95 p-5 shadow-elegant backdrop-blur-sm"
+            className="w-full min-w-0 max-w-[540px] justify-self-center rounded-[28px] border border-border/80 bg-card/95 p-5 shadow-elegant backdrop-blur-sm xl:justify-self-end"
             initial="hidden"
             animate="visible"
             variants={revealRight}
