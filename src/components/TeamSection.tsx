@@ -2,11 +2,12 @@ import { m, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { cardHover, entranceEase, revealUp, viewportOnce } from "@/lib/motion";
+import { image } from "framer-motion/client";
 
 const members = [
   { id: "ali", imageSrc: "/team/ali-priyatna-portrait.jpg" },
   { id: "anastasia" },
-  { id: "priyatna" },
+  { id: "priyatna", imageSrc: "/team/priyatna-priyatna.jpg" },
 ] as const;
 
 function getInitials(name: string) {
