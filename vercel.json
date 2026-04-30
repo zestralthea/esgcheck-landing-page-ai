@@ -3,28 +3,6 @@
   "redirects": [
     {
       "source": "/",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.esgcheck.ch"
-        }
-      ],
-      "destination": "https://esgcheck.ch/de/",
-      "permanent": true
-    },
-    {
-      "source": "/:path*",
-      "has": [
-        {
-          "type": "host",
-          "value": "www.esgcheck.ch"
-        }
-      ],
-      "destination": "https://esgcheck.ch/:path*",
-      "permanent": true
-    },
-    {
-      "source": "/",
       "destination": "/de/",
       "permanent": true
     },
