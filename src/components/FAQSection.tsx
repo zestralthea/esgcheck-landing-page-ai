@@ -88,7 +88,7 @@ export default function FAQSection() {
                       variants={faqExpand}
                       custom={shouldReduceMotion}
                     >
-                      <div className="px-6 pb-6 text-sm leading-7 text-foreground/72">
+                      <div className="max-w-[65ch] px-6 pb-6 text-sm leading-7 text-foreground/72">
                         {t(`faq.items.${item}.answer`)}
                       </div>
                     </m.div>
