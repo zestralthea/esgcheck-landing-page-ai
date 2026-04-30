@@ -73,21 +73,25 @@ export default function Header() {
   const [languageToggleMode, setLanguageToggleMode] = useState<LanguageToggleMode>("compact");
   const [headerStackHeight, setHeaderStackHeight] = useState(108);
   const [trustStripHeight, setTrustStripHeight] = useState(36);
+  const [visibleTrustItemCount, setVisibleTrustItemCount] = useState(3);
   const [showTrustStrip, setShowTrustStrip] = useState(true);
 
   const trustStripInnerRef = useRef<HTMLDivElement>(null);
+  const trustStripMeasureRef = useRef<HTMLDivElement>(null);
   const headerRef = useRef<HTMLElement>(null);
   const headerRowRef = useRef<HTMLDivElement>(null);
   const brandMeasureRef = useRef<HTMLDivElement>(null);
   const fullActionsMeasureRef = useRef<HTMLDivElement>(null);
   const compactActionsMeasureRef = useRef<HTMLDivElement>(null);
   const iconActionsMeasureRef = useRef<HTMLDivElement>(null);
+  const trustItemMeasureRefs = useRef<Array<HTMLDivElement | null>>([]);
 
   const trustItems = [
     t("header.trustStrip.swissBuilt"),
     t("header.trustStrip.privacy"),
     t("header.trustStrip.growingSmes"),
   ];
+  const visibleTrustItems = trustItems.slice(trustItems.length - visibleTrustItemCount);
 
   const homePath = getLocalePath(language);
   const sectionHref = (hash: string) => `${homePath}${hash}`;
@@ -157,6 +161,73 @@ export default function Header() {
       window.cancelAnimationFrame(frameId);
     };
   }, []);
+
+  useLayoutEffect(() => {
+    if (typeof window === "undefined") {
+      return;
+    }
+
+    const trustStrip = trustStripInnerRef.current;
+    const trustStripMeasure = trustStripMeasureRef.current;
+
+    if (!trustStrip || !trustStripMeasure) {
+      return;
+    }
+
+    const updateVisibleTrustItems = () => {
+      const availableWidth = trustStrip.clientWidth;
+      const gap = Number.parseFloat(getComputedStyle(trustStripMeasure).columnGap || "0") || 0;
+      const itemWidths = trustItemMeasureRefs.current
+        .slice(0, trustItems.length)
+        .map((item) => item?.offsetWidth ?? 0);
+
+      let nextVisibleCount = trustItems.length;
+
+      while (nextVisibleCount > 1) {
+        const visibleWidths = itemWidths.slice(trustItems.length - nextVisibleCount);
+        const totalWidth =
+          visibleWidths.reduce((sum, width) => sum + width, 0) + gap * (nextVisibleCount - 1);
+
+        if (totalWidth <= availableWidth) {
+          break;
+        }
+
+        nextVisibleCount -= 1;
+      }
+
+      setVisibleTrustItemCount((current) =>
+        current === nextVisibleCount ? current : nextVisibleCount
+      );
+    };
+
+    let frameId = 0;
+    const scheduleVisibleTrustItemsUpdate = () => {
+      window.cancelAnimationFrame(frameId);
+      frameId = window.requestAnimationFrame(updateVisibleTrustItems);
+    };
+
+    scheduleVisibleTrustItemsUpdate();
+
+    const resizeObserver = new ResizeObserver(() => {
+      scheduleVisibleTrustItemsUpdate();
+    });
+
+    resizeObserver.observe(trustStrip);
+    resizeObserver.observe(trustStripMeasure);
+    trustItemMeasureRefs.current.forEach((item) => {
+      if (item) {
+        resizeObserver.observe(item);
+      }
+    });
+
+    window.addEventListener("resize", scheduleVisibleTrustItemsUpdate);
+
+    return () => {
+      resizeObserver.disconnect();
+      window.removeEventListener("resize", scheduleVisibleTrustItemsUpdate);
+      window.cancelAnimationFrame(frameId);
+    };
+  }, [language]);
 
   useLayoutEffect(() => {
     if (typeof window === "undefined") {
@@ -236,8 +307,8 @@ export default function Header() {
           }`}
           style={{ maxHeight: showTrustStrip ? trustStripHeight : 0 }}
         >
-          <div ref={trustStripInnerRef} className="container mx-auto flex min-h-9 flex-nowrap items-center justify-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] overflow-x-auto px-4 py-2 whitespace-nowrap text-[clamp(0.625rem,0.85vw,0.8rem)] font-medium">
-            {trustItems.map((item) => (
+          <div ref={trustStripInnerRef} className="container mx-auto flex min-h-9 flex-nowrap items-center justify-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] overflow-hidden px-4 py-2 whitespace-nowrap text-[clamp(0.625rem,0.85vw,0.8rem)] font-medium">
+            {visibleTrustItems.map((item) => (
               <div key={item} className="flex items-center gap-[clamp(0.25rem,0.55vw,0.375rem)] whitespace-nowrap">
                 <CheckCircle2 className="h-[clamp(0.7rem,1.05vw,0.95rem)] w-[clamp(0.7rem,1.05vw,0.95rem)] shrink-0" />
                 <span className="leading-none">{item}</span>
@@ -295,6 +366,23 @@ export default function Header() {
           </div>
 
           <div className="pointer-events-none absolute left-4 top-0 -z-10 flex w-max flex-col gap-2 opacity-0">
+            <div
+              ref={trustStripMeasureRef}
+              className="flex min-h-9 flex-nowrap items-center gap-x-[clamp(0.4rem,1.2vw,1.25rem)] whitespace-nowrap px-4 py-2 text-[clamp(0.625rem,0.85vw,0.8rem)] font-medium"
+            >
+              {trustItems.map((item, index) => (
+                <div
+                  key={item}
+                  ref={(element) => {
+                    trustItemMeasureRefs.current[index] = element;
+                  }}
+                  className="flex items-center gap-[clamp(0.25rem,0.55vw,0.375rem)] whitespace-nowrap"
+                >
+                  <CheckCircle2 className="h-[clamp(0.7rem,1.05vw,0.95rem)] w-[clamp(0.7rem,1.05vw,0.95rem)] shrink-0" />
+                  <span className="leading-none">{item}</span>
+                </div>
+              ))}
+            </div>
             <div
               ref={brandMeasureRef}
               className="flex items-center gap-3 whitespace-nowrap text-2xl font-semibold leading-none tracking-tight"
