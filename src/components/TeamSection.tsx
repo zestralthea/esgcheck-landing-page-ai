@@ -2,12 +2,19 @@ import { m, useReducedMotion } from "framer-motion";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { cardHover, entranceEase, revealUp, viewportOnce } from "@/lib/motion";
-import { image } from "framer-motion/client";
 
 const members = [
   { id: "ali", imageSrc: "/team/ali-priyatna-portrait.jpg" },
-  { id: "anastasia" },
-  { id: "priyatna", imageSrc: "/team/priyatna-priyatna.jpeg" },
+  {
+    id: "anastasia",
+    imageSrc: "/team/anastasia-kurer.jpeg",
+    imagePositionClassName: "object-[50%_20%]",
+  },
+  {
+    id: "priyatna",
+    imageSrc: "/team/priyatna-priyatna.jpeg",
+    imagePositionClassName: "object-[50%_15%]",
+  },
 ] as const;
 
 function getInitials(name: string) {
@@ -67,7 +74,7 @@ export default function TeamSection() {
                         height={80}
                         loading="lazy"
                         decoding="async"
-                        className="h-full w-full rounded-[24px] object-cover"
+                        className={`h-full w-full rounded-[24px] object-cover ${member.imagePositionClassName ?? "object-center"}`}
                       />
                     ) : (
                       <>
