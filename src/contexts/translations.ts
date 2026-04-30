@@ -13,9 +13,9 @@ export const enTranslations = {
     joinWaitlist: "Get Early Access",
   },
   hero: {
-    title: "A practical ESG first assessment for growing SMEs.",
+    title: "A practical ESG first assessment for growing B2B SMEs.",
     description:
-      "Turn the company documents you already have into a clear first ESG assessment, with usable scores, visible gaps, and practical next steps.",
+      "Turn the documents you already have into a clear first ESG assessment, with scores, gaps and next steps for questions from customers, banks or investors.",
     primaryCta: "Get Early Access",
     secondaryCta: "See How It Works",
     proof: {
@@ -432,9 +432,9 @@ export const deTranslations = {
     joinWaitlist: "Early Access anfragen",
   },
   hero: {
-    title: "Die praxisnahe ESG-Ersteinschätzung für wachsende KMU.",
+    title: "Die praxisnahe ESG-Ersteinschätzung für wachsende B2B-KMU.",
     description:
-      "Machen Sie aus bestehenden Unternehmensunterlagen eine klare erste ESG-Einschätzung, mit brauchbaren Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
+      "Aus Ihren bestehenden Unterlagen wird eine klare erste ESG-Einschätzung, mit Scores, Lücken und nächsten Schritten für Anfragen von Kunden, Banken oder Investoren.",
     primaryCta: "Early Access anfragen",
     secondaryCta: "So funktioniert es",
     proof: {
@@ -847,9 +847,9 @@ export const frTranslations = {
     joinWaitlist: "Demander un accès anticipé",
   },
   hero: {
-    title: "Une première évaluation ESG pragmatique pour les PME en croissance.",
+    title: "Une première évaluation ESG pragmatique pour les PME B2B en croissance.",
     description:
-      "Transformez les documents que vous avez déjà en une première évaluation ESG claire, avec des scores utiles, des écarts visibles et des prochaines étapes concrètes.",
+      "Transformez vos documents existants en une première évaluation ESG claire, avec scores, écarts et prochaines étapes pour les questions de clients, banques ou investisseurs.",
     primaryCta: "Demander un accès anticipé",
     secondaryCta: "Voir le fonctionnement",
     proof: {
@@ -1263,9 +1263,9 @@ export const itTranslations: TranslationDictionary = {
     joinWaitlist: "Richiedi accesso anticipato",
   },
   hero: {
-    title: "Una prima valutazione ESG pratica per PMI in crescita.",
+    title: "Una prima valutazione ESG pratica per PMI B2B in crescita.",
     description:
-      "Trasforma i documenti aziendali gia disponibili in una prima valutazione ESG chiara, con punteggi utilizzabili, lacune visibili e prossimi passi concreti.",
+      "Trasforma i documenti che hai gia in una prima valutazione ESG chiara, con punteggi, lacune e prossimi passi per le domande di clienti, banche o investitori.",
     primaryCta: "Richiedi accesso anticipato",
     secondaryCta: "Vedi come funziona",
     proof: {
@@ -1678,9 +1678,9 @@ export const rmTranslations: TranslationDictionary = {
     joinWaitlist: "Dumandar access anticipà",
   },
   hero: {
-    title: "L'emprima valitaziun ESG pragmatica per PMI che creschan.",
+    title: "L'emprima valitaziun ESG pragmatica per PMI B2B che creschan.",
     description:
-      "Transfurmai ils documents che Vossa interpresa ha gia en ina emprima valitaziun ESG clera, cun punctaziuns utilisablas, largias visiblas e proxims pass concrets.",
+      "Transfurmai ils documents che Vossa interpresa ha gia en ina emprima valitaziun ESG clera, cun punctaziuns, largias e proxims pass per dumondas da clients u investiders.",
     primaryCta: "Dumandar access anticipà",
     secondaryCta: "Vesair co ch'i funcziuna",
     proof: {
