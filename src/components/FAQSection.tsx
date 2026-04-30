@@ -11,7 +11,7 @@ import {
   viewportOnce,
 } from "@/lib/motion";
 
-const items = ["certification", "documents", "audience", "pricing"] as const;
+const items = ["certification", "vsme", "documents", "audience", "pricing"] as const;
 
 export default function FAQSection() {
   const { t } = useLanguage();

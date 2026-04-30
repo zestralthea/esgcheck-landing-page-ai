@@ -19,9 +19,9 @@ const languages = {
     seo: {
       title: "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
       description:
-        "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
+        "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten für steigende ESG-Informationsanfragen.",
       keywords:
-        "ESG-Einschätzung, ESG für KMU, GRI, Swiss ESG, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung, ESG für wachsende Unternehmen",
+        "ESG-Einschätzung, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung",
       ogImageAlt: "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
     },
     confirmation: {
@@ -41,9 +41,9 @@ const languages = {
     seo: {
       title: "ESGCheck | Practical ESG First Assessment for Growing SMEs",
       description:
-        "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps.",
+        "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps for rising ESG information requests.",
       keywords:
-        "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies",
+        "ESG assessment, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability assessment, document-based ESG",
       ogImageAlt: "ESGCheck practical ESG first assessment platform for growing SMEs",
     },
     confirmation: {
@@ -63,9 +63,9 @@ const languages = {
     seo: {
       title: "ESGCheck | Première évaluation ESG pragmatique pour les PME en croissance",
       description:
-        "Transformez vos documents d'entreprise en une première évaluation ESG claire avec des scores structurés, des écarts visibles et des prochaines étapes concrètes.",
+        "Transformez vos documents d'entreprise en une première évaluation ESG claire avec des scores structurés, des écarts visibles et des prochaines étapes pour les demandes croissantes d'informations ESG.",
       keywords:
-        "évaluation ESG, ESG pour PME, GRI, Swiss ESG, évaluation de durabilité, évaluation ESG fondée sur les documents, ESG pour entreprises en croissance",
+        "évaluation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, évaluation de durabilité, ESG fondé sur les documents",
       ogImageAlt: "ESGCheck première évaluation ESG pragmatique pour les PME en croissance",
     },
     confirmation: {
@@ -85,9 +85,9 @@ const languages = {
     seo: {
       title: "ESGCheck | Prima valutazione ESG pratica per PMI in crescita",
       description:
-        "Trasforma i documenti aziendali in una prima valutazione ESG chiara con punteggi strutturati, lacune visibili e prossimi passi concreti.",
+        "Trasforma i documenti aziendali in una prima valutazione ESG chiara con punteggi strutturati, lacune visibili e prossimi passi per richieste crescenti di informazioni ESG.",
       keywords:
-        "valutazione ESG, ESG per PMI, GRI, ESG Svizzera, valutazione sostenibilita, ESG basato sui documenti, ESG per aziende in crescita",
+        "valutazione ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, valutazione sostenibilita, ESG basato sui documenti",
       ogImageAlt: "ESGCheck prima valutazione ESG pratica per PMI in crescita",
     },
     confirmation: {
@@ -107,9 +107,9 @@ const languages = {
     seo: {
       title: "ESGCheck | Emprima valitaziun ESG pragmatica per PMI",
       description:
-        "Transfurmai documents d'interpresa en ina emprima valitaziun ESG clera cun punctaziuns structuradas, largias visiblas e proxims pass concrets.",
+        "Transfurmai documents d'interpresa en ina emprima valitaziun ESG clera cun punctaziuns structuradas, largias visiblas e proxims pass per dumondas creschentas d'infurmaziuns ESG.",
       keywords:
-        "valitaziun ESG, ESG per PMI, GRI, ESG Svizra, valitaziun da durabilitad, ESG sin basa da documents, ESG per interpresas che creschan",
+        "valitaziun ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, valitaziun da durabilitad, ESG sin basa da documents",
       ogImageAlt: "ESGCheck emprima valitaziun ESG pragmatica per PMI che creschan",
     },
     confirmation: {

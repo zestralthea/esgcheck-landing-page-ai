@@ -399,23 +399,19 @@ Confirm that the MVP works reliably across the full practical workflow.
 
 Refine the methodology and improve output quality with ESG expert input.
 
-### 3. VSME readiness layer
-
-Develop a VSME-oriented assessment structure that helps SMEs understand how their existing documents map against voluntary SME sustainability reporting expectations, where evidence is missing, and what practical next steps are required.
-
-### 4. First pilot customers
+### 3. First pilot customers
 
 Prepare the product for initial external use and early customer validation.
 
-### 5. Commercial refinement
+### 4. Commercial refinement
 
 Test and refine positioning, pricing, and service structure based on pilot feedback.
 
-### 6. Progressive workflow and framework expansion
+### 5. Progressive workflow and framework expansion
 
-Evolve ESGCheck beyond first assessments into increasingly robust ESG workflows, including stronger methodology, deeper expert-backed validation, VSME, CSRD-adjacent value-chain request readiness, EcoVadis-style supplier readiness, and selected regulation-specific modules where customer demand is validated.
+Evolve ESGCheck beyond first assessments into increasingly robust ESG workflows, including stronger methodology, deeper expert-backed validation, broader SME-relevant framework support, supplier-request readiness, and selected regulation-specific modules where customer demand is validated.
 
-### 7. Long-term certification direction
+### 6. Long-term certification direction
 
 Build over time toward certification-oriented outputs and, where feasible, a path toward fuller certification-related use cases.
 

@@ -20,7 +20,7 @@ import {
   useLanguage,
 } from "@/contexts/LanguageContext";
 
-const faqItems = ["certification", "documents", "audience", "pricing"] as const;
+const faqItems = ["certification", "vsme", "documents", "audience", "pricing"] as const;
 
 const Index = () => {
   const { t, language } = useLanguage();
@@ -107,6 +107,7 @@ const Index = () => {
         t("seo.structuredData.featureList.scoreRationale"),
         t("seo.structuredData.featureList.strengthsGaps"),
         t("seo.structuredData.featureList.nextSteps"),
+        t("seo.structuredData.featureList.vsmeReadiness"),
         t("seo.structuredData.featureList.swissPrivacy")
       ],
       "keywords": t("seo.keywords")

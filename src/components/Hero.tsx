@@ -7,6 +7,7 @@ import {
   CheckCircle2,
   FileSearch,
   FileText,
+  Map,
   ShieldCheck,
 } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
@@ -42,6 +43,7 @@ export default function Hero() {
   const proofItems = [
     { label: t("hero.proof.documentFirst"), icon: FileText },
     { label: t("hero.proof.griFirst"), icon: BookOpen },
+    { label: t("hero.proof.vsmeNext"), icon: Map },
     { label: t("hero.proof.swissPrivacy"), icon: ShieldCheck },
   ] as const;
 

@@ -20,8 +20,8 @@ interface SEOHeadProps {
 
 export default function SEOHead({
   title = "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
-  description = "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
-  keywords = "ESG-Einschätzung, ESG für KMU, GRI, Swiss ESG, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung, ESG für wachsende Unternehmen",
+  description = "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten für steigende ESG-Informationsanfragen.",
+  keywords = "ESG-Einschätzung, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung",
   canonicalUrl = "https://esgcheck.ch/de/",
   author = "ESGCheck",
   publishedTime = "2026-04-28T00:00:00+02:00",

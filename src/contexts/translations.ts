@@ -15,12 +15,13 @@ export const enTranslations = {
   hero: {
     title: "A practical ESG first assessment for growing B2B SMEs.",
     description:
-      "Turn the documents you already have into a clear first ESG assessment, with scores, gaps and next steps for questions from customers, banks or investors.",
+      "Turn the documents you already have into a clear first ESG assessment, with scores, gaps and next steps for customer, supply-chain, lender, investor, and voluntary reporting requests.",
     primaryCta: "Get Early Access",
     secondaryCta: "See How It Works",
     proof: {
       documentFirst: "Document-first",
       griFirst: "GRI-first foundation",
+      vsmeNext: "VSME-oriented next step",
       swissPrivacy: "Swiss privacy mindset",
     },
     dashboard: {
@@ -65,7 +66,7 @@ export const enTranslations = {
   needNow: {
     title: "Why companies need this now",
     description:
-      "Many SMEs are being asked ESG questions before they have a full reporting setup in place.",
+      "Many SMEs are not trying to produce a full report. They need structured ESG information for customers, procurement teams, supply-chain partners, lenders, and investors.",
     items: {
       customerRequests: "Customer requests",
       procurement: "Procurement requirements",
@@ -74,7 +75,7 @@ export const enTranslations = {
       credibility: "Market credibility",
     },
     conclusion:
-      "What teams need first is orientation: a credible starting point before they invest in heavier ESG work.",
+      "What teams need first is orientation: a credible starting point for ESG information requests before they invest in heavier ESG work.",
   },
   howItWorks: {
     title: "How It Works",
@@ -86,7 +87,7 @@ export const enTranslations = {
       },
       assess: {
         title: "Assess against structured ESG criteria",
-        description: "Organized around a practical, GRI-first foundation.",
+        description: "Organized around a practical GRI-first foundation today, with VSME-oriented readiness next.",
       },
       receive: {
         title: "Receive a first structured assessment",
@@ -128,7 +129,7 @@ export const enTranslations = {
   credibility: {
     title: "Built to be credible",
     intro:
-      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first assessment, not formal assurance, certification, or full reporting support.",
+      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first assessment, not a CSRD compliance product, formal assurance, certification, or full reporting support.",
     pillars: {
       outputs: {
         title: "Useful scope today",
@@ -138,7 +139,7 @@ export const enTranslations = {
       methodology: {
         title: "Structured methodology",
         description:
-          "A practical, GRI-first foundation with consistent criteria across the workflow.",
+          "A practical GRI-first foundation with VSME-oriented readiness as the next framework direction.",
       },
       positioning: {
         title: "Clear positioning",
@@ -188,7 +189,7 @@ export const enTranslations = {
       validation: "Expert validation",
       pilot: "First pilot customers",
       commercial: "Commercial refinement",
-      expansion: "Progressive workflow expansion",
+      expansion: "Framework and workflow expansion",
       certification: "Certification-oriented direction",
     },
   },
@@ -197,7 +198,7 @@ export const enTranslations = {
     founders: {
       title: "Founders & Managing Directors",
       description:
-        "For leaders dealing with customer, procurement, and growth pressure before ESG is fully structured internally.",
+        "For leaders dealing with customer, procurement, supply-chain, and growth pressure before ESG is fully structured internally.",
     },
     finance: {
       title: "CFOs & Finance Leads",
@@ -205,7 +206,7 @@ export const enTranslations = {
         "For teams focused on risk, financing readiness, and stakeholder confidence.",
     },
     region: {
-      title: "Best suited for growing Swiss and DACH B2B SMEs.",
+      title: "Best suited for growing Swiss and DACH B2B SMEs facing ESG information requests.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -238,6 +239,11 @@ export const enTranslations = {
         answer:
           "Not today. It is a structured first assessment designed to help companies orient themselves and improve over time.",
       },
+      vsme: {
+        question: "Is ESGCheck a CSRD or VSME compliance tool?",
+        answer:
+          "No. ESGCheck is not a compliance, assurance, certification, or full reporting product. It helps SMEs organize existing information, identify gaps, and prepare for practical ESG information requests, with VSME-oriented readiness as a next framework direction.",
+      },
       documents: {
         question: "What documents can I upload?",
         answer:
@@ -264,7 +270,7 @@ export const enTranslations = {
   waitlist: {
     title: "Request early access.",
     description:
-      "If ESG questions are already showing up in customer, procurement, or financing conversations, we would like to understand where the pressure is coming from.",
+      "If ESG questions are already showing up in customer, procurement, supply-chain, or financing conversations, we would like to understand where the pressure is coming from.",
     cardTitle: "What to expect",
     ctaButton: "Request Early Access to ESGCheck",
     emailNote:
@@ -294,19 +300,20 @@ export const enTranslations = {
   seo: {
     title: "ESGCheck | Practical ESG First Assessment for Growing SMEs",
     description:
-      "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps.",
+      "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps for rising ESG information requests.",
     keywords:
-      "ESG assessment, SME ESG, GRI, Swiss ESG, sustainability assessment, document-based ESG, ESG for growing companies",
+      "ESG assessment, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability assessment, document-based ESG",
     ogImageAlt:
       "ESGCheck practical ESG first assessment platform for growing SMEs",
     structuredData: {
       description:
-        "A practical ESG first assessment platform for growing SMEs, built from the documents companies already have.",
+        "A practical ESG assessment platform for growing SMEs, built from the documents companies already have.",
       featureList: {
         documentFirst: "Document-first ESG assessment",
         scoreRationale: "ESG score with rationale",
         strengthsGaps: "Strengths and gap visibility",
         nextSteps: "Practical next steps",
+        vsmeReadiness: "VSME-oriented next framework direction",
         swissPrivacy: "Swiss-built privacy-conscious workflow",
       },
     },
@@ -399,7 +406,7 @@ export const enTranslations = {
   },
   footer: {
     description:
-      "Practical ESG first assessment for growing SMEs, built in Switzerland.",
+      "Practical ESG assessment for growing SMEs preparing for ESG information requests, built in Switzerland.",
     tagline: "Built in Switzerland · Privacy-conscious by design",
     product: "Product",
     company: "Company",
@@ -434,12 +441,13 @@ export const deTranslations = {
   hero: {
     title: "Die praxisnahe ESG-Ersteinschätzung für wachsende B2B-KMU.",
     description:
-      "Aus Ihren bestehenden Unterlagen wird eine klare erste ESG-Einschätzung, mit Scores, Lücken und nächsten Schritten für Anfragen von Kunden, Banken oder Investoren.",
+      "Aus Ihren bestehenden Unterlagen wird eine klare erste ESG-Einschätzung, mit Scores, Lücken und nächsten Schritten für Kunden-, Lieferketten-, Finanzierungs-, Investoren- und freiwillige Reporting-Anfragen.",
     primaryCta: "Early Access anfragen",
     secondaryCta: "So funktioniert es",
     proof: {
       documentFirst: "Dokumentenbasiert",
       griFirst: "GRI-first Grundlage",
+      vsmeNext: "VSME-orientierter nächster Schritt",
       swissPrivacy: "Schweizer Datenschutzverständnis",
     },
     dashboard: {
@@ -484,7 +492,7 @@ export const deTranslations = {
   needNow: {
     title: "Warum Unternehmen das jetzt brauchen",
     description:
-      "Viele KMU erhalten ESG-Anfragen, bevor intern überhaupt ein vollständiges Reporting-Setup steht.",
+      "Viele KMU erstellen keinen vollständigen Bericht. Sie brauchen strukturierte ESG-Informationen für Kunden, Beschaffung, Lieferkettenpartner, Kreditgeber und Investoren.",
     items: {
       customerRequests: "Kundenanfragen",
       procurement: "Anforderungen aus der Beschaffung",
@@ -493,7 +501,7 @@ export const deTranslations = {
       credibility: "Glaubwürdigkeit im Markt",
     },
     conclusion:
-      "Was Teams zuerst brauchen, ist Einordnung: ein glaubwürdiger Ausgangspunkt, bevor grössere ESG-Aufwände sinnvoll werden.",
+      "Was Teams zuerst brauchen, ist Einordnung: ein glaubwürdiger Ausgangspunkt für ESG-Informationsanfragen, bevor grössere ESG-Aufwände sinnvoll werden.",
   },
   howItWorks: {
     title: "So funktioniert es",
@@ -505,7 +513,7 @@ export const deTranslations = {
       },
       assess: {
         title: "Anhand strukturierter ESG-Kriterien beurteilen",
-        description: "Organisiert entlang einer praxisnahen, GRI-first Grundlage.",
+        description: "Organisiert entlang einer praxisnahen GRI-first Grundlage heute, mit VSME-orientierter Readiness als nächstem Schritt.",
       },
       receive: {
         title: "Eine erste strukturierte Einschätzung erhalten",
@@ -547,7 +555,7 @@ export const deTranslations = {
   credibility: {
     title: "Auf Glaubwürdigkeit ausgelegt",
     intro:
-      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist eine strukturierte Ersteinschätzung, nicht formale Assurance, Zertifizierung oder vollständige Reporting-Unterstützung.",
+      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist eine strukturierte Ersteinschätzung, kein CSRD-Compliance-Produkt, keine formale Assurance, keine Zertifizierung und keine vollständige Reporting-Unterstützung.",
     pillars: {
       outputs: {
         title: "Sinnvoller Umfang für heute",
@@ -557,7 +565,7 @@ export const deTranslations = {
       methodology: {
         title: "Strukturierte Methodik",
         description:
-          "Eine praxisnahe, GRI-first Grundlage mit konsistenten Kriterien über den Workflow hinweg.",
+          "Eine praxisnahe GRI-first Grundlage mit VSME-orientierter Readiness als nächster Framework-Richtung.",
       },
       positioning: {
         title: "Klare Positionierung",
@@ -607,7 +615,7 @@ export const deTranslations = {
       validation: "Expertenvalidierung",
       pilot: "Erste Pilotkunden",
       commercial: "Kommerzielle Verfeinerung",
-      expansion: "Schrittweiser Workflow-Ausbau",
+      expansion: "Framework- und Workflow-Ausbau",
       certification: "Zertifizierungsorientierte Richtung",
     },
   },
@@ -616,7 +624,7 @@ export const deTranslations = {
     founders: {
       title: "Gründer & Geschäftsführung",
       description:
-        "Für Verantwortliche, die Kunden-, Beschaffungs- und Wachstumsdruck spüren, bevor ESG intern sauber aufgestellt ist.",
+        "Für Verantwortliche, die Kunden-, Beschaffungs-, Lieferketten- und Wachstumsdruck spüren, bevor ESG intern sauber aufgestellt ist.",
     },
     finance: {
       title: "CFOs & Finance Leads",
@@ -624,7 +632,7 @@ export const deTranslations = {
         "Für Teams mit Blick auf Risiko, Finanzierungsfähigkeit und Vertrauen bei Stakeholdern.",
     },
     region: {
-      title: "Am besten geeignet für wachsende Schweizer und DACH B2B-KMU.",
+      title: "Am besten geeignet für wachsende Schweizer und DACH B2B-KMU mit ESG-Informationsanfragen.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -657,6 +665,11 @@ export const deTranslations = {
         answer:
           "Heute nicht. ESGCheck ist eine strukturierte Ersteinschätzung, die Unternehmen bei der Einordnung und Weiterentwicklung unterstützen soll.",
       },
+      vsme: {
+        question: "Ist ESGCheck ein CSRD- oder VSME-Compliance-Tool?",
+        answer:
+          "Nein. ESGCheck ist kein Compliance-, Assurance-, Zertifizierungs- oder vollständiges Reporting-Produkt. ESGCheck hilft KMU, bestehende Informationen zu ordnen, Lücken zu erkennen und sich auf praktische ESG-Informationsanfragen vorzubereiten, mit VSME-orientierter Readiness als nächster Framework-Richtung.",
+      },
       documents: {
         question: "Welche Dokumente kann ich hochladen?",
         answer:
@@ -684,7 +697,7 @@ export const deTranslations = {
   waitlist: {
     title: "Early Access anfragen.",
     description:
-      "Wenn ESG-Fragen bereits in Kunden-, Beschaffungs- oder Finanzierungsgesprächen auftauchen, möchten wir besser verstehen, wo der Druck bei Ihnen entsteht.",
+      "Wenn ESG-Fragen bereits in Kunden-, Beschaffungs-, Lieferketten- oder Finanzierungsgesprächen auftauchen, möchten wir besser verstehen, wo der Druck bei Ihnen entsteht.",
     cardTitle: "Was Sie erwarten dürfen",
     ctaButton: "Early Access für ESGCheck anfragen",
     emailNote:
@@ -715,19 +728,20 @@ export const deTranslations = {
   seo: {
     title: "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
     description:
-      "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten.",
+      "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten für steigende ESG-Informationsanfragen.",
     keywords:
-      "ESG-Einschätzung, ESG für KMU, GRI, Swiss ESG, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung, ESG für wachsende Unternehmen",
+      "ESG-Einschätzung, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung",
     ogImageAlt:
       "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
     structuredData: {
       description:
-        "Eine praxisnahe ESG-Ersteinschätzung für wachsende KMU, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
+        "Eine praxisnahe ESG-Assessment-Plattform für wachsende KMU, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
       featureList: {
         documentFirst: "Dokumentenbasierte ESG-Einschätzung",
         scoreRationale: "ESG Score mit Begründung",
         strengthsGaps: "Stärken und Lücken im Überblick",
         nextSteps: "Konkrete nächste Schritte",
+        vsmeReadiness: "VSME-orientierte nächste Framework-Richtung",
         swissPrivacy: "Datenschutzbewusster Workflow aus der Schweiz",
       },
     },
@@ -820,7 +834,7 @@ export const deTranslations = {
   },
   footer: {
     description:
-      "Praxisnahe ESG-Ersteinschätzung für wachsende KMU, entwickelt in der Schweiz.",
+      "Praxisnahe ESG-Einschätzung für wachsende KMU, die sich auf ESG-Informationsanfragen vorbereiten, entwickelt in der Schweiz.",
     tagline: "In der Schweiz entwickelt · Datenschutzbewusst gestaltet",
     product: "Produkt",
     company: "Unternehmen",
@@ -849,12 +863,13 @@ export const frTranslations = {
   hero: {
     title: "Une première évaluation ESG pragmatique pour les PME B2B en croissance.",
     description:
-      "Transformez vos documents existants en une première évaluation ESG claire, avec scores, écarts et prochaines étapes pour les questions de clients, banques ou investisseurs.",
+      "Transformez vos documents existants en une première évaluation ESG claire, avec scores, écarts et prochaines étapes pour les demandes clients, chaîne d'approvisionnement, financement, investisseurs et reporting volontaire.",
     primaryCta: "Demander un accès anticipé",
     secondaryCta: "Voir le fonctionnement",
     proof: {
       documentFirst: "Fondé sur les documents",
       griFirst: "Base GRI-first",
+      vsmeNext: "Prochaine étape orientée VSME",
       swissPrivacy: "Réflexe suisse en matière de confidentialité",
     },
     dashboard: {
@@ -899,7 +914,7 @@ export const frTranslations = {
   needNow: {
     title: "Pourquoi les entreprises en ont besoin maintenant",
     description:
-      "De nombreuses PME reçoivent des demandes ESG avant même d'avoir une organisation de reporting complète en place.",
+      "De nombreuses PME ne cherchent pas à produire un rapport complet. Elles doivent fournir des informations ESG structurées à des clients, achats, partenaires de chaîne d'approvisionnement, prêteurs et investisseurs.",
     items: {
       customerRequests: "Demandes clients",
       procurement: "Exigences achats",
@@ -908,7 +923,7 @@ export const frTranslations = {
       credibility: "Crédibilité sur le marché",
     },
     conclusion:
-      "Ce qu'il faut d'abord aux équipes, c'est un cadre de lecture: un point de départ crédible avant d'investir dans un dispositif ESG plus lourd.",
+      "Ce qu'il faut d'abord aux équipes, c'est un cadre de lecture: un point de départ crédible pour les demandes d'informations ESG avant d'investir dans un dispositif ESG plus lourd.",
   },
   howItWorks: {
     title: "Fonctionnement",
@@ -920,7 +935,7 @@ export const frTranslations = {
       },
       assess: {
         title: "Évaluer selon des critères ESG structurés",
-        description: "Organisée autour d'une base pratique, GRI-first.",
+        description: "Organisée autour d'une base pratique GRI-first aujourd'hui, avec une préparation orientée VSME ensuite.",
       },
       receive: {
         title: "Recevoir une première évaluation structurée",
@@ -962,7 +977,7 @@ export const frTranslations = {
   credibility: {
     title: "Conçu pour rester crédible",
     intro:
-      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'une première évaluation structurée, pas d'une assurance formelle, d'une certification ou d'un support complet de reporting.",
+      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'une première évaluation structurée, pas d'un produit de conformité CSRD, d'une assurance formelle, d'une certification ou d'un support complet de reporting.",
     pillars: {
       outputs: {
         title: "Un périmètre utile aujourd'hui",
@@ -972,7 +987,7 @@ export const frTranslations = {
       methodology: {
         title: "Une méthode structurée",
         description:
-          "Une base pratique, GRI-first, avec des critères cohérents tout au long du workflow.",
+          "Une base pratique GRI-first avec une préparation orientée VSME comme prochaine direction de framework.",
       },
       positioning: {
         title: "Un positionnement clair",
@@ -1022,7 +1037,7 @@ export const frTranslations = {
       validation: "Validation experte",
       pilot: "Premiers clients pilotes",
       commercial: "Affinage commercial",
-      expansion: "Extension progressive du workflow",
+      expansion: "Extension des frameworks et du workflow",
       certification: "Orientation certification",
     },
   },
@@ -1031,7 +1046,7 @@ export const frTranslations = {
     founders: {
       title: "Fondateurs & Directions générales",
       description:
-        "Pour les responsables confrontés à la pression des clients, des achats et de la croissance avant que l'ESG soit structuré en interne.",
+        "Pour les responsables confrontés à la pression des clients, des achats, de la chaîne d'approvisionnement et de la croissance avant que l'ESG soit structuré en interne.",
     },
     finance: {
       title: "CFOs & responsables finance",
@@ -1039,7 +1054,7 @@ export const frTranslations = {
         "Pour les équipes attentives au risque, à la préparation au financement et à la confiance des parties prenantes.",
     },
     region: {
-      title: "Particulièrement adapté aux PME B2B suisses et DACH en croissance.",
+      title: "Particulièrement adapté aux PME B2B suisses et DACH en croissance confrontées à des demandes d'informations ESG.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -1072,6 +1087,11 @@ export const frTranslations = {
         answer:
           "Pas aujourd'hui. ESGCheck est une première évaluation structurée conçue pour aider les entreprises à se situer et à progresser avec le temps.",
       },
+      vsme: {
+        question: "ESGCheck est-il un outil de conformité CSRD ou VSME ?",
+        answer:
+          "Non. ESGCheck n'est pas un produit de conformité, d'assurance, de certification ou de reporting complet. Il aide les PME à organiser les informations existantes, identifier les écarts et se préparer aux demandes pratiques d'informations ESG, avec une préparation orientée VSME comme prochaine direction de framework.",
+      },
       documents: {
         question: "Quels documents puis-je transmettre ?",
         answer:
@@ -1099,7 +1119,7 @@ export const frTranslations = {
   waitlist: {
     title: "Demander un accès anticipé.",
     description:
-      "Si des questions ESG apparaissent déjà dans vos échanges clients, achats ou financement, nous aimerions mieux comprendre d'où vient cette pression chez vous.",
+      "Si des questions ESG apparaissent déjà dans vos échanges clients, achats, chaîne d'approvisionnement ou financement, nous aimerions mieux comprendre d'où vient cette pression chez vous.",
     cardTitle: "À quoi vous attendre",
     ctaButton: "Demander un accès anticipé à ESGCheck",
     emailNote:
@@ -1131,19 +1151,20 @@ export const frTranslations = {
   seo: {
     title: "ESGCheck | Première évaluation ESG pragmatique pour les PME en croissance",
     description:
-      "Transformez vos documents d'entreprise en une première évaluation ESG claire avec des scores structurés, des écarts visibles et des prochaines étapes concrètes.",
+      "Transformez vos documents d'entreprise en une première évaluation ESG claire avec des scores structurés, des écarts visibles et des prochaines étapes pour les demandes croissantes d'informations ESG.",
     keywords:
-      "évaluation ESG, ESG pour PME, GRI, Swiss ESG, évaluation de durabilité, évaluation ESG fondée sur les documents, ESG pour entreprises en croissance",
+      "évaluation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, évaluation de durabilité, ESG fondé sur les documents",
     ogImageAlt:
       "ESGCheck première évaluation ESG pragmatique pour les PME en croissance",
     structuredData: {
       description:
-        "Une plateforme de première évaluation ESG pragmatique pour les PME en croissance, fondée sur les documents dont les entreprises disposent déjà.",
+        "Une plateforme d'évaluation ESG pragmatique pour les PME en croissance, fondée sur les documents dont les entreprises disposent déjà.",
       featureList: {
         documentFirst: "Évaluation ESG fondée sur les documents",
         scoreRationale: "Score ESG avec explication",
         strengthsGaps: "Vue claire des points forts et des écarts",
         nextSteps: "Prochaines étapes concrètes",
+        vsmeReadiness: "Prochaine direction de framework orientée VSME",
         swissPrivacy: "Workflow suisse attentif à la confidentialité",
       },
     },
@@ -1236,7 +1257,7 @@ export const frTranslations = {
   },
   footer: {
     description:
-      "Première évaluation ESG pragmatique pour les PME en croissance, conçue en Suisse.",
+      "Évaluation ESG pragmatique pour les PME en croissance qui se préparent aux demandes d'informations ESG, conçue en Suisse.",
     tagline: "Conçu en Suisse · Confidentialité dès la conception",
     product: "Produit",
     company: "Entreprise",
@@ -1265,12 +1286,13 @@ export const itTranslations: TranslationDictionary = {
   hero: {
     title: "Una prima valutazione ESG pratica per PMI B2B in crescita.",
     description:
-      "Trasforma i documenti che hai gia in una prima valutazione ESG chiara, con punteggi, lacune e prossimi passi per le domande di clienti, banche o investitori.",
+      "Trasforma i documenti che hai gia in una prima valutazione ESG chiara, con punteggi, lacune e prossimi passi per richieste di clienti, catena di fornitura, finanziatori, investitori e reporting volontario.",
     primaryCta: "Richiedi accesso anticipato",
     secondaryCta: "Vedi come funziona",
     proof: {
       documentFirst: "Basato sui documenti",
       griFirst: "Fondamento GRI-first",
+      vsmeNext: "Prossimo passo orientato VSME",
       swissPrivacy: "Mentalita svizzera sulla privacy",
     },
     dashboard: {
@@ -1315,7 +1337,7 @@ export const itTranslations: TranslationDictionary = {
   needNow: {
     title: "Perche le aziende ne hanno bisogno ora",
     description:
-      "Molte PMI ricevono domande ESG prima di avere un sistema di reporting completo.",
+      "Molte PMI non stanno cercando di produrre un report completo. Devono fornire informazioni ESG strutturate a clienti, acquisti, partner della catena di fornitura, finanziatori e investitori.",
     items: {
       customerRequests: "Richieste dei clienti",
       procurement: "Requisiti degli acquisti",
@@ -1324,7 +1346,7 @@ export const itTranslations: TranslationDictionary = {
       credibility: "Credibilita sul mercato",
     },
     conclusion:
-      "Alle squadre serve prima di tutto orientamento: un punto di partenza credibile prima di investire in un lavoro ESG piu pesante.",
+      "Alle squadre serve prima di tutto orientamento: un punto di partenza credibile per richieste di informazioni ESG prima di investire in un lavoro ESG piu pesante.",
   },
   howItWorks: {
     title: "Come funziona",
@@ -1336,7 +1358,7 @@ export const itTranslations: TranslationDictionary = {
       },
       assess: {
         title: "Valutazione con criteri ESG strutturati",
-        description: "Organizzata su una base pratica, GRI-first.",
+        description: "Organizzata su una base pratica GRI-first oggi, con readiness orientata VSME come prossimo passo.",
       },
       receive: {
         title: "Ricevi una prima valutazione strutturata",
@@ -1378,7 +1400,7 @@ export const itTranslations: TranslationDictionary = {
   credibility: {
     title: "Progettato per essere credibile",
     intro:
-      "ESGCheck deve essere utile presto, senza apparire piu maturo di quanto sia oggi. Al momento e una prima valutazione strutturata, non assurance formale, certificazione o supporto completo al reporting.",
+      "ESGCheck deve essere utile presto, senza apparire piu maturo di quanto sia oggi. Al momento e una prima valutazione strutturata, non un prodotto di compliance CSRD, assurance formale, certificazione o supporto completo al reporting.",
     pillars: {
       outputs: {
         title: "Ambito utile oggi",
@@ -1388,7 +1410,7 @@ export const itTranslations: TranslationDictionary = {
       methodology: {
         title: "Metodologia strutturata",
         description:
-          "Una base pratica GRI-first con criteri coerenti lungo tutto il workflow.",
+          "Una base pratica GRI-first con readiness orientata VSME come prossima direzione di framework.",
       },
       positioning: {
         title: "Posizionamento chiaro",
@@ -1438,7 +1460,7 @@ export const itTranslations: TranslationDictionary = {
       validation: "Validazione esperta",
       pilot: "Primi clienti pilota",
       commercial: "Affinamento commerciale",
-      expansion: "Estensione progressiva del workflow",
+      expansion: "Espansione di framework e workflow",
       certification: "Direzione orientata alla certificazione",
     },
   },
@@ -1447,7 +1469,7 @@ export const itTranslations: TranslationDictionary = {
     founders: {
       title: "Fondatori e direzione",
       description:
-        "Per responsabili che sentono pressione da clienti, acquisti e crescita prima che l'ESG sia strutturato internamente.",
+        "Per responsabili che sentono pressione da clienti, acquisti, catena di fornitura e crescita prima che l'ESG sia strutturato internamente.",
     },
     finance: {
       title: "CFO e responsabili finanza",
@@ -1455,7 +1477,7 @@ export const itTranslations: TranslationDictionary = {
         "Per team concentrati su rischio, preparazione al finanziamento e fiducia degli stakeholder.",
     },
     region: {
-      title: "Particolarmente adatto a PMI B2B svizzere e DACH in crescita.",
+      title: "Particolarmente adatto a PMI B2B svizzere e DACH in crescita che ricevono richieste di informazioni ESG.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -1488,6 +1510,11 @@ export const itTranslations: TranslationDictionary = {
         answer:
           "Non oggi. E una prima valutazione strutturata per aiutare le aziende a orientarsi e migliorare nel tempo.",
       },
+      vsme: {
+        question: "ESGCheck e uno strumento di compliance CSRD o VSME?",
+        answer:
+          "No. ESGCheck non e un prodotto di compliance, assurance, certificazione o reporting completo. Aiuta le PMI a organizzare le informazioni esistenti, individuare lacune e prepararsi a richieste pratiche di informazioni ESG, con readiness orientata VSME come prossima direzione di framework.",
+      },
       documents: {
         question: "Quali documenti posso caricare?",
         answer:
@@ -1515,7 +1542,7 @@ export const itTranslations: TranslationDictionary = {
   waitlist: {
     title: "Richiedi accesso anticipato.",
     description:
-      "Se le domande ESG compaiono gia in conversazioni con clienti, acquisti o finanziatori, vogliamo capire da dove nasce la pressione.",
+      "Se le domande ESG compaiono gia in conversazioni con clienti, acquisti, catena di fornitura o finanziatori, vogliamo capire da dove nasce la pressione.",
     cardTitle: "Cosa aspettarsi",
     ctaButton: "Richiedi accesso anticipato a ESGCheck",
     emailNote:
@@ -1546,19 +1573,20 @@ export const itTranslations: TranslationDictionary = {
   seo: {
     title: "ESGCheck | Prima valutazione ESG pratica per PMI in crescita",
     description:
-      "Trasforma i documenti aziendali in una prima valutazione ESG chiara con punteggi strutturati, lacune visibili e prossimi passi concreti.",
+      "Trasforma i documenti aziendali in una prima valutazione ESG chiara con punteggi strutturati, lacune visibili e prossimi passi per richieste crescenti di informazioni ESG.",
     keywords:
-      "valutazione ESG, ESG per PMI, GRI, ESG Svizzera, valutazione sostenibilita, ESG basato sui documenti, ESG per aziende in crescita",
+      "valutazione ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, valutazione sostenibilita, ESG basato sui documenti",
     ogImageAlt:
       "ESGCheck prima valutazione ESG pratica per PMI in crescita",
     structuredData: {
       description:
-        "Una piattaforma per una prima valutazione ESG pratica per PMI in crescita, basata sui documenti gia disponibili in azienda.",
+        "Una piattaforma di valutazione ESG pratica per PMI in crescita, basata sui documenti gia disponibili in azienda.",
       featureList: {
         documentFirst: "Valutazione ESG basata sui documenti",
         scoreRationale: "Punteggio ESG con spiegazione",
         strengthsGaps: "Vista su punti di forza e lacune",
         nextSteps: "Prossimi passi concreti",
+        vsmeReadiness: "Prossima direzione di framework orientata VSME",
         swissPrivacy: "Workflow svizzero attento alla privacy",
       },
     },
@@ -1651,7 +1679,7 @@ export const itTranslations: TranslationDictionary = {
   },
   footer: {
     description:
-      "Prima valutazione ESG pratica per PMI in crescita, sviluppata in Svizzera.",
+      "Valutazione ESG pratica per PMI in crescita che si preparano a richieste di informazioni ESG, sviluppata in Svizzera.",
     tagline: "Sviluppato in Svizzera · Privacy by design",
     product: "Prodotto",
     company: "Azienda",
@@ -1680,12 +1708,13 @@ export const rmTranslations: TranslationDictionary = {
   hero: {
     title: "L'emprima valitaziun ESG pragmatica per PMI B2B che creschan.",
     description:
-      "Transfurmai ils documents che Vossa interpresa ha gia en ina emprima valitaziun ESG clera, cun punctaziuns, largias e proxims pass per dumondas da clients u investiders.",
+      "Transfurmai ils documents che Vossa interpresa ha gia en ina emprima valitaziun ESG clera, cun punctaziuns, largias e proxims pass per dumondas da clients, chadaina da furniziun, finanziaziun, investiders e reporting voluntar.",
     primaryCta: "Dumandar access anticipà",
     secondaryCta: "Vesair co ch'i funcziuna",
     proof: {
       documentFirst: "Davent dals documents",
       griFirst: "Basa GRI-first",
+      vsmeNext: "Proxim pass orientà a VSME",
       swissPrivacy: "Chapientscha svizra da datas",
     },
     dashboard: {
@@ -1730,7 +1759,7 @@ export const rmTranslations: TranslationDictionary = {
   needNow: {
     title: "Pertge che interpresas dovran quai ussa",
     description:
-      "Bleras PMI survegnan dumondas ESG avant ch'ellas hajan in setup cumplet da reporting.",
+      "Bleras PMI na vulan betg l'emprim producir in rapport cumplet. Ellas dovran infurmaziuns ESG structuradas per clients, cumpra, partenaris da la chadaina da furniziun, crediturs ed investiders.",
     items: {
       customerRequests: "Dumondas da clients",
       procurement: "Pretensiuns da cumpra",
@@ -1739,7 +1768,7 @@ export const rmTranslations: TranslationDictionary = {
       credibility: "Credibladad sin il martgà",
     },
     conclusion:
-      "Il team dovra l'emprim orientaziun: in punct da partenza credibel avant investiziuns pli grevas en ESG.",
+      "Il team dovra l'emprim orientaziun: in punct da partenza credibel per dumondas d'infurmaziuns ESG avant investiziuns pli grevas en ESG.",
   },
   howItWorks: {
     title: "Uschia funcziuni",
@@ -1751,7 +1780,7 @@ export const rmTranslations: TranslationDictionary = {
       },
       assess: {
         title: "Valitar tenor criteris ESG structurads",
-        description: "Organisà sin ina basa pratica, GRI-first.",
+        description: "Organisà sin ina basa pratica GRI-first oz, cun readiness orientada a VSME sco proxim pass.",
       },
       receive: {
         title: "Survegnir ina emprima valitaziun structurada",
@@ -1793,7 +1822,7 @@ export const rmTranslations: TranslationDictionary = {
   credibility: {
     title: "Concepì per credibladad",
     intro:
-      "ESGCheck duai esser nizzaivel baud, senza parair pli madir che quai ch'el è oz. Oz è quai ina emprima valitaziun structurada, betg assurance formala, certificaziun u sustegn cumplet da reporting.",
+      "ESGCheck duai esser nizzaivel baud, senza parair pli madir che quai ch'el è oz. Oz è quai ina emprima valitaziun structurada, betg in product da compliance CSRD, betg assurance formala, betg certificaziun e betg sustegn cumplet da reporting.",
     pillars: {
       outputs: {
         title: "In rom util oz",
@@ -1803,7 +1832,7 @@ export const rmTranslations: TranslationDictionary = {
       methodology: {
         title: "Metodica structurada",
         description:
-          "Ina basa pratica GRI-first cun criteris consistents en l'entir workflow.",
+          "Ina basa pratica GRI-first cun readiness orientada a VSME sco proxima direcziun da framework.",
       },
       positioning: {
         title: "Posiziunament cler",
@@ -1853,7 +1882,7 @@ export const rmTranslations: TranslationDictionary = {
       validation: "Validaziun d'experts",
       pilot: "Emprims clients da pilot",
       commercial: "Affinaziun commerziala",
-      expansion: "Extensiun progressiva dal workflow",
+      expansion: "Extensiun da frameworks e workflow",
       certification: "Direcziun orientada a certificaziun",
     },
   },
@@ -1862,7 +1891,7 @@ export const rmTranslations: TranslationDictionary = {
     founders: {
       title: "Fundaturs e direcziun",
       description:
-        "Per responsabels che sentan pressiun da clients, cumpra e creschientscha avant che ESG è structura internamain.",
+        "Per responsabels che sentan pressiun da clients, cumpra, chadaina da furniziun e creschientscha avant che ESG è structura internamain.",
     },
     finance: {
       title: "CFOs e responsabels da finanzas",
@@ -1870,7 +1899,7 @@ export const rmTranslations: TranslationDictionary = {
         "Per teams che guardan sin ristga, prontezza da finanziaziun e fidanza dals stakeholders.",
     },
     region: {
-      title: "Fitg adattà per PMI B2B svizras e DACH che creschan.",
+      title: "Fitg adattà per PMI B2B svizras e DACH che creschan e survegnan dumondas d'infurmaziuns ESG.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -1903,6 +1932,11 @@ export const rmTranslations: TranslationDictionary = {
         answer:
           "Betg oz. Igl è ina emprima valitaziun structurada che gida interpresas a s'orientar e meglierar pass per pass.",
       },
+      vsme: {
+        question: "È ESGCheck in tool da compliance CSRD u VSME?",
+        answer:
+          "Na. ESGCheck n'è betg in product da compliance, assurance, certificaziun u reporting cumplet. El gida PMI ad organisar infurmaziuns existentas, identifitgar largias e sa preparar per dumondas praticas d'infurmaziuns ESG, cun readiness orientada a VSME sco proxima direcziun da framework.",
+      },
       documents: {
         question: "Tge documents poss jau chargiar si?",
         answer:
@@ -1930,7 +1964,7 @@ export const rmTranslations: TranslationDictionary = {
   waitlist: {
     title: "Dumandar access anticipà.",
     description:
-      "Sche dumondas ESG cumparan gia en discurs cun clients, cumpra u finanziaziun, vulain nus chapir meglier nua che la pressiun nascha tar Vus.",
+      "Sche dumondas ESG cumparan gia en discurs cun clients, cumpra, chadaina da furniziun u finanziaziun, vulain nus chapir meglier nua che la pressiun nascha tar Vus.",
     cardTitle: "Tge spetgar",
     ctaButton: "Dumandar access anticipà ad ESGCheck",
     emailNote:
@@ -1961,19 +1995,20 @@ export const rmTranslations: TranslationDictionary = {
   seo: {
     title: "ESGCheck | Emprima valitaziun ESG pragmatica per PMI",
     description:
-      "Transfurmai documents d'interpresa en ina emprima valitaziun ESG clera cun punctaziuns structuradas, largias visiblas e proxims pass concrets.",
+      "Transfurmai documents d'interpresa en ina emprima valitaziun ESG clera cun punctaziuns structuradas, largias visiblas e proxims pass per dumondas creschentas d'infurmaziuns ESG.",
     keywords:
-      "valitaziun ESG, ESG per PMI, GRI, ESG Svizra, valitaziun da durabilitad, ESG sin basa da documents, ESG per interpresas che creschan",
+      "valitaziun ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, valitaziun da durabilitad, ESG sin basa da documents",
     ogImageAlt:
       "ESGCheck emprima valitaziun ESG pragmatica per PMI che creschan",
     structuredData: {
       description:
-        "Ina plattafurma per ina emprima valitaziun ESG pragmatica per PMI che creschan, basada sin documents gia existents.",
+        "Ina plattafurma da valitaziun ESG pragmatica per PMI che creschan, basada sin documents gia existents.",
       featureList: {
         documentFirst: "Valitaziun ESG basada sin documents",
         scoreRationale: "Punctaziun ESG cun motivaziun",
         strengthsGaps: "Survista da fermas varts e largias",
         nextSteps: "Proxims pass concrets",
+        vsmeReadiness: "Proxima direcziun da framework orientada a VSME",
         swissPrivacy: "Workflow svizzer attent a la protecziun da datas",
       },
     },
@@ -2066,7 +2101,7 @@ export const rmTranslations: TranslationDictionary = {
   },
   footer: {
     description:
-      "Emprima valitaziun ESG pragmatica per PMI che creschan, sviluppada en Svizra.",
+      "Valitaziun ESG pragmatica per PMI che creschan e sa preparan per dumondas d'infurmaziuns ESG, sviluppada en Svizra.",
     tagline: "Sviluppà en Svizra · Protecziun da datas dapi il cumenzament",
     product: "Product",
     company: "Interpresa",
