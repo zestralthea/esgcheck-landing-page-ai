@@ -2,7 +2,7 @@
 
 ## 1. Overview
 
-ESGCheck is a practical ESG assessment and readiness platform for growing SMEs.
+ESGCheck is a practical ESG assessment platform for growing SMEs.
 
 Its purpose is to help companies understand where they currently stand on ESG and prepare for rising sustainability information requests by transforming the documents they already have into a clear, structured first assessment. Instead of requiring a company to begin with a full consulting engagement or a heavy enterprise ESG system, ESGCheck starts with the materials many companies already possess: policies, internal records, supplier information, and company reports.
 
@@ -12,7 +12,7 @@ ESGCheck is being built from Switzerland, with a strong emphasis on practicality
 
 ## 2. Mission
 
-ESGCheck makes ESG assessment and readiness practical for growing SMEs by turning existing company documents into clear scores, identified gaps, and actionable next steps.
+ESGCheck makes ESG assessment practical for growing SMEs by turning existing company documents into clear scores, identified gaps, and actionable next steps.
 
 ## 3. Long-Term Vision
 
@@ -54,7 +54,7 @@ ESGCheck is therefore intended to serve both as a practical business tool and, o
 
 ## 6. What ESGCheck Is
 
-ESGCheck is a practical ESG assessment and readiness platform.
+ESGCheck is a practical ESG assessment platform.
 
 It is not currently positioned as a certification product, a legal assurance mechanism, or a full substitute for formal sustainability reporting. At its current stage, it is designed to provide a credible first ESG assessment based on existing company documents.
 
@@ -71,11 +71,11 @@ This makes ESGCheck particularly suitable for SMEs that do not yet have a mature
 
 ### Category
 
-ESG assessment and readiness platform
+ESG assessment platform
 
 ### Core positioning
 
-A practical, easy-to-use ESG assessment and readiness platform for growing SMEs.
+A practical, easy-to-use ESG assessment platform for growing SMEs.
 
 ### Current customer promise
 
@@ -150,7 +150,7 @@ That pressure can come from:
 - financing-related diligence
 - broader market and brand expectations
 
-This creates demand for practical ESG readiness tools that help smaller companies organize existing information, identify gaps, and prepare structured responses without the cost and complexity of enterprise ESG platforms or full consulting engagements.
+This creates demand for practical ESG assessment tools that help smaller companies organize existing information, identify gaps, and prepare structured responses without the cost and complexity of enterprise ESG platforms or full consulting engagements.
 
 ESGCheck is positioned around that need.
 
@@ -501,8 +501,8 @@ This makes ESGCheck a project that is strong enough to deserve serious pilot-sta
 
 ## 28. Summary Positioning Statement
 
-ESGCheck is a practical ESG assessment and readiness platform for growing SMEs. It transforms policies, internal records, and company reports into a credible first ESG assessment with clear scores, visible gaps, and practical next steps, helping smaller companies prepare for rising ESG information requests without consultant-level complexity.
+ESGCheck is a practical ESG assessment platform for growing SMEs. It transforms policies, internal records, and company reports into a credible first ESG assessment with clear scores, visible gaps, and practical next steps, helping smaller companies prepare for rising ESG information requests without consultant-level complexity.
 
 ## 29. Short External Description
 
-ESGCheck helps growing SMEs understand where they stand on ESG and prepare for rising sustainability information requests by turning the documents they already have into a practical, credible first assessment. Built in Switzerland, ESGCheck is designed to make ESG assessment and readiness simpler, more useful, and more accessible for smaller companies, especially those facing expectations from customers, partners, procurement teams, lenders, and investors.
+ESGCheck helps growing SMEs understand where they stand on ESG and prepare for rising sustainability information requests by turning the documents they already have into a practical, credible first assessment. Built in Switzerland, ESGCheck is designed to make ESG assessment simpler, more useful, and more accessible for smaller companies, especially those facing expectations from customers, partners, procurement teams, lenders, and investors.
