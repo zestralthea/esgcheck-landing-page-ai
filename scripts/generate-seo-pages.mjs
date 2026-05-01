@@ -9,32 +9,10 @@ const templatePath = path.join(distDir, "index.html");
 
 const siteBaseUrl = "https://esgcheck.ch";
 const publishedTime = "2026-04-28T00:00:00+02:00";
-const modifiedTime = "2026-04-30T00:00:00+02:00";
+const modifiedTime = "2026-05-01T00:00:00+02:00";
 const ogImage = `${siteBaseUrl}/og-image.jpg`;
 
 const languages = {
-  de: {
-    htmlLang: "de-CH",
-    hrefLang: "de-CH",
-    seo: {
-      title: "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
-      description:
-        "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten für steigende ESG-Informationsanfragen.",
-      keywords:
-        "ESG-Einschätzung, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung",
-      ogImageAlt: "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
-    },
-    confirmation: {
-      title: "E-Mail-Adresse bestätigen | ESGCheck",
-      description:
-        "Bitte bestätigen Sie Ihre ESGCheck Early-Access-Anfrage über den Link in der gesendeten E-Mail.",
-    },
-    thankYou: {
-      title: "Vielen Dank für Ihre Anmeldung | ESGCheck",
-      description:
-        "Ihre E-Mail-Adresse für ESGCheck wurde bestätigt. Vielen Dank für Ihre Anmeldung zu Updates.",
-    },
-  },
   en: {
     htmlLang: "en",
     hrefLang: "en",
@@ -55,6 +33,28 @@ const languages = {
       title: "Thank You for Signing Up | ESGCheck",
       description:
         "Your ESGCheck email address has been confirmed. Thank you for signing up for updates.",
+    },
+  },
+  de: {
+    htmlLang: "de-CH",
+    hrefLang: "de-CH",
+    seo: {
+      title: "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+      description:
+        "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten für steigende ESG-Informationsanfragen.",
+      keywords:
+        "ESG-Einschätzung, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung",
+      ogImageAlt: "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+    },
+    confirmation: {
+      title: "E-Mail-Adresse bestätigen | ESGCheck",
+      description:
+        "Bitte bestätigen Sie Ihre ESGCheck Early-Access-Anfrage über den Link in der gesendeten E-Mail.",
+    },
+    thankYou: {
+      title: "Vielen Dank für Ihre Anmeldung | ESGCheck",
+      description:
+        "Ihre E-Mail-Adresse für ESGCheck wurde bestätigt. Vielen Dank für Ihre Anmeldung zu Updates.",
     },
   },
   fr: {
@@ -152,7 +152,7 @@ const getAlternateLinks = (pageType) => [
   })),
   {
     hrefLang: "x-default",
-    href: getLocaleUrl("de", pageType),
+    href: getLocaleUrl("en", pageType),
   },
 ];
 
@@ -231,7 +231,7 @@ const writeLocalizedPage = async ({ template, lang, pageType }) => {
 
 const template = await readFile(templatePath, "utf8");
 
-await writeFile(templatePath, localizeHtml({ template, lang: "de", pageType: "home" }));
+await writeFile(templatePath, localizeHtml({ template, lang: "en", pageType: "home" }));
 
 for (const lang of Object.keys(languages)) {
   for (const pageType of Object.keys(pageTypes)) {

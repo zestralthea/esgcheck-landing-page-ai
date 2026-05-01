@@ -9,17 +9,17 @@ import {
 } from "./translations";
 
 export const siteBaseUrl = "https://esgcheck.ch";
-export const supportedLanguages = ["de", "en", "fr", "it", "rm"] as const;
+export const supportedLanguages = ["en", "de", "fr", "it", "rm"] as const;
 export type Language = (typeof supportedLanguages)[number];
-export const defaultLanguage: Language = "de";
+export const defaultLanguage: Language = "en";
 export type SitePage = "home" | "confirmation" | "thankYou";
 
 export const languageMetadata: Record<
   Language,
   { label: string; htmlLang: string; hrefLang: string; path: string }
 > = {
-  de: { label: "DE", htmlLang: "de-CH", hrefLang: "de-CH", path: "de" },
   en: { label: "EN", htmlLang: "en", hrefLang: "en", path: "en" },
+  de: { label: "DE", htmlLang: "de-CH", hrefLang: "de-CH", path: "de" },
   fr: { label: "FR", htmlLang: "fr-CH", hrefLang: "fr-CH", path: "fr" },
   it: { label: "IT", htmlLang: "it-CH", hrefLang: "it-CH", path: "it" },
   rm: { label: "RM", htmlLang: "rm-CH", hrefLang: "rm-CH", path: "rm" },

@@ -31,7 +31,7 @@ const Index = () => {
   const websiteId = `${siteBaseUrl}/#website`;
   const webpageId = `${canonicalUrl}#webpage`;
   const pagePublishedTime = "2026-04-28T00:00:00+02:00";
-  const pageModifiedTime = "2026-04-30T00:00:00+02:00";
+  const pageModifiedTime = "2026-05-01T00:00:00+02:00";
   const alternateLinks = [
     ...supportedLanguages.map((lang) => ({
       hrefLang: languageMetadata[lang].hrefLang,

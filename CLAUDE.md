@@ -42,10 +42,11 @@ Supported pages:
 - `confirmation` -> `/{locale}/confirmation/`
 - `thankYou` -> `/{locale}/thank-you/`
 
-The default locale is German (`de`).
+The default locale is English (`en`).
 
 ## Notes
 
 - Keep public asset URLs stable when referenced by Brevo templates, especially `/email-logo-mark.png` and `/email-confirmation-hero.png`.
+- English `.en.html` files in `docs/email/` are the default Brevo/email signature templates. Keep German templates available for localized campaigns.
 - Keep German copy in Swiss High German. Use `ss`, not the German sharp s.
 - Keep confirmation and thank-you pages `noindex`.

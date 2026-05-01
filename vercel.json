@@ -3,7 +3,7 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "/de/",
+      "destination": "/en/",
       "permanent": true
     },
     {
@@ -18,17 +18,17 @@
     },
     {
       "source": "/subscribed",
-      "destination": "/de/thank-you/",
+      "destination": "/en/thank-you/",
       "permanent": true
     },
     {
       "source": "/thank-you",
-      "destination": "/de/thank-you/",
+      "destination": "/en/thank-you/",
       "permanent": true
     },
     {
       "source": "/confirmation",
-      "destination": "/de/confirmation/",
+      "destination": "/en/confirmation/",
       "permanent": true
     }
   ],
