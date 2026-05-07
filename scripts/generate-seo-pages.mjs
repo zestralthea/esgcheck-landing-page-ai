@@ -204,7 +204,7 @@ const localizeHtml = ({ template, lang, pageType }) => {
   const language = languages[lang];
   const seoBlock = renderSeoBlock({ lang, pageType });
   const seoBlockPattern =
-    /    <title>[\s\S]*?    <link rel="stylesheet" href="https:\/\/sibforms\.com\/forms\/end-form\/build\/sib-styles\.css" \/>/;
+    /    <title>[\s\S]*?    <link rel="preconnect" href="https:\/\/challenges\.cloudflare\.com" \/>/;
 
   if (!seoBlockPattern.test(template)) {
     throw new Error("Unable to find the SEO head block in dist/index.html.");
@@ -214,7 +214,7 @@ const localizeHtml = ({ template, lang, pageType }) => {
     .replace(/<html lang="[^"]+">/, `<html lang="${language.htmlLang}">`)
     .replace(
       seoBlockPattern,
-      `${seoBlock}\n    <link rel="preconnect" href="https://challenges.cloudflare.com" />\n\n    <link rel="stylesheet" href="https://sibforms.com/forms/end-form/build/sib-styles.css" />`,
+      `${seoBlock}\n    <link rel="preconnect" href="https://challenges.cloudflare.com" />`,
     )
     .replace(/window\.LOCALE = "[^"]+";/, `window.LOCALE = "${lang}";`);
 };

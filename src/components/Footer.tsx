@@ -1,10 +1,12 @@
 import { ShieldCheck } from "lucide-react";
+import { useConsent } from "@/contexts/ConsentContext";
 import { getLocalePath, useLanguage } from "@/contexts/LanguageContext";
 
 const contactHref = "mailto:info@esgcheck.ch?subject=ESGCheck%20contact";
 
 export default function Footer() {
   const { t, language } = useLanguage();
+  const { openPreferences } = useConsent();
   const homePath = getLocalePath(language);
   const sectionHref = (hash: string) => `${homePath}${hash}`;
 
@@ -57,6 +59,15 @@ export default function Footer() {
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
               <li><a href={sectionHref("#faq")} className="hover:text-primary-foreground">{t("header.faq")}</a></li>
+              <li>
+                <button
+                  className="text-left hover:text-primary-foreground"
+                  type="button"
+                  onClick={openPreferences}
+                >
+                  {t("footer.privacyPreferences")}
+                </button>
+              </li>
               <li><a href={contactHref} className="hover:text-primary-foreground">{t("footer.contact")}</a></li>
             </ul>
           </div>

@@ -145,6 +145,7 @@ All colors MUST be HSL.
   #waitlist .brevo-form-shell {
     background: transparent !important;
     color: hsl(var(--foreground));
+    display: block;
     font-family: inherit;
     min-width: 0;
     padding: 0;
@@ -192,6 +193,7 @@ All colors MUST be HSL.
     align-items: center;
     border: 1px solid;
     border-radius: 0.5rem;
+    display: none;
     font-family: inherit;
     font-size: 0.95rem;
     justify-content: center;
@@ -222,6 +224,10 @@ All colors MUST be HSL.
     align-items: center;
     display: flex;
     justify-content: center;
+  }
+
+  #waitlist .sib-form-message-panel__inner-text {
+    display: block;
   }
 
   #waitlist .brevo-helper {
@@ -298,6 +304,26 @@ All colors MUST be HSL.
     margin-top: 0.45rem;
   }
 
+  #waitlist .entry__error:empty {
+    display: none !important;
+  }
+
+  #waitlist .entry__choice {
+    margin: 0;
+  }
+
+  #waitlist .input_replaced {
+    border: 0;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    white-space: nowrap;
+    width: 1px;
+  }
+
   #waitlist .brevo-checkbox-row {
     align-items: flex-start;
     color: hsl(var(--foreground) / 0.84);
@@ -310,7 +336,34 @@ All colors MUST be HSL.
   }
 
   #waitlist .brevo-checkbox-row .checkbox {
+    align-items: center;
+    background: hsl(var(--input) / 0.9);
+    border: 1px solid hsl(var(--border) / 0.95);
+    border-radius: 0.35rem;
+    display: inline-flex;
+    height: 1.2rem;
+    justify-content: center;
     margin-top: 0.2rem;
+    transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    width: 1.2rem;
+  }
+
+  #waitlist .input_replaced:checked + .checkbox {
+    background: hsl(var(--primary));
+    border-color: hsl(var(--primary));
+  }
+
+  #waitlist .input_replaced:checked + .checkbox::after {
+    border-bottom: 2px solid hsl(var(--primary-foreground));
+    border-right: 2px solid hsl(var(--primary-foreground));
+    content: "";
+    height: 0.62rem;
+    transform: rotate(45deg) translate(-1px, -1px);
+    width: 0.34rem;
+  }
+
+  #waitlist .input_replaced:focus-visible + .checkbox {
+    box-shadow: 0 0 0 3px hsl(var(--ring) / 0.18);
   }
 
   #waitlist .sib-form__declaration {
@@ -398,6 +451,10 @@ All colors MUST be HSL.
 
   #waitlist .sib-form-block__button .icon {
     display: none;
+  }
+
+  #waitlist .sib-hide-loader-icon {
+    display: none !important;
   }
 
   #waitlist .input--hidden {

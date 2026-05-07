@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { HelmetProvider } from "react-helmet-async";
 import { Analytics } from "@vercel/analytics/react";
 import { domAnimation, LazyMotion, MotionConfig } from "framer-motion";
+import CookieConsentBanner from "@/components/CookieConsentBanner";
+import { ConsentProvider, useConsent } from "@/contexts/ConsentContext";
 import { getSitePageFromPathname, LanguageProvider, type SitePage } from "@/contexts/LanguageContext";
 import Confirmation from "./pages/Confirmation";
 import Index from "./pages/Index";
@@ -32,13 +34,22 @@ function RouteSwitch() {
   return page === "thankYou" ? <ThankYou /> : <Index />;
 }
 
+function OptionalAnalytics() {
+  const { preferences } = useConsent();
+
+  return preferences?.analytics ? <Analytics /> : null;
+}
+
 const App = () => (
   <HelmetProvider>
     <MotionConfig reducedMotion="user">
       <LazyMotion features={domAnimation}>
         <LanguageProvider>
-          <RouteSwitch />
-          <Analytics />
+          <ConsentProvider>
+            <RouteSwitch />
+            <OptionalAnalytics />
+            <CookieConsentBanner />
+          </ConsentProvider>
         </LanguageProvider>
       </LazyMotion>
     </MotionConfig>

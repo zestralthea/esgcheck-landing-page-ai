@@ -404,6 +404,38 @@ export const enTranslations = {
     selectedOption: "{quantity} selected",
     selectedOptions: "{quantity} selected",
   },
+  consent: {
+    title: "Privacy preferences",
+    description:
+      "We use essential services for site security and the waitlist form. Optional analytics, marketing automation, and chat support only load if you allow them.",
+    alwaysActive: "Always active",
+    accept: "Accept all",
+    reject: "Reject non-essential",
+    manage: "Manage preferences",
+    save: "Save preferences",
+    close: "Close privacy preferences",
+    categories: {
+      essential: {
+        title: "Essential",
+        description:
+          "Required for security, language handling, consent storage, and waitlist form functionality.",
+      },
+      analytics: {
+        title: "Analytics",
+        description:
+          "Helps us understand site usage with Google Analytics and Vercel Analytics.",
+      },
+      marketing: {
+        title: "Marketing automation",
+        description:
+          "Allows Brevo tracking for future email automation and campaign measurement.",
+      },
+      chat: {
+        title: "Chat support",
+        description: "Loads the Brevo Conversations widget so you can contact us by chat.",
+      },
+    },
+  },
   footer: {
     description:
       "Practical ESG readiness for growing B2B SMEs preparing for ESG information requests, built in Switzerland.",
@@ -411,6 +443,7 @@ export const enTranslations = {
     product: "Product",
     company: "Company",
     privacy: "Privacy",
+    privacyPreferences: "Privacy preferences",
     contact: "Contact",
     earlyAccess: "Early Access",
     swissBuilt: "Swiss-built",
@@ -832,6 +865,39 @@ export const deTranslations = {
     selectedOption: "{quantity} ausgewählt",
     selectedOptions: "{quantity} ausgewählt",
   },
+  consent: {
+    title: "Datenschutz-Einstellungen",
+    description:
+      "Wir nutzen essenzielle Dienste fuer Sicherheit und das Wartelistenformular. Optionale Analyse, Marketing-Automation und Chat-Support laden nur, wenn Sie zustimmen.",
+    alwaysActive: "Immer aktiv",
+    accept: "Alle akzeptieren",
+    reject: "Nicht essenzielle ablehnen",
+    manage: "Einstellungen verwalten",
+    save: "Einstellungen speichern",
+    close: "Datenschutz-Einstellungen schliessen",
+    categories: {
+      essential: {
+        title: "Essenzielle Dienste",
+        description:
+          "Erforderlich fuer Sicherheit, Sprachsteuerung, Speicherung der Einwilligung und Funktion des Wartelistenformulars.",
+      },
+      analytics: {
+        title: "Analyse",
+        description:
+          "Hilft uns, die Nutzung der Website mit Google Analytics und Vercel Analytics zu verstehen.",
+      },
+      marketing: {
+        title: "Marketing-Automation",
+        description:
+          "Erlaubt Brevo-Tracking fuer spaetere E-Mail-Automation und Kampagnenmessung.",
+      },
+      chat: {
+        title: "Chat-Support",
+        description:
+          "Laedt das Brevo Conversations Widget, damit Sie uns per Chat kontaktieren koennen.",
+      },
+    },
+  },
   footer: {
     description:
       "Praxisnahe ESG-Readiness für wachsende B2B-KMU, die sich auf ESG-Informationsanfragen vorbereiten, entwickelt in der Schweiz.",
@@ -839,6 +905,7 @@ export const deTranslations = {
     product: "Produkt",
     company: "Unternehmen",
     privacy: "Datenschutz",
+    privacyPreferences: "Datenschutz-Einstellungen",
     contact: "Kontakt",
     earlyAccess: "Early Access",
     swissBuilt: "In der Schweiz entwickelt",
@@ -1255,6 +1322,39 @@ export const frTranslations = {
     selectedOption: "{quantity} sélectionné",
     selectedOptions: "{quantity} sélectionnés",
   },
+  consent: {
+    title: "Preferences de confidentialite",
+    description:
+      "Nous utilisons des services essentiels pour la securite du site et le formulaire de liste d'attente. Les options d'analyse, d'automatisation marketing et de chat ne se chargent que si vous les autorisez.",
+    alwaysActive: "Toujours actif",
+    accept: "Tout accepter",
+    reject: "Refuser le non essentiel",
+    manage: "Gerer les preferences",
+    save: "Enregistrer les preferences",
+    close: "Fermer les preferences de confidentialite",
+    categories: {
+      essential: {
+        title: "Essentiel",
+        description:
+          "Necessaire pour la securite, la langue, le stockage du consentement et le fonctionnement du formulaire.",
+      },
+      analytics: {
+        title: "Analyse",
+        description:
+          "Nous aide a comprendre l'utilisation du site avec Google Analytics et Vercel Analytics.",
+      },
+      marketing: {
+        title: "Automatisation marketing",
+        description:
+          "Autorise le suivi Brevo pour une future automatisation e-mail et la mesure des campagnes.",
+      },
+      chat: {
+        title: "Support par chat",
+        description:
+          "Charge le widget Brevo Conversations afin que vous puissiez nous contacter par chat.",
+      },
+    },
+  },
   footer: {
     description:
       "Préparation ESG pratique pour les PME B2B en croissance qui se préparent aux demandes d'informations ESG, conçue en Suisse.",
@@ -1262,6 +1362,7 @@ export const frTranslations = {
     product: "Produit",
     company: "Entreprise",
     privacy: "Confidentialité",
+    privacyPreferences: "Preferences de confidentialite",
     contact: "Contact",
     earlyAccess: "Accès anticipé",
     swissBuilt: "Conçu en Suisse",
@@ -1677,6 +1778,39 @@ export const itTranslations: TranslationDictionary = {
     selectedOption: "{quantity} selezionato",
     selectedOptions: "{quantity} selezionati",
   },
+  consent: {
+    title: "Preferenze privacy",
+    description:
+      "Usiamo servizi essenziali per la sicurezza del sito e il modulo della lista d'attesa. Analisi, automazione marketing e supporto chat opzionali vengono caricati solo se li autorizzi.",
+    alwaysActive: "Sempre attivo",
+    accept: "Accetta tutto",
+    reject: "Rifiuta non essenziali",
+    manage: "Gestisci preferenze",
+    save: "Salva preferenze",
+    close: "Chiudi preferenze privacy",
+    categories: {
+      essential: {
+        title: "Essenziale",
+        description:
+          "Necessario per sicurezza, lingua, memorizzazione del consenso e funzionamento del modulo.",
+      },
+      analytics: {
+        title: "Analisi",
+        description:
+          "Ci aiuta a capire l'utilizzo del sito con Google Analytics e Vercel Analytics.",
+      },
+      marketing: {
+        title: "Automazione marketing",
+        description:
+          "Consente il tracking Brevo per futura automazione email e misurazione delle campagne.",
+      },
+      chat: {
+        title: "Supporto chat",
+        description:
+          "Carica il widget Brevo Conversations per permetterti di contattarci via chat.",
+      },
+    },
+  },
   footer: {
     description:
       "Readiness ESG pratica per PMI B2B in crescita che si preparano a richieste di informazioni ESG, sviluppata in Svizzera.",
@@ -1684,6 +1818,7 @@ export const itTranslations: TranslationDictionary = {
     product: "Prodotto",
     company: "Azienda",
     privacy: "Privacy",
+    privacyPreferences: "Preferenze privacy",
     contact: "Contatto",
     earlyAccess: "Accesso anticipato",
     swissBuilt: "Sviluppato in Svizzera",
@@ -2099,6 +2234,39 @@ export const rmTranslations: TranslationDictionary = {
     selectedOption: "{quantity} tschernì",
     selectedOptions: "{quantity} tschernids",
   },
+  consent: {
+    title: "Preferenzas da protecziun da datas",
+    description:
+      "Nus duvrain servetschs essenzials per la segirezza da la pagina e per il formular da spetga. Analisa, automatisaziun da marketing e chat vegnan chargiads mo sche Vus lubis quai.",
+    alwaysActive: "Adina activ",
+    accept: "Acceptar tut",
+    reject: "Refusar betg essenzial",
+    manage: "Administrar preferenzas",
+    save: "Memorisar preferenzas",
+    close: "Serrar preferenzas da protecziun da datas",
+    categories: {
+      essential: {
+        title: "Essenzial",
+        description:
+          "Necessari per segirezza, lingua, memorisaziun dal consentiment e funcziun dal formular.",
+      },
+      analytics: {
+        title: "Analisa",
+        description:
+          "Ans gida a chapir l'utilisaziun da la pagina cun Google Analytics e Vercel Analytics.",
+      },
+      marketing: {
+        title: "Automatisaziun da marketing",
+        description:
+          "Lubeschia tracking da Brevo per automatisaziun dad e-mail futura e mesiraziun da campanhas.",
+      },
+      chat: {
+        title: "Sustegn per chat",
+        description:
+          "Chargia il widget Brevo Conversations per che Vus possias contactar nus per chat.",
+      },
+    },
+  },
   footer: {
     description:
       "Readiness ESG pragmatica per PMI B2B che creschan e sa preparan per dumondas d'infurmaziuns ESG, sviluppada en Svizra.",
@@ -2106,6 +2274,7 @@ export const rmTranslations: TranslationDictionary = {
     product: "Product",
     company: "Interpresa",
     privacy: "Protecziun da datas",
+    privacyPreferences: "Preferenzas da protecziun da datas",
     contact: "Contact",
     earlyAccess: "Access anticipà",
     swissBuilt: "Sviluppà en Svizra",
