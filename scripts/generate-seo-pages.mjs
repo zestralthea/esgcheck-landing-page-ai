@@ -17,12 +17,12 @@ const languages = {
     htmlLang: "en",
     hrefLang: "en",
     seo: {
-      title: "ESGCheck | Practical ESG First Assessment for Growing SMEs",
+      title: "ESGCheck | Practical ESG Readiness Overview for Growing B2B SMEs",
       description:
-        "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps for rising ESG information requests.",
+        "Turn company documents into a clear ESG readiness overview with evidence mapping, visible gaps, practical next steps, and an indicative score for rising ESG information requests.",
       keywords:
-        "ESG assessment, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability assessment, document-based ESG",
-      ogImageAlt: "ESGCheck practical ESG first assessment platform for growing SMEs",
+        "ESG readiness, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability readiness, document-based ESG",
+      ogImageAlt: "ESGCheck practical ESG readiness overview platform for growing B2B SMEs",
     },
     confirmation: {
       title: "Please Confirm Your Email | ESGCheck",
@@ -39,12 +39,12 @@ const languages = {
     htmlLang: "de-CH",
     hrefLang: "de-CH",
     seo: {
-      title: "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+      title: "ESGCheck | Praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
       description:
-        "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten für steigende ESG-Informationsanfragen.",
+        "Machen Sie aus Unternehmensunterlagen einen klaren ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für steigende ESG-Informationsanfragen.",
       keywords:
-        "ESG-Einschätzung, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung",
-      ogImageAlt: "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+        "ESG-Readiness, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeits-Readiness, dokumentenbasierte ESG",
+      ogImageAlt: "ESGCheck praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
     },
     confirmation: {
       title: "E-Mail-Adresse bestätigen | ESGCheck",
@@ -61,12 +61,12 @@ const languages = {
     htmlLang: "fr-CH",
     hrefLang: "fr-CH",
     seo: {
-      title: "ESGCheck | Première évaluation ESG pragmatique pour les PME en croissance",
+      title: "ESGCheck | Aperçu pratique de préparation ESG pour les PME B2B en croissance",
       description:
-        "Transformez vos documents d'entreprise en une première évaluation ESG claire avec des scores structurés, des écarts visibles et des prochaines étapes pour les demandes croissantes d'informations ESG.",
+        "Transformez vos documents d'entreprise en un aperçu clair de préparation ESG avec cartographie des justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes croissantes d'informations ESG.",
       keywords:
-        "évaluation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, évaluation de durabilité, ESG fondé sur les documents",
-      ogImageAlt: "ESGCheck première évaluation ESG pragmatique pour les PME en croissance",
+        "préparation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, préparation durabilité, ESG fondé sur les documents",
+      ogImageAlt: "ESGCheck aperçu pratique de préparation ESG pour les PME B2B en croissance",
     },
     confirmation: {
       title: "Confirmez votre adresse e-mail | ESGCheck",
@@ -83,12 +83,12 @@ const languages = {
     htmlLang: "it-CH",
     hrefLang: "it-CH",
     seo: {
-      title: "ESGCheck | Prima valutazione ESG pratica per PMI in crescita",
+      title: "ESGCheck | Panoramica pratica di readiness ESG per PMI B2B in crescita",
       description:
-        "Trasforma i documenti aziendali in una prima valutazione ESG chiara con punteggi strutturati, lacune visibili e prossimi passi per richieste crescenti di informazioni ESG.",
+        "Trasforma i documenti aziendali in una panoramica chiara di readiness ESG con mappatura delle evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste crescenti di informazioni ESG.",
       keywords:
-        "valutazione ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, valutazione sostenibilita, ESG basato sui documenti",
-      ogImageAlt: "ESGCheck prima valutazione ESG pratica per PMI in crescita",
+        "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, readiness sostenibilita, ESG basato sui documenti",
+      ogImageAlt: "ESGCheck panoramica pratica di readiness ESG per PMI B2B in crescita",
     },
     confirmation: {
       title: "Conferma il tuo indirizzo email | ESGCheck",
@@ -105,12 +105,12 @@ const languages = {
     htmlLang: "rm-CH",
     hrefLang: "rm-CH",
     seo: {
-      title: "ESGCheck | Emprima valitaziun ESG pragmatica per PMI",
+      title: "ESGCheck | Survista pragmatica da readiness ESG per PMI B2B",
       description:
-        "Transfurmai documents d'interpresa en ina emprima valitaziun ESG clera cun punctaziuns structuradas, largias visiblas e proxims pass per dumondas creschentas d'infurmaziuns ESG.",
+        "Transfurmai documents d'interpresa en ina survista clera da readiness ESG cun mapping da cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas creschentas d'infurmaziuns ESG.",
       keywords:
-        "valitaziun ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, valitaziun da durabilitad, ESG sin basa da documents",
-      ogImageAlt: "ESGCheck emprima valitaziun ESG pragmatica per PMI che creschan",
+        "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, readiness da durabilitad, ESG sin basa da documents",
+      ogImageAlt: "ESGCheck survista pragmatica da readiness ESG per PMI B2B che creschan",
     },
     confirmation: {
       title: "Confermar l'adressa dad e-mail | ESGCheck",

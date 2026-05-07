@@ -13,9 +13,9 @@ export const enTranslations = {
     joinWaitlist: "Get Early Access",
   },
   hero: {
-    title: "A practical ESG first assessment for growing B2B SMEs.",
+    title: "A practical ESG readiness overview for growing B2B SMEs.",
     description:
-      "Turn the documents you already have into a clear first ESG assessment, with scores, gaps and next steps for customer, supply-chain, lender, investor, and voluntary reporting requests.",
+      "Turn the documents you already have into a clear ESG readiness overview, with evidence mapping, visible gaps, practical next steps, and an indicative score for customer, supply-chain, lender, investor, and voluntary reporting requests.",
     primaryCta: "Get Early Access",
     secondaryCta: "See How It Works",
     proof: {
@@ -25,10 +25,10 @@ export const enTranslations = {
       swissPrivacy: "Swiss privacy mindset",
     },
     dashboard: {
-      title: "ESG Overview",
+      title: "ESG Readiness Overview",
       filter: "Example output",
       previewLabel: "Illustrative output preview",
-      scoreTitle: "ESG Score",
+      scoreTitle: "Indicative ESG Score",
       scoreValue: "68",
       scoreTotal: "/100",
       scoreLabel: "Good starting point",
@@ -37,7 +37,7 @@ export const enTranslations = {
         social: "Social",
         governance: "Governance",
       },
-      strengthsTitle: "Strengths",
+      strengthsTitle: "Available Evidence",
       strengths: {
         policy: "Environmental policy in place",
         opportunity: "Diversity and equal opportunity",
@@ -90,9 +90,9 @@ export const enTranslations = {
         description: "Organized around a practical GRI-first foundation today, with VSME-oriented readiness next.",
       },
       receive: {
-        title: "Receive a first structured assessment",
+        title: "Receive a first readiness overview",
         description:
-          "See a clear score, the reasoning behind it, and where evidence is still missing.",
+          "See available evidence, key gaps, practical next steps, and an indicative score.",
       },
       act: {
         title: "Decide what to do next",
@@ -107,7 +107,7 @@ export const enTranslations = {
       practical: {
         title: "Practical from the start",
         description:
-          "Built to give teams a usable first assessment without a consultant-heavy process.",
+          "Built to give teams a usable first readiness overview without a consultant-heavy process.",
       },
       smes: {
         title: "Built for growing SMEs",
@@ -129,12 +129,12 @@ export const enTranslations = {
   credibility: {
     title: "Built to be credible",
     intro:
-      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first assessment, not a CSRD compliance product, formal assurance, certification, or full reporting support.",
+      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first readiness overview, not a CSRD compliance product, formal assurance, certification, or full reporting support.",
     pillars: {
       outputs: {
         title: "Useful scope today",
         description:
-          "A focused first assessment to help teams understand their position and decide on sensible next steps.",
+          "A focused first readiness overview to help teams understand available evidence, gaps, and sensible next steps.",
       },
       methodology: {
         title: "Structured methodology",
@@ -237,7 +237,7 @@ export const enTranslations = {
       certification: {
         question: "Is ESGCheck a certification?",
         answer:
-          "Not today. It is a structured first assessment designed to help companies orient themselves and improve over time.",
+          "Not today. It is a structured first readiness overview designed to help companies orient themselves and improve over time.",
       },
       vsme: {
         question: "Is ESGCheck a CSRD or VSME compliance tool?",
@@ -298,20 +298,20 @@ export const enTranslations = {
     },
   },
   seo: {
-    title: "ESGCheck | Practical ESG First Assessment for Growing SMEs",
+    title: "ESGCheck | Practical ESG Readiness Overview for Growing B2B SMEs",
     description:
-      "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps for rising ESG information requests.",
+      "Turn company documents into a clear ESG readiness overview with evidence mapping, visible gaps, practical next steps, and an indicative score for rising ESG information requests.",
     keywords:
-      "ESG assessment, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability assessment, document-based ESG",
+      "ESG readiness, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability readiness, document-based ESG",
     ogImageAlt:
-      "ESGCheck practical ESG first assessment platform for growing SMEs",
+      "ESGCheck practical ESG readiness overview platform for growing B2B SMEs",
     structuredData: {
       description:
-        "A practical ESG assessment platform for growing SMEs, built from the documents companies already have.",
+        "A practical ESG readiness platform for growing B2B SMEs, built from the documents companies already have.",
       featureList: {
-        documentFirst: "Document-first ESG assessment",
-        scoreRationale: "ESG score with rationale",
-        strengthsGaps: "Strengths and gap visibility",
+        documentFirst: "Document-first ESG readiness overview",
+        scoreRationale: "Indicative ESG score with rationale",
+        strengthsGaps: "Evidence mapping and gap visibility",
         nextSteps: "Practical next steps",
         vsmeReadiness: "VSME-oriented next framework direction",
         swissPrivacy: "Swiss-built privacy-conscious workflow",
@@ -358,7 +358,7 @@ export const enTranslations = {
     },
     finalTitle: "Want to learn more about ESGCheck?",
     finalDescription:
-      "You can return to the landing page to review how ESGCheck turns existing company documents into clear scores, visible gaps, and practical next steps.",
+      "You can return to the landing page to review how ESGCheck turns existing company documents into evidence mapping, visible gaps, practical next steps, and an indicative score.",
     finalCta: "Learn more about ESGCheck",
     seo: {
       title: "Please Confirm Your Email | ESGCheck",
@@ -406,7 +406,7 @@ export const enTranslations = {
   },
   footer: {
     description:
-      "Practical ESG assessment for growing SMEs preparing for ESG information requests, built in Switzerland.",
+      "Practical ESG readiness for growing B2B SMEs preparing for ESG information requests, built in Switzerland.",
     tagline: "Built in Switzerland · Privacy-conscious by design",
     product: "Product",
     company: "Company",
@@ -439,9 +439,9 @@ export const deTranslations = {
     joinWaitlist: "Early Access anfragen",
   },
   hero: {
-    title: "Die praxisnahe ESG-Ersteinschätzung für wachsende B2B-KMU.",
+    title: "Der praxisnahe ESG-Readiness-Überblick für wachsende B2B-KMU.",
     description:
-      "Aus Ihren bestehenden Unterlagen wird eine klare erste ESG-Einschätzung, mit Scores, Lücken und nächsten Schritten für Kunden-, Lieferketten-, Finanzierungs-, Investoren- und freiwillige Reporting-Anfragen.",
+      "Aus Ihren bestehenden Unterlagen wird ein klarer ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für Kunden-, Lieferketten-, Finanzierungs-, Investoren- und freiwillige Reporting-Anfragen.",
     primaryCta: "Early Access anfragen",
     secondaryCta: "So funktioniert es",
     proof: {
@@ -451,10 +451,10 @@ export const deTranslations = {
       swissPrivacy: "Schweizer Datenschutzverständnis",
     },
     dashboard: {
-      title: "ESG-Überblick",
+      title: "ESG-Readiness-Überblick",
       filter: "Beispielausgabe",
       previewLabel: "Beispielhafte Ergebnisansicht",
-      scoreTitle: "ESG Score",
+      scoreTitle: "Indikativer ESG Score",
       scoreValue: "68",
       scoreTotal: "/100",
       scoreLabel: "Guter Ausgangspunkt",
@@ -463,7 +463,7 @@ export const deTranslations = {
         social: "Soziales",
         governance: "Governance",
       },
-      strengthsTitle: "Stärken",
+      strengthsTitle: "Vorhandene Nachweise",
       strengths: {
         policy: "Umweltpolitik vorhanden",
         opportunity: "Vielfalt und Chancengleichheit",
@@ -516,9 +516,9 @@ export const deTranslations = {
         description: "Organisiert entlang einer praxisnahen GRI-first Grundlage heute, mit VSME-orientierter Readiness als nächstem Schritt.",
       },
       receive: {
-        title: "Eine erste strukturierte Einschätzung erhalten",
+        title: "Einen ersten Readiness-Überblick erhalten",
         description:
-          "Sie sehen einen klaren Score, die Begründung dazu und wo Nachweise noch fehlen.",
+          "Sie sehen vorhandene Nachweise, wesentliche Lücken, konkrete nächste Schritte und einen indikativen Score.",
       },
       act: {
         title: "Nächste Schritte festlegen",
@@ -533,7 +533,7 @@ export const deTranslations = {
       practical: {
         title: "Von Anfang an praxisnah",
         description:
-          "Für Teams entwickelt, die eine brauchbare Ersteinschätzung ohne beratungsintensiven Prozess brauchen.",
+          "Für Teams entwickelt, die einen brauchbaren ersten Readiness-Überblick ohne beratungsintensiven Prozess brauchen.",
       },
       smes: {
         title: "Für wachsende KMU gebaut",
@@ -555,12 +555,12 @@ export const deTranslations = {
   credibility: {
     title: "Auf Glaubwürdigkeit ausgelegt",
     intro:
-      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist eine strukturierte Ersteinschätzung, kein CSRD-Compliance-Produkt, keine formale Assurance, keine Zertifizierung und keine vollständige Reporting-Unterstützung.",
+      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist ein strukturierter erster Readiness-Überblick, kein CSRD-Compliance-Produkt, keine formale Assurance, keine Zertifizierung und keine vollständige Reporting-Unterstützung.",
     pillars: {
       outputs: {
         title: "Sinnvoller Umfang für heute",
         description:
-          "Eine fokussierte Ersteinschätzung, die Teams bei der Einordnung und bei vernünftigen nächsten Schritten unterstützt.",
+          "Ein fokussierter erster Readiness-Überblick, der Teams verfügbare Nachweise, Lücken und sinnvolle nächste Schritte zeigt.",
       },
       methodology: {
         title: "Strukturierte Methodik",
@@ -663,7 +663,7 @@ export const deTranslations = {
       certification: {
         question: "Ist ESGCheck eine Zertifizierung?",
         answer:
-          "Heute nicht. ESGCheck ist eine strukturierte Ersteinschätzung, die Unternehmen bei der Einordnung und Weiterentwicklung unterstützen soll.",
+          "Heute nicht. ESGCheck ist ein strukturierter erster Readiness-Überblick, der Unternehmen bei der Einordnung und Weiterentwicklung unterstützen soll.",
       },
       vsme: {
         question: "Ist ESGCheck ein CSRD- oder VSME-Compliance-Tool?",
@@ -726,20 +726,20 @@ export const deTranslations = {
     },
   },
   seo: {
-    title: "ESGCheck | Praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+    title: "ESGCheck | Praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
     description:
-      "Machen Sie aus Unternehmensunterlagen eine klare erste ESG-Einschätzung mit strukturierten Scores, sichtbaren Lücken und konkreten nächsten Schritten für steigende ESG-Informationsanfragen.",
+      "Machen Sie aus Unternehmensunterlagen einen klaren ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für steigende ESG-Informationsanfragen.",
     keywords:
-      "ESG-Einschätzung, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeitsbewertung, dokumentenbasierte ESG-Einschätzung",
+      "ESG-Readiness, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeits-Readiness, dokumentenbasierte ESG",
     ogImageAlt:
-      "ESGCheck praxisnahe ESG-Ersteinschätzung für wachsende KMU",
+      "ESGCheck praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
     structuredData: {
       description:
-        "Eine praxisnahe ESG-Assessment-Plattform für wachsende KMU, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
+        "Eine praxisnahe ESG-Readiness-Plattform für wachsende B2B-KMU, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
       featureList: {
-        documentFirst: "Dokumentenbasierte ESG-Einschätzung",
-        scoreRationale: "ESG Score mit Begründung",
-        strengthsGaps: "Stärken und Lücken im Überblick",
+        documentFirst: "Dokumentenbasierter ESG-Readiness-Überblick",
+        scoreRationale: "Indikativer ESG Score mit Begründung",
+        strengthsGaps: "Nachweis-Mapping und Lückenübersicht",
         nextSteps: "Konkrete nächste Schritte",
         vsmeReadiness: "VSME-orientierte nächste Framework-Richtung",
         swissPrivacy: "Datenschutzbewusster Workflow aus der Schweiz",
@@ -786,7 +786,7 @@ export const deTranslations = {
     },
     finalTitle: "Möchten Sie mehr über ESGCheck erfahren?",
     finalDescription:
-      "Sie können zur Landing Page zurückkehren und nochmals ansehen, wie ESGCheck bestehende Unternehmensunterlagen in klare Scores, sichtbare Lücken und konkrete nächste Schritte übersetzt.",
+      "Sie können zur Landing Page zurückkehren und nochmals ansehen, wie ESGCheck bestehende Unternehmensunterlagen in Nachweis-Mapping, sichtbare Lücken, konkrete nächste Schritte und einen indikativen Score übersetzt.",
     finalCta: "Mehr über ESGCheck erfahren",
     seo: {
       title: "E-Mail-Adresse bestätigen | ESGCheck",
@@ -834,7 +834,7 @@ export const deTranslations = {
   },
   footer: {
     description:
-      "Praxisnahe ESG-Einschätzung für wachsende KMU, die sich auf ESG-Informationsanfragen vorbereiten, entwickelt in der Schweiz.",
+      "Praxisnahe ESG-Readiness für wachsende B2B-KMU, die sich auf ESG-Informationsanfragen vorbereiten, entwickelt in der Schweiz.",
     tagline: "In der Schweiz entwickelt · Datenschutzbewusst gestaltet",
     product: "Produkt",
     company: "Unternehmen",
@@ -861,9 +861,9 @@ export const frTranslations = {
     joinWaitlist: "Demander un accès anticipé",
   },
   hero: {
-    title: "Une première évaluation ESG pragmatique pour les PME B2B en croissance.",
+    title: "Un aperçu pratique de préparation ESG pour les PME B2B en croissance.",
     description:
-      "Transformez vos documents existants en une première évaluation ESG claire, avec scores, écarts et prochaines étapes pour les demandes clients, chaîne d'approvisionnement, financement, investisseurs et reporting volontaire.",
+      "Transformez vos documents existants en un aperçu clair de préparation ESG, avec cartographie des justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes clients, chaîne d'approvisionnement, financement, investisseurs et reporting volontaire.",
     primaryCta: "Demander un accès anticipé",
     secondaryCta: "Voir le fonctionnement",
     proof: {
@@ -873,10 +873,10 @@ export const frTranslations = {
       swissPrivacy: "Réflexe suisse en matière de confidentialité",
     },
     dashboard: {
-      title: "Vue ESG",
+      title: "Aperçu de préparation ESG",
       filter: "Exemple de rendu",
       previewLabel: "Aperçu illustratif du résultat",
-      scoreTitle: "Score ESG",
+      scoreTitle: "Score ESG indicatif",
       scoreValue: "68",
       scoreTotal: "/100",
       scoreLabel: "Bon point de départ",
@@ -885,7 +885,7 @@ export const frTranslations = {
         social: "Social",
         governance: "Gouvernance",
       },
-      strengthsTitle: "Points forts",
+      strengthsTitle: "Justificatifs disponibles",
       strengths: {
         policy: "Politique environnementale en place",
         opportunity: "Diversité et égalité des chances",
@@ -938,9 +938,9 @@ export const frTranslations = {
         description: "Organisée autour d'une base pratique GRI-first aujourd'hui, avec une préparation orientée VSME ensuite.",
       },
       receive: {
-        title: "Recevoir une première évaluation structurée",
+        title: "Recevoir un premier aperçu de préparation",
         description:
-          "Vous obtenez un score clair, son explication, et une vision de ce qui manque encore comme justificatifs.",
+          "Vous voyez les justificatifs disponibles, les écarts clés, les prochaines étapes pratiques et un score indicatif.",
       },
       act: {
         title: "Décider des prochaines étapes",
@@ -955,7 +955,7 @@ export const frTranslations = {
       practical: {
         title: "Pratique dès le départ",
         description:
-          "Pensé pour donner aux équipes une première évaluation exploitable, sans processus de conseil lourd.",
+          "Pensé pour donner aux équipes un premier aperçu de préparation exploitable, sans processus de conseil lourd.",
       },
       smes: {
         title: "Pensé pour les PME en croissance",
@@ -977,12 +977,12 @@ export const frTranslations = {
   credibility: {
     title: "Conçu pour rester crédible",
     intro:
-      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'une première évaluation structurée, pas d'un produit de conformité CSRD, d'une assurance formelle, d'une certification ou d'un support complet de reporting.",
+      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'un premier aperçu structuré de préparation, pas d'un produit de conformité CSRD, d'une assurance formelle, d'une certification ou d'un support complet de reporting.",
     pillars: {
       outputs: {
         title: "Un périmètre utile aujourd'hui",
         description:
-          "Une première évaluation ciblée pour aider les équipes à se situer et à choisir des prochaines étapes cohérentes.",
+          "Un premier aperçu ciblé de préparation pour montrer les justificatifs disponibles, les écarts et les prochaines étapes cohérentes.",
       },
       methodology: {
         title: "Une méthode structurée",
@@ -1085,7 +1085,7 @@ export const frTranslations = {
       certification: {
         question: "ESGCheck est-il une certification ?",
         answer:
-          "Pas aujourd'hui. ESGCheck est une première évaluation structurée conçue pour aider les entreprises à se situer et à progresser avec le temps.",
+          "Pas aujourd'hui. ESGCheck est un premier aperçu structuré de préparation conçu pour aider les entreprises à se situer et à progresser avec le temps.",
       },
       vsme: {
         question: "ESGCheck est-il un outil de conformité CSRD ou VSME ?",
@@ -1149,20 +1149,20 @@ export const frTranslations = {
     },
   },
   seo: {
-    title: "ESGCheck | Première évaluation ESG pragmatique pour les PME en croissance",
+    title: "ESGCheck | Aperçu pratique de préparation ESG pour les PME B2B en croissance",
     description:
-      "Transformez vos documents d'entreprise en une première évaluation ESG claire avec des scores structurés, des écarts visibles et des prochaines étapes pour les demandes croissantes d'informations ESG.",
+      "Transformez vos documents d'entreprise en un aperçu clair de préparation ESG avec cartographie des justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes croissantes d'informations ESG.",
     keywords:
-      "évaluation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, évaluation de durabilité, ESG fondé sur les documents",
+      "préparation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, préparation durabilité, ESG fondé sur les documents",
     ogImageAlt:
-      "ESGCheck première évaluation ESG pragmatique pour les PME en croissance",
+      "ESGCheck aperçu pratique de préparation ESG pour les PME B2B en croissance",
     structuredData: {
       description:
-        "Une plateforme d'évaluation ESG pragmatique pour les PME en croissance, fondée sur les documents dont les entreprises disposent déjà.",
+        "Une plateforme pratique de préparation ESG pour les PME B2B en croissance, fondée sur les documents dont les entreprises disposent déjà.",
       featureList: {
-        documentFirst: "Évaluation ESG fondée sur les documents",
-        scoreRationale: "Score ESG avec explication",
-        strengthsGaps: "Vue claire des points forts et des écarts",
+        documentFirst: "Aperçu de préparation ESG fondé sur les documents",
+        scoreRationale: "Score ESG indicatif avec explication",
+        strengthsGaps: "Cartographie des justificatifs et visibilité des écarts",
         nextSteps: "Prochaines étapes concrètes",
         vsmeReadiness: "Prochaine direction de framework orientée VSME",
         swissPrivacy: "Workflow suisse attentif à la confidentialité",
@@ -1209,7 +1209,7 @@ export const frTranslations = {
     },
     finalTitle: "Souhaitez-vous en savoir plus sur ESGCheck ?",
     finalDescription:
-      "Vous pouvez revenir à la landing page pour revoir comment ESGCheck transforme des documents d'entreprise existants en scores clairs, écarts visibles et prochaines étapes concrètes.",
+      "Vous pouvez revenir à la landing page pour revoir comment ESGCheck transforme des documents d'entreprise existants en cartographie des justificatifs, écarts visibles, prochaines étapes concrètes et score indicatif.",
     finalCta: "En savoir plus sur ESGCheck",
     seo: {
       title: "Confirmez votre adresse e-mail | ESGCheck",
@@ -1257,7 +1257,7 @@ export const frTranslations = {
   },
   footer: {
     description:
-      "Évaluation ESG pragmatique pour les PME en croissance qui se préparent aux demandes d'informations ESG, conçue en Suisse.",
+      "Préparation ESG pratique pour les PME B2B en croissance qui se préparent aux demandes d'informations ESG, conçue en Suisse.",
     tagline: "Conçu en Suisse · Confidentialité dès la conception",
     product: "Produit",
     company: "Entreprise",
@@ -1284,9 +1284,9 @@ export const itTranslations: TranslationDictionary = {
     joinWaitlist: "Richiedi accesso anticipato",
   },
   hero: {
-    title: "Una prima valutazione ESG pratica per PMI B2B in crescita.",
+    title: "Una panoramica pratica di readiness ESG per PMI B2B in crescita.",
     description:
-      "Trasforma i documenti che hai gia in una prima valutazione ESG chiara, con punteggi, lacune e prossimi passi per richieste di clienti, catena di fornitura, finanziatori, investitori e reporting volontario.",
+      "Trasforma i documenti che hai gia in una panoramica chiara di readiness ESG, con mappatura delle evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste di clienti, catena di fornitura, finanziatori, investitori e reporting volontario.",
     primaryCta: "Richiedi accesso anticipato",
     secondaryCta: "Vedi come funziona",
     proof: {
@@ -1296,10 +1296,10 @@ export const itTranslations: TranslationDictionary = {
       swissPrivacy: "Mentalita svizzera sulla privacy",
     },
     dashboard: {
-      title: "Panoramica ESG",
+      title: "Panoramica di readiness ESG",
       filter: "Esempio di risultato",
       previewLabel: "Anteprima illustrativa del risultato",
-      scoreTitle: "Punteggio ESG",
+      scoreTitle: "Punteggio ESG indicativo",
       scoreValue: "68",
       scoreTotal: "/100",
       scoreLabel: "Buon punto di partenza",
@@ -1308,7 +1308,7 @@ export const itTranslations: TranslationDictionary = {
         social: "Sociale",
         governance: "Governance",
       },
-      strengthsTitle: "Punti di forza",
+      strengthsTitle: "Evidenze disponibili",
       strengths: {
         policy: "Politica ambientale disponibile",
         opportunity: "Diversita e pari opportunita",
@@ -1361,9 +1361,9 @@ export const itTranslations: TranslationDictionary = {
         description: "Organizzata su una base pratica GRI-first oggi, con readiness orientata VSME come prossimo passo.",
       },
       receive: {
-        title: "Ricevi una prima valutazione strutturata",
+        title: "Ricevi una prima panoramica di readiness",
         description:
-          "Vedi un punteggio chiaro, la logica dietro il risultato e dove mancano ancora evidenze.",
+          "Vedi le evidenze disponibili, le lacune principali, i prossimi passi pratici e un punteggio indicativo.",
       },
       act: {
         title: "Decidi cosa fare dopo",
@@ -1378,7 +1378,7 @@ export const itTranslations: TranslationDictionary = {
       practical: {
         title: "Pratico fin dall'inizio",
         description:
-          "Pensato per dare ai team una prima valutazione utilizzabile senza un processo consulenziale pesante.",
+          "Pensato per dare ai team una prima panoramica di readiness utilizzabile senza un processo consulenziale pesante.",
       },
       smes: {
         title: "Creato per PMI in crescita",
@@ -1400,12 +1400,12 @@ export const itTranslations: TranslationDictionary = {
   credibility: {
     title: "Progettato per essere credibile",
     intro:
-      "ESGCheck deve essere utile presto, senza apparire piu maturo di quanto sia oggi. Al momento e una prima valutazione strutturata, non un prodotto di compliance CSRD, assurance formale, certificazione o supporto completo al reporting.",
+      "ESGCheck deve essere utile presto, senza apparire piu maturo di quanto sia oggi. Al momento e una prima panoramica strutturata di readiness, non un prodotto di compliance CSRD, assurance formale, certificazione o supporto completo al reporting.",
     pillars: {
       outputs: {
         title: "Ambito utile oggi",
         description:
-          "Una prima valutazione mirata per aiutare i team a capire la posizione attuale e scegliere prossimi passi sensati.",
+          "Una prima panoramica mirata di readiness per mostrare evidenze disponibili, lacune e prossimi passi sensati.",
       },
       methodology: {
         title: "Metodologia strutturata",
@@ -1508,7 +1508,7 @@ export const itTranslations: TranslationDictionary = {
       certification: {
         question: "ESGCheck e una certificazione?",
         answer:
-          "Non oggi. E una prima valutazione strutturata per aiutare le aziende a orientarsi e migliorare nel tempo.",
+          "Non oggi. E una prima panoramica strutturata di readiness per aiutare le aziende a orientarsi e migliorare nel tempo.",
       },
       vsme: {
         question: "ESGCheck e uno strumento di compliance CSRD o VSME?",
@@ -1571,20 +1571,20 @@ export const itTranslations: TranslationDictionary = {
     },
   },
   seo: {
-    title: "ESGCheck | Prima valutazione ESG pratica per PMI in crescita",
+    title: "ESGCheck | Panoramica pratica di readiness ESG per PMI B2B in crescita",
     description:
-      "Trasforma i documenti aziendali in una prima valutazione ESG chiara con punteggi strutturati, lacune visibili e prossimi passi per richieste crescenti di informazioni ESG.",
+      "Trasforma i documenti aziendali in una panoramica chiara di readiness ESG con mappatura delle evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste crescenti di informazioni ESG.",
     keywords:
-      "valutazione ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, valutazione sostenibilita, ESG basato sui documenti",
+      "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, readiness sostenibilita, ESG basato sui documenti",
     ogImageAlt:
-      "ESGCheck prima valutazione ESG pratica per PMI in crescita",
+      "ESGCheck panoramica pratica di readiness ESG per PMI B2B in crescita",
     structuredData: {
       description:
-        "Una piattaforma di valutazione ESG pratica per PMI in crescita, basata sui documenti gia disponibili in azienda.",
+        "Una piattaforma pratica di readiness ESG per PMI B2B in crescita, basata sui documenti gia disponibili in azienda.",
       featureList: {
-        documentFirst: "Valutazione ESG basata sui documenti",
-        scoreRationale: "Punteggio ESG con spiegazione",
-        strengthsGaps: "Vista su punti di forza e lacune",
+        documentFirst: "Panoramica di readiness ESG basata sui documenti",
+        scoreRationale: "Punteggio ESG indicativo con spiegazione",
+        strengthsGaps: "Mappatura delle evidenze e visibilita sulle lacune",
         nextSteps: "Prossimi passi concreti",
         vsmeReadiness: "Prossima direzione di framework orientata VSME",
         swissPrivacy: "Workflow svizzero attento alla privacy",
@@ -1631,7 +1631,7 @@ export const itTranslations: TranslationDictionary = {
     },
     finalTitle: "Vuoi saperne di più su ESGCheck?",
     finalDescription:
-      "Puoi tornare alla landing page per rivedere come ESGCheck trasforma documenti aziendali esistenti in punteggi chiari, lacune visibili e prossimi passi concreti.",
+      "Puoi tornare alla landing page per rivedere come ESGCheck trasforma documenti aziendali esistenti in mappatura delle evidenze, lacune visibili, prossimi passi concreti e un punteggio indicativo.",
     finalCta: "Scopri di più su ESGCheck",
     seo: {
       title: "Conferma il tuo indirizzo email | ESGCheck",
@@ -1679,7 +1679,7 @@ export const itTranslations: TranslationDictionary = {
   },
   footer: {
     description:
-      "Valutazione ESG pratica per PMI in crescita che si preparano a richieste di informazioni ESG, sviluppata in Svizzera.",
+      "Readiness ESG pratica per PMI B2B in crescita che si preparano a richieste di informazioni ESG, sviluppata in Svizzera.",
     tagline: "Sviluppato in Svizzera · Privacy by design",
     product: "Prodotto",
     company: "Azienda",
@@ -1706,9 +1706,9 @@ export const rmTranslations: TranslationDictionary = {
     joinWaitlist: "Dumandar access anticipà",
   },
   hero: {
-    title: "L'emprima valitaziun ESG pragmatica per PMI B2B che creschan.",
+    title: "Ina survista pragmatica da readiness ESG per PMI B2B che creschan.",
     description:
-      "Transfurmai ils documents che Vossa interpresa ha gia en ina emprima valitaziun ESG clera, cun punctaziuns, largias e proxims pass per dumondas da clients, chadaina da furniziun, finanziaziun, investiders e reporting voluntar.",
+      "Transfurmai ils documents che Vossa interpresa ha gia en ina survista clera da readiness ESG, cun mapping da cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas da clients, chadaina da furniziun, finanziaziun, investiders e reporting voluntar.",
     primaryCta: "Dumandar access anticipà",
     secondaryCta: "Vesair co ch'i funcziuna",
     proof: {
@@ -1718,10 +1718,10 @@ export const rmTranslations: TranslationDictionary = {
       swissPrivacy: "Chapientscha svizra da datas",
     },
     dashboard: {
-      title: "Survista ESG",
+      title: "Survista da readiness ESG",
       filter: "Exempel da resultat",
       previewLabel: "Vista exemplara dal resultat",
-      scoreTitle: "Punctaziun ESG",
+      scoreTitle: "Punctaziun ESG indicativa",
       scoreValue: "68",
       scoreTotal: "/100",
       scoreLabel: "Bun punct da partenza",
@@ -1730,7 +1730,7 @@ export const rmTranslations: TranslationDictionary = {
         social: "Social",
         governance: "Governanza",
       },
-      strengthsTitle: "Fermas varts",
+      strengthsTitle: "Cumprovas disponiblas",
       strengths: {
         policy: "Politica d'ambient avant maun",
         opportunity: "Diversitad ed egualitad da schanzas",
@@ -1783,9 +1783,9 @@ export const rmTranslations: TranslationDictionary = {
         description: "Organisà sin ina basa pratica GRI-first oz, cun readiness orientada a VSME sco proxim pass.",
       },
       receive: {
-        title: "Survegnir ina emprima valitaziun structurada",
+        title: "Survegnir ina emprima survista da readiness",
         description:
-          "Vus vesais ina punctaziun clera, la motivaziun davostiers e nua che cumprovas mancan anc.",
+          "Vus vesais cumprovas disponiblas, largias centralas, proxims pass pratics ed ina punctaziun indicativa.",
       },
       act: {
         title: "Decider ils proxims pass",
@@ -1800,7 +1800,7 @@ export const rmTranslations: TranslationDictionary = {
       practical: {
         title: "Pratic davent dal cumenzament",
         description:
-          "Sviluppà per teams che dovran ina emprima valitaziun utilisabla senza process da cussegliaziun grev.",
+          "Sviluppà per teams che dovran ina emprima survista da readiness utilisabla senza process da cussegliaziun grev.",
       },
       smes: {
         title: "Fatg per PMI che creschan",
@@ -1822,12 +1822,12 @@ export const rmTranslations: TranslationDictionary = {
   credibility: {
     title: "Concepì per credibladad",
     intro:
-      "ESGCheck duai esser nizzaivel baud, senza parair pli madir che quai ch'el è oz. Oz è quai ina emprima valitaziun structurada, betg in product da compliance CSRD, betg assurance formala, betg certificaziun e betg sustegn cumplet da reporting.",
+      "ESGCheck duai esser nizzaivel baud, senza parair pli madir che quai ch'el è oz. Oz è quai ina emprima survista structurada da readiness, betg in product da compliance CSRD, betg assurance formala, betg certificaziun e betg sustegn cumplet da reporting.",
     pillars: {
       outputs: {
         title: "In rom util oz",
         description:
-          "Ina emprima valitaziun focussada che gida teams a chapir lur posiziun e tscherner proxims pass raschunaivels.",
+          "Ina emprima survista focussada da readiness che mussa cumprovas disponiblas, largias e proxims pass raschunaivels.",
       },
       methodology: {
         title: "Metodica structurada",
@@ -1930,7 +1930,7 @@ export const rmTranslations: TranslationDictionary = {
       certification: {
         question: "È ESGCheck ina certificaziun?",
         answer:
-          "Betg oz. Igl è ina emprima valitaziun structurada che gida interpresas a s'orientar e meglierar pass per pass.",
+          "Betg oz. Igl è ina emprima survista structurada da readiness che gida interpresas a s'orientar e meglierar pass per pass.",
       },
       vsme: {
         question: "È ESGCheck in tool da compliance CSRD u VSME?",
@@ -1993,20 +1993,20 @@ export const rmTranslations: TranslationDictionary = {
     },
   },
   seo: {
-    title: "ESGCheck | Emprima valitaziun ESG pragmatica per PMI",
+    title: "ESGCheck | Survista pragmatica da readiness ESG per PMI B2B",
     description:
-      "Transfurmai documents d'interpresa en ina emprima valitaziun ESG clera cun punctaziuns structuradas, largias visiblas e proxims pass per dumondas creschentas d'infurmaziuns ESG.",
+      "Transfurmai documents d'interpresa en ina survista clera da readiness ESG cun mapping da cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas creschentas d'infurmaziuns ESG.",
     keywords:
-      "valitaziun ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, valitaziun da durabilitad, ESG sin basa da documents",
+      "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, readiness da durabilitad, ESG sin basa da documents",
     ogImageAlt:
-      "ESGCheck emprima valitaziun ESG pragmatica per PMI che creschan",
+      "ESGCheck survista pragmatica da readiness ESG per PMI B2B che creschan",
     structuredData: {
       description:
-        "Ina plattafurma da valitaziun ESG pragmatica per PMI che creschan, basada sin documents gia existents.",
+        "Ina plattafurma pragmatica da readiness ESG per PMI B2B che creschan, basada sin documents gia existents.",
       featureList: {
-        documentFirst: "Valitaziun ESG basada sin documents",
-        scoreRationale: "Punctaziun ESG cun motivaziun",
-        strengthsGaps: "Survista da fermas varts e largias",
+        documentFirst: "Survista da readiness ESG basada sin documents",
+        scoreRationale: "Punctaziun ESG indicativa cun motivaziun",
+        strengthsGaps: "Mapping da cumprovas e survista da largias",
         nextSteps: "Proxims pass concrets",
         vsmeReadiness: "Proxima direcziun da framework orientada a VSME",
         swissPrivacy: "Workflow svizzer attent a la protecziun da datas",
@@ -2053,7 +2053,7 @@ export const rmTranslations: TranslationDictionary = {
     },
     finalTitle: "Vulais Vus savair dapli davart ESGCheck?",
     finalDescription:
-      "Vus pudais turnar a la landing page per vesair co ESGCheck transfurma documents d'interpresa existents en punctaziuns cleras, largias visiblas e proxims pass concrets.",
+      "Vus pudais turnar a la landing page per vesair co ESGCheck transfurma documents d'interpresa existents en mapping da cumprovas, largias visiblas, proxims pass concrets ed ina punctaziun indicativa.",
     finalCta: "Dapli davart ESGCheck",
     seo: {
       title: "Confermar l'adressa dad e-mail | ESGCheck",
@@ -2101,7 +2101,7 @@ export const rmTranslations: TranslationDictionary = {
   },
   footer: {
     description:
-      "Valitaziun ESG pragmatica per PMI che creschan e sa preparan per dumondas d'infurmaziuns ESG, sviluppada en Svizra.",
+      "Readiness ESG pragmatica per PMI B2B che creschan e sa preparan per dumondas d'infurmaziuns ESG, sviluppada en Svizra.",
     tagline: "Sviluppà en Svizra · Protecziun da datas dapi il cumenzament",
     product: "Product",
     company: "Interpresa",

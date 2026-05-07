@@ -19,9 +19,9 @@ interface SEOHeadProps {
 }
 
 export default function SEOHead({
-  title = "ESGCheck | Practical ESG First Assessment for Growing SMEs",
-  description = "Turn company documents into a clear first ESG assessment with structured scores, visible gaps, and practical next steps for rising ESG information requests.",
-  keywords = "ESG assessment, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability assessment, document-based ESG",
+  title = "ESGCheck | Practical ESG Readiness Overview for Growing B2B SMEs",
+  description = "Turn company documents into a clear ESG readiness overview with evidence mapping, visible gaps, practical next steps, and an indicative score for rising ESG information requests.",
+  keywords = "ESG readiness, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability readiness, document-based ESG",
   canonicalUrl = "https://esgcheck.ch/en/",
   author = "ESGCheck",
   publishedTime = "2026-04-28T00:00:00+02:00",
@@ -30,7 +30,7 @@ export default function SEOHead({
   ogImageType = "image/jpeg",
   ogImageWidth = 1200,
   ogImageHeight = 630,
-  ogImageAlt = "ESGCheck practical ESG first assessment platform for growing SMEs",
+  ogImageAlt = "ESGCheck practical ESG readiness overview platform for growing B2B SMEs",
   alternateLinks = [],
   structuredData,
   noindex = false
