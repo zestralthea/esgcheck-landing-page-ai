@@ -125,10 +125,86 @@ const languages = {
   },
 };
 
+const legalMetadata = {
+  en: {
+    privacy: {
+      title: "Privacy Policy | ESGCheck",
+      description: "How ESGCheck handles personal data on this landing page.",
+    },
+    cookies: {
+      title: "Cookie Policy | ESGCheck",
+      description: "Cookies, local storage, and similar technologies used by ESGCheck.",
+    },
+    legalNotice: {
+      title: "Legal Notice | ESGCheck",
+      description: "Project identity, contact details, and legal disclaimer for ESGCheck.",
+    },
+  },
+  de: {
+    privacy: {
+      title: "Datenschutzerklaerung | ESGCheck",
+      description: "Wie ESGCheck Personendaten auf dieser Landing Page bearbeitet.",
+    },
+    cookies: {
+      title: "Cookie-Richtlinie | ESGCheck",
+      description: "Cookies, localStorage und aehnliche Technologien von ESGCheck.",
+    },
+    legalNotice: {
+      title: "Impressum | ESGCheck",
+      description: "Projektidentitaet, Kontakt und Haftungshinweise fuer ESGCheck.",
+    },
+  },
+  fr: {
+    privacy: {
+      title: "Politique de confidentialite | ESGCheck",
+      description: "Comment ESGCheck traite les donnees personnelles sur cette landing page.",
+    },
+    cookies: {
+      title: "Politique relative aux cookies | ESGCheck",
+      description: "Cookies, stockage local et technologies similaires utilises par ESGCheck.",
+    },
+    legalNotice: {
+      title: "Mentions legales | ESGCheck",
+      description: "Identite du projet, contact et clauses de non-responsabilite.",
+    },
+  },
+  it: {
+    privacy: {
+      title: "Informativa privacy | ESGCheck",
+      description: "Come ESGCheck tratta i dati personali su questa landing page.",
+    },
+    cookies: {
+      title: "Informativa sui cookie | ESGCheck",
+      description: "Cookie, localStorage e tecnologie simili usate da ESGCheck.",
+    },
+    legalNotice: {
+      title: "Note legali | ESGCheck",
+      description: "Identita del progetto, contatti e disclaimer.",
+    },
+  },
+  rm: {
+    privacy: {
+      title: "Decleraziun da protecziun da datas | ESGCheck",
+      description: "Co ESGCheck tracta datas persunalas sin questa landing page.",
+    },
+    cookies: {
+      title: "Politica da cookies | ESGCheck",
+      description: "Cookies, localStorage e tecnologias sumegliantas duvradas dad ESGCheck.",
+    },
+    legalNotice: {
+      title: "Impressum | ESGCheck",
+      description: "Identitad dal project, contact e renviaments legals.",
+    },
+  },
+};
+
 const pageTypes = {
   home: { path: "", noindex: false, metaKey: "seo" },
   confirmation: { path: "confirmation", noindex: true, metaKey: "confirmation" },
   thankYou: { path: "thank-you", noindex: true, metaKey: "thankYou" },
+  privacy: { path: "privacy", noindex: false, metaKey: "privacy" },
+  cookies: { path: "cookies", noindex: false, metaKey: "cookies" },
+  legalNotice: { path: "legal-notice", noindex: false, metaKey: "legalNotice" },
 };
 
 const escapeHtml = (value) =>
@@ -159,9 +235,13 @@ const getAlternateLinks = (pageType) => [
 const renderSeoBlock = ({ lang, pageType }) => {
   const language = languages[lang];
   const pageConfig = pageTypes[pageType];
-  const metadata = language[pageConfig.metaKey];
+  const metadata = language[pageConfig.metaKey] ?? legalMetadata[lang]?.[pageType];
   const canonicalUrl = getLocaleUrl(lang, pageType);
   const robots = pageConfig.noindex ? "noindex, nofollow" : "index, follow";
+
+  if (!metadata) {
+    throw new Error(`Missing metadata for ${lang}/${pageType}.`);
+  }
 
   return `    <title>${escapeHtml(metadata.title)}</title>
     <meta name="description" content="${escapeHtml(metadata.description)}" />
@@ -204,7 +284,7 @@ const localizeHtml = ({ template, lang, pageType }) => {
   const language = languages[lang];
   const seoBlock = renderSeoBlock({ lang, pageType });
   const seoBlockPattern =
-    /    <title>[\s\S]*?    <link rel="preconnect" href="https:\/\/challenges\.cloudflare\.com" \/>/;
+    /    <title>[\s\S]*?    <meta name="twitter:image:alt" content="[^"]+" \/>/;
 
   if (!seoBlockPattern.test(template)) {
     throw new Error("Unable to find the SEO head block in dist/index.html.");
@@ -212,10 +292,7 @@ const localizeHtml = ({ template, lang, pageType }) => {
 
   return template
     .replace(/<html lang="[^"]+">/, `<html lang="${language.htmlLang}">`)
-    .replace(
-      seoBlockPattern,
-      `${seoBlock}\n    <link rel="preconnect" href="https://challenges.cloudflare.com" />`,
-    )
+    .replace(seoBlockPattern, seoBlock)
     .replace(/window\.LOCALE = "[^"]+";/, `window.LOCALE = "${lang}";`);
 };
 

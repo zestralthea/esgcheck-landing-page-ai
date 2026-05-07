@@ -9,6 +9,9 @@ export default function Footer() {
   const { openPreferences } = useConsent();
   const homePath = getLocalePath(language);
   const sectionHref = (hash: string) => `${homePath}${hash}`;
+  const privacyPath = getLocalePath(language, "privacy");
+  const cookiePath = getLocalePath(language, "cookies");
+  const legalNoticePath = getLocalePath(language, "legalNotice");
 
   return (
     <footer className="bg-primary text-primary-foreground">
@@ -58,7 +61,9 @@ export default function Footer() {
               {t("footer.privacy")}
             </h4>
             <ul className="space-y-3 text-sm text-primary-foreground/72">
-              <li><a href={sectionHref("#faq")} className="hover:text-primary-foreground">{t("header.faq")}</a></li>
+              <li><a href={privacyPath} className="hover:text-primary-foreground">{t("footer.privacyPolicy")}</a></li>
+              <li><a href={cookiePath} className="hover:text-primary-foreground">{t("footer.cookiePolicy")}</a></li>
+              <li><a href={legalNoticePath} className="hover:text-primary-foreground">{t("footer.legalNotice")}</a></li>
               <li>
                 <button
                   className="text-left hover:text-primary-foreground"
@@ -68,6 +73,7 @@ export default function Footer() {
                   {t("footer.privacyPreferences")}
                 </button>
               </li>
+              <li><a href={sectionHref("#faq")} className="hover:text-primary-foreground">{t("header.faq")}</a></li>
               <li><a href={contactHref} className="hover:text-primary-foreground">{t("footer.contact")}</a></li>
             </ul>
           </div>

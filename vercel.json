@@ -17,6 +17,11 @@
       "permanent": true
     },
     {
+      "source": "/:locale(de|en|fr|it|rm)/:legal(privacy|cookies|legal-notice)",
+      "destination": "/:locale/:legal/",
+      "permanent": true
+    },
+    {
       "source": "/subscribed",
       "destination": "/en/thank-you/",
       "permanent": true
@@ -33,6 +38,31 @@
     }
   ],
   "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        {
+          "key": "Content-Security-Policy",
+          "value": "default-src 'self'; base-uri 'self'; object-src 'none'; frame-ancestors 'none'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.brevo.com https://conversations-widget.brevo.com https://challenges.cloudflare.com; connect-src 'self' https://www.google-analytics.com https://region1.google-analytics.com https://analytics.google.com https://stats.g.doubleclick.net https://*.brevo.com wss://*.brevo.com https://*.sibforms.com https://challenges.cloudflare.com https://vitals.vercel-insights.com https://*.vercel-insights.com; img-src 'self' data: https:; style-src 'self' 'unsafe-inline'; font-src 'self' data:; frame-src https://challenges.cloudflare.com https://conversations-widget.brevo.com https://*.brevo.com; form-action 'self' https://*.sibforms.com; upgrade-insecure-requests"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=()"
+        },
+        {
+          "key": "Strict-Transport-Security",
+          "value": "max-age=63072000; includeSubDomains"
+        }
+      ]
+    },
     {
       "source": "/:locale(de|en|fr|it|rm)/:flow(confirmation|thank-you)/",
       "headers": [

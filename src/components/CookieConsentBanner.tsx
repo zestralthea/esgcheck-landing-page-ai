@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { ShieldCheck, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useConsent } from "@/contexts/ConsentContext";
-import { useLanguage } from "@/contexts/LanguageContext";
+import { getLocalePath, useLanguage } from "@/contexts/LanguageContext";
 import {
   defaultOptionalConsentPreferences,
   type OptionalConsentPreferences,
@@ -23,7 +23,7 @@ export default function CookieConsentBanner() {
     rejectNonEssential,
     saveOptionalPreferences,
   } = useConsent();
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
   const isInitialChoice = preferences === null;
   const isVisible = isInitialChoice || isPreferencesOpen;
   const [showDetails, setShowDetails] = useState(false);
@@ -74,6 +74,21 @@ export default function CookieConsentBanner() {
                 </h2>
                 <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
                   {t("consent.description")}
+                </p>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">
+                  <a
+                    className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+                    href={getLocalePath(language, "privacy")}
+                  >
+                    {t("consent.privacyLink")}
+                  </a>
+                  <span aria-hidden="true"> / </span>
+                  <a
+                    className="font-medium text-primary underline underline-offset-4 hover:text-primary/80"
+                    href={getLocalePath(language, "cookies")}
+                  >
+                    {t("consent.cookieLink")}
+                  </a>
                 </p>
               </div>
               {!isInitialChoice && (
@@ -135,7 +150,7 @@ export default function CookieConsentBanner() {
 
             <div className="mt-5 grid gap-2 sm:flex sm:flex-wrap sm:justify-end">
               <Button
-                className="rounded-xl"
+                className="rounded-xl border-primary/70 px-5 font-semibold text-primary hover:bg-primary/5"
                 type="button"
                 variant="outline"
                 onClick={rejectNonEssential}
@@ -144,7 +159,7 @@ export default function CookieConsentBanner() {
               </Button>
               {showDetails ? (
                 <Button
-                  className="rounded-xl"
+                  className="rounded-xl px-5 font-semibold"
                   type="button"
                   onClick={() => saveOptionalPreferences(draft)}
                 >
@@ -152,7 +167,7 @@ export default function CookieConsentBanner() {
                 </Button>
               ) : (
                 <Button
-                  className="rounded-xl"
+                  className="rounded-xl px-5 font-semibold"
                   type="button"
                   variant="outline"
                   onClick={() => setShowDetails(true)}
@@ -160,7 +175,7 @@ export default function CookieConsentBanner() {
                   {t("consent.manage")}
                 </Button>
               )}
-              <Button className="rounded-xl" type="button" onClick={acceptAll}>
+              <Button className="rounded-xl px-5 font-semibold" type="button" onClick={acceptAll}>
                 {t("consent.accept")}
               </Button>
             </div>

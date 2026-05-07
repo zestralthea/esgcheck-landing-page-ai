@@ -12,7 +12,7 @@ export const siteBaseUrl = "https://esgcheck.ch";
 export const supportedLanguages = ["en", "de", "fr", "it", "rm"] as const;
 export type Language = (typeof supportedLanguages)[number];
 export const defaultLanguage: Language = "en";
-export type SitePage = "home" | "confirmation" | "thankYou";
+export type SitePage = "home" | "confirmation" | "thankYou" | "privacy" | "cookies" | "legalNotice";
 
 export const languageMetadata: Record<
   Language,
@@ -154,6 +154,18 @@ export const getLocalePath = (lang: Language, page: SitePage = "home") => {
     return `${localePath}thank-you/`;
   }
 
+  if (page === "privacy") {
+    return `${localePath}privacy/`;
+  }
+
+  if (page === "cookies") {
+    return `${localePath}cookies/`;
+  }
+
+  if (page === "legalNotice") {
+    return `${localePath}legal-notice/`;
+  }
+
   return localePath;
 };
 
@@ -174,7 +186,23 @@ export const getSitePageFromPathname = (pathname: string): SitePage => {
     return "confirmation";
   }
 
-  return pageSegment === "thank-you" || pageSegment === "subscribed" ? "thankYou" : "home";
+  if (pageSegment === "thank-you" || pageSegment === "subscribed") {
+    return "thankYou";
+  }
+
+  if (pageSegment === "privacy") {
+    return "privacy";
+  }
+
+  if (pageSegment === "cookies") {
+    return "cookies";
+  }
+
+  if (pageSegment === "legal-notice") {
+    return "legalNotice";
+  }
+
+  return "home";
 };
 
 const getLocalizedUrl = (lang: Language, location: Location) => {

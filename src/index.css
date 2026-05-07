@@ -366,6 +366,12 @@ All colors MUST be HSL.
     box-shadow: 0 0 0 3px hsl(var(--ring) / 0.18);
   }
 
+  #waitlist .brevo-checkbox-row a {
+    color: hsl(var(--success));
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
   #waitlist .sib-form__declaration {
     align-items: flex-start;
     background: hsl(var(--background) / 0.28);

@@ -1,4 +1,4 @@
-import { type FormEvent, useEffect, useRef, useState } from "react";
+import { type FormEvent, useCallback, useEffect, useRef, useState } from "react";
 import { m, useReducedMotion } from "framer-motion";
 import { ArrowRight, Mail } from "lucide-react";
 import { CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -7,6 +7,7 @@ import { GradientCard } from "@/components/common/GradientCard";
 import { SectionHeading } from "@/components/common/SectionHeading";
 import { getLocalePath, useLanguage } from "@/contexts/LanguageContext";
 import { entranceEase, microSpring, revealLeft, revealRight, revealUp, viewportOnce } from "@/lib/motion";
+import { loadTurnstile } from "@/lib/turnstile";
 
 const brevoFormAction =
   "https://f3345453.sibforms.com/serve/MUIFAG23m2tWDesGY_yFxoeJFq9SqBJbGkfm7K1Y2WgbezBpQPZHZ5jkKXnQeKVLTBQt-HGSPePgxZw7qzdOcTB10_BFteEH7OLjKq6wxN2HovLA-PBdBcGuidKDvh9HB6Om7Mn83v2je_l8qohOEbwakFPNIHIRPmEHbwjqxEg50p3vDJl1jdZ1_wkvu4jCp6CxVqdIJpprXyeeIw==";
@@ -22,45 +23,54 @@ type BrevoResponse = {
   errors?: Record<string, string>;
 };
 
-type TurnstileRenderOptions = {
-  sitekey: string;
-  callback?: (token: string) => void;
-  "error-callback"?: (errorCode: string) => void;
-  "expired-callback"?: () => void;
-  "timeout-callback"?: () => void;
-  language?: string;
-  size?: "normal" | "compact" | "flexible";
-  theme?: "auto" | "light" | "dark";
-};
-
-type TurnstileApi = {
-  render: (container: HTMLElement | string, options: TurnstileRenderOptions) => string | undefined;
-  remove?: (widgetId: string) => void;
-  getResponse?: (widgetId?: string) => string;
-  reset?: (widgetId?: string) => void;
-};
-
-declare global {
-  interface Window {
-    grecaptcha?: TurnstileApi;
-    handleCaptchaResponse?: () => void;
-    renderBrevoTurnstile?: () => boolean;
-    turnstile?: TurnstileApi;
-  }
-}
-
 export default function WaitlistCTA() {
   const { t, language } = useLanguage();
   const shouldReduceMotion = useReducedMotion();
   const [formStatus, setFormStatus] = useState<FormStatus>("idle");
+  const [turnstileRequested, setTurnstileRequested] = useState(false);
+  const sectionRef = useRef<HTMLElement>(null);
   const turnstileWidgetIdRef = useRef<string | undefined>();
   const turnstileTokenRef = useRef("");
+
+  const requestTurnstileLoad = useCallback(() => {
+    setTurnstileRequested(true);
+  }, []);
 
   useEffect(() => {
     setFormStatus("idle");
   }, [language]);
 
   useEffect(() => {
+    if (turnstileRequested || typeof IntersectionObserver === "undefined") {
+      return;
+    }
+
+    const section = sectionRef.current;
+
+    if (!section) {
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          requestTurnstileLoad();
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "600px 0px" }
+    );
+
+    observer.observe(section);
+
+    return () => observer.disconnect();
+  }, [requestTurnstileLoad, turnstileRequested]);
+
+  useEffect(() => {
+    if (!turnstileRequested) {
+      return;
+    }
+
     let retryId: number | undefined;
     let attempts = 0;
     let isMounted = true;
@@ -112,7 +122,7 @@ export default function WaitlistCTA() {
           sitekey: turnstileSiteKey,
           callback: (token) => {
             turnstileTokenRef.current = token;
-            window.handleCaptchaResponse?.();
+            captcha.dispatchEvent(new Event("captchaChange"));
           },
           "error-callback": () => {
             turnstileTokenRef.current = "";
@@ -140,9 +150,11 @@ export default function WaitlistCTA() {
       }
     };
 
-    window.renderBrevoTurnstile = renderBrevoTurnstile;
+    const scheduleRenderRetry = () => {
+      if (renderBrevoTurnstile()) {
+        return;
+      }
 
-    if (!renderBrevoTurnstile()) {
       retryId = window.setInterval(() => {
         attempts += 1;
 
@@ -150,7 +162,20 @@ export default function WaitlistCTA() {
           window.clearInterval(retryId);
         }
       }, 250);
-    }
+    };
+
+    window.renderBrevoTurnstile = renderBrevoTurnstile;
+    loadTurnstile()
+      .then(() => {
+        if (isMounted) {
+          scheduleRenderRetry();
+        }
+      })
+      .catch(() => {
+        if (isMounted) {
+          setFormStatus("error");
+        }
+      });
 
     return () => {
       isMounted = false;
@@ -165,7 +190,7 @@ export default function WaitlistCTA() {
 
       clearTurnstile();
     };
-  }, [language]);
+  }, [language, turnstileRequested]);
 
   const resetTurnstile = () => {
     turnstileTokenRef.current = "";
@@ -210,6 +235,7 @@ export default function WaitlistCTA() {
     const form = event.currentTarget;
 
     if (!form.reportValidity()) {
+      requestTurnstileLoad();
       setFormStatus("error");
       return;
     }
@@ -218,6 +244,8 @@ export default function WaitlistCTA() {
       turnstileTokenRef.current || window.turnstile?.getResponse?.(turnstileWidgetIdRef.current) || "";
 
     if (!turnstileToken) {
+      requestTurnstileLoad();
+      window.renderBrevoTurnstile?.();
       setFormStatus("error");
       return;
     }
@@ -252,7 +280,7 @@ export default function WaitlistCTA() {
   };
 
   return (
-    <section id="waitlist" className="bg-background py-20">
+    <section id="waitlist" className="bg-background py-20" ref={sectionRef}>
       <div className="container mx-auto px-4">
         <div className="mx-auto max-w-5xl">
           <m.div
@@ -378,6 +406,8 @@ export default function WaitlistCTA() {
                         data-type="subscription"
                         noValidate
                         onChange={handleFormChange}
+                        onFocusCapture={requestTurnstileLoad}
+                        onPointerEnter={requestTurnstileLoad}
                         onSubmit={handleSubmit}
                       >
                         <div className="sib-input sib-form-block">
@@ -424,7 +454,12 @@ export default function WaitlistCTA() {
                                     required
                                   />
                                   <span className="checkbox checkbox_tick_positive" />
-                                  <span>{t("waitlist.form.optInText")}</span>
+                                  <span>
+                                    {t("waitlist.form.optInText")}{" "}
+                                    <a href={getLocalePath(language, "privacy")}>
+                                      {t("footer.privacyPolicy")}
+                                    </a>
+                                  </span>
                                 </label>
                               </div>
                             </div>
@@ -459,7 +494,6 @@ export default function WaitlistCTA() {
                                 className="g-recaptcha"
                                 data-sitekey={turnstileSiteKey}
                                 id="sib-captcha"
-                                data-callback="handleCaptchaResponse"
                                 data-language={language}
                                 data-size="flexible"
                               />

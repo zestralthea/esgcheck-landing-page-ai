@@ -7,6 +7,7 @@ import { ConsentProvider, useConsent } from "@/contexts/ConsentContext";
 import { getSitePageFromPathname, LanguageProvider, type SitePage } from "@/contexts/LanguageContext";
 import Confirmation from "./pages/Confirmation";
 import Index from "./pages/Index";
+import LegalPage from "./pages/LegalPage";
 import ThankYou from "./pages/ThankYou";
 
 const getCurrentPage = (): SitePage =>
@@ -29,6 +30,10 @@ function RouteSwitch() {
 
   if (page === "confirmation") {
     return <Confirmation />;
+  }
+
+  if (page === "privacy" || page === "cookies" || page === "legalNotice") {
+    return <LegalPage page={page} />;
   }
 
   return page === "thankYou" ? <ThankYou /> : <Index />;

@@ -3,6 +3,7 @@ import {
   createAllAcceptedConsentPreferences,
   createAllRejectedConsentPreferences,
   createConsentPreferences,
+  clearOptionalConsentStorage,
   hasConsentWithdrawal,
   loadConsentPreferences,
   saveConsentPreferences,
@@ -56,6 +57,7 @@ export const ConsentProvider: React.FC<ConsentProviderProps> = ({ children }) =>
       setIsPreferencesOpen(false);
 
       if (shouldReload && typeof window !== "undefined") {
+        clearOptionalConsentStorage();
         window.location.reload();
       }
     },

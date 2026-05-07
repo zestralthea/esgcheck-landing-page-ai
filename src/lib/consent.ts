@@ -92,3 +92,103 @@ export const hasConsentWithdrawal = (
         (previousPreferences.marketing && !nextPreferences.marketing) ||
         (previousPreferences.chat && !nextPreferences.chat))
   );
+
+const optionalCookiePatterns = [
+  /^_ga($|_)/,
+  /^_gid$/,
+  /^_gat/,
+  /^_gac_/,
+  /^_gcl_/,
+  /^brevo/i,
+  /^sib/i,
+  /^sib_cuid/i,
+  /^visitor_id/i,
+];
+
+const optionalStoragePatterns = [
+  /^_ga($|_)/,
+  /^brevo/i,
+  /^sib/i,
+  /^sib_cuid/i,
+  /^BrevoConversations/i,
+  /^brevo_conversations/i,
+];
+
+const matchesAnyPattern = (value: string, patterns: RegExp[]) =>
+  patterns.some((pattern) => pattern.test(value));
+
+const getCookieDeletionDomains = () => {
+  const hostname = window.location.hostname;
+  const domains = new Set<string | null>([null, hostname, `.${hostname}`]);
+  const parts = hostname.split(".").filter(Boolean);
+
+  if (parts.length >= 2) {
+    const parentDomain = parts.slice(-2).join(".");
+    domains.add(parentDomain);
+    domains.add(`.${parentDomain}`);
+  }
+
+  return Array.from(domains);
+};
+
+const deleteCookie = (name: string) => {
+  const encodedName = encodeURIComponent(name);
+  const expires = "expires=Thu, 01 Jan 1970 00:00:00 GMT";
+  const maxAge = "Max-Age=0";
+
+  getCookieDeletionDomains().forEach((domain) => {
+    const domainPart = domain ? `; domain=${domain}` : "";
+    document.cookie = `${encodedName}=; ${expires}; ${maxAge}; path=/${domainPart}; SameSite=Lax`;
+    document.cookie = `${encodedName}=; ${expires}; ${maxAge}; path=/${domainPart}; SameSite=None; Secure`;
+  });
+};
+
+const decodeCookieName = (name: string) => {
+  try {
+    return decodeURIComponent(name);
+  } catch {
+    return name;
+  }
+};
+
+const clearMatchingStorageKeys = (storage: Storage) => {
+  const keysToRemove: string[] = [];
+
+  for (let index = 0; index < storage.length; index += 1) {
+    const key = storage.key(index);
+
+    if (key && key !== CONSENT_STORAGE_KEY && matchesAnyPattern(key, optionalStoragePatterns)) {
+      keysToRemove.push(key);
+    }
+  }
+
+  keysToRemove.forEach((key) => storage.removeItem(key));
+};
+
+export const clearOptionalConsentStorage = () => {
+  if (typeof window === "undefined") {
+    return;
+  }
+
+  try {
+    document.cookie
+      .split(";")
+      .map((cookie) => decodeCookieName(cookie.trim().split("=")[0]))
+      .filter((name) => name && matchesAnyPattern(name, optionalCookiePatterns))
+      .forEach((name) => deleteCookie(name));
+  } catch {
+    // Cookie access can be restricted by browser privacy settings.
+  }
+
+  try {
+    clearMatchingStorageKeys(window.localStorage);
+  } catch {
+    // Storage may be unavailable in private browsing modes.
+  }
+
+  try {
+    clearMatchingStorageKeys(window.sessionStorage);
+  } catch {
+    // Storage may be unavailable in private browsing modes.
+  }
+};

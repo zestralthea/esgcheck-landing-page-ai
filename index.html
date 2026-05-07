@@ -26,7 +26,6 @@
     <link rel="alternate" href="https://esgcheck.ch/it/" hreflang="it-CH" />
     <link rel="alternate" href="https://esgcheck.ch/rm/" hreflang="rm-CH" />
     <link rel="alternate" href="https://esgcheck.ch/en/" hreflang="x-default" />
-    <link rel="preconnect" href="https://challenges.cloudflare.com" />
 
     <meta property="og:title" content="ESGCheck | Practical ESG Readiness Overview for Growing B2B SMEs" />
     <meta
@@ -76,24 +75,7 @@
         },
       };
       window.AUTOHIDE = false;
-      window.handleCaptchaResponse = function handleCaptchaResponse() {
-        var captcha = document.getElementById("sib-captcha");
-        if (captcha) {
-          captcha.dispatchEvent(new Event("captchaChange"));
-        }
-        window.grecaptcha = window.turnstile;
-      };
-      window.onBrevoTurnstileLoad = function onBrevoTurnstileLoad() {
-        window.grecaptcha = window.turnstile;
-        if (window.renderBrevoTurnstile) {
-          window.renderBrevoTurnstile();
-        }
-      };
     </script>
-    <script
-      defer
-      src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit&onload=onBrevoTurnstileLoad"
-    ></script>
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
