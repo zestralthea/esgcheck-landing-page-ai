@@ -4,9 +4,9 @@
 
 ESGCheck is a practical ESG readiness platform for B2B SMEs and suppliers facing rising ESG information requests from customers, procurement teams, lenders, investors, and larger supply-chain partners.
 
-Its purpose is to help companies understand where they currently stand on ESG and prepare for rising sustainability information requests by transforming the documents they already have into a clear, structured first assessment. Instead of requiring a company to begin with a full consulting engagement or a heavy enterprise ESG system, ESGCheck starts with the materials many companies already possess: policies, internal records, supplier information, and company reports.
+Its purpose is to help companies understand where they currently stand on ESG and prepare for rising sustainability information requests by transforming the documents they already have into a clear ESG readiness overview. Instead of requiring a company to begin with a full consulting engagement or a heavy enterprise ESG system, ESGCheck starts with the materials many companies already possess: policies, internal records, supplier information, and company reports.
 
-At its current stage, ESGCheck is designed to deliver a credible first ESG assessment: a structured output that gives a company a score, explains the reasoning behind that score, highlights important gaps, and outlines practical next steps. The goal is not to replace assurance, certification, or deep specialist advisory work. The goal is to reduce complexity, lower the barrier to action, and make ESG assessment more practical for smaller companies.
+At its current stage, ESGCheck is designed to deliver a credible first ESG readiness overview: a structured output that maps available evidence, identifies important gaps, outlines practical next steps, and includes an indicative score with rationale. The goal is not to replace assurance, certification, or deep specialist advisory work. The goal is to reduce complexity, lower the barrier to action, and make ESG readiness work more practical for smaller companies.
 
 ESGCheck is being built from Switzerland, with a strong emphasis on practicality, credibility, and privacy-conscious data handling.
 
@@ -18,7 +18,7 @@ ESGCheck helps B2B SMEs and suppliers prepare credible answers to ESG informatio
 
 ESGCheck aims to become a trusted ESG workflow platform for growing SMEs in Switzerland and, over time, across Europe.
 
-It begins with practical first assessments and is intended to evolve progressively into more robust, trusted, and professionally usable ESG workflows as the methodology matures, expert validation deepens, and market trust grows.
+It begins with practical first readiness overviews and is intended to evolve progressively into more robust, trusted, and professionally usable ESG workflows as the methodology matures, expert validation deepens, and market trust grows.
 
 Over the long term, ESGCheck aims to support certification-oriented use cases and, where the necessary methodological, institutional, and regulatory conditions can be met, contribute to a path toward full ESG certification.
 
@@ -32,7 +32,7 @@ Regulatory simplification does not remove ESG pressure for SMEs. In many cases, 
 
 At the same time, traditional ESG work remains too expensive, too manual, too consultant-heavy, or too operationally complex for many SMEs.
 
-ESGCheck is founded on the view that AI can be used in a practical, non-hyped way to make ESG assessment significantly more accessible. Rather than replacing expertise, it can reduce manual effort, organize information more efficiently, surface missing data more clearly, and lower the cost of obtaining a first meaningful ESG overview.
+ESGCheck is founded on the view that AI can be used in a practical, non-hyped way to make ESG readiness work significantly more accessible. Rather than replacing expertise, it can reduce manual effort, organize information more efficiently, surface missing data more clearly, and lower the cost of obtaining a first meaningful ESG readiness overview.
 
 ESGCheck is also based on a broader conviction: if ESG becomes more visible, understandable, and actionable for smaller companies, more businesses may choose to invest in it seriously. That, in turn, can strengthen credibility, improve readiness for stakeholder questions, and make responsible business practice more tangible in day-to-day decision-making.
 
@@ -54,16 +54,16 @@ ESGCheck is therefore intended to serve both as a practical business tool and, o
 
 ## 6. What ESGCheck Is
 
-ESGCheck is a practical ESG assessment platform.
+ESGCheck is a practical ESG readiness platform.
 
-It is not currently positioned as a certification product, a legal assurance mechanism, or a full substitute for formal sustainability reporting. At its current stage, it is designed to provide a credible first ESG assessment based on existing company documents.
+It is not currently positioned as a certification product, a legal assurance mechanism, or a full substitute for formal sustainability reporting. At its current stage, it is designed to provide a credible first ESG readiness overview based on existing company documents.
 
 The product is built around a document-first logic:
 
 - companies upload policies, internal records, supplier or operational materials, and company reports
 - ESGCheck analyzes those materials against structured ESG criteria
-- the system generates a first structured assessment
-- the output includes a score, rationale, identified gaps, and suggested next steps
+- the system generates a first structured readiness overview
+- the output includes evidence mapping, gap identification, practical next steps, and an indicative score with rationale
 
 This makes ESGCheck particularly suitable for SMEs that do not yet have a mature ESG workflow but already have relevant information scattered across existing documents.
 
@@ -71,7 +71,7 @@ This makes ESGCheck particularly suitable for SMEs that do not yet have a mature
 
 ### Category
 
-ESG assessment platform
+ESG readiness platform
 
 ### Core positioning
 
@@ -126,10 +126,10 @@ They do not yet know clearly where they stand, what they already have, what is m
 
 ESGCheck is designed to solve exactly that first problem.
 
-It turns existing company material into a first ESG assessment that helps a company understand:
+It turns existing company material into a first ESG readiness overview that helps a company understand:
 
-- its current ESG standing
-- why that standing looks the way it does
+- its current ESG readiness position
+- what evidence is already available
 - where the most important gaps are
 - what should be improved next
 
@@ -152,7 +152,7 @@ That pressure can come from:
 - financing-related diligence
 - broader market and brand expectations
 
-This creates demand for practical ESG assessment tools that help smaller companies organize existing information, identify gaps, and prepare structured responses without the cost and complexity of enterprise ESG platforms or full consulting engagements.
+This creates demand for practical ESG readiness tools that help smaller companies organize existing information, identify gaps, and prepare structured responses without the cost and complexity of enterprise ESG platforms or full consulting engagements.
 
 ESGCheck is positioned around that need.
 
@@ -170,13 +170,14 @@ The product has not yet undergone external user validation.
 
 ### Current practical output
 
-ESGCheck produces a clear first ESG assessment intended to include:
+ESGCheck produces a clear first ESG readiness overview intended to include:
 
-- an ESG score
-- an explanation of the score
-- identification of important strengths and gaps
+- an ESG readiness overview
+- evidence mapping from available documents
+- gap identification, including important strengths and weaknesses
 - practical next steps and recommendations
 - visibility into missing or insufficient evidence where relevant
+- an indicative score with rationale
 
 ### Current framework foundation
 
@@ -190,7 +191,7 @@ For the current MVP, the product works from uploaded company materials such as p
 
 The current role of the product is not to issue formal assurance. Its role is to provide a structured first view that helps a company orient itself and decide what to do next.
 
-ESGCheck should not currently be described as a full CSRD compliance product, formal assurance mechanism, certification system, or substitute for formal sustainability reporting. Its role is to provide a structured first ESG assessment and, over time, practical readiness support for SME-relevant reporting and information-request frameworks.
+ESGCheck should not currently be described as a full CSRD compliance product, formal assurance mechanism, certification system, or substitute for formal sustainability reporting. Its role is to provide a structured first ESG readiness overview and, over time, practical readiness support for SME-relevant reporting and information-request frameworks.
 
 ## 11. What the Product Does in Practice
 
@@ -199,8 +200,8 @@ At a high level, ESGCheck follows a simple workflow:
 1. A company uploads relevant ESG-related documents.
 2. The system ingests and analyzes those documents.
 3. The content is assessed against structured ESG criteria.
-4. ESGCheck generates a first structured ESG assessment.
-5. The company receives a clear overview of its ESG standing, gaps, and next steps.
+4. ESGCheck generates a first structured ESG readiness overview.
+5. The company receives a clear overview of its ESG readiness, available evidence, gaps, next steps, and indicative score.
 
 In external communication, the emphasis should remain on customer value rather than technical process.
 
@@ -208,12 +209,12 @@ The key value is simple: ESGCheck helps a company move from scattered documents 
 
 ## 12. Technical and Product Foundation
 
-ESGCheck is built around a document-first AI workflow designed to make ESG assessment more practical and scalable for smaller companies.
+ESGCheck is built around a document-first AI workflow designed to make ESG readiness work more practical and scalable for smaller companies.
 
 The most important technical messages for strategic and external discussions are:
 
 - the platform starts from documents companies already have
-- the system is designed to turn those documents into structured ESG outputs
+- the system is designed to turn those documents into structured ESG readiness outputs
 - privacy-conscious data handling is a core design priority
 - the product is being built with strong separation of customer data in mind
 - the MVP foundation is complete and now requires internal end-to-end testing before broader validation
@@ -267,7 +268,7 @@ The strongest first wedge is:
 
 Growing Swiss and DACH B2B SMEs that are not necessarily directly subject to full CSRD reporting, but are increasingly asked to provide ESG-related information by larger customers, procurement teams, supply-chain partners, lenders, or investors.
 
-This includes companies that need a practical first ESG overview, VSME-oriented readiness, or structured preparation for sustainability information requests, without implementing a costly enterprise ESG platform or beginning with a full consulting engagement.
+This includes companies that need a practical first ESG readiness overview, VSME-oriented readiness, or structured preparation for sustainability information requests, without implementing a costly enterprise ESG platform or beginning with a full consulting engagement.
 
 This wedge is strongest because it combines:
 
@@ -307,7 +308,7 @@ This means ESGCheck should currently be positioned toward business leadership ra
 
 ## 18. Commercial Credibility
 
-ESGCheck should win not by sounding like a broad AI ESG platform, but by being a focused, trustworthy, and operationally useful first-assessment tool.
+ESGCheck should win not by sounding like a broad AI ESG platform, but by being a focused, trustworthy, and operationally useful ESG readiness tool.
 
 Its commercial credibility is strongest when the promise stays disciplined:
 
@@ -318,7 +319,7 @@ Its commercial credibility is strongest when the promise stays disciplined:
 
 Instead, the product should be sold as:
 
-A practical first ESG assessment that helps companies understand where they stand, what is missing, and what they should do next.
+A practical first ESG readiness overview that helps companies understand what evidence they have, what is missing, and what they should do next.
 
 That is a believable promise, and it is more likely to convert early customers than a broad or overclaimed positioning.
 
@@ -330,7 +331,7 @@ Its differentiation is strongest in the following combination:
 
 ### 1. Practical and easy to use
 
-ESGCheck starts from the documents a company already has and turns them into a usable first assessment.
+ESGCheck starts from the documents a company already has and turns them into a usable first readiness overview.
 
 ### 2. Built for SMEs
 
@@ -346,7 +347,7 @@ Rather than beginning with large implementation projects, dashboard complexity, 
 
 ### 5. Credible progression path
 
-ESGCheck does not need to claim full assurance, full reporting substitution, or certification status on day one. It can win by offering a credible first assessment now, then evolving over time into stronger workflows, better validated outputs, and more professionally usable ESG support.
+ESGCheck does not need to claim full assurance, full reporting substitution, or certification status on day one. It can win by offering a credible first readiness overview now, then evolving over time into stronger workflows, better validated outputs, and more professionally usable ESG support.
 
 ## 20. Pricing Direction
 
@@ -356,7 +357,7 @@ An accessible SME-oriented pricing model under validation
 
 At this stage, final pricing should not be presented as fixed.
 
-Instead, ESGCheck should communicate that it is building toward an accessible model suitable for growing SMEs, likely combining one-off assessments and recurring options, with refinement to come through expert input, pilot testing, and early market feedback.
+Instead, ESGCheck should communicate that it is building toward an accessible model suitable for growing SMEs, likely combining one-off readiness overviews and recurring options, with refinement to come through expert input, pilot testing, and early market feedback.
 
 ## 21. What ESGCheck Is Not Yet
 
@@ -367,9 +368,9 @@ At its current stage, ESGCheck is not yet:
 - a fully validated reporting-grade output system
 - a guarantee of ESG performance
 
-Its current role is to provide a credible first ESG assessment.
+Its current role is to provide a credible first ESG readiness overview.
 
-That first-assessment stage, however, is not the final ambition of the product. Over time, ESGCheck is intended to evolve into a more robust, trusted, and professionally usable ESG workflow platform as expert validation, methodology, and market trust deepen.
+That first readiness overview stage, however, is not the final ambition of the product. Over time, ESGCheck is intended to evolve into a more robust, trusted, and professionally usable ESG workflow platform as expert validation, methodology, and market trust deepen.
 
 In the longer term, ESGCheck aims to support certification-oriented use cases and, where feasible, contribute to a path toward fuller certification-related outcomes.
 
@@ -411,7 +412,7 @@ Test and refine positioning, pricing, and service structure based on pilot feedb
 
 ### 5. Progressive workflow and framework expansion
 
-Evolve ESGCheck beyond first assessments into increasingly robust ESG workflows, including stronger methodology, deeper expert-backed validation, broader SME-relevant framework support, supplier-request readiness, and selected regulation-specific modules where customer demand is validated.
+Evolve ESGCheck beyond first readiness overviews into increasingly robust ESG workflows, including stronger methodology, deeper expert-backed validation, broader SME-relevant framework support, supplier-request readiness, and selected regulation-specific modules where customer demand is validated.
 
 ### 6. Long-term certification direction
 
@@ -499,7 +500,7 @@ This makes ESGCheck a project that is strong enough to deserve serious pilot-sta
 
 ## 28. Summary Positioning Statement
 
-EESGCheck is a practical ESG readiness platform for B2B SMEs and suppliers facing rising ESG information requests. It transforms policies, internal records, and company reports into a credible first ESG assessment with clear scores, visible gaps, and practical next steps, helping smaller companies prepare for rising ESG information requests without consultant-level complexity.
+ESGCheck is a practical ESG readiness platform for B2B SMEs and suppliers facing rising ESG information requests. It transforms policies, internal records, and company reports into a credible first ESG readiness overview with evidence mapping, gap identification, practical next steps, and an indicative score, helping smaller companies prepare for rising ESG information requests without consultant-level complexity.
 
 ## 29. Short External Description
 
