@@ -1,3 +1,4 @@
+import { m, useReducedMotion } from "framer-motion";
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
 import LegalTableOfContents from "@/components/LegalTableOfContents";
@@ -10,6 +11,7 @@ import {
   useLanguage,
   type SitePage,
 } from "@/contexts/LanguageContext";
+import { entranceEase, revealUp } from "@/lib/motion";
 import {
   legalContent,
   legalPageLabels,
@@ -25,12 +27,28 @@ const legalPageKindBySitePage: Partial<Record<SitePage, LegalPageKind>> = {
   legalNotice: "legalNotice",
 };
 
+const legalContentReveal = {
+  hidden: (reduced: boolean | undefined) => (reduced ? { opacity: 0 } : { opacity: 0, y: 12 }),
+  visible: (reduced: boolean | undefined) =>
+    reduced
+      ? { opacity: 1, y: 0, transition: { duration: 0.01 } }
+      : {
+          opacity: 1,
+          y: 0,
+          transition: {
+            duration: 0.46,
+            ease: entranceEase,
+          },
+        },
+};
+
 interface LegalPageProps {
   page: SitePage;
 }
 
 export default function LegalPage({ page }: LegalPageProps) {
   const { language } = useLanguage();
+  const shouldReduceMotion = useReducedMotion();
   const pageKind = legalPageKindBySitePage[page] ?? "privacy";
   const content = legalContent[language][pageKind];
   const canonicalUrl = getLocaleUrl(language, page);
@@ -59,7 +77,13 @@ export default function LegalPage({ page }: LegalPageProps) {
       <Header />
       <main className="pt-[var(--header-height)]">
         <section className="border-b border-border bg-gradient-accent py-12">
-          <div className="container mx-auto px-4">
+          <m.div
+            className="container mx-auto px-4"
+            initial="hidden"
+            animate="visible"
+            variants={revealUp}
+            custom={shouldReduceMotion}
+          >
             <nav className="mb-8 flex flex-wrap gap-3 text-sm text-muted-foreground">
               {(Object.keys(legalPagePaths) as LegalPageKind[]).map((kind) => {
                 const href = `/${language}/${legalPagePaths[kind]}/`;
@@ -93,20 +117,35 @@ export default function LegalPage({ page }: LegalPageProps) {
             <p className="mt-4 text-sm text-muted-foreground">
               {content.updatedLabel ?? legalUpdatedLabels[language]}: {content.updated}
             </p>
-          </div>
+          </m.div>
         </section>
 
         <section className="py-12">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-4xl lg:grid lg:max-w-6xl lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-10">
-              <div className="lg:sticky lg:top-[calc(var(--header-height)-0.5rem)] lg:col-start-2 lg:row-start-1 lg:self-start">
+            <div
+              className="mx-auto max-w-4xl lg:grid lg:max-w-6xl lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-10"
+            >
+              <m.div
+                className="lg:sticky lg:top-[calc(var(--header-height)-0.5rem)] lg:col-start-2 lg:row-start-1 lg:self-start"
+                initial="hidden"
+                animate="visible"
+                variants={legalContentReveal}
+                custom={shouldReduceMotion}
+                transition={shouldReduceMotion ? { duration: 0.01 } : { delay: 0.06 }}
+              >
                 <LegalTableOfContents
                   sections={content.sections}
                   tocLabel={legalTocLabels[language]}
                 />
-              </div>
+              </m.div>
 
-              <div className="space-y-8 lg:col-start-1 lg:row-start-1">
+              <m.div
+                className="space-y-8 lg:col-start-1 lg:row-start-1"
+                initial="hidden"
+                animate="visible"
+                variants={legalContentReveal}
+                custom={shouldReduceMotion}
+              >
                 {content.sections.map((section, index) => {
                   const sectionNumber = index + 1;
 
@@ -206,7 +245,7 @@ export default function LegalPage({ page }: LegalPageProps) {
                     </article>
                   );
                 })}
-              </div>
+              </m.div>
             </div>
           </div>
         </section>
