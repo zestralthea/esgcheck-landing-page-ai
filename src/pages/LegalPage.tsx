@@ -1,5 +1,6 @@
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import LegalTableOfContents from "@/components/LegalTableOfContents";
 import SEOHead from "@/components/SEOHead";
 import {
   defaultLanguage,
@@ -13,6 +14,7 @@ import {
   legalContent,
   legalPageLabels,
   legalPagePaths,
+  legalTocLabels,
   legalUpdatedLabels,
   type LegalPageKind,
 } from "@/content/legalContent";
@@ -96,61 +98,115 @@ export default function LegalPage({ page }: LegalPageProps) {
 
         <section className="py-12">
           <div className="container mx-auto px-4">
-            <div className="mx-auto max-w-4xl space-y-8">
-              {content.sections.map((section) => (
-                <article
-                  className="rounded-2xl border border-border bg-card p-6 shadow-card"
-                  key={section.title}
-                >
-                  <h2 className="text-2xl font-semibold text-foreground">{section.title}</h2>
+            <div className="mx-auto max-w-4xl lg:grid lg:max-w-6xl lg:grid-cols-[minmax(0,1fr)_18rem] lg:gap-10">
+              <div className="lg:sticky lg:top-[calc(var(--header-height)-0.5rem)] lg:col-start-2 lg:row-start-1 lg:self-start">
+                <LegalTableOfContents
+                  sections={content.sections}
+                  tocLabel={legalTocLabels[language]}
+                />
+              </div>
 
-                  {section.paragraphs?.map((paragraph) => (
-                    <p className="mt-4 leading-8 text-muted-foreground" key={paragraph}>
-                      {paragraph}
-                    </p>
-                  ))}
+              <div className="space-y-8 lg:col-start-1 lg:row-start-1">
+                {content.sections.map((section, index) => {
+                  const sectionNumber = index + 1;
 
-                  {section.list && (
-                    <ul className="mt-4 space-y-3 text-muted-foreground">
-                      {section.list.map((item) => (
-                        <li className="leading-7" key={item}>
-                          {item}
-                        </li>
+                  return (
+                    <article
+                      className="scroll-mt-[calc(var(--header-height)+16px)] rounded-2xl border border-border bg-card p-6 shadow-card"
+                      id={`section-${sectionNumber}`}
+                      key={`section-${sectionNumber}`}
+                    >
+                      <h2 className="text-2xl font-semibold text-foreground">
+                        <span className="mr-3 text-primary">{sectionNumber}</span>
+                        {section.title}
+                      </h2>
+
+                      {section.paragraphs?.map((paragraph) => (
+                        <p className="mt-4 leading-8 text-muted-foreground" key={paragraph}>
+                          {paragraph}
+                        </p>
                       ))}
-                    </ul>
-                  )}
 
-                  {section.table && (
-                    <div className="mt-5 overflow-x-auto">
-                      <table className="w-full min-w-[720px] border-collapse text-left text-sm">
-                        <thead>
-                          <tr>
-                            {section.table.headers.map((header) => (
-                              <th
-                                className="border-b border-border bg-secondary px-4 py-3 font-semibold text-foreground"
-                                key={header}
-                              >
-                                {header}
-                              </th>
-                            ))}
-                          </tr>
-                        </thead>
-                        <tbody>
-                          {section.table.rows.map((row) => (
-                            <tr className="border-b border-border/70" key={row.join("-")}>
-                              {row.map((cell) => (
-                                <td className="px-4 py-3 align-top leading-6 text-muted-foreground" key={cell}>
-                                  {cell}
-                                </td>
-                              ))}
-                            </tr>
+                      {section.list && (
+                        <ul className="mt-4 space-y-3 text-muted-foreground">
+                          {section.list.map((item) => (
+                            <li className="leading-7" key={item}>
+                              {item}
+                            </li>
                           ))}
-                        </tbody>
-                      </table>
-                    </div>
-                  )}
-                </article>
-              ))}
+                        </ul>
+                      )}
+
+                      {section.table && (
+                        <div className="mt-5 overflow-x-auto">
+                          <table className="w-full min-w-[720px] border-collapse text-left text-sm">
+                            <thead>
+                              <tr>
+                                {section.table.headers.map((header) => (
+                                  <th
+                                    className="border-b border-border bg-secondary px-4 py-3 font-semibold text-foreground"
+                                    key={header}
+                                  >
+                                    {header}
+                                  </th>
+                                ))}
+                              </tr>
+                            </thead>
+                            <tbody>
+                              {section.table.rows.map((row) => (
+                                <tr className="border-b border-border/70" key={row.join("-")}>
+                                  {row.map((cell) => (
+                                    <td
+                                      className="px-4 py-3 align-top leading-6 text-muted-foreground"
+                                      key={cell}
+                                    >
+                                      {cell}
+                                    </td>
+                                  ))}
+                                </tr>
+                              ))}
+                            </tbody>
+                          </table>
+                        </div>
+                      )}
+
+                      {section.subsections?.map((subsection, subsectionIndex) => {
+                        const subsectionNumber = subsectionIndex + 1;
+                        const numberedLabel = `${sectionNumber}.${subsectionNumber}`;
+
+                        return (
+                          <section
+                            className="mt-6"
+                            id={`section-${sectionNumber}-${subsectionNumber}`}
+                            key={`section-${sectionNumber}-${subsectionNumber}`}
+                          >
+                            <h3 className="text-lg font-semibold text-foreground">
+                              <span className="mr-2 text-primary">{numberedLabel}</span>
+                              {subsection.title}
+                            </h3>
+
+                            {subsection.paragraphs?.map((paragraph) => (
+                              <p className="mt-2 leading-7 text-muted-foreground" key={paragraph}>
+                                {paragraph}
+                              </p>
+                            ))}
+
+                            {subsection.list && (
+                              <ul className="mt-2 space-y-2 text-muted-foreground">
+                                {subsection.list.map((item) => (
+                                  <li className="leading-7" key={item}>
+                                    {item}
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </section>
+                        );
+                      })}
+                    </article>
+                  );
+                })}
+              </div>
             </div>
           </div>
         </section>

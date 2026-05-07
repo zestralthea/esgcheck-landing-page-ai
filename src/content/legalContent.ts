@@ -7,11 +7,18 @@ type LegalTable = {
   rows: string[][];
 };
 
-type LegalSection = {
+export type LegalSubsection = {
+  title: string;
+  paragraphs?: string[];
+  list?: string[];
+};
+
+export type LegalSection = {
   title: string;
   paragraphs?: string[];
   list?: string[];
   table?: LegalTable;
+  subsections?: LegalSubsection[];
 };
 
 export type LegalPageContent = {
@@ -63,6 +70,14 @@ export const legalUpdatedLabels: Record<Language, string> = {
   fr: "Derniere mise a jour",
   it: "Ultimo aggiornamento",
   rm: "Ultima actualisaziun",
+};
+
+export const legalTocLabels: Record<Language, string> = {
+  en: "On this page",
+  de: "Auf dieser Seite",
+  fr: "Sur cette page",
+  it: "In questa pagina",
+  rm: "Sin questa pagina",
 };
 
 const cookieRows = {
@@ -126,21 +141,48 @@ export const legalContent: Record<Language, Record<LegalPageKind, LegalPageConte
         },
         {
           title: "Personal data we process",
-          list: [
-            "Website and device information, such as page views, browser information, IP-related technical data, and consent preferences.",
-            "Waitlist data, such as email address, language, newsletter consent, double opt-in status, timestamps, and Brevo form metadata.",
-            "Contact emails and messages sent to ESGCheck.",
-            "Chat messages and visitor information if the Brevo Conversations widget is enabled by consent.",
-            "Security signals processed by Cloudflare Turnstile to protect the waitlist form from spam and abuse.",
+          subsections: [
+            {
+              title: "Website and device data",
+              paragraphs: ["Page views, browser information, IP-related technical data, and consent preferences."],
+            },
+            {
+              title: "Waitlist data",
+              paragraphs: ["Email address, language, newsletter consent, double opt-in status, timestamps, and Brevo form metadata."],
+            },
+            {
+              title: "Contact emails",
+              paragraphs: ["Emails and messages sent to ESGCheck."],
+            },
+            {
+              title: "Chat messages",
+              paragraphs: ["Chat messages and visitor information when the Brevo Conversations widget is enabled by consent."],
+            },
+            {
+              title: "Security signals",
+              paragraphs: ["Signals processed by Cloudflare Turnstile to protect the waitlist form from spam and abuse."],
+            },
           ],
         },
         {
           title: "Purposes and legal bases",
-          list: [
-            "Essential site operation, language handling, consent storage, and form security: legitimate interests and, where applicable, necessity for a requested service.",
-            "Newsletter and early-access updates: consent given through the waitlist form and double opt-in flow.",
-            "Analytics, marketing automation, and chat support: consent through the privacy preferences banner.",
-            "Responding to contact requests: pre-contractual steps or legitimate interests in answering the request.",
+          subsections: [
+            {
+              title: "Essential site operation",
+              paragraphs: ["Language handling, consent storage, and form security are processed based on legitimate interests and, where applicable, necessity for a requested service."],
+            },
+            {
+              title: "Newsletter and early access",
+              paragraphs: ["Newsletter and early-access updates are based on consent given through the waitlist form and double opt-in flow."],
+            },
+            {
+              title: "Analytics, marketing, and chat",
+              paragraphs: ["Analytics, marketing automation, and chat support are based on consent through the privacy preferences banner."],
+            },
+            {
+              title: "Responding to contact requests",
+              paragraphs: ["Contact requests are processed for pre-contractual steps or legitimate interests in answering the request."],
+            },
           ],
         },
         {
@@ -158,11 +200,23 @@ export const legalContent: Record<Language, Record<LegalPageKind, LegalPageConte
         },
         {
           title: "Retention",
-          list: [
-            "Waitlist and newsletter data is kept until you unsubscribe, withdraw consent, or the early-access purpose is no longer relevant.",
-            "Contact emails are kept as long as needed to answer and document the request.",
-            "Consent preferences remain until changed, cleared in the browser, or replaced by a new consent version.",
-            "Analytics, chat, security, and marketing data follow provider settings and legal retention requirements.",
+          subsections: [
+            {
+              title: "Waitlist and newsletter data",
+              paragraphs: ["Kept until you unsubscribe, withdraw consent, or the early-access purpose is no longer relevant."],
+            },
+            {
+              title: "Contact emails",
+              paragraphs: ["Kept as long as needed to answer and document the request."],
+            },
+            {
+              title: "Consent preferences",
+              paragraphs: ["Remain until changed, cleared in the browser, or replaced by a new consent version."],
+            },
+            {
+              title: "Provider data",
+              paragraphs: ["Analytics, chat, security, and marketing data follow provider settings and legal retention requirements."],
+            },
           ],
         },
         {
@@ -248,26 +302,53 @@ export const legalContent: Record<Language, Record<LegalPageKind, LegalPageConte
         },
         {
           title: "Bearbeitete Personendaten",
-          list: [
-            "Website- und Geraeteinformationen wie Seitenaufrufe, Browserdaten, IP-bezogene technische Daten und Consent-Einstellungen.",
-            "Wartelistendaten wie E-Mail-Adresse, Sprache, Newsletter-Einwilligung, Double-Opt-in-Status, Zeitstempel und Brevo-Formulardaten.",
-            "Kontakt-E-Mails und Nachrichten an ESGCheck.",
-            "Chat-Nachrichten und Besucherinformationen, wenn Brevo Conversations per Einwilligung aktiviert wird.",
-            "Sicherheitssignale, die Cloudflare Turnstile zum Schutz des Formulars verarbeitet.",
+          subsections: [
+            {
+              title: "Website- und Geraetedaten",
+              paragraphs: ["Seitenaufrufe, Browserdaten, IP-bezogene technische Daten und Consent-Einstellungen."],
+            },
+            {
+              title: "Wartelistendaten",
+              paragraphs: ["E-Mail-Adresse, Sprache, Newsletter-Einwilligung, Double-Opt-in-Status, Zeitstempel und Brevo-Formulardaten."],
+            },
+            {
+              title: "Kontakt-E-Mails",
+              paragraphs: ["Kontakt-E-Mails und Nachrichten an ESGCheck."],
+            },
+            {
+              title: "Chat-Nachrichten",
+              paragraphs: ["Chat-Nachrichten und Besucherinformationen, wenn Brevo Conversations per Einwilligung aktiviert wird."],
+            },
+            {
+              title: "Sicherheitssignale",
+              paragraphs: ["Signale, die Cloudflare Turnstile zum Schutz des Formulars vor Spam und Missbrauch verarbeitet."],
+            },
           ],
         },
         {
           title: "Zwecke und Rechtsgrundlagen",
-          list: [
-            "Essenzielle Website-Funktionen, Sprache, Consent-Speicherung und Formularsicherheit: berechtigte Interessen und, wo anwendbar, Erforderlichkeit fuer einen gewuenschten Dienst.",
-            "Newsletter und Early-Access-Updates: Einwilligung ueber Formular und Double-Opt-in.",
-            "Analyse, Marketing-Automation und Chat: Einwilligung ueber die Datenschutzeinstellungen.",
-            "Beantwortung von Kontaktanfragen: vorvertragliche Schritte oder berechtigte Interessen.",
+          subsections: [
+            {
+              title: "Essenzieller Website-Betrieb",
+              paragraphs: ["Sprache, Consent-Speicherung und Formularsicherheit beruhen auf berechtigten Interessen und, wo anwendbar, auf der Erforderlichkeit fuer einen gewuenschten Dienst."],
+            },
+            {
+              title: "Newsletter und Early Access",
+              paragraphs: ["Newsletter und Early-Access-Updates beruhen auf Einwilligung ueber Formular und Double-Opt-in."],
+            },
+            {
+              title: "Analyse, Marketing und Chat",
+              paragraphs: ["Analyse, Marketing-Automation und Chat beruhen auf Einwilligung ueber die Datenschutzeinstellungen."],
+            },
+            {
+              title: "Beantwortung von Kontaktanfragen",
+              paragraphs: ["Kontaktanfragen werden fuer vorvertragliche Schritte oder berechtigte Interessen bearbeitet."],
+            },
           ],
         },
         { title: "Auftragsbearbeiter und Anbieter", paragraphs: ["ESGCheck nutzt externe Anbieter fuer Hosting, Warteliste, Formularschutz sowie optionale Analyse, Marketing-Automation und Chat."], list: sharedProviderList },
         { title: "Internationale Uebermittlungen", paragraphs: ["Einige Anbieter koennen Daten in der Schweiz, EU/EWR, den USA oder anderen Laendern bearbeiten. ESGCheck stuetzt sich, soweit erforderlich, auf vertragliche Schutzmechanismen und Datenverarbeitungsbedingungen der Anbieter."] },
-        { title: "Aufbewahrung", list: ["Wartelisten- und Newsletterdaten bis Abmeldung, Widerruf oder Wegfall des Early-Access-Zwecks.", "Kontakt-E-Mails solange noetig zur Beantwortung und Dokumentation.", "Consent-Einstellungen bis zur Aenderung, Browser-Loeschung oder neuen Consent-Version.", "Analyse-, Chat-, Sicherheits- und Marketingdaten nach Anbieter- und gesetzlichen Aufbewahrungsregeln."] },
+        { title: "Aufbewahrung", subsections: [{ title: "Wartelisten- und Newsletterdaten", paragraphs: ["Bis Abmeldung, Widerruf oder Wegfall des Early-Access-Zwecks."] }, { title: "Kontakt-E-Mails", paragraphs: ["Solange noetig zur Beantwortung und Dokumentation."] }, { title: "Consent-Einstellungen", paragraphs: ["Bis zur Aenderung, Browser-Loeschung oder neuen Consent-Version."] }, { title: "Anbieterdaten", paragraphs: ["Analyse-, Chat-, Sicherheits- und Marketingdaten folgen Anbieter- und gesetzlichen Aufbewahrungsregeln."] }] },
         { title: "Ihre Rechte", paragraphs: ["Sie koennen Auskunft, Berichtigung, Loeschung, Einschraenkung, Datenuebertragbarkeit, Widerspruch und Widerruf der Einwilligung verlangen. Ein Widerruf wirkt nicht rueckwirkend.", "Kontakt: info@esgcheck.ch. In der Schweiz koennen Sie sich auch an den Eidgenoessischen Datenschutz- und Oeffentlichkeitsbeauftragten (EDOEB/FDPIC) wenden."] },
         { title: "Aktualisierungen", paragraphs: ["ESGCheck kann diese Erklaerung anpassen, wenn Projekt, Unternehmensstruktur, Anbieter oder Produktumfang reifen."] },
       ],
@@ -300,11 +381,11 @@ export const legalContent: Record<Language, Record<LegalPageKind, LegalPageConte
       updated,
       sections: [
         { title: "Responsable et contact", paragraphs: ["ESGCheck est actuellement un projet non constitue en societe, represente par Ali Priyatna, Sandackerstrasse 9, 9245 Oberbüren, Suisse.", "Pour les demandes de confidentialite: info@esgcheck.ch. Aucun DPO ni representant UE n'est designe a ce stade."] },
-        { title: "Donnees traitees", list: ["Informations de site et d'appareil, y compris pages vues, navigateur, donnees techniques liees a l'IP et preferences de consentement.", "Donnees de liste d'attente: e-mail, langue, consentement newsletter, double opt-in, horodatages et metadonnees Brevo.", "E-mails et messages envoyes a ESGCheck.", "Messages de chat si Brevo Conversations est active par consentement.", "Signaux de securite traites par Cloudflare Turnstile pour proteger le formulaire."] },
-        { title: "Finalites et bases juridiques", list: ["Fonctionnement essentiel du site, langue, stockage du consentement et securite du formulaire: interets legitimes et service demande.", "Newsletter et acces anticipe: consentement via formulaire et double opt-in.", "Analyse, marketing automation et chat: consentement via les preferences.", "Reponse aux demandes: mesures precontractuelles ou interets legitimes."] },
+        { title: "Donnees traitees", subsections: [{ title: "Donnees de site et d'appareil", paragraphs: ["Pages vues, navigateur, donnees techniques liees a l'IP et preferences de consentement."] }, { title: "Donnees de liste d'attente", paragraphs: ["E-mail, langue, consentement newsletter, double opt-in, horodatages et metadonnees Brevo."] }, { title: "E-mails de contact", paragraphs: ["E-mails et messages envoyes a ESGCheck."] }, { title: "Messages de chat", paragraphs: ["Messages de chat et informations visiteur si Brevo Conversations est active par consentement."] }, { title: "Signaux de securite", paragraphs: ["Signaux traites par Cloudflare Turnstile pour proteger le formulaire contre le spam et les abus."] }] },
+        { title: "Finalites et bases juridiques", subsections: [{ title: "Fonctionnement essentiel du site", paragraphs: ["Langue, stockage du consentement et securite du formulaire reposent sur des interets legitimes et, le cas echeant, sur le service demande."] }, { title: "Newsletter et acces anticipe", paragraphs: ["Newsletter et acces anticipe reposent sur le consentement via formulaire et double opt-in."] }, { title: "Analyse, marketing et chat", paragraphs: ["Analyse, marketing automation et chat reposent sur le consentement via les preferences."] }, { title: "Reponse aux demandes", paragraphs: ["Les demandes sont traitees pour des mesures precontractuelles ou des interets legitimes."] }] },
         { title: "Prestataires", paragraphs: ["ESGCheck utilise des prestataires externes pour l'hebergement, la liste d'attente, la protection du formulaire et les services optionnels."], list: sharedProviderList },
         { title: "Transferts internationaux", paragraphs: ["Certains prestataires peuvent traiter des donnees en Suisse, dans l'UE/EEE, aux Etats-Unis ou ailleurs. ESGCheck s'appuie sur les garanties contractuelles et mecanismes disponibles lorsque necessaire."] },
-        { title: "Conservation", list: ["Donnees de liste d'attente jusqu'au desabonnement, retrait du consentement ou fin de la finalite.", "E-mails de contact conserves aussi longtemps que necessaire.", "Preferences de consentement jusqu'a modification, suppression ou nouvelle version.", "Donnees d'analyse, chat, securite et marketing selon les parametres des prestataires."] },
+        { title: "Conservation", subsections: [{ title: "Donnees de liste d'attente et newsletter", paragraphs: ["Conservees jusqu'au desabonnement, retrait du consentement ou fin de la finalite."] }, { title: "E-mails de contact", paragraphs: ["Conserves aussi longtemps que necessaire pour repondre et documenter la demande."] }, { title: "Preferences de consentement", paragraphs: ["Conservees jusqu'a modification, suppression dans le navigateur ou nouvelle version."] }, { title: "Donnees des prestataires", paragraphs: ["Les donnees d'analyse, chat, securite et marketing suivent les parametres des prestataires."] }] },
         { title: "Vos droits", paragraphs: ["Vous pouvez demander acces, rectification, suppression, limitation, portabilite, opposition et retrait du consentement. Le retrait n'est pas retroactif.", "Contact: info@esgcheck.ch. En Suisse, vous pouvez aussi contacter le PFPDT/FDPIC."] },
         { title: "Mises a jour", paragraphs: ["ESGCheck peut modifier cette politique lorsque le projet, la structure, les prestataires ou le produit evoluent."] },
       ],
@@ -319,11 +400,11 @@ export const legalContent: Record<Language, Record<LegalPageKind, LegalPageConte
       updated,
       sections: [
         { title: "Titolare e contatto", paragraphs: ["ESGCheck e attualmente un progetto non incorporato, rappresentato da Ali Priyatna, Sandackerstrasse 9, 9245 Oberbüren, Svizzera.", "Per richieste privacy: info@esgcheck.ch. Non e stato nominato un DPO o rappresentante UE in questa fase."] },
-        { title: "Dati trattati", list: ["Informazioni su sito e dispositivo, pagine viste, browser, dati tecnici legati all'IP e preferenze di consenso.", "Dati lista d'attesa: email, lingua, consenso newsletter, double opt-in, timestamp e metadati Brevo.", "Email e messaggi inviati a ESGCheck.", "Messaggi chat se Brevo Conversations e attivato con consenso.", "Segnali di sicurezza trattati da Cloudflare Turnstile per proteggere il modulo."] },
-        { title: "Finalita e basi giuridiche", list: ["Funzionamento essenziale, lingua, consenso e sicurezza modulo: interessi legittimi e servizio richiesto.", "Newsletter e accesso anticipato: consenso tramite modulo e double opt-in.", "Analisi, marketing automation e chat: consenso tramite preferenze.", "Risposta a richieste: misure precontrattuali o interessi legittimi."] },
+        { title: "Dati trattati", subsections: [{ title: "Dati di sito e dispositivo", paragraphs: ["Pagine viste, browser, dati tecnici legati all'IP e preferenze di consenso."] }, { title: "Dati lista d'attesa", paragraphs: ["Email, lingua, consenso newsletter, double opt-in, timestamp e metadati Brevo."] }, { title: "Email di contatto", paragraphs: ["Email e messaggi inviati a ESGCheck."] }, { title: "Messaggi chat", paragraphs: ["Messaggi chat e informazioni visitatore se Brevo Conversations e attivato con consenso."] }, { title: "Segnali di sicurezza", paragraphs: ["Segnali trattati da Cloudflare Turnstile per proteggere il modulo da spam e abusi."] }] },
+        { title: "Finalita e basi giuridiche", subsections: [{ title: "Funzionamento essenziale del sito", paragraphs: ["Lingua, consenso e sicurezza modulo si basano su interessi legittimi e, ove applicabile, sul servizio richiesto."] }, { title: "Newsletter e accesso anticipato", paragraphs: ["Newsletter e accesso anticipato si basano sul consenso tramite modulo e double opt-in."] }, { title: "Analisi, marketing e chat", paragraphs: ["Analisi, marketing automation e chat si basano sul consenso tramite preferenze."] }, { title: "Risposta a richieste", paragraphs: ["Le richieste sono trattate per misure precontrattuali o interessi legittimi."] }] },
         { title: "Fornitori", paragraphs: ["ESGCheck usa fornitori esterni per hosting, lista d'attesa, protezione modulo e servizi opzionali."], list: sharedProviderList },
         { title: "Trasferimenti internazionali", paragraphs: ["Alcuni fornitori possono trattare dati in Svizzera, UE/SEE, Stati Uniti o altri paesi. ESGCheck si affida a garanzie contrattuali e meccanismi disponibili quando necessario."] },
-        { title: "Conservazione", list: ["Dati lista d'attesa fino a disiscrizione, revoca o fine della finalita.", "Email di contatto conservate quanto necessario.", "Preferenze consenso fino a modifica, cancellazione o nuova versione.", "Dati analytics, chat, sicurezza e marketing secondo impostazioni dei fornitori."] },
+        { title: "Conservazione", subsections: [{ title: "Dati lista d'attesa e newsletter", paragraphs: ["Conservati fino a disiscrizione, revoca o fine della finalita."] }, { title: "Email di contatto", paragraphs: ["Conservate quanto necessario per rispondere e documentare la richiesta."] }, { title: "Preferenze consenso", paragraphs: ["Conservate fino a modifica, cancellazione nel browser o nuova versione."] }, { title: "Dati dei fornitori", paragraphs: ["Dati analytics, chat, sicurezza e marketing seguono le impostazioni dei fornitori."] }] },
         { title: "Diritti", paragraphs: ["Puoi chiedere accesso, rettifica, cancellazione, limitazione, portabilita, opposizione e revoca del consenso. La revoca non e retroattiva.", "Contatto: info@esgcheck.ch. In Svizzera puoi anche contattare l'FDPIC."] },
         { title: "Aggiornamenti", paragraphs: ["ESGCheck puo aggiornare questa informativa quando progetto, struttura, fornitori o prodotto evolvono."] },
       ],
@@ -338,11 +419,11 @@ export const legalContent: Record<Language, Record<LegalPageKind, LegalPageConte
       updated,
       sections: [
         { title: "Responsabel e contact", paragraphs: ["ESGCheck è actualmain in project betg incorporà, represchentà dad Ali Priyatna, Sandackerstrasse 9, 9245 Oberbüren, Svizra.", "Per dumondas da protecziun da datas: info@esgcheck.ch. Nagina persuna DPO u represchentanza UE n'è nominada en questa fasa."] },
-        { title: "Datas tractadas", list: ["Infurmaziuns da pagina e da dispositiv, visitas da paginas, browser, datas tecnicas colliadas cun IP e preferenzas da consentiment.", "Datas da glista da spetga: e-mail, lingua, consentiment newsletter, double opt-in, timestamps e metadata da Brevo.", "E-mails e messadis tramess ad ESGCheck.", "Messadis da chat sche Brevo Conversations vegn activà cun consentiment.", "Signals da segirezza tractads da Cloudflare Turnstile per proteger il formular."] },
-        { title: "Intents e basas legalas", list: ["Funcziun essenziala, lingua, consentiment e segirezza dal formular: interess legitim e servetsch dumandà.", "Newsletter ed access anticipà: consentiment via formular e double opt-in.", "Analisa, marketing e chat: consentiment via preferenzas.", "Respunder a dumondas: pass precontractuals u interess legitim."] },
+        { title: "Datas tractadas", subsections: [{ title: "Datas da pagina e dispositiv", paragraphs: ["Visitas da paginas, browser, datas tecnicas colliadas cun IP e preferenzas da consentiment."] }, { title: "Datas da glista da spetga", paragraphs: ["E-mail, lingua, consentiment newsletter, double opt-in, timestamps e metadata da Brevo."] }, { title: "E-mails da contact", paragraphs: ["E-mails e messadis tramess ad ESGCheck."] }, { title: "Messadis da chat", paragraphs: ["Messadis da chat ed infurmaziuns da visitaders sche Brevo Conversations vegn activà cun consentiment."] }, { title: "Signals da segirezza", paragraphs: ["Signals tractads da Cloudflare Turnstile per proteger il formular cunter spam ed abus."] }] },
+        { title: "Intents e basas legalas", subsections: [{ title: "Funcziun essenziala da la pagina", paragraphs: ["Lingua, consentiment e segirezza dal formular sa basan sin interess legitim e, nua applicabel, sin il servetsch dumandà."] }, { title: "Newsletter ed access anticipà", paragraphs: ["Newsletter ed access anticipà sa basan sin consentiment via formular e double opt-in."] }, { title: "Analisa, marketing e chat", paragraphs: ["Analisa, marketing e chat sa basan sin consentiment via preferenzas."] }, { title: "Respunder a dumondas", paragraphs: ["Dumondas vegnan tractadas per pass precontractuals u interess legitim."] }] },
         { title: "Providers", paragraphs: ["ESGCheck dovra providers externs per hosting, glista da spetga, protecziun dal formular e servetschs opziunals."], list: sharedProviderList },
         { title: "Transfer internaziunal", paragraphs: ["Tscherts providers pon tractar datas en Svizra, UE/SEE, Stadis Unids u auters pajais. ESGCheck sa basa sin garanzias contractualas e mecanissems disponibels nua necessari."] },
-        { title: "Retenziun", list: ["Datas da glista da spetga enfin desabunament, revocaziun u fin da l'intent.", "E-mails da contact vegnan tegnids uschè ditg sco necessari.", "Preferenzas da consentiment enfin midada, stizzada u nova versiun.", "Datas d'analisa, chat, segirezza e marketing tenor ils providers."] },
+        { title: "Retenziun", subsections: [{ title: "Datas da glista da spetga e newsletter", paragraphs: ["Enfin desabunament, revocaziun u fin da l'intent."] }, { title: "E-mails da contact", paragraphs: ["Tegnids uschè ditg sco necessari per respunder e documentar la dumonda."] }, { title: "Preferenzas da consentiment", paragraphs: ["Enfin midada, stizzada en il browser u nova versiun."] }, { title: "Datas dals providers", paragraphs: ["Datas d'analisa, chat, segirezza e marketing suondan ils parameters dals providers."] }] },
         { title: "Voss dretgs", paragraphs: ["Vus pudais dumandar access, correctura, stizzada, limitaziun, portabilitad, protesta e revocaziun dal consentiment. La revocaziun na vala betg retroactivamain.", "Contact: info@esgcheck.ch. En Svizra pudais Vus era contactar il FDPIC/EDOEB."] },
         { title: "Actualisaziuns", paragraphs: ["ESGCheck po actualisar questa decleraziun sche project, structura, providers u product sa sviluppan."] },
       ],
