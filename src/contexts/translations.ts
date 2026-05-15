@@ -66,16 +66,16 @@ export const enTranslations = {
   needNow: {
     title: "Why companies need this now",
     description:
-      "Many SMEs are not trying to produce a full report. They need structured ESG information for customers, procurement teams, supply-chain partners, lenders, and investors.",
+      "CSRD/ESRS, Swiss non-financial reporting rules for larger companies, and broader market expectations are creating indirect ESG pressure for SMEs through customers, procurement teams, supply-chain partners, banks, investors, and financial institutions.",
     items: {
       customerRequests: "Customer requests",
       procurement: "Procurement requirements",
       supplyChain: "Supply-chain expectations",
-      investors: "Investor and lender questions",
+      investors: "Bank, lender, and investor questions",
       credibility: "Market credibility",
     },
     conclusion:
-      "What teams need first is orientation: a credible starting point for ESG information requests before they invest in heavier ESG work.",
+      "What teams need first is orientation: a credible starting point for ESG information requests, with VSME as a practical voluntary reference point rather than a compliance obligation.",
   },
   howItWorks: {
     title: "How It Works",
@@ -129,7 +129,7 @@ export const enTranslations = {
   credibility: {
     title: "Built to be credible",
     intro:
-      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first readiness overview, not a CSRD compliance product, formal assurance, certification, or full reporting support.",
+      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first readiness overview, not a CSRD compliance product, formal assurance, certification, or full sustainability reporting replacement.",
     pillars: {
       outputs: {
         title: "Useful scope today",
@@ -139,7 +139,7 @@ export const enTranslations = {
       methodology: {
         title: "Structured methodology",
         description:
-          "A practical GRI-first foundation with VSME-oriented readiness as the next framework direction.",
+          "A practical GRI-first foundation with VSME-oriented readiness as the next voluntary reference direction.",
       },
       positioning: {
         title: "Clear positioning",
@@ -169,9 +169,9 @@ export const enTranslations = {
           "End-to-end flows are being checked across the full experience.",
       },
       expert: {
-        title: "Expert review next",
+        title: "Expert-backed review next",
         description:
-          "Independent expert input is the next step to strengthen result quality and credibility.",
+          "Expert-backed methodology review is the next step to strengthen result quality and credibility.",
       },
       readiness: {
         title: "Moving toward pilots",
@@ -242,7 +242,7 @@ export const enTranslations = {
       vsme: {
         question: "Is ESGCheck a CSRD or VSME compliance tool?",
         answer:
-          "No. ESGCheck is not a compliance, assurance, certification, or full reporting product. It helps SMEs organize existing information, identify gaps, and prepare for practical ESG information requests, with VSME-oriented readiness as a next framework direction.",
+          "No. ESGCheck is not a compliance, assurance, certification, or full sustainability reporting product. It helps SMEs organize existing information, identify gaps, and prepare for practical ESG information requests, with VSME as a voluntary reference point.",
       },
       documents: {
         question: "What documents can I upload?",
@@ -300,20 +300,20 @@ export const enTranslations = {
   seo: {
     title: "ESGCheck | Practical ESG Readiness Overview for Growing B2B SMEs",
     description:
-      "Turn company documents into a clear ESG readiness overview with evidence mapping, visible gaps, practical next steps, and an indicative score for rising ESG information requests.",
+      "Turn company documents into a clear ESG readiness overview with evidence mapping, visible gaps, practical next steps, and an indicative score for rising customer, procurement, lender, investor, and supply-chain ESG requests.",
     keywords:
       "ESG readiness, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability readiness, document-based ESG",
     ogImageAlt:
       "ESGCheck practical ESG readiness overview platform for growing B2B SMEs",
     structuredData: {
       description:
-        "A practical ESG readiness platform for growing B2B SMEs, built from the documents companies already have.",
+        "A practical ESG readiness platform for growing B2B SMEs facing indirect ESG information requests, built from the documents companies already have.",
       featureList: {
         documentFirst: "Document-first ESG readiness overview",
         scoreRationale: "Indicative ESG score with rationale",
         strengthsGaps: "Evidence mapping and gap visibility",
         nextSteps: "Practical next steps",
-        vsmeReadiness: "VSME-oriented next framework direction",
+        vsmeReadiness: "VSME-oriented voluntary reference direction",
         swissPrivacy: "Swiss-built privacy-conscious workflow",
       },
     },
@@ -530,16 +530,16 @@ export const deTranslations = {
   needNow: {
     title: "Warum Unternehmen das jetzt brauchen",
     description:
-      "Viele KMU erstellen keinen vollständigen Bericht. Sie brauchen strukturierte ESG-Informationen für Kunden, Beschaffung, Lieferkettenpartner, Kreditgeber und Investoren.",
+      "CSRD/ESRS, Schweizer nichtfinanzielle Berichterstattungsregeln für grössere Unternehmen und breitere Markterwartungen erzeugen indirekten ESG-Druck auf KMU durch Kunden, Beschaffung, Lieferkettenpartner, Banken, Investoren und Finanzinstitutionen.",
     items: {
       customerRequests: "Kundenanfragen",
       procurement: "Anforderungen aus der Beschaffung",
       supplyChain: "Erwartungen entlang der Lieferkette",
-      investors: "Fragen von Investoren und Finanzierungspartnern",
+      investors: "Fragen von Banken, Kreditgebern und Investoren",
       credibility: "Glaubwürdigkeit im Markt",
     },
     conclusion:
-      "Was Teams zuerst brauchen, ist Einordnung: ein glaubwürdiger Ausgangspunkt für ESG-Informationsanfragen, bevor grössere ESG-Aufwände sinnvoll werden.",
+      "Was Teams zuerst brauchen, ist Einordnung: ein glaubwürdiger Ausgangspunkt für ESG-Informationsanfragen, mit VSME als praktische freiwillige Referenz und nicht als Compliance-Pflicht.",
   },
   howItWorks: {
     title: "So funktioniert es",
@@ -593,7 +593,7 @@ export const deTranslations = {
   credibility: {
     title: "Auf Glaubwürdigkeit ausgelegt",
     intro:
-      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist ein strukturierter erster Readiness-Überblick, kein CSRD-Compliance-Produkt, keine formale Assurance, keine Zertifizierung und keine vollständige Reporting-Unterstützung.",
+      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist ein strukturierter erster Readiness-Überblick, kein CSRD-Compliance-Produkt, keine formale Assurance, keine Zertifizierung und kein Ersatz für vollständiges Nachhaltigkeitsreporting.",
     pillars: {
       outputs: {
         title: "Sinnvoller Umfang für heute",
@@ -603,7 +603,7 @@ export const deTranslations = {
       methodology: {
         title: "Strukturierte Methodik",
         description:
-          "Eine praxisnahe GRI-first Grundlage mit VSME-orientierter Readiness als nächster Framework-Richtung.",
+          "Eine praxisnahe GRI-first Grundlage mit VSME-orientierter Readiness als nächster freiwilliger Referenzrichtung.",
       },
       positioning: {
         title: "Klare Positionierung",
@@ -633,9 +633,9 @@ export const deTranslations = {
           "Die End-to-End-Abläufe werden über das gesamte Nutzungserlebnis hinweg geprüft.",
       },
       expert: {
-        title: "Expertenreview als Nächstes",
+        title: "Expertengestütztes Review als Nächstes",
         description:
-          "Unabhängige fachliche Rückmeldungen sind der nächste Schritt, um Ergebnisqualität und Glaubwürdigkeit weiter zu stärken.",
+          "Ein expertengestütztes Methodik-Review ist der nächste Schritt, um Ergebnisqualität und Glaubwürdigkeit weiter zu stärken.",
       },
       readiness: {
         title: "Auf dem Weg zu Piloten",
@@ -706,7 +706,7 @@ export const deTranslations = {
       vsme: {
         question: "Ist ESGCheck ein CSRD- oder VSME-Compliance-Tool?",
         answer:
-          "Nein. ESGCheck ist kein Compliance-, Assurance-, Zertifizierungs- oder vollständiges Reporting-Produkt. ESGCheck hilft KMU, bestehende Informationen zu ordnen, Lücken zu erkennen und sich auf praktische ESG-Informationsanfragen vorzubereiten, mit VSME-orientierter Readiness als nächster Framework-Richtung.",
+          "Nein. ESGCheck ist kein Compliance-, Assurance-, Zertifizierungs- oder vollständiges Nachhaltigkeitsreporting-Produkt. ESGCheck hilft KMU, bestehende Informationen zu ordnen, Lücken zu erkennen und sich auf praktische ESG-Informationsanfragen vorzubereiten, mit VSME als freiwilligem Referenzpunkt.",
       },
       documents: {
         question: "Welche Dokumente kann ich hochladen?",
@@ -766,20 +766,20 @@ export const deTranslations = {
   seo: {
     title: "ESGCheck | Praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
     description:
-      "Machen Sie aus Unternehmensunterlagen einen klaren ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für steigende ESG-Informationsanfragen.",
+      "Machen Sie aus Unternehmensunterlagen einen klaren ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für steigende ESG-Anfragen von Kunden, Beschaffung, Finanzierungspartnern, Investoren und Lieferketten.",
     keywords:
       "ESG-Readiness, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeits-Readiness, dokumentenbasierte ESG",
     ogImageAlt:
       "ESGCheck praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
     structuredData: {
       description:
-        "Eine praxisnahe ESG-Readiness-Plattform für wachsende B2B-KMU, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
+        "Eine praxisnahe ESG-Readiness-Plattform für wachsende B2B-KMU mit indirekten ESG-Informationsanfragen, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
       featureList: {
         documentFirst: "Dokumentenbasierter ESG-Readiness-Überblick",
         scoreRationale: "Indikativer ESG Score mit Begründung",
         strengthsGaps: "Nachweis-Mapping und Lückenübersicht",
         nextSteps: "Konkrete nächste Schritte",
-        vsmeReadiness: "VSME-orientierte nächste Framework-Richtung",
+        vsmeReadiness: "VSME-orientierte freiwillige Referenzrichtung",
         swissPrivacy: "Datenschutzbewusster Workflow aus der Schweiz",
       },
     },
@@ -991,16 +991,16 @@ export const frTranslations = {
   needNow: {
     title: "Pourquoi les entreprises en ont besoin maintenant",
     description:
-      "De nombreuses PME ne cherchent pas à produire un rapport complet. Elles doivent fournir des informations ESG structurées à des clients, achats, partenaires de chaîne d'approvisionnement, prêteurs et investisseurs.",
+      "CSRD/ESRS, les règles suisses de reporting non financier pour les grandes entreprises et les attentes plus larges du marché créent une pression ESG indirecte sur les PME via les clients, les achats, les partenaires de chaîne d'approvisionnement, les banques, les investisseurs et les institutions financières.",
     items: {
       customerRequests: "Demandes clients",
       procurement: "Exigences achats",
       supplyChain: "Attentes de la chaîne d'approvisionnement",
-      investors: "Questions des investisseurs et partenaires financiers",
+      investors: "Questions des banques, prêteurs et investisseurs",
       credibility: "Crédibilité sur le marché",
     },
     conclusion:
-      "Ce qu'il faut d'abord aux équipes, c'est un cadre de lecture: un point de départ crédible pour les demandes d'informations ESG avant d'investir dans un dispositif ESG plus lourd.",
+      "Ce qu'il faut d'abord aux équipes, c'est un cadre de lecture: un point de départ crédible pour les demandes d'informations ESG, avec VSME comme référence volontaire pratique et non comme obligation de conformité.",
   },
   howItWorks: {
     title: "Fonctionnement",
@@ -1054,7 +1054,7 @@ export const frTranslations = {
   credibility: {
     title: "Conçu pour rester crédible",
     intro:
-      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'un premier aperçu structuré de préparation, pas d'un produit de conformité CSRD, d'une assurance formelle, d'une certification ou d'un support complet de reporting.",
+      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'un premier aperçu structuré de préparation, pas d'un produit de conformité CSRD, d'une assurance formelle, d'une certification ou d'un remplacement complet du reporting de durabilité.",
     pillars: {
       outputs: {
         title: "Un périmètre utile aujourd'hui",
@@ -1064,7 +1064,7 @@ export const frTranslations = {
       methodology: {
         title: "Une méthode structurée",
         description:
-          "Une base pratique GRI-first avec une préparation orientée VSME comme prochaine direction de framework.",
+          "Une base pratique GRI-first avec une préparation orientée VSME comme prochaine référence volontaire.",
       },
       positioning: {
         title: "Un positionnement clair",
@@ -1094,9 +1094,9 @@ export const frTranslations = {
           "Les parcours end-to-end sont vérifiés sur l'ensemble de l'expérience.",
       },
       expert: {
-        title: "Revue experte ensuite",
+        title: "Revue méthodologique experte ensuite",
         description:
-          "Le prochain jalon consiste à intégrer des retours d'experts indépendants pour renforcer la qualité et la crédibilité des résultats.",
+          "Une revue méthodologique appuyée par des experts est la prochaine étape pour renforcer la qualité et la crédibilité des résultats.",
       },
       readiness: {
         title: "En route vers les pilotes",
@@ -1167,7 +1167,7 @@ export const frTranslations = {
       vsme: {
         question: "ESGCheck est-il un outil de conformité CSRD ou VSME ?",
         answer:
-          "Non. ESGCheck n'est pas un produit de conformité, d'assurance, de certification ou de reporting complet. Il aide les PME à organiser les informations existantes, identifier les écarts et se préparer aux demandes pratiques d'informations ESG, avec une préparation orientée VSME comme prochaine direction de framework.",
+          "Non. ESGCheck n'est pas un produit de conformité, d'assurance, de certification ou de reporting de durabilité complet. Il aide les PME à organiser les informations existantes, identifier les écarts et se préparer aux demandes pratiques d'informations ESG, avec VSME comme référence volontaire.",
       },
       documents: {
         question: "Quels documents puis-je transmettre ?",
@@ -1228,20 +1228,20 @@ export const frTranslations = {
   seo: {
     title: "ESGCheck | Aperçu pratique de préparation ESG pour les PME B2B en croissance",
     description:
-      "Transformez vos documents d'entreprise en un aperçu clair de préparation ESG avec cartographie des justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes croissantes d'informations ESG.",
+      "Transformez vos documents d'entreprise en un aperçu clair de préparation ESG avec justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes ESG de clients, achats, financeurs, investisseurs et chaînes d'approvisionnement.",
     keywords:
       "préparation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, préparation durabilité, ESG fondé sur les documents",
     ogImageAlt:
       "ESGCheck aperçu pratique de préparation ESG pour les PME B2B en croissance",
     structuredData: {
       description:
-        "Une plateforme pratique de préparation ESG pour les PME B2B en croissance, fondée sur les documents dont les entreprises disposent déjà.",
+        "Une plateforme pratique de préparation ESG pour les PME B2B en croissance confrontées à des demandes ESG indirectes, fondée sur les documents dont les entreprises disposent déjà.",
       featureList: {
         documentFirst: "Aperçu de préparation ESG fondé sur les documents",
         scoreRationale: "Score ESG indicatif avec explication",
         strengthsGaps: "Cartographie des justificatifs et visibilité des écarts",
         nextSteps: "Prochaines étapes concrètes",
-        vsmeReadiness: "Prochaine direction de framework orientée VSME",
+        vsmeReadiness: "Référence volontaire orientée VSME",
         swissPrivacy: "Workflow suisse attentif à la confidentialité",
       },
     },
@@ -1453,16 +1453,16 @@ export const itTranslations: TranslationDictionary = {
   needNow: {
     title: "Perche le aziende ne hanno bisogno ora",
     description:
-      "Molte PMI non stanno cercando di produrre un report completo. Devono fornire informazioni ESG strutturate a clienti, acquisti, partner della catena di fornitura, finanziatori e investitori.",
+      "CSRD/ESRS, le regole svizzere di rendicontazione non finanziaria per le aziende piu grandi e le aspettative piu ampie del mercato creano pressione ESG indiretta sulle PMI attraverso clienti, acquisti, partner della catena di fornitura, banche, investitori e istituzioni finanziarie.",
     items: {
       customerRequests: "Richieste dei clienti",
       procurement: "Requisiti degli acquisti",
       supplyChain: "Aspettative della catena di fornitura",
-      investors: "Domande di investitori e finanziatori",
+      investors: "Domande di banche, finanziatori e investitori",
       credibility: "Credibilita sul mercato",
     },
     conclusion:
-      "Alle squadre serve prima di tutto orientamento: un punto di partenza credibile per richieste di informazioni ESG prima di investire in un lavoro ESG piu pesante.",
+      "Ai team serve prima di tutto orientamento: un punto di partenza credibile per richieste di informazioni ESG, con VSME come riferimento volontario pratico e non come obbligo di compliance.",
   },
   howItWorks: {
     title: "Come funziona",
@@ -1516,7 +1516,7 @@ export const itTranslations: TranslationDictionary = {
   credibility: {
     title: "Progettato per essere credibile",
     intro:
-      "ESGCheck deve essere utile presto, senza apparire piu maturo di quanto sia oggi. Al momento e una prima panoramica strutturata di readiness, non un prodotto di compliance CSRD, assurance formale, certificazione o supporto completo al reporting.",
+      "ESGCheck deve essere utile presto, senza apparire piu maturo di quanto sia oggi. Al momento e una prima panoramica strutturata di readiness, non un prodotto di compliance CSRD, assurance formale, certificazione o sostituto completo del reporting di sostenibilita.",
     pillars: {
       outputs: {
         title: "Ambito utile oggi",
@@ -1526,7 +1526,7 @@ export const itTranslations: TranslationDictionary = {
       methodology: {
         title: "Metodologia strutturata",
         description:
-          "Una base pratica GRI-first con readiness orientata VSME come prossima direzione di framework.",
+          "Una base pratica GRI-first con readiness orientata VSME come prossimo riferimento volontario.",
       },
       positioning: {
         title: "Posizionamento chiaro",
@@ -1556,9 +1556,9 @@ export const itTranslations: TranslationDictionary = {
           "I flussi end-to-end vengono verificati sull'intera esperienza.",
       },
       expert: {
-        title: "Revisione esperta come prossimo passo",
+        title: "Revisione metodologica esperta",
         description:
-          "Il contributo di esperti indipendenti servira a rafforzare qualita e credibilita dei risultati.",
+          "Una revisione metodologica supportata da esperti e il prossimo passo per rafforzare qualita e credibilita dei risultati.",
       },
       readiness: {
         title: "Verso i primi piloti",
@@ -1629,7 +1629,7 @@ export const itTranslations: TranslationDictionary = {
       vsme: {
         question: "ESGCheck e uno strumento di compliance CSRD o VSME?",
         answer:
-          "No. ESGCheck non e un prodotto di compliance, assurance, certificazione o reporting completo. Aiuta le PMI a organizzare le informazioni esistenti, individuare lacune e prepararsi a richieste pratiche di informazioni ESG, con readiness orientata VSME come prossima direzione di framework.",
+          "No. ESGCheck non e un prodotto di compliance, assurance, certificazione o reporting di sostenibilita completo. Aiuta le PMI a organizzare le informazioni esistenti, individuare lacune e prepararsi a richieste pratiche di informazioni ESG, con VSME come riferimento volontario.",
       },
       documents: {
         question: "Quali documenti posso caricare?",
@@ -1689,20 +1689,20 @@ export const itTranslations: TranslationDictionary = {
   seo: {
     title: "ESGCheck | Panoramica pratica di readiness ESG per PMI B2B in crescita",
     description:
-      "Trasforma i documenti aziendali in una panoramica chiara di readiness ESG con mappatura delle evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste crescenti di informazioni ESG.",
+      "Trasforma i documenti aziendali in una panoramica chiara di readiness ESG con evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste ESG di clienti, acquisti, finanziatori, investitori e supply chain.",
     keywords:
       "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, readiness sostenibilita, ESG basato sui documenti",
     ogImageAlt:
       "ESGCheck panoramica pratica di readiness ESG per PMI B2B in crescita",
     structuredData: {
       description:
-        "Una piattaforma pratica di readiness ESG per PMI B2B in crescita, basata sui documenti gia disponibili in azienda.",
+        "Una piattaforma pratica di readiness ESG per PMI B2B in crescita che ricevono richieste ESG indirette, basata sui documenti gia disponibili in azienda.",
       featureList: {
         documentFirst: "Panoramica di readiness ESG basata sui documenti",
         scoreRationale: "Punteggio ESG indicativo con spiegazione",
         strengthsGaps: "Mappatura delle evidenze e visibilita sulle lacune",
         nextSteps: "Prossimi passi concreti",
-        vsmeReadiness: "Prossima direzione di framework orientata VSME",
+        vsmeReadiness: "Riferimento volontario orientato VSME",
         swissPrivacy: "Workflow svizzero attento alla privacy",
       },
     },
@@ -1914,16 +1914,16 @@ export const rmTranslations: TranslationDictionary = {
   needNow: {
     title: "Pertge che interpresas dovran quai ussa",
     description:
-      "Bleras PMI na vulan betg l'emprim producir in rapport cumplet. Ellas dovran infurmaziuns ESG structuradas per clients, cumpra, partenaris da la chadaina da furniziun, crediturs ed investiders.",
+      "CSRD/ESRS, reglas svizras da reporting betg finanzial per interpresas pli grondas e spetgas pli vastas dal martgà creeschan pressiun ESG indirecta sin PMI tras clients, cumpra, partenaris da la chadaina da furniziun, bancas, investiders ed instituziuns finanzialas.",
     items: {
       customerRequests: "Dumondas da clients",
       procurement: "Pretensiuns da cumpra",
       supplyChain: "Spetgas da la chadaina da furniziun",
-      investors: "Dumondas d'investurs e partenaris da finanziaziun",
+      investors: "Dumondas da bancas, crediturs ed investiders",
       credibility: "Credibladad sin il martgà",
     },
     conclusion:
-      "Il team dovra l'emprim orientaziun: in punct da partenza credibel per dumondas d'infurmaziuns ESG avant investiziuns pli grevas en ESG.",
+      "Il team dovra l'emprim orientaziun: in punct da partenza credibel per dumondas d'infurmaziuns ESG, cun VSME sco referenza voluntara pratica e betg sco obligaziun da compliance.",
   },
   howItWorks: {
     title: "Uschia funcziuni",
@@ -1977,7 +1977,7 @@ export const rmTranslations: TranslationDictionary = {
   credibility: {
     title: "Concepì per credibladad",
     intro:
-      "ESGCheck duai esser nizzaivel baud, senza parair pli madir che quai ch'el è oz. Oz è quai ina emprima survista structurada da readiness, betg in product da compliance CSRD, betg assurance formala, betg certificaziun e betg sustegn cumplet da reporting.",
+      "ESGCheck duai esser nizzaivel baud, senza parair pli madir che quai ch'el è oz. Oz è quai ina emprima survista structurada da readiness, betg in product da compliance CSRD, betg assurance formala, betg certificaziun e betg in substitut per reporting cumplet da durabilitad.",
     pillars: {
       outputs: {
         title: "In rom util oz",
@@ -1987,7 +1987,7 @@ export const rmTranslations: TranslationDictionary = {
       methodology: {
         title: "Metodica structurada",
         description:
-          "Ina basa pratica GRI-first cun readiness orientada a VSME sco proxima direcziun da framework.",
+          "Ina basa pratica GRI-first cun readiness orientada a VSME sco proxima referenza voluntara.",
       },
       positioning: {
         title: "Posiziunament cler",
@@ -2017,9 +2017,9 @@ export const rmTranslations: TranslationDictionary = {
           "Ils flows end-to-end vegnan controllads sur l'entira experientscha.",
       },
       expert: {
-        title: "Revisiun d'experts sco proxim pass",
+        title: "Revisiun metodica cun experts",
         description:
-          "Input independent d'experts è il proxim pass per rinforzar qualitad e credibladad dals resultats.",
+          "Ina revisiun metodica sustegnida d'experts è il proxim pass per rinforzar qualitad e credibladad dals resultats.",
       },
       readiness: {
         title: "Sin via vers pilots",
@@ -2090,7 +2090,7 @@ export const rmTranslations: TranslationDictionary = {
       vsme: {
         question: "È ESGCheck in tool da compliance CSRD u VSME?",
         answer:
-          "Na. ESGCheck n'è betg in product da compliance, assurance, certificaziun u reporting cumplet. El gida PMI ad organisar infurmaziuns existentas, identifitgar largias e sa preparar per dumondas praticas d'infurmaziuns ESG, cun readiness orientada a VSME sco proxima direcziun da framework.",
+          "Na. ESGCheck n'è betg in product da compliance, assurance, certificaziun u reporting cumplet da durabilitad. El gida PMI ad organisar infurmaziuns existentas, identifitgar largias e sa preparar per dumondas praticas d'infurmaziuns ESG, cun VSME sco referenza voluntara.",
       },
       documents: {
         question: "Tge documents poss jau chargiar si?",
@@ -2150,20 +2150,20 @@ export const rmTranslations: TranslationDictionary = {
   seo: {
     title: "ESGCheck | Survista pragmatica da readiness ESG per PMI B2B",
     description:
-      "Transfurmai documents d'interpresa en ina survista clera da readiness ESG cun mapping da cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas creschentas d'infurmaziuns ESG.",
+      "Transfurmai documents d'interpresa en ina survista clera da readiness ESG cun cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas ESG da clients, cumpra, finanziaziun, investiders e chadainas da furniziun.",
     keywords:
       "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, readiness da durabilitad, ESG sin basa da documents",
     ogImageAlt:
       "ESGCheck survista pragmatica da readiness ESG per PMI B2B che creschan",
     structuredData: {
       description:
-        "Ina plattafurma pragmatica da readiness ESG per PMI B2B che creschan, basada sin documents gia existents.",
+        "Ina plattafurma pragmatica da readiness ESG per PMI B2B che creschan e survegnan dumondas ESG indirectas, basada sin documents gia existents.",
       featureList: {
         documentFirst: "Survista da readiness ESG basada sin documents",
         scoreRationale: "Punctaziun ESG indicativa cun motivaziun",
         strengthsGaps: "Mapping da cumprovas e survista da largias",
         nextSteps: "Proxims pass concrets",
-        vsmeReadiness: "Proxima direcziun da framework orientada a VSME",
+        vsmeReadiness: "Referenza voluntara orientada a VSME",
         swissPrivacy: "Workflow svizzer attent a la protecziun da datas",
       },
     },
