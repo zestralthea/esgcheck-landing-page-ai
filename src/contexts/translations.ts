@@ -230,7 +230,7 @@ export const enTranslations = {
         role: "Technical Lead, Senior Software Developer",
       },
       elena: {
-        name: "Elena Lisa Farrace",
+        name: "",
         role: "ESG Expert and Advisor",
       },
     },
@@ -698,7 +698,7 @@ export const deTranslations = {
         role: "Technical Lead, Senior Software Developer",
       },
       elena: {
-        name: "Elena Lisa Farrace",
+        name: "",
         role: "ESG-Expertin und Beraterin",
       },
     },
@@ -1163,7 +1163,7 @@ export const frTranslations = {
         role: "Technical Lead, Senior Software Developer",
       },
       elena: {
-        name: "Elena Lisa Farrace",
+        name: "",
         role: "Experte ESG et conseillère",
       },
     },
@@ -1629,7 +1629,7 @@ export const itTranslations: TranslationDictionary = {
         role: "Technical Lead, Senior Software Developer",
       },
       elena: {
-        name: "Elena Lisa Farrace",
+        name: "",
         role: "Esperta e consulente ESG",
       },
     },
@@ -2094,7 +2094,7 @@ export const rmTranslations: TranslationDictionary = {
         role: "Technical Lead, Senior Software Developer",
       },
       elena: {
-        name: "Elena Lisa Farrace",
+        name: "",
         role: "Experta ESG e cussegliadra",
       },
     },

@@ -122,7 +122,7 @@ export const LanguageProvider: React.FC<LanguageProviderProps> = ({ children }) 
 
   const t = (key: string): string => {
     const translations = getTranslations(language);
-    return getNestedValue(translations, key) || key;
+    return getNestedValue(translations, key) ?? key;
   };
 
   return (
