@@ -5,10 +5,12 @@ import {
   ArrowRight,
   BookOpen,
   CheckCircle2,
+  CircleSlash2,
   FileSearch,
   FileText,
   Map,
   ShieldCheck,
+  UserCheck,
 } from "lucide-react";
 import { m, useReducedMotion } from "framer-motion";
 import {
@@ -19,18 +21,6 @@ import {
   revealUp,
   staggerContainer,
 } from "@/lib/motion";
-
-const scoreBreakdown = [
-  { key: "environment", value: 64 },
-  { key: "social", value: 70 },
-  { key: "governance", value: 69 },
-];
-
-const ringDegrees = (Number("68") / 100) * 360;
-const ringProgress = Number("68") / 100;
-const ringRadius = 42;
-const ringCircumference = 2 * Math.PI * ringRadius;
-const ringOffset = ringCircumference * (1 - ringProgress);
 
 const nonBreakingHyphen = "\u2011";
 const protectedHyphenatedTerms = [
@@ -67,10 +57,45 @@ export default function Hero() {
 
   const heroTitle = t("hero.title");
   const heroDescription = protectKeyTermBreaks(t("hero.description"));
-  const strengths = ["policy", "opportunity", "conduct"] as const;
-  const gaps = ["tracking", "suppliers", "oversight"] as const;
   const nextSteps = ["scope", "suppliers", "governance"] as const;
-  const missing = ["inventory", "supplier", "board"] as const;
+  const evidenceStatuses = [
+    {
+      id: "supported",
+      label: t("hero.dashboard.strengthsTitle"),
+      detail: t("hero.dashboard.strengths.policy"),
+      count: "8",
+      icon: CheckCircle2,
+      iconClassName: "text-success",
+      badgeClassName: "bg-success/10 text-success",
+    },
+    {
+      id: "partial",
+      label: t("hero.dashboard.gapsTitle"),
+      detail: t("hero.dashboard.gaps.tracking"),
+      count: "3",
+      icon: AlertTriangle,
+      iconClassName: "text-amber-500",
+      badgeClassName: "bg-amber-500/10 text-amber-700",
+    },
+    {
+      id: "missing",
+      label: t("hero.dashboard.missingTitle"),
+      detail: t("hero.dashboard.missing.inventory"),
+      count: "2",
+      icon: FileSearch,
+      iconClassName: "text-muted-foreground",
+      badgeClassName: "bg-secondary text-foreground/70",
+    },
+    {
+      id: "not-applicable",
+      label: t("hero.dashboard.notApplicableTitle"),
+      detail: t("hero.dashboard.notApplicableDetail"),
+      count: "1",
+      icon: CircleSlash2,
+      iconClassName: "text-primary",
+      badgeClassName: "bg-primary/10 text-primary",
+    },
+  ] as const;
   const proofItems = [
     { label: t("hero.proof.documentFirst"), icon: FileText },
     { label: t("hero.proof.griFirst"), icon: BookOpen },
@@ -187,7 +212,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-[1.05fr_0.95fr]">
+            <div className="mt-5 grid gap-4 md:grid-cols-2">
               <m.div
                 className="rounded-2xl border border-border/80 bg-background p-5"
                 initial="hidden"
@@ -196,73 +221,29 @@ export default function Hero() {
                 custom={shouldReduceMotion}
                 transition={shouldReduceMotion ? undefined : { delay: 0.18, duration: 0.5, ease: entranceEase }}
               >
-                <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.scoreTitle")}</p>
-                <div className="mt-4 flex items-center justify-between gap-4">
+                <div className="flex items-start justify-between gap-3">
                   <div>
-                    <div className="flex items-end gap-1">
-                      <span className="text-5xl font-semibold tracking-tight text-foreground tabular-nums">
+                    <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.scoreTitle")}</p>
+                    <div className="mt-3 flex items-end gap-1">
+                      <span className="text-4xl font-semibold tracking-tight text-foreground tabular-nums">
                         {t("hero.dashboard.scoreValue")}
                       </span>
-                      <span className="pb-1 text-xl font-medium text-muted-foreground tabular-nums">
+                      <span className="pb-1 text-base font-medium text-muted-foreground tabular-nums">
                         {t("hero.dashboard.scoreTotal")}
                       </span>
                     </div>
-                    <p className="mt-2 text-sm font-medium text-success">{t("hero.dashboard.scoreLabel")}</p>
                   </div>
-                  <div className="relative size-24 shrink-0">
-                    <svg viewBox="0 0 96 96" className="-rotate-90">
-                      <circle
-                        cx="48"
-                        cy="48"
-                        r={ringRadius}
-                        fill="none"
-                        stroke="hsl(var(--secondary))"
-                        strokeWidth="12"
-                      />
-                      <m.circle
-                        cx="48"
-                        cy="48"
-                        r={ringRadius}
-                        fill="none"
-                        stroke="hsl(var(--primary))"
-                        strokeWidth="12"
-                        strokeLinecap="round"
-                        strokeDasharray={ringCircumference}
-                        initial={{
-                          strokeDashoffset: shouldReduceMotion ? ringOffset : ringCircumference,
-                        }}
-                        animate={{ strokeDashoffset: ringOffset }}
-                        transition={{
-                          duration: shouldReduceMotion ? 0.01 : 0.95,
-                          ease: entranceEase,
-                          delay: shouldReduceMotion ? 0 : 0.32,
-                        }}
-                      />
-                    </svg>
-                    <div className="absolute inset-[10px] rounded-full bg-card" />
-                  </div>
+                  <FileSearch className="h-5 w-5 text-primary" />
                 </div>
-
-                <div className="mt-6 space-y-3">
-                  {scoreBreakdown.map((item) => (
-                    <div key={item.key} className="space-y-2">
-                      <div>
-                        <span className="block text-[10px] font-medium uppercase leading-4 tracking-[0.12em] text-muted-foreground sm:text-[11px]">
-                          {t(`hero.dashboard.pillars.${item.key}`)}
-                        </span>
-                      </div>
-                      <div className="h-2 overflow-hidden rounded-full bg-secondary">
-                        <div
-                          className="h-full rounded-full bg-primary"
-                          style={{ width: `${item.value}%` }}
-                        />
-                      </div>
-                      <span className="block text-xs font-semibold text-foreground tabular-nums">
-                        {item.value}/100
-                      </span>
-                    </div>
-                  ))}
+                <div className="mt-4 h-2 overflow-hidden rounded-full bg-secondary">
+                  <m.div
+                    className="h-full rounded-full bg-primary"
+                    initial={{ width: shouldReduceMotion ? "68%" : 0 }}
+                    animate={{ width: "68%" }}
+                    transition={{ duration: shouldReduceMotion ? 0.01 : 0.9, ease: entranceEase, delay: 0.3 }}
+                  />
                 </div>
+                <p className="mt-3 text-xs leading-5 text-foreground/65">{t("hero.dashboard.scoreLabel")}</p>
               </m.div>
 
               <m.div
@@ -273,62 +254,65 @@ export default function Hero() {
                 custom={shouldReduceMotion}
                 transition={shouldReduceMotion ? undefined : { delay: 0.26, duration: 0.5, ease: entranceEase }}
               >
-                <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.strengthsTitle")}</p>
-                <div className="mt-4 space-y-3">
-                  {strengths.map((item) => (
-                    <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
-                      <span>{t(`hero.dashboard.strengths.${item}`)}</span>
-                    </div>
-                  ))}
-                </div>
-
-                <div className="mt-6 border-t border-border/70 pt-5">
-                  <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.gapsTitle")}</p>
-                  <div className="mt-4 space-y-3">
-                    {gaps.map((item) => (
-                      <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
-                        <AlertTriangle className="h-4 w-4 shrink-0 text-amber-500" />
-                        <span>{t(`hero.dashboard.gaps.${item}`)}</span>
-                      </div>
-                    ))}
+                <div className="flex items-start justify-between gap-3">
+                  <div>
+                    <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.maturityTitle")}</p>
+                    <p className="mt-3 text-xl font-semibold tracking-tight text-foreground">
+                      {t("hero.dashboard.maturityValue")}
+                    </p>
                   </div>
+                  <ShieldCheck className="h-5 w-5 text-primary" />
                 </div>
+                <p className="mt-3 text-xs leading-5 text-foreground/65">{t("hero.dashboard.maturityDetail")}</p>
               </m.div>
 
               <m.div
-                className="rounded-2xl border border-border/80 bg-background p-5"
+                className="rounded-2xl border border-border/80 bg-background p-5 md:col-span-2"
                 initial="hidden"
                 animate="visible"
                 variants={revealUp}
                 custom={shouldReduceMotion}
                 transition={shouldReduceMotion ? undefined : { delay: 0.34, duration: 0.5, ease: entranceEase }}
               >
-                <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.nextStepsTitle")}</p>
-                <div className="mt-4 space-y-3">
-                  {nextSteps.map((item) => (
-                    <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
-                      <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
-                      <span>{t(`hero.dashboard.nextSteps.${item}`)}</span>
+                <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.statusTitle")}</p>
+                <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                  {evidenceStatuses.map((status) => (
+                    <div key={status.id} className="flex items-start gap-3 rounded-xl border border-border/70 bg-card p-3">
+                      <status.icon className={`mt-0.5 h-4 w-4 shrink-0 ${status.iconClassName}`} />
+                      <div className="min-w-0 flex-1">
+                        <div className="flex items-center justify-between gap-2">
+                          <p className="text-xs font-semibold text-foreground">{status.label}</p>
+                          <span className={`rounded-full px-2 py-0.5 text-[10px] font-semibold tabular-nums ${status.badgeClassName}`}>
+                            {status.count}
+                          </span>
+                        </div>
+                        <p className="mt-1 text-[11px] leading-4 text-foreground/60">{status.detail}</p>
+                      </div>
                     </div>
                   ))}
                 </div>
               </m.div>
 
               <m.div
-                className="rounded-2xl border border-border/80 bg-background p-5"
+                className="rounded-2xl border border-border/80 bg-background p-5 md:col-span-2"
                 initial="hidden"
                 animate="visible"
                 variants={revealUp}
                 custom={shouldReduceMotion}
                 transition={shouldReduceMotion ? undefined : { delay: 0.42, duration: 0.5, ease: entranceEase }}
               >
-                <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.missingTitle")}</p>
-                <div className="mt-4 space-y-3">
-                  {missing.map((item) => (
+                <div className="flex items-center justify-between gap-3">
+                  <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.nextStepsTitle")}</p>
+                  <div className="inline-flex items-center gap-1.5 rounded-full bg-primary/10 px-2.5 py-1 text-[10px] font-semibold text-primary">
+                    <UserCheck className="h-3.5 w-3.5" />
+                    {t("hero.dashboard.approvalStatus")}
+                  </div>
+                </div>
+                <div className="mt-4 grid gap-3 sm:grid-cols-3">
+                  {nextSteps.map((item) => (
                     <div key={item} className="flex items-center gap-2.5 text-sm text-foreground/75">
-                      <FileSearch className="h-4 w-4 shrink-0 text-muted-foreground" />
-                      <span>{t(`hero.dashboard.missing.${item}`)}</span>
+                      <CheckCircle2 className="h-4 w-4 shrink-0 text-success" />
+                      <span>{t(`hero.dashboard.nextSteps.${item}`)}</span>
                     </div>
                   ))}
                 </div>
