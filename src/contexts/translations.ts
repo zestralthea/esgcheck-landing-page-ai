@@ -1,7 +1,7 @@
 export const enTranslations = {
   header: {
     trustStrip: {
-      swissBuilt: "Swiss-built",
+      swissBuilt: "Built from Switzerland",
       privacy: "Privacy-conscious",
       growingSmes: "Designed for growing SMEs",
     },
@@ -13,53 +13,53 @@ export const enTranslations = {
     joinWaitlist: "Get Early Access",
   },
   hero: {
-    title: "A practical ESG readiness overview for growing B2B SMEs.",
+    title: "Credible ESG responses, backed by your evidence.",
     description:
-      "Turn the documents you already have into a clear ESG readiness overview, with evidence mapping, visible gaps, practical next steps, and an indicative score for customer, supply-chain, lender, investor, and voluntary reporting requests.",
+      "ESGCheck helps B2B SMEs and suppliers understand ESG information requests, find supporting evidence across existing company materials, identify gaps, and prepare traceable responses for human approval.",
     primaryCta: "Get Early Access",
     secondaryCta: "See How It Works",
     proof: {
-      documentFirst: "Document-first",
-      griFirst: "GRI-first foundation",
-      vsmeNext: "VSME-oriented next step",
-      swissPrivacy: "Swiss privacy mindset",
+      documentFirst: "Evidence-driven",
+      griFirst: "VSME-backed methodology",
+      vsmeNext: "Human-approved responses",
+      swissPrivacy: "Swiss/EU privacy-conscious",
     },
     dashboard: {
-      title: "ESG Readiness Overview",
+      title: "ESG Evidence Overview",
       filter: "Example output",
       previewLabel: "Illustrative output preview",
-      scoreTitle: "Indicative ESG Score",
+      scoreTitle: "Evidence Readiness",
       scoreValue: "68",
       scoreTotal: "/100",
-      scoreLabel: "Good starting point",
+      scoreLabel: "Evidence base developing",
       pillars: {
-        environment: "Environment",
-        social: "Social",
-        governance: "Governance",
+        environment: "Request coverage",
+        social: "Evidence usability",
+        governance: "Source traceability",
       },
-      strengthsTitle: "Available Evidence",
+      strengthsTitle: "Supported",
       strengths: {
-        policy: "Environmental policy in place",
-        opportunity: "Diversity and equal opportunity",
-        conduct: "Ethics and code of conduct",
+        policy: "Environmental policy found",
+        opportunity: "Workforce data supported",
+        conduct: "Code of conduct traced",
       },
-      gapsTitle: "Key Gaps",
+      gapsTitle: "Partially Supported",
       gaps: {
-        tracking: "GHG emissions tracking",
-        suppliers: "Supplier ESG assessments",
-        oversight: "Board-level ESG oversight",
+        tracking: "GHG data needs calculation",
+        suppliers: "Supplier evidence incomplete",
+        oversight: "Governance evidence unclear",
       },
-      nextStepsTitle: "Recommended Next Steps",
+      nextStepsTitle: "Practical Next Steps",
       nextSteps: {
-        scope: "Measure and track Scope 1 and 2 emissions",
-        suppliers: "Define supplier ESG expectations",
-        governance: "Establish ESG governance structure",
+        scope: "Confirm Scope 1 and 2 source data",
+        suppliers: "Collect current supplier records",
+        governance: "Assign a human response owner",
       },
       missingTitle: "Missing Evidence",
       missing: {
-        inventory: "GHG inventory data",
+        inventory: "Current GHG inventory",
         supplier: "Supplier assessment records",
-        board: "Board ESG oversight evidence",
+        board: "Management approval record",
       },
     },
   },
@@ -75,29 +75,29 @@ export const enTranslations = {
       credibility: "Market credibility",
     },
     conclusion:
-      "What teams need first is orientation: a credible starting point for ESG information requests, with VSME as a practical voluntary reference point rather than a compliance obligation.",
+      "The immediate business task is practical: answer an important external ESG request with greater speed, confidence, and credibility, then reuse approved information where it remains current and applicable.",
   },
   howItWorks: {
     title: "How It Works",
     steps: {
       upload: {
-        title: "Upload company materials",
+        title: "Bring an ESG request",
         description:
-          "Policies, internal records, supplier information, and company reports.",
+          "Start with a question, questionnaire, or stakeholder request, together with any company evidence you already have.",
       },
       assess: {
-        title: "Assess against structured ESG criteria",
-        description: "Organized around a practical GRI-first foundation today, with VSME-oriented readiness next.",
+        title: "Understand what is needed",
+        description: "ESGCheck explains the request, searches available information, and identifies the evidence required.",
       },
       receive: {
-        title: "Receive a first readiness overview",
+        title: "Review evidence and gaps",
         description:
-          "See available evidence, key gaps, practical next steps, and an indicative score.",
+          "See what is Supported, Partially Supported, Missing Evidence, or Potentially Not Applicable, with practical next steps.",
       },
       act: {
-        title: "Decide what to do next",
+        title: "Approve a traceable response",
         description:
-          "Prioritize the most relevant gaps, actions, and follow-up work.",
+          "Review the evidence-backed suggested answer before approval. Approved facts and evidence can support future requests while still valid.",
       },
     },
   },
@@ -105,9 +105,9 @@ export const enTranslations = {
     title: "Why ESGCheck",
     items: {
       practical: {
-        title: "Practical from the start",
+        title: "Starts with the real request",
         description:
-          "Built to give teams a usable first readiness overview without a consultant-heavy process.",
+          "Turns ESG language into practical information needs and a clear response workflow.",
       },
       smes: {
         title: "Built for growing SMEs",
@@ -115,41 +115,41 @@ export const enTranslations = {
           "Designed for companies with limited time, lean resources, and ESG processes that are still taking shape.",
       },
       documentFirst: {
-        title: "Starts from existing documents",
+        title: "Evidence-backed and traceable",
         description:
-          "Works from the materials companies already have instead of forcing a new data-collection project first.",
+          "Searches for relevant information across existing materials and keeps suggested answers linked to their sources.",
       },
       privacy: {
-        title: "Careful with sensitive materials",
+        title: "Human-approved and privacy-conscious",
         description:
-          "Company documents can be sensitive, so the workflow is designed with careful handling in mind.",
+          "AI proposes, evidence supports, and humans approve, with Swiss/EU trust expectations shaping data handling.",
       },
     },
   },
   credibility: {
     title: "Built to be credible",
     intro:
-      "ESGCheck is meant to be useful early without pretending to be more mature than it is. Today it is a structured first readiness overview, not a CSRD compliance product, formal assurance, certification, or full sustainability reporting replacement.",
+      "ESGCheck is designed to prepare credible, evidence-backed responses without presenting AI output as automatically authoritative. It is not formal assurance, legal certification, a full CSRD compliance suite, or a guarantee of ESG performance.",
     pillars: {
       outputs: {
-        title: "Useful scope today",
+        title: "Evidence and response focus",
         description:
-          "A focused first readiness overview to help teams understand available evidence, gaps, and sensible next steps.",
+          "Starts from a real request, finds supporting evidence, identifies gaps, and prepares a response for review.",
       },
       methodology: {
-        title: "Structured methodology",
+        title: "Practical methodology",
         description:
-          "A practical GRI-first foundation with VSME-oriented readiness as the next voluntary reference direction.",
+          "Uses VSME as the primary SME backbone, with GRI, ESRS, and other validated guidance applied where relevant.",
       },
       positioning: {
-        title: "Clear positioning",
+        title: "Human approval by design",
         description:
-          "Explicit about current boundaries and careful not to overstate maturity, coverage, or certification status.",
+          "Suggested answers remain traceable to evidence and require human review and approval before external use.",
       },
     },
     privacyTitle: "Privacy & trust",
     privacyDescription:
-      "Sensitive company documents are part of the workflow, so Swiss build quality and EU-aware privacy expectations shape product decisions from the start.",
+      "ESG materials can be commercially sensitive. Strong customer-data separation, controlled access, traceability, and defensible Swiss/EU-oriented privacy practices are core design priorities.",
     regionBadges: {
       swiss: "CH",
       europe: "EU",
@@ -159,38 +159,38 @@ export const enTranslations = {
     title: "How ESGCheck is progressing",
     items: {
       mvp: {
-        title: "MVP completed",
+        title: "Functioning prototype",
         description:
-          "The core workflow is in place and ready to be tested against real usage.",
+          "A working technical foundation already supports company setup, document upload, AI extraction, metrics, traceability, gap detection, and basic report generation.",
       },
       testing: {
-        title: "Internal testing underway",
+        title: "Product repositioning",
         description:
-          "End-to-end flows are being checked across the full experience.",
+          "The MVP is being redefined around ESG requests, evidence, reusable company context, and human-reviewed responses.",
       },
       expert: {
-        title: "Expert-backed review next",
+        title: "MVP definition underway",
         description:
-          "Expert-backed methodology review is the next step to strengthen result quality and credibility.",
+          "The revised end-to-end workflow, minimum company context, first sellable output, and exact MVP boundary are being agreed.",
       },
       readiness: {
-        title: "Moving toward pilots",
+        title: "Validation before pilots",
         description:
-          "Past idea stage, with reliability and trust still being proven before broader rollout.",
+          "External user validation has not yet taken place; controlled pilot preparation follows workflow agreement and implementation.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "The focus now is to validate reliability first, then widen the workflow in measured steps.",
+      "The focus is to agree and implement the revised workflow, validate it with realistic cases and expert review, then prepare controlled external pilots.",
     steps: {
-      testing: "Internal end-to-end testing",
-      validation: "Expert validation",
-      pilot: "First pilot customers",
-      commercial: "Commercial refinement",
-      expansion: "Framework and workflow expansion",
-      certification: "Certification-oriented direction",
+      testing: "Agree the revised workflow",
+      validation: "Define the MVP boundary",
+      pilot: "Implement and test realistic cases",
+      commercial: "Review privacy and providers",
+      expansion: "Prepare controlled pilots",
+      certification: "Refine positioning and pricing",
     },
   },
   audience: {
@@ -206,7 +206,7 @@ export const enTranslations = {
         "For teams focused on risk, financing readiness, and stakeholder confidence.",
     },
     region: {
-      title: "Best suited for growing Swiss and DACH B2B SMEs facing ESG information requests.",
+      title: "Built from Switzerland for B2B SMEs and suppliers facing ESG information requests, with broader European expansion over time.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -222,12 +222,16 @@ export const enTranslations = {
         role: "Product, Strategy, Company Direction",
       },
       anastasia: {
-        name: "Anastasia Kurer",
+        name: "Anastasia Lorena Kurer",
         role: "Marketing, Brand, Communication",
       },
       priyatna: {
         name: "Priyatna Priyatna",
         role: "Technical Lead, Senior Software Developer",
+      },
+      elena: {
+        name: "Elena Lisa Farrace",
+        role: "ESG Expert and Advisor",
       },
     },
   },
@@ -237,26 +241,26 @@ export const enTranslations = {
       certification: {
         question: "Is ESGCheck a certification?",
         answer:
-          "Not today. It is a structured first readiness overview designed to help companies orient themselves and improve over time.",
+          "No. ESGCheck is not a legal certification mechanism or a substitute for formal assurance, professional legal work, or audit work.",
       },
       vsme: {
         question: "Is ESGCheck a CSRD or VSME compliance tool?",
         answer:
-          "No. ESGCheck is not a compliance, assurance, certification, or full sustainability reporting product. It helps SMEs organize existing information, identify gaps, and prepare for practical ESG information requests, with VSME as a voluntary reference point.",
+          "No. ESGCheck uses VSME as its primary SME methodological backbone and ESRS for relevant context, but it is not a full CSRD compliance, assurance, certification, or sustainability reporting suite.",
       },
       documents: {
-        question: "What documents can I upload?",
+        question: "What can I bring to ESGCheck?",
         answer:
-          "Policies, internal records, supplier information, and company reports.",
+          "A single ESG question, a questionnaire, another stakeholder request, and any available company evidence. ESGCheck searches for the information needed rather than requiring rigidly named documents.",
       },
       audience: {
         question: "Who is it built for?",
-        answer: "Growing SMEs, especially in Swiss and DACH B2B contexts.",
+        answer: "B2B SMEs and suppliers, especially founders, managing directors, and finance leads responding to requests from customers, procurement teams, supply-chain partners, lenders, or investors.",
       },
       pricing: {
         question: "What about pricing?",
         answer:
-          "Pricing is being shaped toward an accessible SME-oriented model and will be refined through early validation.",
+          "Pricing is not yet fixed. The goal is an accessible SME-oriented model, to be validated against the final workflow, customer value, pilot feedback, and willingness to pay.",
       },
     },
   },
@@ -298,23 +302,23 @@ export const enTranslations = {
     },
   },
   seo: {
-    title: "ESGCheck | Practical ESG Readiness Overview for Growing B2B SMEs",
+    title: "ESGCheck | ESG Evidence and Response Platform for B2B SMEs",
     description:
-      "Turn company documents into a clear ESG readiness overview with evidence mapping, visible gaps, practical next steps, and an indicative score for rising customer, procurement, lender, investor, and supply-chain ESG requests.",
+      "Understand ESG information requests, find supporting evidence, identify gaps, and prepare traceable responses for human approval with ESGCheck.",
     keywords:
-      "ESG readiness, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability readiness, document-based ESG",
+      "ESG evidence, ESG responses, SME ESG, ESG questionnaires, VSME, GRI, ESRS, Swiss ESG, ESG information requests, supplier ESG",
     ogImageAlt:
-      "ESGCheck practical ESG readiness overview platform for growing B2B SMEs",
+      "ESGCheck ESG evidence and response platform for B2B SMEs and suppliers",
     structuredData: {
       description:
-        "A practical ESG readiness platform for growing B2B SMEs facing indirect ESG information requests, built from the documents companies already have.",
+        "A privacy-conscious ESG evidence and response platform for B2B SMEs and suppliers facing information requests from customers, procurement teams, lenders, investors, and supply-chain partners.",
       featureList: {
-        documentFirst: "Document-first ESG readiness overview",
-        scoreRationale: "Indicative ESG score with rationale",
-        strengthsGaps: "Evidence mapping and gap visibility",
-        nextSteps: "Practical next steps",
-        vsmeReadiness: "VSME-oriented voluntary reference direction",
-        swissPrivacy: "Swiss-built privacy-conscious workflow",
+        documentFirst: "Request-led evidence mapping",
+        scoreRationale: "Evidence Readiness and qualitative ESG Maturity",
+        strengthsGaps: "Question-level evidence statuses and gaps",
+        nextSteps: "Evidence-backed suggested responses for human review",
+        vsmeReadiness: "VSME-backed SME methodology",
+        swissPrivacy: "Swiss/EU privacy-conscious workflow",
       },
     },
   },
@@ -333,32 +337,32 @@ export const enTranslations = {
       "Please also check your spam or promotions folder. If the email does not arrive, contact us at info@esgcheck.ch.",
     steps: {
       review: {
-        title: "For SMEs & startups",
+        title: "For B2B SMEs & suppliers",
         description:
-          "ESG reporting that is oriented around your needs.",
+          "Practical support for real ESG information requests.",
       },
       update: {
-        title: "Swiss privacy",
+        title: "Privacy-conscious",
         description:
-          "Your data remains secure in Switzerland or the EU.",
+          "Swiss/EU trust expectations shape the product and its data-handling priorities.",
       },
       prepare: {
-        title: "Fast & accessible",
+        title: "Evidence-backed",
         description:
-          "Automated analyses at a fair price.",
+          "Suggested responses stay linked to evidence and require human approval.",
       },
     },
     trustTitle: "Making ESG easier together.",
     trustDescription:
       "ESGCheck helps growing teams approach ESG with practical orientation, privacy-conscious handling, and clear next steps.",
     trust: {
-      swissBuilt: "For SMEs & startups",
-      privacy: "Swiss privacy",
-      growingSmes: "Fast & accessible",
+      swissBuilt: "For B2B SMEs & suppliers",
+      privacy: "Privacy-conscious",
+      growingSmes: "Human-approved",
     },
     finalTitle: "Want to learn more about ESGCheck?",
     finalDescription:
-      "You can return to the landing page to review how ESGCheck turns existing company documents into evidence mapping, visible gaps, practical next steps, and an indicative score.",
+      "Return to the landing page to see how ESGCheck helps SMEs understand ESG requests, find evidence, identify gaps, and prepare traceable responses for human approval.",
     finalCta: "Learn more about ESGCheck",
     seo: {
       title: "Please Confirm Your Email | ESGCheck",
@@ -387,7 +391,7 @@ export const enTranslations = {
     },
     unsubscribeNote:
       "You can unsubscribe at any time using the unsubscribe link in our emails.",
-    footerTagline: "ESG reporting made simple, affordable, Swiss.",
+    footerTagline: "Practical ESG evidence and responses, built from Switzerland.",
     seo: {
       title: "Thank You for Signing Up | ESGCheck",
       description:
@@ -440,8 +444,8 @@ export const enTranslations = {
   },
   footer: {
     description:
-      "Practical ESG readiness for growing B2B SMEs preparing for ESG information requests, built in Switzerland.",
-    tagline: "Built in Switzerland · Privacy-conscious by design",
+      "A practical ESG evidence and response platform for B2B SMEs and suppliers, built from Switzerland.",
+    tagline: "Built from Switzerland · Privacy-conscious by design",
     product: "Product",
     company: "Company",
     privacy: "Privacy",
@@ -451,7 +455,7 @@ export const enTranslations = {
     privacyPreferences: "Privacy preferences",
     contact: "Contact",
     earlyAccess: "Early Access",
-    swissBuilt: "Swiss-built",
+    swissBuilt: "Built from Switzerland",
     copyright: "Copyright 2026 ESGCheck. All rights reserved.",
   },
 } as const;
@@ -692,6 +696,10 @@ export const deTranslations = {
       priyatna: {
         name: "Priyatna Priyatna",
         role: "Technical Lead, Senior Software Developer",
+      },
+      elena: {
+        name: "Elena Lisa Farrace",
+        role: "ESG-Expertin und Beraterin",
       },
     },
   },
@@ -1153,6 +1161,10 @@ export const frTranslations = {
       priyatna: {
         name: "Priyatna Priyatna",
         role: "Technical Lead, Senior Software Developer",
+      },
+      elena: {
+        name: "Elena Lisa Farrace",
+        role: "Experte ESG et conseillère",
       },
     },
   },
@@ -1616,6 +1628,10 @@ export const itTranslations: TranslationDictionary = {
         name: "Priyatna Priyatna",
         role: "Technical Lead, Senior Software Developer",
       },
+      elena: {
+        name: "Elena Lisa Farrace",
+        role: "Esperta e consulente ESG",
+      },
     },
   },
   faq: {
@@ -2076,6 +2092,10 @@ export const rmTranslations: TranslationDictionary = {
       priyatna: {
         name: "Priyatna Priyatna",
         role: "Technical Lead, Senior Software Developer",
+      },
+      elena: {
+        name: "Elena Lisa Farrace",
+        role: "Experta ESG e cussegliadra",
       },
     },
   },

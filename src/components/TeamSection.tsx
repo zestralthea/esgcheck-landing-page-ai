@@ -15,6 +15,7 @@ const members = [
     imageSrc: "/team/priyatna-priyatna.jpeg",
     imagePositionClassName: "object-[50%_15%]",
   },
+  { id: "elena" },
 ] as const;
 
 function getInitials(name: string) {
@@ -47,7 +48,7 @@ export default function TeamSection() {
           />
         </m.div>
 
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {members.map((member, index) => {
             const name = t(`team.members.${member.id}.name`);
             const role = t(`team.members.${member.id}.role`);

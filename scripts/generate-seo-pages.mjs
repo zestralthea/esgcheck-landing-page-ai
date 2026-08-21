@@ -17,12 +17,12 @@ const languages = {
     htmlLang: "en",
     hrefLang: "en",
     seo: {
-      title: "ESGCheck | Practical ESG Readiness Overview for Growing B2B SMEs",
+      title: "ESGCheck | ESG Evidence and Response Platform for B2B SMEs",
       description:
-        "Turn company documents into a clear ESG readiness overview with evidence mapping, visible gaps, practical next steps, and an indicative score for rising ESG information requests.",
+        "Understand ESG information requests, find supporting evidence, identify gaps, and prepare traceable responses for human approval with ESGCheck.",
       keywords:
-        "ESG readiness, SME ESG, VSME readiness, GRI, Swiss ESG, ESG information requests, sustainability readiness, document-based ESG",
-      ogImageAlt: "ESGCheck practical ESG readiness overview platform for growing B2B SMEs",
+        "ESG evidence, ESG responses, SME ESG, ESG questionnaires, VSME, GRI, ESRS, Swiss ESG, ESG information requests, supplier ESG",
+      ogImageAlt: "ESGCheck ESG evidence and response platform for B2B SMEs and suppliers",
     },
     confirmation: {
       title: "Please Confirm Your Email | ESGCheck",
