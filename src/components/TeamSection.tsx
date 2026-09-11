@@ -6,9 +6,9 @@ import { cardHover, entranceEase, revealUp, viewportOnce } from "@/lib/motion";
 const members = [
   { id: "ali", imageSrc: "/team/ali-priyatna-portrait.jpg" },
   {
-    id: "elena",
-    imageSrc: "/team/Elena_Headshot.jpeg",
-    imagePositionClassName: "object-[50%_30%]",
+    id: "anastasia",
+    imageSrc: "/team/anastasia-kurer.jpeg",
+    imagePositionClassName: "object-[50%_20%]",
   },
   {
     id: "priyatna",
@@ -16,9 +16,9 @@ const members = [
     imagePositionClassName: "object-[50%_15%]",
   },
   {
-    id: "anastasia",
-    imageSrc: "/team/anastasia-kurer.jpeg",
-    imagePositionClassName: "object-[50%_20%]",
+    id: "elena",
+    imageSrc: "/team/Elena_Headshot.jpeg",
+    imagePositionClassName: "object-[50%_30%]",
   },
 ] as const;
 
@@ -51,7 +51,7 @@ export default function TeamSection() {
             return (
               <m.div
                 key={member.id}
-                className="rounded-[28px] border border-border/80 bg-card p-6 shadow-card transition-shadow duration-200 hover:shadow-elegant"
+                className="h-full rounded-[28px] border border-border/80 bg-card p-6 shadow-card transition-shadow duration-200 hover:shadow-elegant"
                 initial="hidden"
                 whileInView="visible"
                 viewport={viewportOnce}
@@ -61,7 +61,7 @@ export default function TeamSection() {
                 whileHover={shouldReduceMotion ? undefined : cardHover.whileHover}
                 whileTap={shouldReduceMotion ? undefined : cardHover.whileTap}
               >
-                <div className="flex items-center gap-5">
+                <div className="flex items-start gap-5">
                   <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-[24px] bg-[linear-gradient(180deg,hsl(var(--secondary))_0%,hsl(var(--accent))_100%)] text-2xl font-semibold tracking-tight text-primary">
                     <img
                       src={member.imageSrc}
@@ -74,7 +74,7 @@ export default function TeamSection() {
                     />
                   </div>
                   <div className="min-w-0">
-                    <h3 className="text-xl font-semibold tracking-tight text-foreground">
+                    <h3 className="text-xl font-semibold leading-7 tracking-tight text-foreground xl:min-h-14">
                       {name}
                     </h3>
                     <p className="mt-1 text-sm font-semibold text-primary">
