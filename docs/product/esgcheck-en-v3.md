@@ -1,281 +1,331 @@
-# ESGCheck - Master Company Document
+# **ESGCheck – Master Company Document**
 
-## 1. Positioning
+## ***Version 3.0 | 10 September 2026***
 
-ESGCheck is a practical ESG readiness platform for B2B SMEs and suppliers facing rising ESG information requests from customers, procurement teams, lenders, investors, and supply-chain partners.
+*Internal working source of truth*
 
-The product helps companies turn existing company documents into a clear view of available ESG evidence, important gaps, practical next steps, and an indicative readiness score with rationale. It is built from Switzerland, with Swiss/EU trust expectations and privacy-conscious data handling as core positioning pillars.
+## **Purpose**
 
-### Category
+This document captures ESGCheck’s current company, product, market and governance position. It distinguishes settled principles from working directions and open decisions. It is not a technical implementation specification, legal opinion, or substitute for the detailed product model in Miro.
 
-ESG readiness platform
+## **Status language**
 
-### Core customer promise
+Agreed \= team decision or core principle.
 
-ESGCheck helps B2B SMEs and suppliers prepare credible answers to ESG information requests by transforming policies, internal records, supplier information, operational materials, and company reports into a first ESG readiness overview.
+Working direction \= current basis that may still change with validation or focused review.
 
-### Brand attributes
+Open \= not yet decided and must not be silently assumed.
 
-- practical
-- credible
-- privacy-conscious
-- clear
-- trustworthy
+## **Version history**
 
-### Desired impression
+**v3.0 — 10 Sep 2026 — Consolidated product, validation, team and support decisions through the 7 Sep team alignment, the focused product sessions through 3 Sep, and the current execution state.**
 
-Trustworthy, useful, professionally grounded, and disciplined about what the product can and cannot claim.
+v2.0 — 21 Aug 2026 — First structured master based on the 31 Jul and 16 Aug meetings plus Elena’s initial software review.
 
-### Perceptions to avoid
+v1.0 — 15 Aug 2026 — Historical master document; archived.
 
-- AI-hyped
-- gimmicky
-- superficial
-- unreliable
-- greenwashing-oriented
-- overconfident or falsely precise
+# **1\. Company Snapshot**
 
-## 2. Mission
+ESGCheck is a Swiss-based, pre-incorporation software project building an ESG evidence and response platform for B2B SMEs and suppliers.
 
-ESGCheck helps B2B SMEs and suppliers understand where they currently stand on ESG, what evidence they already have, what is missing, and what they should improve first.
+## **Working category**
 
-The mission is to lower the barrier to credible ESG action for smaller companies by making readiness work more practical, more structured, and less dependent on heavy consulting or enterprise software from the start.
+ESG evidence and response platform for B2B SMEs.
 
-## 3. Long-Term Vision
+## **Working name**
 
-ESGCheck aims to become a trusted ESG workflow platform for growing SMEs in Switzerland and, over time, across Europe.
+ESGCheck remains the working company and product name. The team will revisit the name only after market-language validation shows whether target SMEs understand and use “ESG” naturally.
 
-It begins with practical first readiness overviews and is intended to evolve into more robust, trusted, and professionally usable ESG workflows as the methodology matures, expert validation deepens, and market trust grows.
+## **Current stage**
 
-Over the long term, ESGCheck aims to support certification-oriented use cases and, where the necessary methodological, institutional, and regulatory conditions can be met, contribute to a path toward full ESG certification.
+A functioning technical prototype exists. The company is now defining the revised MVP, validating the target customer and preparing the next implementation cycle. External customer validation has not yet produced a target-segment decision.
 
-## 4. Market Need
+## **Core operating principle**
 
-Sustainability expectations are rising, shaped by EU sustainability reporting frameworks such as CSRD and ESRS, Swiss non-financial reporting rules for larger companies, and broader market expectations around responsible business conduct. For many SMEs, the most immediate effect is not direct regulation, but indirect pressure from larger customers, procurement teams, supply-chain partners, banks, investors, and financial institutions.
+**AI proposes. Evidence supports. Humans approve. The company owns.**
 
-These stakeholders rarely ask smaller companies to produce a complete sustainability report. More often, they ask for credible evidence of ESG maturity: structured policies, relevant data, documented practices, and clear progress on responsible business topics.
+# **2\. Problem and Initial Customer Wedge**
 
-This pressure remains relevant even as the regulatory landscape changes. The EU Omnibus simplification of the CSRD framework may reduce direct reporting burdens, but it does not remove the commercial need for ESG information across value chains. Larger organizations and financial institutions may still need sustainability information from smaller suppliers and business partners, especially where those SMEs are part of broader reporting, procurement, financing, or due diligence processes.
+The strongest current commercial hypothesis is B2B SMEs and suppliers that receive recurring sustainability or ESG information requests from customers, procurement teams, lenders, investors or other business partners, but do not have a dedicated sustainability team.
 
-In this context, VSME serves an important practical role. It does not turn voluntary SME reporting into mandatory compliance. Instead, it provides a structured reference point for SMEs that need to respond to ESG information requests in a clear, consistent, and credible way.
+The practical problem is not simply “produce an ESG report.” It is:
 
-At the same time, traditional ESG consulting and enterprise sustainability platforms are often too expensive, too manual, or too operationally complex for smaller organizations. This creates a clear market gap: SMEs need practical tools that help them organize existing information, identify readiness gaps, and prepare structured ESG responses without the overhead of full consulting engagements or heavyweight software.
+• understanding what an external request actually asks for;
 
-## 5. Business Relevance Beyond Compliance
+• finding the relevant information across ordinary company records;
 
-ESGCheck is not only about helping companies keep up with regulation. ESG increasingly affects how companies are perceived by customers, partners, investors, lenders, and larger organizations in their ecosystem.
+• determining whether the available evidence really supports the requested claim;
 
-For many growing SMEs, ESG is becoming part of business credibility, market readiness, and long-term brand strength. A company that can show it has taken ESG seriously is often in a stronger position to:
+• coordinating missing information with the right internal people;
 
-- respond to stakeholder expectations more confidently
-- strengthen trust with customers and partners
-- improve its brand image and business credibility
-- demonstrate maturity to investors, lenders, procurement teams, and larger counterparties
-- identify internal gaps before they become urgent or externally visible problems
+• producing a credible, traceable answer without starting from zero each time.
 
-ESGCheck is therefore intended to serve as both a practical business tool and part of a broader shift in which ESG becomes more visible, actionable, and worthwhile for SMEs to engage with meaningfully.
+The exact first SME segment remains open. Round-1 validation is intended to identify the segment, trigger and workflow pain with the strongest recurring need. Validation may include EU-relevant and internationally active SMEs and is not restricted to Switzerland.
 
-## 6. Product Today
+# **3\. Product Direction**
 
-ESGCheck's MVP has been completed. The immediate next step is internal end-to-end testing. The product has not yet undergone external user validation.
+Agreed working basis: start with the real ESG request, not with frameworks or generic document upload.
 
-At its current stage, ESGCheck is designed to provide a credible first ESG readiness overview based on uploaded company materials. It is not formal assurance, certification, legal compliance, or a full sustainability reporting replacement.
+The user should be able to bring a questionnaire, individual ESG question or sustainability request. ESGCheck should translate it into practical business language, identify the required information, search existing evidence, expose gaps, guide the user toward missing information and prepare an evidence-backed answer for human review.
 
-### Current practical output
+Questionnaire handling is a central candidate use case, but it is not yet locked as the only MVP entry point. Report generation is also no longer assumed to be the primary product output; its role in the revised MVP remains open.
 
-ESGCheck produces a structured overview intended to include:
+The SME should not need to understand GRI, VSME, ESRS or other framework architecture before receiving useful help. Framework logic should operate mainly in the background.
 
-- ESG readiness overview
-- evidence mapping from available documents
-- gap identification, including important strengths and weaknesses
-- practical next steps and recommendations
-- visibility into missing or insufficient evidence where relevant
-- evidence/data readiness indication showing how complete the available evidence base is
-- indicative score with rationale
+# **4\. Core Request-to-Response Workflow**
 
-### Current framework foundation
+The current high-level product flow is:
 
-- GRI-first in the current analytical foundation
-- VSME-oriented readiness as the next strategic framework direction for SMEs, especially because VSME is becoming a practical voluntary reference point for smaller companies responding to ESG information requests
-- future evolution toward broader SME-relevant, Swiss/EU-aligned, and market-relevant frameworks where customer demand is validated
+1\. A real ESG request arrives.
 
-### Current input logic
+2\. ESGCheck interprets the request and explains it in practical business language.
 
-For the current MVP, ESGCheck works from uploaded company materials such as policies, internal records, supplier or operational materials, and company reports.
+3\. Relevant company context and applicability are checked.
 
-## 7. Workflow and Document Readiness
+4\. Required information and evidence are identified.
 
-At a high level, ESGCheck follows a simple workflow:
+5\. Existing company evidence and confirmed facts are retrieved.
 
-1. A company uploads relevant ESG-related documents.
-2. The system ingests and analyzes those documents.
-3. The content is assessed against structured ESG criteria.
-4. ESGCheck generates a first structured ESG readiness overview.
-5. The company receives a clear view of its ESG readiness, available evidence, gaps, next steps, evidence/data readiness, and indicative score.
+6\. Each requirement receives an evidence outcome.
 
-ESGCheck should not treat document collection as a one-time, all-or-nothing requirement. Most SMEs will not have a complete ESG evidence base at the beginning, and this should be treated as expected rather than as a failure.
+7\. Gaps are translated into practical next actions and likely internal owners.
 
-The product should guide companies through a staged upload process, beginning with a small number of high-value documents and expanding progressively as the company improves its ESG readiness.
+8\. New information or evidence is added and only affected questions are reassessed.
 
-- **Quick Start**: core documents such as an annual report or financial statements, electricity bills, HR headcount information, a code of conduct, and basic governance or board information.
-- **Improve Readiness**: additional operational and social evidence such as gas or fuel invoices, health and safety information, training records, business travel data, or relevant internal policies.
-- **Deeper Readiness**: more advanced evidence such as supplier data, risk management information, pay gap analysis, prior ESG or sustainability reports, materiality-related information, and stakeholder engagement summaries.
+9\. ESGCheck prepares an evidence-backed response.
 
-This staged approach turns ESG data collection from an intimidating document request into a guided readiness journey. Companies can begin with what they have, receive an initial overview, and then improve the quality of the result over time by adding missing evidence.
+10\. A human reviews and approves the result before external use.
 
-The product structure should make evidence completeness explicit through the readiness overview, evidence/data readiness score, gap list, and next upload recommendations. This helps avoid false precision by clearly showing that the result is based on available evidence. It also makes ESGCheck better aligned with the direction of voluntary SME sustainability reporting, where the practical challenge is often not full compliance, but knowing which information can be provided credibly and which evidence is still missing.
+11\. Approved facts and evidence can be reused later where still current and applicable.
 
-## 8. Technical and Data Foundation
+## **Current product-model status**
 
-ESGCheck is built around a document-first AI workflow designed to make ESG readiness work more practical and scalable for smaller companies.
+• Frame 10 — Master ESG Request Journey: reviewed and used as the current high-level working basis.
 
-The most important technical messages for strategic and external discussions are:
+• Frame 11 — Questionnaire Orchestration: reviewed far enough to support question-level requests, proactive evidence guidance, consolidated gaps, targeted reruns and human review.
 
-- the platform starts from documents companies already have
-- the system is designed to turn those documents into structured ESG readiness outputs
-- privacy-conscious data handling is a core design priority
-- the product is being built with strong separation of customer data in mind
-- the MVP foundation is complete and now requires internal end-to-end testing before broader validation
+• Frame 20 — Company Context & Reporting Boundary: accepted for the current iteration; detailed boundary rules remain validation-dependent.
 
-The technical stack matters operationally, but in market-facing communication the priority should be trust, reliability, privacy, and practical usefulness.
+• Frame 21 — Requirement & Framework Intelligence: next focused decision area.
 
-## 9. Trust, Privacy, and Credibility Boundaries
+• Frames 22–24 and 30: not yet fully reviewed or locked.
 
-Privacy is one of ESGCheck's major differentiators because ESG-related company material can be commercially sensitive, incomplete, operationally revealing, and reputationally important.
+No implementation should silently resolve product choices that remain open.
 
-ESGCheck is being built with privacy-conscious data handling in mind, with a strong focus on Swiss and EU expectations around data trust. For external discussions, the message should remain clear and grounded: ESGCheck is designed to help companies work with sensitive ESG-related materials in a way that takes privacy, trust, and responsible handling seriously.
+# **5\. Evidence and Assessment Model**
 
-Commercial credibility depends on disciplined claims. ESGCheck should win not by sounding like a broad AI ESG platform, but by being a focused, trustworthy, and operationally useful ESG readiness tool.
+## **Current evidence outcomes**
 
-At its current stage, ESGCheck is not:
+• Supported — sufficient evidence exists to support the proposed answer.
 
-- a substitute for formal assurance
-- a legal certification mechanism
-- a full CSRD compliance product
-- a fully validated reporting-grade output system
-- a guarantee of ESG performance
-- a substitute for formal sustainability reporting
+• Partially Supported — relevant evidence exists, but it does not fully support the requested claim.
 
-Its current role is to provide a structured first view that helps a company orient itself and decide what to do next. Over time, ESGCheck is intended to evolve into stronger workflows, better validated outputs, and more professionally usable ESG support.
+• Missing Evidence — the required information or evidence was not identified.
 
-## 10. Core Team
+• Potentially Not Applicable — the requirement may not apply, but the user must confirm before it is excluded.
 
-ESGCheck is currently driven by a small core team with complementary responsibilities:
+A technical failure must not be silently treated as a genuine business evidence gap. The exact error-state model for unreadable files, unreliable parsing and failed retrieval is still open and is scheduled for focused product discussion.
 
-- **Ali Priyatna** - product, strategy, and company direction
-- **Anastasia Lorena Kurer** - marketing, brand, and communication
-- **Priyatna Priyatna** - technical lead and senior software developer
+Evidence Readiness and ESG Maturity are separate concepts.
 
-This reflects ESGCheck's current stage: product direction, market shaping, and technical execution are concentrated within a tightly involved founder-led team.
+Evidence Readiness describes how complete, reliable, current and usable the available evidence is for a request.
 
-## 11. Current Company Stage
+ESG Maturity describes how developed the company’s actual ESG practices, processes and controls appear to be based on available evidence.
 
-ESGCheck should currently be described as a finished MVP, pending internal end-to-end testing.
+More documents may improve Evidence Readiness. They must not automatically improve ESG Maturity. A document existing does not prove that the underlying practice is implemented.
 
-This distinction is important. ESGCheck is no longer only an idea or a conceptual product. The MVP has been built. At the same time, it is not yet externally validated, and the next step is to confirm reliability and quality through internal end-to-end testing before broader rollout.
+The exact relationship between evidence status, readiness, maturity and any future assessment-confidence signal remains open. The product should not invent a scoring function before the team explicitly agrees one.
 
-The company is best framed as:
+# **6\. Company Context, Onboarding and Collaboration**
 
-- beyond idea stage
-- beyond pure prototype stage
-- not yet externally validated
-- approaching pilot-readiness, but not claiming it prematurely
+Working direction: onboarding should be simple, progressive and editable rather than a heavy ESG configuration exercise.
 
-## 12. Go-to-Market Logic
+Useful company context includes industry, size, countries, relevant entities/sites, users/roles, existing information and likely internal owners. Customers should be able to provide information upfront or progressively when a real request needs it. Previously confirmed facts and evidence should be reused.
 
-The strongest first commercial wedge for ESGCheck is not the entire SME market.
+Role-based views should show contributors, reviewers and approvers only the work relevant to them. Approval should reflect organisational responsibility while remaining lightweight for small SMEs. The exact number of approval layers and communication channels is not locked.
 
-The strongest first wedge is growing Swiss and DACH B2B SMEs that are not necessarily directly subject to full CSRD reporting, but are increasingly asked to provide ESG-related information by larger customers, procurement teams, supply-chain partners, lenders, or investors. This is especially relevant in the post-Omnibus CSRD environment, where direct reporting scope is narrower but value-chain ESG information requests and voluntary SME reporting pathways remain commercially important.
+Elena’s 8 Sep onboarding draft is a working concept for product review, not yet an approved implementation specification. Its useful ideas include:
 
-This includes companies that need a practical first ESG readiness overview, VSME-oriented readiness, or structured preparation for sustainability information requests without implementing a costly enterprise ESG platform or beginning with a full consulting engagement.
+• a very small initial question set;
 
-This wedge is strongest because it combines:
+• document-first enrichment;
 
-- real and growing pain
-- a strong fit with the current MVP
-- a credible reason to pay
-- relevance for future expansion
-- a serious narrative for pilot customers, methodology validation, and startup ecosystem support
+• AI proposes, user confirms or edits;
 
-Secondary wedges can follow later, including SMEs seeking stronger lender or investor readiness, and eventually consultant or accelerator channels once the product matures further.
+• progressive micro-question batches;
 
-## 13. Buyer and User Logic
+• goal-driven follow-up questions;
 
-For the first wedge, ESGCheck is most likely to be bought by founders, managing directors, and finance leaders rather than mature in-house ESG departments.
+• a living company profile that improves over time.
 
-### Primary buyer
+The minimum company-structure data model — for example company, sites, legal entities, users and roles — remains open and should be kept as shallow as real SME needs allow.
 
-Founder / Managing Director
+# **7\. Framework Strategy**
 
-Founders and managing directors often feel external pressure early, care directly about credibility, growth, customer relationships, and market readiness, and can usually make decisions faster than larger teams.
+## **Current framework direction:**
 
-### Secondary buyer
+• VSME — primary SME-oriented backbone.
 
-CFO / Finance Lead
+• GRI — complementary methodological reference.
 
-Finance leaders care about risk, structured company information, financing readiness, stakeholder confidence, and lender or investor scrutiny.
+• ESRS — relevant where CSRD-related context or mapping matters.
 
-## 14. Product Differentiation
+• SASB or other sector guidance — used selectively where useful and validated.
 
-ESGCheck should not primarily compete by sounding like another generic sustainability software product. Its differentiation is strongest in the following combination:
+• The actual customer, procurement, lender or stakeholder request — the immediate task the SME needs to complete.
 
-1. **Practical and easy to use**: ESGCheck starts from documents a company already has and turns them into a usable readiness overview.
-2. **Built for SMEs**: the product is designed for smaller companies that are not ready for large, consultant-heavy, enterprise-style ESG tooling.
-3. **Privacy-conscious**: Swiss and EU-oriented trust and privacy positioning is a meaningful differentiator.
-4. **Document-first logic**: ESGCheck starts with company documents rather than large implementation projects, dashboard complexity, or deep systems integration.
-5. **Credible progression path**: ESGCheck can offer a credible readiness overview now, then evolve over time into stronger workflows, better validated outputs, and more professionally usable ESG support.
+The product should translate framework logic into practical information needs rather than forcing SMEs to choose standards manually.
 
-## 15. Pricing Direction
+# **8\. Trust, Traceability, Privacy and Product Boundaries**
 
-Pricing should currently be described as an accessible SME-oriented pricing model under validation.
+Trust is a core product requirement.
 
-At this stage, final pricing should not be presented as fixed. ESGCheck should communicate that it is building toward an accessible model suitable for growing SMEs, likely combining one-off readiness overviews and recurring options, with refinement to come through expert input, pilot testing, and early market feedback.
+Important claims should progressively remain traceable to the source evidence, relevant page/section where technically available, reporting period or document date, upload/source context, reviewer/approver and the external answer in which the evidence was used.
 
-## 16. Validation and Roadmap
+Privacy-conscious handling and European-hosting direction are strategic requirements, but public claims must not exceed what the actual architecture and provider contracts can prove. The team still needs to verify hosting regions, AI-provider processing/retention, data flows, subprocessors, access controls, retention/deletion and the minimum legal documents required before real customers.
 
-From an accelerator, board, or expert perspective, ESGCheck should currently be understood as a promising but still validation-stage company. The strongest proof points will not be general interest alone, but evidence that companies will actually use and pay for the product.
+At its current stage ESGCheck is not:
 
-The most important near-term validation goals are:
+• formal assurance;
 
-- demonstrate that companies have a concrete trigger to use the product
-- show that the outputs are clear and practically useful
-- confirm that buyers trust the product enough to act on the results
-- validate willingness to pay
-- refine the methodology with expert support
+• a certification mechanism;
 
-The immediate roadmap is:
+• a guarantee of ESG performance;
 
-1. **Internal end-to-end testing**: confirm that the MVP works reliably across the full practical workflow.
-2. **Expert validation**: refine the methodology and improve output quality with ESG expert input.
-3. **First pilot customers**: prepare the product for initial external use and early customer validation.
-4. **Commercial refinement**: test and refine positioning, pricing, and service structure based on pilot feedback.
-5. **Progressive workflow and framework expansion**: evolve beyond first readiness overviews into increasingly robust ESG workflows, including broader SME-relevant framework support, supplier-request readiness, and selected regulation-specific modules where customer demand is validated.
-6. **Long-term certification direction**: build over time toward certification-oriented outputs and, where feasible, a path toward fuller certification-related use cases.
+• a full CSRD compliance suite;
 
-## 17. Board-Level Assessment and External Description
+• a substitute for professional legal, audit or assurance work where those services are required.
 
-If ESGCheck were being evaluated by a startup accelerator, innovation board, or early-stage support program, the strongest current conclusion would be:
+# **9\. Market Validation and Go-to-Market**
 
-ESGCheck appears to be a serious and credible early-stage B2B software opportunity, but one that still requires market and trust validation before stronger growth claims can be made.
+The immediate marketing priority is learning, not broad acquisition.
 
-The reasons it is attractive are:
+## **Current working validation direction:**
 
-- the underlying market pressure is real
-- the product wedge is understandable
-- the SME pain point is credible
-- the privacy-conscious Swiss positioning is differentiated
-- the product promise is more believable than a broad AI ESG platform claim
+• run the research internally rather than wait for external support;
 
-The main risks are:
+• start with the quantitative survey;
 
-- trust risk if outputs feel too shallow or overconfident
-- overclaiming risk if the product is positioned too early as compliance, assurance, or certification
-- sales friction if the buyer does not have a concrete external trigger
-- validation risk until real pilot usage and willingness to pay are demonstrated
-- regulatory-positioning risk if ESGCheck overstates CSRD, VSME, or certification relevance instead of presenting them as practical readiness and reference frameworks
+• use qualitative interviews as complementary follow-up where useful;
 
-This makes ESGCheck a project that is strong enough to deserve serious pilot-stage backing and ecosystem support, while still being early enough that disciplined validation matters more than broad ambition claims.
+• include relevant EU/international SMEs, not only Swiss companies;
 
-### Short external description
+• preserve especially valuable Swiss future-sales prospects from unnecessary repeated research contact;
 
-ESGCheck helps B2B SMEs and suppliers prepare for ESG information requests from customers, procurement teams, lenders, investors, and supply-chain partners. Built in Switzerland, ESGCheck turns existing company documents into a practical first ESG readiness overview, showing what evidence is available, what is missing, and what to improve next.
+• define target-company criteria before scaled outreach;
+
+• keep survey platform, exact sample size and final outreach wording open until decided.
+
+Competitor research should remain narrow and decision-oriented: identify target customer, trigger, repeat usage, first sellable output, pricing logic, evidence/workflow problem and what creates value beyond generic AI.
+
+No broad acquisition channel is locked. Associations, targeted outreach, LinkedIn, events and other channels remain hypotheses to test after the target customer is clearer.
+
+Pricing and commercial packaging remain open. Historic report pricing should not be treated as a current commitment.
+
+# **10\. Team, Roles and Governance**
+
+## **Agreed external role direction:**
+
+• Ali Priyatna — Co-Founder & CEO — product, strategy, coordination and company direction.
+
+• Elena Lisa Farrace — Co-Founder & CSO — ESG/sustainability expertise and strategic product input.
+
+• Priyatna / mPri — Co-Founder & CTO — technical lead and software development.
+
+• Anastasia Lorena Kurer — Co-Founder & CMO — marketing, brand, communication and market validation.
+
+The titles provide responsibility and external clarity. They do not grant unilateral authority over major strategy. Major founder-level decisions remain collective.
+
+## **Still open:**
+
+• founder equity and contributions;
+
+• vesting/leaver rules;
+
+• voting, escalation and deadlock mechanics;
+
+• formal legal founder/shareholder agreements;
+
+• long-term role evolution.
+
+Working incorporation direction: do not rush into a legal entity merely to create a shell. Revisit incorporation when it creates a concrete advantage or becomes necessary for pilots/sales, liability, investment, hiring or support eligibility.
+
+# **11\. External Support and Company Readiness**
+
+INOS Ostschweiz is not currently a practical support route based on the 4 Sep call. The criteria communicated to ESGCheck were a legal entity, customers in the industry and sales. Revisit INOS after those milestones and confirm the then-current criteria.
+
+Startfeld remains active. The introductory-call question set is prepared and ESGCheck is waiting for an advisor/time.
+
+Innosuisse remains a separate route under investigation. Its exact pre-incorporation coaching/workshop eligibility still needs verification.
+
+The company should not let support programmes drive product or incorporation decisions unless they create a real strategic advantage.
+
+# **12\. Current Execution Model**
+
+The team uses a lightweight operating model:
+
+• Trello · Company — founder/company coordination, legal, support/funding and product decisions.
+
+• Trello · Marketing & Validation — research, outreach, events, content and marketing execution.
+
+• Miro — product architecture and unresolved product logic.
+
+• GitHub — implementation-ready development, bugs and QA only.
+
+• Drive — durable company documents, research and meeting records.
+
+• Google Calendar — team meetings and real time commitments.
+
+## **Canonical product handoff:**
+
+Miro exploration → Company Trello decision/review → approved implementation boundary → GitHub issue → PR/review/test.
+
+# **13\. Near-Term Priorities**
+
+1\. Continue the focused product review from Frame 21 and settle only the decisions needed for a safe implementation boundary.
+
+2\. Explicitly separate technical failure states from genuine evidence gaps before ingestion/retrieval behaviour is implemented.
+
+3\. Clarify Frame 23 semantics before defining scoring or UI presentation.
+
+4\. Translate Elena’s onboarding concept into the Miro workflow and surface unresolved decisions rather than silently resolving them.
+
+5\. Finalise round-1 validation criteria and survey execution, then use the evidence to decide the first target SME segment.
+
+6\. Verify privacy/data-flow facts before stronger public claims or real confidential customer use.
+
+7\. Continue Startfeld and Innosuisse exploration without allowing support processes to distract from product and validation.
+
+# **14\. Important Open Decisions**
+
+• Exact first target SME segment/persona.
+
+• Whether questionnaires are the single primary MVP entry point or one of several request types.
+
+• Role of report generation in the revised MVP.
+
+• Error/failure-state model for ingestion, parsing and retrieval.
+
+• Exact relationship and presentation of evidence status, Evidence Readiness, ESG Maturity and assessment confidence.
+
+• Minimum company-structure schema and approval layers.
+
+• Exact approval/notification channels.
+
+• First paid packaging and pricing.
+
+• Exact first geographic sales focus.
+
+• Founder equity and governance mechanics.
+
+• Incorporation trigger and preferred legal form.
+
+• Long-term certification/assurance ambition.
+
+• Whether the ESGCheck name should change after market-language validation.
+
+# **15\. Short External Description**
+
+ESGCheck is a Swiss-based ESG evidence and response platform for B2B SMEs. Companies can bring an ESG question, questionnaire or sustainability request, and ESGCheck helps them understand what is being asked, find supporting evidence across existing company information, identify what is missing and prepare a traceable response for human review.
+
+ESGCheck is designed for smaller companies without dedicated sustainability teams and is built around a simple principle: AI proposes, evidence supports, humans approve, and the company owns the result.

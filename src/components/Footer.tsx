@@ -80,7 +80,7 @@ export default function Footer() {
 
           <div className="space-y-4">
             <h4 className="text-sm font-semibold uppercase tracking-[0.12em] text-primary-foreground/80">
-              {t("footer.earlyAccess")}
+              {t("footer.research")}
             </h4>
             <a
               href={sectionHref("#waitlist")}

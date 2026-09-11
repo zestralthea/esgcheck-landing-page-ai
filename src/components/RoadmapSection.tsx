@@ -10,12 +10,12 @@ import { SectionHeading } from "@/components/common/SectionHeading";
 import { useLanguage } from "@/contexts/LanguageContext";
 
 const roadmapSteps = [
-  { id: "testing", icon: ClipboardList },
-  { id: "validation", icon: BadgeCheck },
-  { id: "pilot", icon: Users },
-  { id: "commercial", icon: BarChart3 },
-  { id: "expansion", icon: TrendingUp },
-  { id: "certification", icon: ShieldCheck },
+  { id: "workflow", icon: ClipboardList },
+  { id: "evidenceStates", icon: BadgeCheck },
+  { id: "assessment", icon: Users },
+  { id: "research", icon: BarChart3 },
+  { id: "privacy", icon: TrendingUp },
+  { id: "implementation", icon: ShieldCheck },
 ] as const;
 
 export default function RoadmapSection() {

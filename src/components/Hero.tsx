@@ -6,6 +6,7 @@ import {
   BookOpen,
   CheckCircle2,
   CircleSlash2,
+  ExternalLink,
   FileSearch,
   FileText,
   Map,
@@ -212,7 +213,7 @@ export default function Hero() {
               </div>
             </div>
 
-            <div className="mt-5 grid gap-4 md:grid-cols-2">
+            <div className="mt-5 grid gap-4">
               <m.div
                 className="rounded-2xl border border-border/80 bg-background p-5"
                 initial="hidden"
@@ -221,53 +222,25 @@ export default function Hero() {
                 custom={shouldReduceMotion}
                 transition={shouldReduceMotion ? undefined : { delay: 0.18, duration: 0.5, ease: entranceEase }}
               >
-                <div className="flex items-start justify-between gap-3">
+                <div className="flex items-start justify-between gap-4">
                   <div>
-                    <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.scoreTitle")}</p>
-                    <div className="mt-3 flex items-end gap-1">
-                      <span className="text-4xl font-semibold tracking-tight text-foreground tabular-nums">
-                        {t("hero.dashboard.scoreValue")}
-                      </span>
-                      <span className="pb-1 text-base font-medium text-muted-foreground tabular-nums">
-                        {t("hero.dashboard.scoreTotal")}
-                      </span>
-                    </div>
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.12em] text-muted-foreground">
+                      {t("hero.dashboard.requestType")}
+                    </p>
+                    <p className="mt-2 text-lg font-semibold leading-7 text-foreground">
+                      {t("hero.dashboard.requestTitle")}
+                    </p>
                   </div>
-                  <FileSearch className="h-5 w-5 text-primary" />
+                  <FileText className="h-5 w-5 shrink-0 text-primary" />
                 </div>
-                <div className="mt-4 h-2 overflow-hidden rounded-full bg-secondary">
-                  <m.div
-                    className="h-full rounded-full bg-primary"
-                    initial={{ width: shouldReduceMotion ? "68%" : 0 }}
-                    animate={{ width: "68%" }}
-                    transition={{ duration: shouldReduceMotion ? 0.01 : 0.9, ease: entranceEase, delay: 0.3 }}
-                  />
+                <div className="mt-4 flex items-center gap-2 rounded-xl bg-secondary/70 px-3 py-2 text-xs text-foreground/70">
+                  <FileSearch className="h-4 w-4 shrink-0 text-primary" />
+                  <span>{t("hero.dashboard.requestContext")}</span>
                 </div>
-                <p className="mt-3 text-xs leading-5 text-foreground/65">{t("hero.dashboard.scoreLabel")}</p>
               </m.div>
 
               <m.div
                 className="rounded-2xl border border-border/80 bg-background p-5"
-                initial="hidden"
-                animate="visible"
-                variants={revealUp}
-                custom={shouldReduceMotion}
-                transition={shouldReduceMotion ? undefined : { delay: 0.26, duration: 0.5, ease: entranceEase }}
-              >
-                <div className="flex items-start justify-between gap-3">
-                  <div>
-                    <p className="text-sm font-semibold text-foreground/65">{t("hero.dashboard.maturityTitle")}</p>
-                    <p className="mt-3 text-xl font-semibold tracking-tight text-foreground">
-                      {t("hero.dashboard.maturityValue")}
-                    </p>
-                  </div>
-                  <ShieldCheck className="h-5 w-5 text-primary" />
-                </div>
-                <p className="mt-3 text-xs leading-5 text-foreground/65">{t("hero.dashboard.maturityDetail")}</p>
-              </m.div>
-
-              <m.div
-                className="rounded-2xl border border-border/80 bg-background p-5 md:col-span-2"
                 initial="hidden"
                 animate="visible"
                 variants={revealUp}
@@ -294,7 +267,7 @@ export default function Hero() {
               </m.div>
 
               <m.div
-                className="rounded-2xl border border-border/80 bg-background p-5 md:col-span-2"
+                className="rounded-2xl border border-border/80 bg-background p-5"
                 initial="hidden"
                 animate="visible"
                 variants={revealUp}
@@ -315,6 +288,15 @@ export default function Hero() {
                       <span>{t(`hero.dashboard.nextSteps.${item}`)}</span>
                     </div>
                   ))}
+                </div>
+                <div className="mt-4 flex flex-col gap-3 border-t border-border/70 pt-4 sm:flex-row sm:items-center sm:justify-between">
+                  <div className="flex min-w-0 items-center gap-2 text-xs text-foreground/65">
+                    <ExternalLink className="h-4 w-4 shrink-0 text-primary" />
+                    <span className="truncate">{t("hero.dashboard.sourceTrace")}</span>
+                  </div>
+                  <p className="text-xs font-medium text-foreground/70">
+                    {t("hero.dashboard.owner")}
+                  </p>
                 </div>
               </m.div>
             </div>

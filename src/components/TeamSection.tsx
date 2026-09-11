@@ -6,26 +6,21 @@ import { cardHover, entranceEase, revealUp, viewportOnce } from "@/lib/motion";
 const members = [
   { id: "ali", imageSrc: "/team/ali-priyatna-portrait.jpg" },
   {
-    id: "anastasia",
-    imageSrc: "/team/anastasia-kurer.jpeg",
-    imagePositionClassName: "object-[50%_20%]",
+    id: "elena",
+    imageSrc: "/team/Elena_Headshot.jpeg",
+    imagePositionClassName: "object-[50%_30%]",
   },
   {
     id: "priyatna",
     imageSrc: "/team/priyatna-priyatna.jpeg",
     imagePositionClassName: "object-[50%_15%]",
   },
-  { id: "elena" },
+  {
+    id: "anastasia",
+    imageSrc: "/team/anastasia-kurer.jpeg",
+    imagePositionClassName: "object-[50%_20%]",
+  },
 ] as const;
-
-function getInitials(name: string) {
-  return name
-    .split(" ")
-    .map((part) => part[0])
-    .join("")
-    .slice(0, 2)
-    .toUpperCase();
-}
 
 export default function TeamSection() {
   const { t } = useLanguage();
@@ -51,7 +46,8 @@ export default function TeamSection() {
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {members.map((member, index) => {
             const name = t(`team.members.${member.id}.name`);
-            const role = t(`team.members.${member.id}.role`);
+            const title = t(`team.members.${member.id}.title`);
+            const responsibility = t(`team.members.${member.id}.responsibility`);
             return (
               <m.div
                 key={member.id}
@@ -67,29 +63,25 @@ export default function TeamSection() {
               >
                 <div className="flex items-center gap-5">
                   <div className="relative flex h-20 w-20 shrink-0 items-center justify-center rounded-[24px] bg-[linear-gradient(180deg,hsl(var(--secondary))_0%,hsl(var(--accent))_100%)] text-2xl font-semibold tracking-tight text-primary">
-                    {"imageSrc" in member ? (
-                      <img
-                        src={member.imageSrc}
-                        alt={name}
-                        width={80}
-                        height={80}
-                        loading="lazy"
-                        decoding="async"
-                        className={`h-full w-full rounded-[24px] object-cover ${member.imagePositionClassName ?? "object-center"}`}
-                      />
-                    ) : (
-                      <>
-                        <div className="absolute inset-x-4 bottom-3 h-4 rounded-full bg-primary/12 blur-md" />
-                        <span className="relative">{getInitials(name)}</span>
-                      </>
-                    )}
+                    <img
+                      src={member.imageSrc}
+                      alt={name}
+                      width={80}
+                      height={80}
+                      loading="lazy"
+                      decoding="async"
+                      className={`h-full w-full rounded-[24px] object-cover ${member.imagePositionClassName ?? "object-center"}`}
+                    />
                   </div>
                   <div className="min-w-0">
                     <h3 className="text-xl font-semibold tracking-tight text-foreground">
                       {name}
                     </h3>
+                    <p className="mt-1 text-sm font-semibold text-primary">
+                      {title}
+                    </p>
                     <p className="mt-2 text-sm leading-6 text-foreground/70">
-                      {role}
+                      {responsibility}
                     </p>
                   </div>
                 </div>

@@ -1,7 +1,7 @@
 export const enTranslations = {
   header: {
     trustStrip: {
-      swissBuilt: "Built from Switzerland",
+      swissBuilt: "Swiss-based",
       privacy: "Privacy-conscious",
       growingSmes: "Designed for growing SMEs",
     },
@@ -10,31 +10,27 @@ export const enTranslations = {
     whyEsgCheck: "Why ESGCheck",
     team: "Team",
     faq: "FAQ",
-    joinWaitlist: "Get Early Access",
+    joinWaitlist: "Join the research",
   },
   hero: {
     title: "Credible ESG responses, backed by your evidence.",
     description:
       "ESGCheck helps B2B SMEs and suppliers understand ESG information requests, find supporting evidence across existing company materials, identify gaps, and prepare traceable responses for human approval.",
-    primaryCta: "Get Early Access",
+    primaryCta: "Join the research",
     secondaryCta: "See How It Works",
     proof: {
-      documentFirst: "Evidence-driven",
-      griFirst: "VSME-backed methodology",
-      vsmeNext: "Human-approved responses",
-      swissPrivacy: "Swiss/EU privacy-conscious",
+      documentFirst: "Starts with the request",
+      griFirst: "Evidence traceability",
+      vsmeNext: "Human review and approval",
+      swissPrivacy: "Privacy-conscious by design",
     },
     dashboard: {
-      title: "ESG Evidence Overview",
-      filter: "Example output",
-      previewLabel: "Illustrative output preview",
-      scoreTitle: "Evidence Readiness",
-      scoreValue: "68",
-      scoreTotal: "/100",
-      scoreLabel: "Evidence base developing",
-      maturityTitle: "ESG Maturity",
-      maturityValue: "Developing",
-      maturityDetail: "Foundational practices are in place, but ownership, controls, and recurring review are still developing.",
+      title: "Request Evidence Workspace",
+      filter: "Working concept",
+      previewLabel: "Illustrative request workflow",
+      requestType: "Customer questionnaire",
+      requestTitle: "Can you substantiate your environmental and supplier practices?",
+      requestContext: "Requirements translated into practical information and evidence needs.",
       statusTitle: "Question-level evidence status",
       notApplicableTitle: "Potentially Not Applicable",
       notApplicableDetail: "Commuting data for a remote-only team",
@@ -58,9 +54,9 @@ export const enTranslations = {
       },
       nextStepsTitle: "Practical Next Steps",
       nextSteps: {
-        scope: "Confirm Scope 1 and 2 source data",
-        suppliers: "Collect current supplier records",
-        governance: "Assign a human response owner",
+        scope: "Confirm the reporting period",
+        suppliers: "Request current supplier evidence",
+        governance: "Assign the response owner",
       },
       missingTitle: "Missing Evidence",
       missing: {
@@ -68,12 +64,14 @@ export const enTranslations = {
         supplier: "Supplier assessment records",
         board: "Management approval record",
       },
+      sourceTrace: "Source: Code of Conduct · page 4",
+      owner: "Owner: Operations · Review required",
     },
   },
   needNow: {
     title: "Why companies need this now",
     description:
-      "CSRD/ESRS, Swiss non-financial reporting rules for larger companies, and broader market expectations are creating indirect ESG pressure for SMEs through customers, procurement teams, supply-chain partners, banks, investors, and financial institutions.",
+      "B2B SMEs increasingly receive sustainability and ESG questions from customers, procurement teams, lenders, investors, and other business partners, often without a dedicated sustainability team.",
     items: {
       customerRequests: "Customer requests",
       procurement: "Procurement requirements",
@@ -82,7 +80,7 @@ export const enTranslations = {
       credibility: "Market credibility",
     },
     conclusion:
-      "The immediate business task is practical: answer an important external ESG request with greater speed, confidence, and credibility, then reuse approved information where it remains current and applicable.",
+      "The practical task is to understand the request, find reliable information across ordinary company records, close evidence gaps, and prepare a traceable answer without starting from zero each time.",
   },
   howItWorks: {
     title: "How It Works",
@@ -94,12 +92,12 @@ export const enTranslations = {
       },
       assess: {
         title: "Understand what is needed",
-        description: "ESGCheck explains the request, searches available information, and identifies the evidence required.",
+        description: "ESGCheck explains the request, checks context and applicability, and identifies the information and evidence required.",
       },
       receive: {
         title: "Review evidence and gaps",
         description:
-          "See what is Supported, Partially Supported, Missing Evidence, or Potentially Not Applicable, with practical next steps.",
+          "See what is Supported, Partially Supported, Missing Evidence, or Potentially Not Applicable, plus practical next actions and likely owners.",
       },
       act: {
         title: "Approve a traceable response",
@@ -129,14 +127,14 @@ export const enTranslations = {
       privacy: {
         title: "Human-approved and privacy-conscious",
         description:
-          "AI proposes, evidence supports, and humans approve, with Swiss/EU trust expectations shaping data handling.",
+          "AI proposes, evidence supports, humans approve, and the company owns the result.",
       },
     },
   },
   credibility: {
     title: "Built to be credible",
     intro:
-      "ESGCheck is designed to prepare credible, evidence-backed responses without presenting AI output as automatically authoritative. It is not formal assurance, legal certification, a full CSRD compliance suite, or a guarantee of ESG performance.",
+      "ESGCheck is being shaped to prepare credible, evidence-backed responses without presenting AI output as automatically authoritative. It is not formal assurance, a certification mechanism, a full CSRD compliance suite, or a guarantee of ESG performance.",
     pillars: {
       outputs: {
         title: "Evidence and response focus",
@@ -156,7 +154,7 @@ export const enTranslations = {
     },
     privacyTitle: "Privacy & trust",
     privacyDescription:
-      "ESG materials can be commercially sensitive. Strong customer-data separation, controlled access, traceability, and defensible Swiss/EU-oriented privacy practices are core design priorities.",
+      "ESG materials can be commercially sensitive. Privacy-conscious handling, customer-data separation, controlled access, and traceability are design priorities; stronger hosting or provider claims will follow only after verification.",
     regionBadges: {
       swiss: "CH",
       europe: "EU",
@@ -168,7 +166,7 @@ export const enTranslations = {
       mvp: {
         title: "Functioning prototype",
         description:
-          "A working technical foundation already supports company setup, document upload, AI extraction, metrics, traceability, gap detection, and basic report generation.",
+          "A functioning technical prototype exists and provides a real foundation for the next implementation cycle.",
       },
       testing: {
         title: "Product repositioning",
@@ -176,28 +174,28 @@ export const enTranslations = {
           "The MVP is being redefined around ESG requests, evidence, reusable company context, and human-reviewed responses.",
       },
       expert: {
-        title: "MVP definition underway",
+        title: "Customer validation underway",
         description:
-          "The revised end-to-end workflow, minimum company context, first sellable output, and exact MVP boundary are being agreed.",
+          "Research is testing the target segment, trigger, and workflow pain before a first sellable output is fixed.",
       },
       readiness: {
-        title: "Validation before pilots",
+        title: "Next cycle being prepared",
         description:
-          "External user validation has not yet taken place; controlled pilot preparation follows workflow agreement and implementation.",
+          "The team is settling the product decisions required for a safe implementation boundary.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "The focus is to agree and implement the revised workflow, validate it with realistic cases and expert review, then prepare controlled external pilots.",
+      "The focus is to settle the revised workflow, separate technical failures from evidence gaps, validate the target customer, and prepare the next implementation cycle.",
     steps: {
-      testing: "Agree the revised workflow",
-      validation: "Define the MVP boundary",
-      pilot: "Implement and test realistic cases",
-      commercial: "Review privacy and providers",
-      expansion: "Prepare controlled pilots",
-      certification: "Refine positioning and pricing",
+      workflow: "Settle the request workflow",
+      evidenceStates: "Define evidence and failure states",
+      assessment: "Clarify assessment semantics",
+      research: "Run customer research",
+      privacy: "Verify privacy and data flows",
+      implementation: "Prepare implementation",
     },
   },
   audience: {
@@ -213,7 +211,7 @@ export const enTranslations = {
         "For teams focused on risk, financing readiness, and stakeholder confidence.",
     },
     region: {
-      title: "Built from Switzerland for B2B SMEs and suppliers facing ESG information requests, with broader European expansion over time.",
+      title: "Built for B2B SMEs and suppliers without dedicated sustainability teams. The exact first segment and geographic focus are being validated.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -226,19 +224,23 @@ export const enTranslations = {
     members: {
       ali: {
         name: "Ali Priyatna",
-        role: "Product, Strategy, Company Direction",
+        title: "Co-Founder & CEO",
+        responsibility: "Product, strategy, coordination, and company direction",
+      },
+      elena: {
+        name: "Elena Lisa Farrace",
+        title: "Co-Founder & CSO",
+        responsibility: "ESG and sustainability expertise, with strategic product input",
+      },
+      priyatna: {
+        name: "Priyatna / mPri",
+        title: "Co-Founder & CTO",
+        responsibility: "Technical leadership and software development",
       },
       anastasia: {
         name: "Anastasia Lorena Kurer",
-        role: "Marketing, Brand, Communication",
-      },
-      priyatna: {
-        name: "Priyatna Priyatna",
-        role: "Technical Lead, Senior Software Developer",
-      },
-      elena: {
-        name: "",
-        role: "ESG Expert and Advisor",
+        title: "Co-Founder & CMO",
+        responsibility: "Marketing, brand, communication, and market validation",
       },
     },
   },
@@ -253,7 +255,7 @@ export const enTranslations = {
       vsme: {
         question: "Is ESGCheck a CSRD or VSME compliance tool?",
         answer:
-          "No. ESGCheck uses VSME as its primary SME methodological backbone and ESRS for relevant context, but it is not a full CSRD compliance, assurance, certification, or sustainability reporting suite.",
+          "No. VSME is the primary SME-oriented backbone, while GRI and ESRS provide complementary context where relevant. The framework logic operates mainly in the background; ESGCheck is not a full CSRD compliance suite.",
       },
       documents: {
         question: "What can I bring to ESGCheck?",
@@ -262,7 +264,7 @@ export const enTranslations = {
       },
       audience: {
         question: "Who is it built for?",
-        answer: "B2B SMEs and suppliers, especially founders, managing directors, and finance leads responding to requests from customers, procurement teams, supply-chain partners, lenders, or investors.",
+        answer: "B2B SMEs and suppliers without dedicated sustainability teams that receive recurring requests from customers, procurement teams, lenders, investors, or other business partners.",
       },
       pricing: {
         question: "What about pricing?",
@@ -272,40 +274,40 @@ export const enTranslations = {
     },
   },
   finalCta: {
-    title: "Request early access to ESGCheck.",
+    title: "Help shape ESGCheck through research.",
     description:
-      "Get in touch if you want to follow the product and see whether it could fit your workflow.",
-    primary: "Get Early Access",
-    secondary: "Request more information",
+      "If your company receives ESG questions or questionnaires, share how you handle them today and help us validate the workflow.",
+    primary: "Join the research",
+    secondary: "Contact ESGCheck",
   },
   waitlist: {
-    title: "Request early access.",
+    title: "Join ESGCheck's SME research.",
     description:
-      "If ESG questions are already showing up in customer, procurement, supply-chain, or financing conversations, we would like to understand where the pressure is coming from.",
-    cardTitle: "What to expect",
-    ctaButton: "Request Early Access to ESGCheck",
+      "If ESG questions already appear in your customer, procurement, supply-chain, or financing work, register your interest in a short survey or interview.",
+    cardTitle: "How participation works",
+    ctaButton: "Register research interest",
     emailNote:
-      "Share your work email to join the beta and receive updates on access.",
+      "Share your work email so we can contact you about suitable research and relevant product updates.",
     form: {
       emailLabel: "Work email",
       emailPlaceholder: "you@company.com",
-      emailHelp: "Provide your email address to request early access.",
+      emailHelp: "Provide your email address to register interest in ESGCheck research.",
       optInLabel: "Opt-in",
       optInText:
-        "I agree to receive your newsletters and accept the data privacy statement.",
+        "I agree to be contacted about ESGCheck research and receive relevant product updates, and I accept the data privacy statement.",
       optInHelp:
         "You may unsubscribe at any time using the link in our newsletter.",
-      success: "Your subscription has been successful.",
-      error: "Your subscription could not be saved. Please try again.",
+      success: "Your research interest has been registered.",
+      error: "Your research interest could not be saved. Please try again.",
       brevoDisclaimer:
         "We use Brevo as our marketing platform. By submitting this form you agree that the personal data you provided will be transferred to Brevo for processing in accordance with",
       brevoLinkLabel: "Brevo's Privacy Policy.",
     },
     modal: {
-      disclaimer: "Free during beta. No credit card required.",
-      disclaimerShort: "Free during beta.",
-      betaNote:
-        "Early participants get free access and help us improve ESGCheck around real SME needs.",
+      disclaimer: "Research participation is optional. No sales commitment.",
+      disclaimerShort: "Optional research participation.",
+      participationNote:
+        "We may invite suitable participants to a survey or interview. Registering interest does not guarantee product access.",
     },
   },
   seo: {
@@ -321,7 +323,7 @@ export const enTranslations = {
         "A privacy-conscious ESG evidence and response platform for B2B SMEs and suppliers facing information requests from customers, procurement teams, lenders, investors, and supply-chain partners.",
       featureList: {
         documentFirst: "Request-led evidence mapping",
-        scoreRationale: "Evidence Readiness and qualitative ESG Maturity",
+        traceability: "Traceable evidence and source context",
         strengthsGaps: "Question-level evidence statuses and gaps",
         nextSteps: "Evidence-backed suggested responses for human review",
         vsmeReadiness: "VSME-backed SME methodology",
@@ -338,7 +340,7 @@ export const enTranslations = {
     secondaryCta: "Back to homepage",
     nextTitle: "What happens next:",
     nextDescription:
-      "Please click the link in the email to confirm your early-access request and receive updates about ESGCheck.",
+      "Please click the link in the email to confirm your research interest and permission to receive relevant ESGCheck updates.",
     helpTitle: "No email received?",
     helpDescription:
       "Please also check your spam or promotions folder. If the email does not arrive, contact us at info@esgcheck.ch.",
@@ -374,13 +376,13 @@ export const enTranslations = {
     seo: {
       title: "Please Confirm Your Email | ESGCheck",
       description:
-        "Please confirm your ESGCheck early-access request using the link sent to your email address.",
+        "Please confirm your interest in ESGCheck research using the link sent to your email address.",
     },
   },
   thankYou: {
-    title: "Thank you for signing up",
+    title: "Thank you for your interest",
     description:
-      "Your email address has been confirmed. From now on, you will occasionally receive relevant updates about ESGCheck, early access, and ESG topics for SMEs.",
+      "Your email address has been confirmed. We may contact you about suitable ESGCheck research and occasionally send relevant product or SME ESG updates.",
     primaryCta: "Learn more about ESGCheck",
     cards: {
       product: {
@@ -392,17 +394,17 @@ export const enTranslations = {
         description: "Practical content on ESG, regulation, and SMEs.",
       },
       access: {
-        title: "Early access",
-        description: "Information about tests, launch, and early access.",
+        title: "Research invitations",
+        description: "Opportunities to contribute through surveys or interviews.",
       },
     },
     unsubscribeNote:
       "You can unsubscribe at any time using the unsubscribe link in our emails.",
     footerTagline: "Practical ESG evidence and responses, built from Switzerland.",
     seo: {
-      title: "Thank You for Signing Up | ESGCheck",
+      title: "Thank You for Your Interest | ESGCheck",
       description:
-        "Your ESGCheck email address has been confirmed. Thank you for signing up for updates.",
+        "Your email address and ESGCheck research interest have been confirmed.",
     },
   },
   formRuntime: {
@@ -418,7 +420,7 @@ export const enTranslations = {
   consent: {
     title: "Privacy preferences",
     description:
-      "We use essential services for site security and the waitlist form. Optional analytics, marketing automation, and chat support only load if you allow them.",
+      "We use essential services for site security and the research-interest form. Optional analytics, marketing automation, and chat support only load if you allow them.",
     privacyLink: "Privacy Policy",
     cookieLink: "Cookie Policy",
     alwaysActive: "Always active",
@@ -431,7 +433,7 @@ export const enTranslations = {
       essential: {
         title: "Essential",
         description:
-          "Required for security, language handling, consent storage, and waitlist form functionality.",
+          "Required for security, language handling, consent storage, and research-interest form functionality.",
       },
       analytics: {
         title: "Analytics",
@@ -451,8 +453,8 @@ export const enTranslations = {
   },
   footer: {
     description:
-      "A practical ESG evidence and response platform for B2B SMEs and suppliers, built from Switzerland.",
-    tagline: "Built from Switzerland · Privacy-conscious by design",
+      "A practical ESG evidence and response platform for B2B SMEs and suppliers, based in Switzerland.",
+    tagline: "Swiss-based · Privacy-conscious by design",
     product: "Product",
     company: "Company",
     privacy: "Privacy",
@@ -461,8 +463,8 @@ export const enTranslations = {
     legalNotice: "Legal Notice",
     privacyPreferences: "Privacy preferences",
     contact: "Contact",
-    earlyAccess: "Early Access",
-    swissBuilt: "Built from Switzerland",
+    research: "Research",
+    swissBuilt: "Swiss-based",
     copyright: "Copyright 2026 ESGCheck. All rights reserved.",
   },
 } as const;
@@ -476,7 +478,7 @@ export type TranslationDictionary = WidenTranslation<typeof enTranslations>;
 export const deTranslations = {
   header: {
     trustStrip: {
-      swissBuilt: "In der Schweiz entwickelt",
+      swissBuilt: "Schweizer Projekt",
       privacy: "Datenschutzbewusst",
       growingSmes: "Für wachsende KMU konzipiert",
     },
@@ -485,31 +487,27 @@ export const deTranslations = {
     whyEsgCheck: "Warum ESGCheck",
     team: "Team",
     faq: "FAQ",
-    joinWaitlist: "Early Access anfragen",
+    joinWaitlist: "An Forschung teilnehmen",
   },
   hero: {
-    title: "Der praxisnahe ESG-Readiness-Überblick für wachsende B2B-KMU.",
+    title: "Glaubwürdige ESG-Antworten, gestützt auf Ihre Nachweise.",
     description:
-      "Aus Ihren bestehenden Unterlagen wird ein klarer ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für Kunden-, Lieferketten-, Finanzierungs-, Investoren- und freiwillige Reporting-Anfragen.",
-    primaryCta: "Early Access anfragen",
+      "ESGCheck hilft B2B-KMU und Lieferanten, ESG-Informationsanfragen zu verstehen, vorhandene Nachweise zu finden, Lücken zu erkennen und nachvollziehbare Antworten zur menschlichen Freigabe vorzubereiten.",
+    primaryCta: "An Forschung teilnehmen",
     secondaryCta: "So funktioniert es",
     proof: {
-      documentFirst: "Dokumentenbasiert",
-      griFirst: "GRI-first Grundlage",
-      vsmeNext: "VSME-orientierter nächster Schritt",
-      swissPrivacy: "Schweizer Datenschutzverständnis",
+      documentFirst: "Startet mit der Anfrage",
+      griFirst: "Nachvollziehbare Nachweise",
+      vsmeNext: "Menschliche Prüfung und Freigabe",
+      swissPrivacy: "Datenschutzbewusst konzipiert",
     },
     dashboard: {
-      title: "ESG-Readiness-Überblick",
-      filter: "Beispielausgabe",
-      previewLabel: "Beispielhafte Ergebnisansicht",
-      scoreTitle: "Indikativer ESG Score",
-      scoreValue: "68",
-      scoreTotal: "/100",
-      scoreLabel: "Guter Ausgangspunkt",
-      maturityTitle: "ESG-Reifegrad",
-      maturityValue: "Im Aufbau",
-      maturityDetail: "Grundlegende Praktiken sind vorhanden, aber Verantwortlichkeiten, Kontrollen und regelmässige Überprüfungen befinden sich noch im Aufbau.",
+      title: "Arbeitsbereich für Nachweise",
+      filter: "Arbeitskonzept",
+      previewLabel: "Beispielhafter Anfrage-Workflow",
+      requestType: "Kundenfragebogen",
+      requestTitle: "Können Sie Ihre Umwelt- und Lieferantenpraktiken belegen?",
+      requestContext: "Anforderungen werden in praktische Informations- und Nachweisbedürfnisse übersetzt.",
       statusTitle: "Nachweisstatus je Frage",
       notApplicableTitle: "Möglicherweise nicht anwendbar",
       notApplicableDetail: "Pendeldaten bei einem vollständig remote arbeitenden Team",
@@ -519,36 +517,38 @@ export const deTranslations = {
         social: "Soziales",
         governance: "Governance",
       },
-      strengthsTitle: "Vorhandene Nachweise",
+      strengthsTitle: "Belegt",
       strengths: {
-        policy: "Umweltpolitik vorhanden",
-        opportunity: "Vielfalt und Chancengleichheit",
-        conduct: "Ethik- und Verhaltenskodex",
+        policy: "Umweltrichtlinie gefunden",
+        opportunity: "Personaldaten belegt",
+        conduct: "Verhaltenskodex zurückverfolgt",
       },
-      gapsTitle: "Wesentliche Lücken",
+      gapsTitle: "Teilweise belegt",
       gaps: {
-        tracking: "Tracking von THG-Emissionen",
-        suppliers: "ESG-Beurteilungen von Lieferanten",
-        oversight: "ESG-Aufsicht im Verwaltungsrat",
+        tracking: "THG-Daten müssen berechnet werden",
+        suppliers: "Lieferantennachweise unvollständig",
+        oversight: "Governance-Nachweise unklar",
       },
-      nextStepsTitle: "Empfohlene nächste Schritte",
+      nextStepsTitle: "Praktische nächste Schritte",
       nextSteps: {
-        scope: "Scope 1 und Scope 2 messen und laufend nachverfolgen",
-        suppliers: "ESG-Erwartungen an Lieferanten definieren",
-        governance: "ESG-Governance-Struktur festlegen",
+        scope: "Berichtszeitraum bestätigen",
+        suppliers: "Aktuelle Lieferantennachweise anfordern",
+        governance: "Verantwortliche Person zuweisen",
       },
       missingTitle: "Fehlende Nachweise",
       missing: {
-        inventory: "Daten zum THG-Inventar",
-        supplier: "Nachweise zu Lieferantenbeurteilungen",
-        board: "Nachweise zur ESG-Aufsicht im Verwaltungsrat",
+        inventory: "Aktuelles THG-Inventar",
+        supplier: "Unterlagen zur Lieferantenbewertung",
+        board: "Freigabenachweis der Geschäftsleitung",
       },
+      sourceTrace: "Quelle: Verhaltenskodex · Seite 4",
+      owner: "Zuständig: Betrieb · Prüfung erforderlich",
     },
   },
   needNow: {
     title: "Warum Unternehmen das jetzt brauchen",
     description:
-      "CSRD/ESRS, Schweizer nichtfinanzielle Berichterstattungsregeln für grössere Unternehmen und breitere Markterwartungen erzeugen indirekten ESG-Druck auf KMU durch Kunden, Beschaffung, Lieferkettenpartner, Banken, Investoren und Finanzinstitutionen.",
+      "B2B-KMU erhalten zunehmend Nachhaltigkeits- und ESG-Fragen von Kunden, Beschaffung, Kreditgebern, Investoren und anderen Geschäftspartnern – oft ohne eigenes Nachhaltigkeitsteam.",
     items: {
       customerRequests: "Kundenanfragen",
       procurement: "Anforderungen aus der Beschaffung",
@@ -557,29 +557,29 @@ export const deTranslations = {
       credibility: "Glaubwürdigkeit im Markt",
     },
     conclusion:
-      "Was Teams zuerst brauchen, ist Einordnung: ein glaubwürdiger Ausgangspunkt für ESG-Informationsanfragen, mit VSME als praktische freiwillige Referenz und nicht als Compliance-Pflicht.",
+      "Die praktische Aufgabe: die Anfrage verstehen, verlässliche Informationen in gewöhnlichen Unternehmensunterlagen finden, Nachweislücken schliessen und eine nachvollziehbare Antwort vorbereiten, ohne jedes Mal von vorne zu beginnen.",
   },
   howItWorks: {
     title: "So funktioniert es",
     steps: {
       upload: {
-        title: "Unternehmensunterlagen hochladen",
+        title: "ESG-Anfrage einbringen",
         description:
-          "Richtlinien, interne Unterlagen, Lieferanteninformationen und Unternehmensberichte.",
+          "Starten Sie mit einer Frage, einem Fragebogen oder einer Stakeholder-Anfrage und den bereits vorhandenen Nachweisen.",
       },
       assess: {
-        title: "Anhand strukturierter ESG-Kriterien beurteilen",
-        description: "Organisiert entlang einer praxisnahen GRI-first Grundlage heute, mit VSME-orientierter Readiness als nächstem Schritt.",
+        title: "Informationsbedarf verstehen",
+        description: "ESGCheck erklärt die Anfrage, prüft Kontext und Anwendbarkeit und bestimmt die benötigten Informationen und Nachweise.",
       },
       receive: {
-        title: "Einen ersten Readiness-Überblick erhalten",
+        title: "Nachweise und Lücken prüfen",
         description:
-          "Sie sehen vorhandene Nachweise, wesentliche Lücken, konkrete nächste Schritte und einen indikativen Score.",
+          "Sie sehen, was belegt, teilweise belegt, ohne Nachweis oder möglicherweise nicht anwendbar ist – inklusive nächster Schritte und Zuständigkeiten.",
       },
       act: {
-        title: "Nächste Schritte festlegen",
+        title: "Nachvollziehbare Antwort freigeben",
         description:
-          "Wesentliche Lücken, Prioritäten und empfohlene Massnahmen erkennen.",
+          "Prüfen Sie den nachweisgestützten Antwortentwurf vor der Freigabe. Bestätigte Fakten können später wiederverwendet werden.",
       },
     },
   },
@@ -587,9 +587,9 @@ export const deTranslations = {
     title: "Warum ESGCheck",
     items: {
       practical: {
-        title: "Von Anfang an praxisnah",
+        title: "Startet mit der realen Anfrage",
         description:
-          "Für Teams entwickelt, die einen brauchbaren ersten Readiness-Überblick ohne beratungsintensiven Prozess brauchen.",
+          "Übersetzt ESG-Sprache in praktische Informationsbedürfnisse und einen klaren Antwort-Workflow.",
       },
       smes: {
         title: "Für wachsende KMU gebaut",
@@ -597,41 +597,41 @@ export const deTranslations = {
           "Gedacht für Unternehmen mit wenig Zeit, schlanken Ressourcen und ESG-Abläufen, die sich noch entwickeln.",
       },
       documentFirst: {
-        title: "Startet mit vorhandenen Unterlagen",
+        title: "Nachweisgestützt und nachvollziehbar",
         description:
-          "Arbeitet mit dem, was bereits vorhanden ist, statt zuerst ein neues Datenerhebungsprojekt auszulösen.",
+          "Sucht relevante Informationen in bestehenden Unterlagen und verknüpft Antwortentwürfe mit ihren Quellen.",
       },
       privacy: {
-        title: "Sorgfältig mit sensiblen Unterlagen",
+        title: "Menschlich freigegeben und datenschutzbewusst",
         description:
-          "Unternehmensdokumente können heikel sein. Deshalb ist der Workflow auf einen sorgfältigen Umgang ausgelegt.",
+          "KI schlägt vor, Nachweise stützen, Menschen geben frei und das Unternehmen behält die Verantwortung.",
       },
     },
   },
   credibility: {
     title: "Auf Glaubwürdigkeit ausgelegt",
     intro:
-      "ESGCheck soll früh nützlich sein, ohne reifer zu wirken, als es heute ist. Der aktuelle Stand ist ein strukturierter erster Readiness-Überblick, kein CSRD-Compliance-Produkt, keine formale Assurance, keine Zertifizierung und kein Ersatz für vollständiges Nachhaltigkeitsreporting.",
+      "ESGCheck wird so entwickelt, dass glaubwürdige, nachweisgestützte Antworten entstehen, ohne KI-Ergebnisse als automatisch verbindlich darzustellen. ESGCheck ist keine formale Assurance, kein Zertifizierungsmechanismus, keine vollständige CSRD-Compliance-Suite und keine Garantie für ESG-Leistung.",
     pillars: {
       outputs: {
-        title: "Sinnvoller Umfang für heute",
+        title: "Fokus auf Nachweis und Antwort",
         description:
-          "Ein fokussierter erster Readiness-Überblick, der Teams verfügbare Nachweise, Lücken und sinnvolle nächste Schritte zeigt.",
+          "Startet mit einer realen Anfrage, findet Nachweise, zeigt Lücken und bereitet eine Antwort zur Prüfung vor.",
       },
       methodology: {
         title: "Strukturierte Methodik",
         description:
-          "Eine praxisnahe GRI-first Grundlage mit VSME-orientierter Readiness als nächster freiwilliger Referenzrichtung.",
+          "VSME dient als primäres KMU-Rückgrat; GRI, ESRS und weitere validierte Leitlinien ergänzen es bei Bedarf.",
       },
       positioning: {
-        title: "Klare Positionierung",
+        title: "Menschliche Freigabe im Konzept",
         description:
-          "Transparent bei den heutigen Grenzen und bewusst zurückhaltend bei Reifegrad, Abdeckung oder Zertifizierungsstatus.",
+          "Antwortentwürfe bleiben mit Nachweisen verknüpft und müssen vor externer Nutzung menschlich geprüft und freigegeben werden.",
       },
     },
     privacyTitle: "Datenschutz & Vertrauen",
     privacyDescription:
-      "Sensible Unternehmensunterlagen sind Teil des Workflows. Deshalb prägen Schweizer Entwicklungsqualität und EU-orientierte Datenschutzanforderungen die Produktentscheidungen von Anfang an.",
+      "ESG-Unterlagen können geschäftlich sensibel sein. Datenschutzbewusste Verarbeitung, Kundendatentrennung, Zugriffskontrolle und Nachvollziehbarkeit sind Designprioritäten; stärkere Hosting- oder Provider-Aussagen folgen erst nach Prüfung.",
     regionBadges: {
       swiss: "CH",
       europe: "EU",
@@ -641,38 +641,38 @@ export const deTranslations = {
     title: "Wie sich ESGCheck weiterentwickelt",
     items: {
       mvp: {
-        title: "MVP abgeschlossen",
+        title: "Funktionsfähiger Prototyp",
         description:
-          "Der Kern-Workflow steht und ist bereit, an realen Anwendungsfällen geprüft zu werden.",
+          "Ein funktionsfähiger technischer Prototyp bildet die reale Grundlage für den nächsten Implementierungszyklus.",
       },
       testing: {
-        title: "Interne Tests laufen",
+        title: "Produkt wird neu ausgerichtet",
         description:
-          "Die End-to-End-Abläufe werden über das gesamte Nutzungserlebnis hinweg geprüft.",
+          "Das MVP wird auf ESG-Anfragen, Nachweise, wiederverwendbaren Unternehmenskontext und menschlich geprüfte Antworten ausgerichtet.",
       },
       expert: {
-        title: "Expertengestütztes Review als Nächstes",
+        title: "Kundenvalidierung läuft",
         description:
-          "Ein expertengestütztes Methodik-Review ist der nächste Schritt, um Ergebnisqualität und Glaubwürdigkeit weiter zu stärken.",
+          "Die Forschung prüft Zielsegment, Auslöser und Workflow-Probleme, bevor ein erstes verkaufbares Ergebnis festgelegt wird.",
       },
       readiness: {
-        title: "Auf dem Weg zu Piloten",
+        title: "Nächster Zyklus wird vorbereitet",
         description:
-          "Über die Ideenphase hinaus, während Zuverlässigkeit und Vertrauen vor einer breiteren Einführung belegt werden.",
+          "Das Team klärt die Produktentscheidungen, die für eine sichere Implementierungsgrenze nötig sind.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "Im Fokus steht jetzt zuerst die Validierung der Zuverlässigkeit und danach der schrittweise Ausbau des Workflows.",
+      "Im Fokus stehen der überarbeitete Workflow, die Trennung technischer Fehler von Nachweislücken, die Kundenvalidierung und der nächste Implementierungszyklus.",
     steps: {
-      testing: "Internes End-to-End-Testing",
-      validation: "Expertenvalidierung",
-      pilot: "Erste Pilotkunden",
-      commercial: "Kommerzielle Verfeinerung",
-      expansion: "Framework- und Workflow-Ausbau",
-      certification: "Zertifizierungsorientierte Richtung",
+      workflow: "Anfrage-Workflow festlegen",
+      evidenceStates: "Nachweis- und Fehlerstatus definieren",
+      assessment: "Assessment-Semantik klären",
+      research: "Kundenforschung durchführen",
+      privacy: "Datenschutz und Datenflüsse prüfen",
+      implementation: "Implementierung vorbereiten",
     },
   },
   audience: {
@@ -688,7 +688,7 @@ export const deTranslations = {
         "Für Teams mit Blick auf Risiko, Finanzierungsfähigkeit und Vertrauen bei Stakeholdern.",
     },
     region: {
-      title: "Am besten geeignet für wachsende Schweizer und DACH B2B-KMU mit ESG-Informationsanfragen.",
+      title: "Für B2B-KMU und Lieferanten ohne eigenes Nachhaltigkeitsteam. Das erste Segment und der geografische Fokus werden validiert.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -701,19 +701,23 @@ export const deTranslations = {
     members: {
       ali: {
         name: "Ali Priyatna",
-        role: "Produkt, Strategie, Unternehmensausrichtung",
-      },
-      anastasia: {
-        name: "Anastasia Kurer",
-        role: "Marketing, Marke, Kommunikation",
-      },
-      priyatna: {
-        name: "Priyatna Priyatna",
-        role: "Technical Lead, Senior Software Developer",
+        title: "Co-Founder & CEO",
+        responsibility: "Produkt, Strategie, Koordination und Unternehmensausrichtung",
       },
       elena: {
-        name: "",
-        role: "ESG-Expertin und Beraterin",
+        name: "Elena Lisa Farrace",
+        title: "Co-Founder & CSO",
+        responsibility: "ESG- und Nachhaltigkeitsexpertise sowie strategischer Produktinput",
+      },
+      priyatna: {
+        name: "Priyatna / mPri",
+        title: "Co-Founder & CTO",
+        responsibility: "Technische Leitung und Softwareentwicklung",
+      },
+      anastasia: {
+        name: "Anastasia Lorena Kurer",
+        title: "Co-Founder & CMO",
+        responsibility: "Marketing, Marke, Kommunikation und Marktvalidierung",
       },
     },
   },
@@ -723,86 +727,86 @@ export const deTranslations = {
       certification: {
         question: "Ist ESGCheck eine Zertifizierung?",
         answer:
-          "Heute nicht. ESGCheck ist ein strukturierter erster Readiness-Überblick, der Unternehmen bei der Einordnung und Weiterentwicklung unterstützen soll.",
+          "Nein. ESGCheck ist kein Zertifizierungsmechanismus und kein Ersatz für formale Assurance sowie professionelle Rechts- oder Prüfungsarbeit.",
       },
       vsme: {
         question: "Ist ESGCheck ein CSRD- oder VSME-Compliance-Tool?",
         answer:
-          "Nein. ESGCheck ist kein Compliance-, Assurance-, Zertifizierungs- oder vollständiges Nachhaltigkeitsreporting-Produkt. ESGCheck hilft KMU, bestehende Informationen zu ordnen, Lücken zu erkennen und sich auf praktische ESG-Informationsanfragen vorzubereiten, mit VSME als freiwilligem Referenzpunkt.",
+          "Nein. VSME ist das primäre KMU-Rückgrat; GRI und ESRS liefern bei Bedarf ergänzenden Kontext. Die Framework-Logik läuft hauptsächlich im Hintergrund. ESGCheck ist keine vollständige CSRD-Compliance-Suite.",
       },
       documents: {
-        question: "Welche Dokumente kann ich hochladen?",
+        question: "Was kann ich in ESGCheck einbringen?",
         answer:
-          "Richtlinien, interne Unterlagen, Lieferanteninformationen und Unternehmensberichte.",
+          "Eine einzelne ESG-Frage, einen Fragebogen, eine andere Stakeholder-Anfrage und vorhandene Unternehmensnachweise. ESGCheck sucht benötigte Informationen statt starr benannter Dokumente.",
       },
       audience: {
         question: "Für wen ist ESGCheck gemacht?",
         answer:
-          "Für wachsende KMU, besonders in Schweizer und DACH B2B-Kontexten.",
+          "Für B2B-KMU und Lieferanten ohne eigenes Nachhaltigkeitsteam, die wiederkehrende Anfragen von Kunden, Beschaffung, Kreditgebern, Investoren oder anderen Partnern erhalten.",
       },
       pricing: {
         question: "Wie sieht es mit der Preisgestaltung aus?",
         answer:
-          "Das Preismodell wird auf ein zugängliches KMU-Angebot ausgerichtet und durch frühe Validierung weiter geschärft.",
+          "Die Preisgestaltung ist noch offen und wird erst mit dem ersten verkaufbaren Ergebnis und der Zahlungsbereitschaft validiert.",
       },
     },
   },
   finalCta: {
-    title: "Early Access für ESGCheck anfragen.",
+    title: "Helfen Sie mit, ESGCheck durch Forschung zu gestalten.",
     description:
-      "Melden Sie sich, wenn Sie verfolgen möchten, wie sich das Produkt entwickelt und ob es zu Ihrem Workflow passt.",
-    primary: "Early Access anfragen",
-    secondary: "Weitere Informationen anfragen",
+      "Wenn Ihr Unternehmen ESG-Fragen oder Fragebogen erhält, teilen Sie uns mit, wie Sie heute damit umgehen, und helfen Sie uns, den Workflow zu validieren.",
+    primary: "An Forschung teilnehmen",
+    secondary: "ESGCheck kontaktieren",
   },
   waitlist: {
-    title: "Early Access anfragen.",
+    title: "An der ESGCheck KMU-Forschung teilnehmen.",
     description:
-      "Wenn ESG-Fragen bereits in Kunden-, Beschaffungs-, Lieferketten- oder Finanzierungsgesprächen auftauchen, möchten wir besser verstehen, wo der Druck bei Ihnen entsteht.",
-    cardTitle: "Was Sie erwarten dürfen",
-    ctaButton: "Early Access für ESGCheck anfragen",
+      "Wenn ESG-Fragen bereits in Kunden-, Beschaffungs-, Lieferketten- oder Finanzierungsprozessen auftauchen, können Sie Ihr Interesse an einer kurzen Umfrage oder einem Interview anmelden.",
+    cardTitle: "So funktioniert die Teilnahme",
+    ctaButton: "Forschungsinteresse anmelden",
     emailNote:
-      "Nutzen Sie Ihre geschäftliche E-Mail-Adresse, um zur Beta dazuzukommen und Updates zum Zugang zu erhalten.",
+      "Nutzen Sie Ihre geschäftliche E-Mail-Adresse, damit wir Sie zu passender Forschung und relevanten Produkt-Updates kontaktieren können.",
     form: {
       emailLabel: "Geschäftliche E-Mail-Adresse",
       emailPlaceholder: "sie@unternehmen.ch",
-      emailHelp: "Geben Sie Ihre E-Mail-Adresse an, um Early Access anzufragen.",
+      emailHelp: "Geben Sie Ihre E-Mail-Adresse an, um Interesse an der ESGCheck Forschung anzumelden.",
       optInLabel: "Einwilligung",
       optInText:
-        "Ich bin damit einverstanden, Ihre Newsletter zu erhalten, und akzeptiere die Datenschutzerklärung.",
+        "Ich bin mit einer Kontaktaufnahme zur ESGCheck Forschung und relevanten Produkt-Updates einverstanden und akzeptiere die Datenschutzerklärung.",
       optInHelp:
         "Sie können sich jederzeit über den Link im Newsletter abmelden.",
-      success: "Ihre Anmeldung war erfolgreich.",
+      success: "Ihr Forschungsinteresse wurde registriert.",
       error:
-        "Ihre Anmeldung konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
+        "Ihr Forschungsinteresse konnte nicht gespeichert werden. Bitte versuchen Sie es erneut.",
       brevoDisclaimer:
         "Wir nutzen Brevo als Marketingplattform. Mit dem Absenden dieses Formulars stimmen Sie zu, dass Ihre personenbezogenen Daten zur Verarbeitung an Brevo übermittelt werden, gemäss",
       brevoLinkLabel: "Brevos Datenschutzerklärung.",
     },
     modal: {
-      disclaimer: "Während der Beta kostenlos. Keine Kreditkarte erforderlich.",
-      disclaimerShort: "Während der Beta kostenlos.",
-      betaNote:
-        "Frühe Teilnehmende erhalten kostenlosen Zugang und helfen uns, ESGCheck an realen KMU-Bedürfnissen auszurichten.",
+      disclaimer: "Die Forschungsteilnahme ist freiwillig. Keine Verkaufsverpflichtung.",
+      disclaimerShort: "Freiwillige Forschungsteilnahme.",
+      participationNote:
+        "Geeignete Personen können zu einer Umfrage oder einem Interview eingeladen werden. Die Anmeldung garantiert keinen Produktzugang.",
     },
   },
   seo: {
-    title: "ESGCheck | Praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
+    title: "ESGCheck | Nachweisgestützte ESG-Antworten für B2B-KMU",
     description:
-      "Machen Sie aus Unternehmensunterlagen einen klaren ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für steigende ESG-Anfragen von Kunden, Beschaffung, Finanzierungspartnern, Investoren und Lieferketten.",
+      "ESG-Anfragen verstehen, Nachweise finden, Lücken erkennen und nachvollziehbare Antworten zur menschlichen Freigabe vorbereiten.",
     keywords:
-      "ESG-Readiness, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeits-Readiness, dokumentenbasierte ESG",
+      "ESG-Nachweise, ESG-Antworten, ESG-Fragebogen, ESG für KMU, VSME, GRI, ESRS, Swiss ESG, Lieferanten-ESG",
     ogImageAlt:
-      "ESGCheck praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
+      "ESGCheck Plattform für nachweisgestützte ESG-Antworten von B2B-KMU und Lieferanten",
     structuredData: {
       description:
-        "Eine praxisnahe ESG-Readiness-Plattform für wachsende B2B-KMU mit indirekten ESG-Informationsanfragen, aufgebaut auf den Unterlagen, die Unternehmen bereits haben.",
+        "Eine datenschutzbewusste Plattform für ESG-Nachweise und Antworten für B2B-KMU und Lieferanten mit ESG-Informationsanfragen.",
       featureList: {
-        documentFirst: "Dokumentenbasierter ESG-Readiness-Überblick",
-        scoreRationale: "Indikativer ESG Score mit Begründung",
-        strengthsGaps: "Nachweis-Mapping und Lückenübersicht",
-        nextSteps: "Konkrete nächste Schritte",
-        vsmeReadiness: "VSME-orientierte freiwillige Referenzrichtung",
-        swissPrivacy: "Datenschutzbewusster Workflow aus der Schweiz",
+        documentFirst: "Anfragegeleitete Nachweissuche",
+        traceability: "Nachvollziehbare Nachweise und Quellenkontext",
+        strengthsGaps: "Nachweisstatus und Lücken je Frage",
+        nextSteps: "Nachweisgestützte Antwortentwürfe zur Prüfung",
+        vsmeReadiness: "VSME als methodisches KMU-Rückgrat",
+        swissPrivacy: "Datenschutzbewusster Schweizer Workflow",
       },
     },
   },
@@ -815,49 +819,49 @@ export const deTranslations = {
     secondaryCta: "Zurück zur Startseite",
     nextTitle: "So geht es weiter:",
     nextDescription:
-      "Bitte klicken Sie auf den Link in der E-Mail, um Ihre Early-Access-Anfrage zu bestätigen und Updates zu ESGCheck zu erhalten.",
+      "Bitte klicken Sie auf den Link in der E-Mail, um Ihr Forschungsinteresse und die Erlaubnis für relevante ESGCheck Updates zu bestätigen.",
     helpTitle: "Keine E-Mail erhalten?",
     helpDescription:
       "Bitte prüfen Sie auch Ihren Spam- oder Promotions-Ordner. Falls die E-Mail nicht ankommt, können Sie uns unter info@esgcheck.ch kontaktieren.",
     steps: {
       review: {
-        title: "Für KMU & Startups",
+        title: "Für B2B-KMU & Lieferanten",
         description:
-          "ESG-Reporting, das sich an Ihren Bedürfnissen orientiert.",
+          "Praktische Unterstützung für reale ESG-Informationsanfragen.",
       },
       update: {
-        title: "Schweizer Datenschutz",
+        title: "Datenschutzbewusst",
         description:
-          "Ihre Daten bleiben sicher - in der Schweiz oder der EU.",
+          "Sorgfältiger Umgang mit Daten prägt die Produktentwicklung.",
       },
       prepare: {
-        title: "Schnell & erschwinglich",
+        title: "Nachweisgestützt",
         description:
-          "Automatisierte Analysen zu einem fairen Preis.",
+          "Antwortentwürfe bleiben mit Nachweisen verknüpft und benötigen menschliche Freigabe.",
       },
     },
     trustTitle: "Gemeinsam ESG einfacher machen.",
     trustDescription:
       "ESGCheck unterstützt wachsende Teams mit praxisnaher Orientierung, datenschutzbewusstem Umgang und konkreten nächsten Schritten.",
     trust: {
-      swissBuilt: "Für KMU & Startups",
-      privacy: "Schweizer Datenschutz",
-      growingSmes: "Schnell & erschwinglich",
+      swissBuilt: "Für B2B-KMU & Lieferanten",
+      privacy: "Datenschutzbewusst",
+      growingSmes: "Menschlich freigegeben",
     },
     finalTitle: "Möchten Sie mehr über ESGCheck erfahren?",
     finalDescription:
-      "Sie können zur Landing Page zurückkehren und nochmals ansehen, wie ESGCheck bestehende Unternehmensunterlagen in Nachweis-Mapping, sichtbare Lücken, konkrete nächste Schritte und einen indikativen Score übersetzt.",
+      "Zurück auf der Landing Page sehen Sie, wie ESGCheck Anfragen verständlich macht, Nachweise findet, Lücken zeigt und nachvollziehbare Antworten zur Freigabe vorbereitet.",
     finalCta: "Mehr über ESGCheck erfahren",
     seo: {
       title: "E-Mail-Adresse bestätigen | ESGCheck",
       description:
-        "Bitte bestätigen Sie Ihre ESGCheck Early-Access-Anfrage über den Link in der gesendeten E-Mail.",
+        "Bitte bestätigen Sie Ihr Interesse an der ESGCheck Forschung über den Link in der gesendeten E-Mail.",
     },
   },
   thankYou: {
-    title: "Vielen Dank für Ihre Anmeldung",
+    title: "Vielen Dank für Ihr Interesse",
     description:
-      "Ihre E-Mail-Adresse wurde erfolgreich bestätigt. Ab sofort erhalten Sie gelegentlich relevante Updates zu ESGCheck, Early Access und ESG-Themen für KMU.",
+      "Ihre E-Mail-Adresse wurde bestätigt. Wir können Sie zu passender ESGCheck Forschung kontaktieren und gelegentlich relevante Produkt- oder KMU-ESG-Updates senden.",
     primaryCta: "Mehr über ESGCheck erfahren",
     cards: {
       product: {
@@ -869,17 +873,17 @@ export const deTranslations = {
         description: "Praktische Inhalte zu ESG, Regulierung und KMU.",
       },
       access: {
-        title: "Früher Zugang",
-        description: "Informationen zu Tests, Launch und Early Access.",
+        title: "Forschungseinladungen",
+        description: "Möglichkeiten, über Umfragen oder Interviews beizutragen.",
       },
     },
     unsubscribeNote:
       "Sie können sich jederzeit über den Abmeldelink in unseren E-Mails abmelden.",
-    footerTagline: "ESG Reporting einfach, erschwinglich und schweizerisch.",
+    footerTagline: "Praktische ESG-Nachweise und Antworten aus der Schweiz.",
     seo: {
-      title: "Vielen Dank für Ihre Anmeldung | ESGCheck",
+      title: "Vielen Dank für Ihr Interesse | ESGCheck",
       description:
-        "Ihre E-Mail-Adresse für ESGCheck wurde bestätigt. Vielen Dank für Ihre Anmeldung zu Updates.",
+        "Ihre E-Mail-Adresse und Ihr Interesse an der ESGCheck Forschung wurden bestätigt.",
     },
   },
   formRuntime: {
@@ -895,7 +899,7 @@ export const deTranslations = {
   consent: {
     title: "Datenschutz-Einstellungen",
     description:
-      "Wir nutzen essenzielle Dienste fuer Sicherheit und das Wartelistenformular. Optionale Analyse, Marketing-Automation und Chat-Support laden nur, wenn Sie zustimmen.",
+      "Wir nutzen essenzielle Dienste fuer Sicherheit und das Forschungsformular. Optionale Analyse, Marketing-Automation und Chat-Support laden nur, wenn Sie zustimmen.",
     privacyLink: "Datenschutzerklaerung",
     cookieLink: "Cookie-Richtlinie",
     alwaysActive: "Immer aktiv",
@@ -908,7 +912,7 @@ export const deTranslations = {
       essential: {
         title: "Essenzielle Dienste",
         description:
-          "Erforderlich fuer Sicherheit, Sprachsteuerung, Speicherung der Einwilligung und Funktion des Wartelistenformulars.",
+          "Erforderlich fuer Sicherheit, Sprachsteuerung, Speicherung der Einwilligung und Funktion des Forschungsformulars.",
       },
       analytics: {
         title: "Analyse",
@@ -929,8 +933,8 @@ export const deTranslations = {
   },
   footer: {
     description:
-      "Praxisnahe ESG-Readiness für wachsende B2B-KMU, die sich auf ESG-Informationsanfragen vorbereiten, entwickelt in der Schweiz.",
-    tagline: "In der Schweiz entwickelt · Datenschutzbewusst gestaltet",
+      "Eine praxisnahe Plattform für ESG-Nachweise und Antworten von B2B-KMU und Lieferanten mit Sitz in der Schweiz.",
+    tagline: "Schweizer Projekt · Datenschutzbewusst gestaltet",
     product: "Produkt",
     company: "Unternehmen",
     privacy: "Datenschutz",
@@ -939,8 +943,8 @@ export const deTranslations = {
     legalNotice: "Impressum",
     privacyPreferences: "Datenschutz-Einstellungen",
     contact: "Kontakt",
-    earlyAccess: "Early Access",
-    swissBuilt: "In der Schweiz entwickelt",
+    research: "Forschung",
+    swissBuilt: "Schweizer Projekt",
     copyright: "Copyright 2026 ESGCheck. Alle Rechte vorbehalten.",
   },
 } as const;
@@ -948,7 +952,7 @@ export const deTranslations = {
 export const frTranslations = {
   header: {
     trustStrip: {
-      swissBuilt: "Conçu en Suisse",
+      swissBuilt: "Basé en Suisse",
       privacy: "Confidentialité prise au sérieux",
       growingSmes: "Pensé pour les PME en croissance",
     },
@@ -957,31 +961,27 @@ export const frTranslations = {
     whyEsgCheck: "Pourquoi ESGCheck",
     team: "Équipe",
     faq: "FAQ",
-    joinWaitlist: "Demander un accès anticipé",
+    joinWaitlist: "Participer à la recherche",
   },
   hero: {
-    title: "Un aperçu pratique de préparation ESG pour les PME B2B en croissance.",
+    title: "Des réponses ESG crédibles, étayées par vos preuves.",
     description:
-      "Transformez vos documents existants en un aperçu clair de préparation ESG, avec cartographie des justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes clients, chaîne d'approvisionnement, financement, investisseurs et reporting volontaire.",
-    primaryCta: "Demander un accès anticipé",
+      "ESGCheck aide les PME B2B et les fournisseurs à comprendre les demandes d'informations ESG, trouver les preuves disponibles, identifier les écarts et préparer des réponses traçables pour validation humaine.",
+    primaryCta: "Participer à la recherche",
     secondaryCta: "Voir le fonctionnement",
     proof: {
-      documentFirst: "Fondé sur les documents",
-      griFirst: "Base GRI-first",
-      vsmeNext: "Prochaine étape orientée VSME",
-      swissPrivacy: "Réflexe suisse en matière de confidentialité",
+      documentFirst: "Part de la demande réelle",
+      griFirst: "Traçabilité des preuves",
+      vsmeNext: "Examen et validation humains",
+      swissPrivacy: "Confidentialité dès la conception",
     },
     dashboard: {
-      title: "Aperçu de préparation ESG",
-      filter: "Exemple de rendu",
-      previewLabel: "Aperçu illustratif du résultat",
-      scoreTitle: "Score ESG indicatif",
-      scoreValue: "68",
-      scoreTotal: "/100",
-      scoreLabel: "Bon point de départ",
-      maturityTitle: "Maturité ESG",
-      maturityValue: "En développement",
-      maturityDetail: "Des pratiques de base sont en place, mais les responsabilités, les contrôles et les revues régulières sont encore en développement.",
+      title: "Espace de travail des preuves",
+      filter: "Concept de travail",
+      previewLabel: "Workflow de demande illustratif",
+      requestType: "Questionnaire client",
+      requestTitle: "Pouvez-vous étayer vos pratiques environnementales et fournisseurs ?",
+      requestContext: "Les exigences sont traduites en besoins pratiques d'information et de preuves.",
       statusTitle: "Statut des preuves par question",
       notApplicableTitle: "Potentiellement non applicable",
       notApplicableDetail: "Données de trajet pour une équipe entièrement à distance",
@@ -991,36 +991,38 @@ export const frTranslations = {
         social: "Social",
         governance: "Gouvernance",
       },
-      strengthsTitle: "Justificatifs disponibles",
+      strengthsTitle: "Étayé",
       strengths: {
-        policy: "Politique environnementale en place",
-        opportunity: "Diversité et égalité des chances",
-        conduct: "Éthique et code de conduite",
+        policy: "Politique environnementale trouvée",
+        opportunity: "Données du personnel étayées",
+        conduct: "Code de conduite retracé",
       },
-      gapsTitle: "Écarts clés",
+      gapsTitle: "Partiellement étayé",
       gaps: {
-        tracking: "Suivi des émissions GES",
-        suppliers: "Évaluations ESG des fournisseurs",
-        oversight: "Supervision ESG au niveau du conseil d'administration",
+        tracking: "Les données GES doivent être calculées",
+        suppliers: "Preuves fournisseurs incomplètes",
+        oversight: "Preuves de gouvernance incertaines",
       },
-      nextStepsTitle: "Prochaines étapes recommandées",
+      nextStepsTitle: "Prochaines étapes pratiques",
       nextSteps: {
-        scope: "Mesurer et suivre les émissions Scope 1 et 2",
-        suppliers: "Définir les attentes ESG vis-à-vis des fournisseurs",
-        governance: "Mettre en place une structure de gouvernance ESG",
+        scope: "Confirmer la période de reporting",
+        suppliers: "Demander des preuves fournisseurs à jour",
+        governance: "Attribuer un responsable de réponse",
       },
       missingTitle: "Justificatifs manquants",
       missing: {
-        inventory: "Données d'inventaire GES",
-        supplier: "Justificatifs d'évaluation des fournisseurs",
-        board: "Justificatifs de supervision ESG du conseil d'administration",
+        inventory: "Inventaire GES actuel",
+        supplier: "Dossiers d'évaluation fournisseurs",
+        board: "Trace de validation de la direction",
       },
+      sourceTrace: "Source : Code de conduite · page 4",
+      owner: "Responsable : Opérations · Examen requis",
     },
   },
   needNow: {
     title: "Pourquoi les entreprises en ont besoin maintenant",
     description:
-      "CSRD/ESRS, les règles suisses de reporting non financier pour les grandes entreprises et les attentes plus larges du marché créent une pression ESG indirecte sur les PME via les clients, les achats, les partenaires de chaîne d'approvisionnement, les banques, les investisseurs et les institutions financières.",
+      "Les PME B2B reçoivent de plus en plus de questions de durabilité et d'ESG de la part de clients, des achats, de prêteurs, d'investisseurs et d'autres partenaires, souvent sans équipe dédiée.",
     items: {
       customerRequests: "Demandes clients",
       procurement: "Exigences achats",
@@ -1029,29 +1031,29 @@ export const frTranslations = {
       credibility: "Crédibilité sur le marché",
     },
     conclusion:
-      "Ce qu'il faut d'abord aux équipes, c'est un cadre de lecture: un point de départ crédible pour les demandes d'informations ESG, avec VSME comme référence volontaire pratique et non comme obligation de conformité.",
+      "La tâche concrète consiste à comprendre la demande, retrouver des informations fiables dans les documents ordinaires, combler les lacunes et préparer une réponse traçable sans repartir de zéro.",
   },
   howItWorks: {
     title: "Fonctionnement",
     steps: {
       upload: {
-        title: "Transmettre les documents de l'entreprise",
+        title: "Apporter une demande ESG",
         description:
-          "Politiques, documents internes, informations fournisseurs et rapports d'entreprise.",
+          "Commencez par une question, un questionnaire ou une demande d'une partie prenante, avec les preuves déjà disponibles.",
       },
       assess: {
-        title: "Évaluer selon des critères ESG structurés",
-        description: "Organisée autour d'une base pratique GRI-first aujourd'hui, avec une préparation orientée VSME ensuite.",
+        title: "Comprendre ce qui est nécessaire",
+        description: "ESGCheck explique la demande, vérifie le contexte et l'applicabilité, puis identifie les informations et preuves nécessaires.",
       },
       receive: {
-        title: "Recevoir un premier aperçu de préparation",
+        title: "Examiner preuves et lacunes",
         description:
-          "Vous voyez les justificatifs disponibles, les écarts clés, les prochaines étapes pratiques et un score indicatif.",
+          "Voyez ce qui est étayé, partiellement étayé, sans preuve ou potentiellement non applicable, avec les actions et responsables probables.",
       },
       act: {
-        title: "Décider des prochaines étapes",
+        title: "Valider une réponse traçable",
         description:
-          "Repérez les écarts les plus importants, les priorités et les suites à donner.",
+          "Examinez la réponse proposée et ses preuves avant validation. Les faits confirmés peuvent être réutilisés tant qu'ils restent valables.",
       },
     },
   },
@@ -1059,9 +1061,9 @@ export const frTranslations = {
     title: "Pourquoi ESGCheck",
     items: {
       practical: {
-        title: "Pratique dès le départ",
+        title: "Part de la demande réelle",
         description:
-          "Pensé pour donner aux équipes un premier aperçu de préparation exploitable, sans processus de conseil lourd.",
+          "Traduit le langage ESG en besoins d'information concrets et en un workflow de réponse clair.",
       },
       smes: {
         title: "Pensé pour les PME en croissance",
@@ -1069,41 +1071,41 @@ export const frTranslations = {
           "Adapté aux entreprises qui ont peu de temps, des ressources limitées et des processus ESG encore en construction.",
       },
       documentFirst: {
-        title: "Part des documents existants",
+        title: "Étayé et traçable",
         description:
-          "Travaille à partir des éléments déjà disponibles, sans imposer d'abord un nouveau chantier de collecte.",
+          "Recherche les informations pertinentes dans les documents existants et relie les réponses proposées à leurs sources.",
       },
       privacy: {
-        title: "Attentif aux documents sensibles",
+        title: "Validation humaine et confidentialité",
         description:
-          "Les documents d'entreprise peuvent être sensibles. Le workflow est donc conçu pour un traitement soigneux.",
+          "L'IA propose, les preuves étayent, les humains valident et l'entreprise reste responsable.",
       },
     },
   },
   credibility: {
     title: "Conçu pour rester crédible",
     intro:
-      "ESGCheck est pensé pour être utile tôt, sans donner l'impression d'être plus mature qu'il ne l'est. À ce stade, il s'agit d'un premier aperçu structuré de préparation, pas d'un produit de conformité CSRD, d'une assurance formelle, d'une certification ou d'un remplacement complet du reporting de durabilité.",
+      "ESGCheck est conçu pour préparer des réponses crédibles et étayées sans présenter les résultats de l'IA comme automatiquement fiables. Ce n'est ni une assurance formelle, ni un mécanisme de certification, ni une suite complète de conformité CSRD, ni une garantie de performance ESG.",
     pillars: {
       outputs: {
-        title: "Un périmètre utile aujourd'hui",
+        title: "Preuves et réponses ciblées",
         description:
-          "Un premier aperçu ciblé de préparation pour montrer les justificatifs disponibles, les écarts et les prochaines étapes cohérentes.",
+          "Part d'une demande réelle, retrouve les preuves, montre les lacunes et prépare une réponse à examiner.",
       },
       methodology: {
         title: "Une méthode structurée",
         description:
-          "Une base pratique GRI-first avec une préparation orientée VSME comme prochaine référence volontaire.",
+          "VSME sert de socle principal pour les PME, complété par GRI, ESRS et d'autres références validées si nécessaire.",
       },
       positioning: {
-        title: "Un positionnement clair",
+        title: "Validation humaine par conception",
         description:
-          "Transparent sur les limites actuelles et volontairement prudent sur la maturité, la couverture ou le statut de certification.",
+          "Les réponses proposées restent liées aux preuves et nécessitent un examen et une validation humains avant usage externe.",
       },
     },
     privacyTitle: "Confidentialité & confiance",
     privacyDescription:
-      "Les documents sensibles font partie du workflow. C'est pourquoi les choix produit intègrent dès le départ des attentes suisses et européennes en matière de confidentialité.",
+      "Les documents ESG peuvent être sensibles. Le traitement respectueux de la confidentialité, la séparation des données clients, le contrôle des accès et la traçabilité guident la conception; les affirmations sur l'hébergement suivront après vérification.",
     regionBadges: {
       swiss: "CH",
       europe: "UE",
@@ -1113,38 +1115,38 @@ export const frTranslations = {
     title: "Comment ESGCheck progresse",
     items: {
       mvp: {
-        title: "MVP finalisé",
+        title: "Prototype fonctionnel",
         description:
-          "Le coeur du workflow est en place et prêt à être confronté à des usages réels.",
+          "Un prototype technique fonctionnel constitue une base réelle pour le prochain cycle de mise en oeuvre.",
       },
       testing: {
-        title: "Tests internes en cours",
+        title: "Repositionnement du produit",
         description:
-          "Les parcours end-to-end sont vérifiés sur l'ensemble de l'expérience.",
+          "Le MVP est redéfini autour des demandes ESG, des preuves, du contexte réutilisable et des réponses validées par l'humain.",
       },
       expert: {
-        title: "Revue méthodologique experte ensuite",
+        title: "Validation client en cours",
         description:
-          "Une revue méthodologique appuyée par des experts est la prochaine étape pour renforcer la qualité et la crédibilité des résultats.",
+          "La recherche teste le segment, le déclencheur et la difficulté du workflow avant de fixer le premier résultat commercialisable.",
       },
       readiness: {
-        title: "En route vers les pilotes",
+        title: "Prochain cycle en préparation",
         description:
-          "Au-delà du stade de l'idée, avec une fiabilité et une confiance encore à démontrer avant un déploiement plus large.",
+          "L'équipe tranche les décisions nécessaires à un périmètre de mise en oeuvre sûr.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "L'objectif immédiat est de valider d'abord la fiabilité, puis d'élargir le workflow par étapes mesurées.",
+      "La priorité est de stabiliser le workflow, distinguer les échecs techniques des lacunes de preuves, valider la clientèle cible et préparer le prochain cycle.",
     steps: {
-      testing: "Tests end-to-end internes",
-      validation: "Validation experte",
-      pilot: "Premiers clients pilotes",
-      commercial: "Affinage commercial",
-      expansion: "Extension des frameworks et du workflow",
-      certification: "Orientation certification",
+      workflow: "Stabiliser le workflow de demande",
+      evidenceStates: "Définir les statuts de preuve et d'erreur",
+      assessment: "Clarifier la sémantique d'évaluation",
+      research: "Mener la recherche client",
+      privacy: "Vérifier confidentialité et flux de données",
+      implementation: "Préparer la mise en oeuvre",
     },
   },
   audience: {
@@ -1160,7 +1162,7 @@ export const frTranslations = {
         "Pour les équipes attentives au risque, à la préparation au financement et à la confiance des parties prenantes.",
     },
     region: {
-      title: "Particulièrement adapté aux PME B2B suisses et DACH en croissance confrontées à des demandes d'informations ESG.",
+      title: "Pour les PME B2B et fournisseurs sans équipe dédiée à la durabilité. Le premier segment et la zone géographique sont en cours de validation.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -1173,19 +1175,23 @@ export const frTranslations = {
     members: {
       ali: {
         name: "Ali Priyatna",
-        role: "Produit, stratégie, direction d'entreprise",
-      },
-      anastasia: {
-        name: "Anastasia Kurer",
-        role: "Marketing, marque, communication",
-      },
-      priyatna: {
-        name: "Priyatna Priyatna",
-        role: "Technical Lead, Senior Software Developer",
+        title: "Co-Founder & CEO",
+        responsibility: "Produit, stratégie, coordination et direction de l'entreprise",
       },
       elena: {
-        name: "",
-        role: "Experte ESG et conseillère",
+        name: "Elena Lisa Farrace",
+        title: "Co-Founder & CSO",
+        responsibility: "Expertise ESG et durabilité, avec contribution stratégique au produit",
+      },
+      priyatna: {
+        name: "Priyatna / mPri",
+        title: "Co-Founder & CTO",
+        responsibility: "Direction technique et développement logiciel",
+      },
+      anastasia: {
+        name: "Anastasia Lorena Kurer",
+        title: "Co-Founder & CMO",
+        responsibility: "Marketing, marque, communication et validation du marché",
       },
     },
   },
@@ -1195,86 +1201,86 @@ export const frTranslations = {
       certification: {
         question: "ESGCheck est-il une certification ?",
         answer:
-          "Pas aujourd'hui. ESGCheck est un premier aperçu structuré de préparation conçu pour aider les entreprises à se situer et à progresser avec le temps.",
+          "Non. ESGCheck n'est pas un mécanisme de certification ni un substitut à une assurance formelle ou à un travail juridique ou d'audit professionnel.",
       },
       vsme: {
         question: "ESGCheck est-il un outil de conformité CSRD ou VSME ?",
         answer:
-          "Non. ESGCheck n'est pas un produit de conformité, d'assurance, de certification ou de reporting de durabilité complet. Il aide les PME à organiser les informations existantes, identifier les écarts et se préparer aux demandes pratiques d'informations ESG, avec VSME comme référence volontaire.",
+          "Non. VSME est le socle principal pour les PME; GRI et ESRS apportent du contexte si nécessaire. La logique des référentiels reste en arrière-plan et ESGCheck n'est pas une suite complète de conformité CSRD.",
       },
       documents: {
-        question: "Quels documents puis-je transmettre ?",
+        question: "Que puis-je apporter à ESGCheck ?",
         answer:
-          "Des politiques, des documents internes, des informations fournisseurs et des rapports d'entreprise.",
+          "Une question ESG, un questionnaire, une autre demande de partie prenante et les preuves disponibles. ESGCheck recherche l'information nécessaire plutôt que des documents au nom imposé.",
       },
       audience: {
         question: "Pour qui ESGCheck a-t-il été conçu ?",
         answer:
-          "Pour des PME en croissance, en particulier dans des contextes B2B suisses et DACH.",
+          "Pour les PME B2B et fournisseurs sans équipe dédiée qui reçoivent des demandes récurrentes de clients, des achats, de prêteurs, d'investisseurs ou d'autres partenaires.",
       },
       pricing: {
         question: "Qu'en est-il de la tarification ?",
         answer:
-          "Le modèle tarifaire évolue vers une formule accessible aux PME et sera affiné au fil de la validation initiale.",
+          "La tarification reste ouverte et sera validée avec le premier résultat commercialisable, la valeur client et la disposition à payer.",
       },
     },
   },
   finalCta: {
-    title: "Demander un accès anticipé à ESGCheck.",
+    title: "Aidez-nous à façonner ESGCheck par la recherche.",
     description:
-      "Contactez-nous si vous souhaitez suivre l'évolution du produit et voir s'il pourrait convenir à votre workflow.",
-    primary: "Demander un accès anticipé",
-    secondary: "Demander plus d'informations",
+      "Si votre entreprise reçoit des questions ou questionnaires ESG, partagez votre manière de les traiter aujourd'hui et aidez-nous à valider le workflow.",
+    primary: "Participer à la recherche",
+    secondary: "Contacter ESGCheck",
   },
   waitlist: {
-    title: "Demander un accès anticipé.",
+    title: "Participer à la recherche PME d'ESGCheck.",
     description:
-      "Si des questions ESG apparaissent déjà dans vos échanges clients, achats, chaîne d'approvisionnement ou financement, nous aimerions mieux comprendre d'où vient cette pression chez vous.",
-    cardTitle: "À quoi vous attendre",
-    ctaButton: "Demander un accès anticipé à ESGCheck",
+      "Si les questions ESG font déjà partie de vos échanges clients, achats, chaîne d'approvisionnement ou financement, inscrivez votre intérêt pour un court sondage ou entretien.",
+    cardTitle: "Comment participer",
+    ctaButton: "Enregistrer mon intérêt",
     emailNote:
-      "Partagez votre adresse e-mail professionnelle pour rejoindre la bêta et recevoir des informations sur l'accès.",
+      "Indiquez votre e-mail professionnel afin que nous puissions vous contacter pour une recherche pertinente et des mises à jour produit.",
     form: {
       emailLabel: "Adresse e-mail professionnelle",
       emailPlaceholder: "vous@entreprise.ch",
       emailHelp:
-        "Indiquez votre adresse e-mail pour demander un accès anticipé.",
+        "Indiquez votre adresse e-mail pour enregistrer votre intérêt pour la recherche ESGCheck.",
       optInLabel: "Consentement",
       optInText:
-        "J'accepte de recevoir vos newsletters et j'accepte la déclaration de confidentialité.",
+        "J'accepte d'être contacté au sujet de la recherche ESGCheck, de recevoir des mises à jour pertinentes et j'accepte la déclaration de confidentialité.",
       optInHelp:
         "Vous pouvez vous désinscrire à tout moment via le lien présent dans la newsletter.",
-      success: "Votre inscription a bien été enregistrée.",
+      success: "Votre intérêt pour la recherche a bien été enregistré.",
       error:
-        "Votre inscription n'a pas pu être enregistrée. Veuillez réessayer.",
+        "Votre intérêt pour la recherche n'a pas pu être enregistré. Veuillez réessayer.",
       brevoDisclaimer:
         "Nous utilisons Brevo comme plateforme marketing. En soumettant ce formulaire, vous acceptez que les données personnelles fournies soient transférées à Brevo pour traitement, conformément à",
       brevoLinkLabel: "la politique de confidentialité de Brevo.",
     },
     modal: {
-      disclaimer: "Gratuit pendant la bêta. Aucune carte bancaire requise.",
-      disclaimerShort: "Gratuit pendant la bêta.",
-      betaNote:
-        "Les premiers participants obtiennent un accès gratuit et nous aident à faire évoluer ESGCheck autour de besoins PME réels.",
+      disclaimer: "La participation à la recherche est facultative. Aucun engagement commercial.",
+      disclaimerShort: "Participation facultative.",
+      participationNote:
+        "Les profils pertinents pourront être invités à un sondage ou entretien. L'inscription ne garantit pas l'accès au produit.",
     },
   },
   seo: {
-    title: "ESGCheck | Aperçu pratique de préparation ESG pour les PME B2B en croissance",
+    title: "ESGCheck | Réponses ESG étayées pour les PME B2B",
     description:
-      "Transformez vos documents d'entreprise en un aperçu clair de préparation ESG avec justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes ESG de clients, achats, financeurs, investisseurs et chaînes d'approvisionnement.",
+      "Comprenez les demandes ESG, retrouvez les preuves, identifiez les lacunes et préparez des réponses traçables pour validation humaine.",
     keywords:
-      "préparation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, préparation durabilité, ESG fondé sur les documents",
+      "preuves ESG, réponses ESG, questionnaires ESG, ESG pour PME, VSME, GRI, ESRS, ESG suisse, ESG fournisseurs",
     ogImageAlt:
-      "ESGCheck aperçu pratique de préparation ESG pour les PME B2B en croissance",
+      "Plateforme ESGCheck de preuves et réponses pour PME B2B et fournisseurs",
     structuredData: {
       description:
-        "Une plateforme pratique de préparation ESG pour les PME B2B en croissance confrontées à des demandes ESG indirectes, fondée sur les documents dont les entreprises disposent déjà.",
+        "Une plateforme attentive à la confidentialité pour les preuves et réponses ESG des PME B2B et fournisseurs.",
       featureList: {
-        documentFirst: "Aperçu de préparation ESG fondé sur les documents",
-        scoreRationale: "Score ESG indicatif avec explication",
-        strengthsGaps: "Cartographie des justificatifs et visibilité des écarts",
-        nextSteps: "Prochaines étapes concrètes",
-        vsmeReadiness: "Référence volontaire orientée VSME",
+        documentFirst: "Recherche de preuves guidée par la demande",
+        traceability: "Preuves traçables et contexte des sources",
+        strengthsGaps: "Statuts de preuve et lacunes par question",
+        nextSteps: "Réponses étayées proposées pour examen",
+        vsmeReadiness: "VSME comme socle méthodologique PME",
         swissPrivacy: "Workflow suisse attentif à la confidentialité",
       },
     },
@@ -1288,49 +1294,49 @@ export const frTranslations = {
     secondaryCta: "Retour à l'accueil",
     nextTitle: "La suite :",
     nextDescription:
-      "Veuillez cliquer sur le lien dans l'e-mail pour confirmer votre demande d'accès anticipé et recevoir les mises à jour d'ESGCheck.",
+      "Cliquez sur le lien dans l'e-mail pour confirmer votre intérêt pour la recherche et votre accord à recevoir des mises à jour ESGCheck pertinentes.",
     helpTitle: "Vous n'avez pas reçu d'e-mail ?",
     helpDescription:
       "Veuillez aussi vérifier votre dossier spam ou promotions. Si l'e-mail n'arrive pas, contactez-nous à info@esgcheck.ch.",
     steps: {
       review: {
-        title: "Pour PME & startups",
+        title: "Pour PME B2B & fournisseurs",
         description:
-          "Un reporting ESG orienté autour de vos besoins.",
+          "Un soutien pratique pour de vraies demandes d'informations ESG.",
       },
       update: {
-        title: "Confidentialité suisse",
+        title: "Attentif à la confidentialité",
         description:
-          "Vos données restent protégées en Suisse ou dans l'UE.",
+          "Le traitement responsable des données guide le développement du produit.",
       },
       prepare: {
-        title: "Rapide & accessible",
+        title: "Étayé par des preuves",
         description:
-          "Des analyses automatisées à un prix équitable.",
+          "Les réponses proposées restent liées aux preuves et nécessitent une validation humaine.",
       },
     },
     trustTitle: "Rendre l'ESG plus simple ensemble.",
     trustDescription:
       "ESGCheck aide les équipes en croissance avec une orientation pratique, une gestion attentive des données et des prochaines étapes claires.",
     trust: {
-      swissBuilt: "Pour PME & startups",
-      privacy: "Confidentialité suisse",
-      growingSmes: "Rapide & accessible",
+      swissBuilt: "Pour PME B2B & fournisseurs",
+      privacy: "Attentif à la confidentialité",
+      growingSmes: "Validation humaine",
     },
     finalTitle: "Souhaitez-vous en savoir plus sur ESGCheck ?",
     finalDescription:
-      "Vous pouvez revenir à la landing page pour revoir comment ESGCheck transforme des documents d'entreprise existants en cartographie des justificatifs, écarts visibles, prochaines étapes concrètes et score indicatif.",
+      "Revenez à la landing page pour voir comment ESGCheck explique les demandes, retrouve les preuves, montre les lacunes et prépare des réponses traçables.",
     finalCta: "En savoir plus sur ESGCheck",
     seo: {
       title: "Confirmez votre adresse e-mail | ESGCheck",
       description:
-        "Veuillez confirmer votre demande d'accès anticipé à ESGCheck avec le lien envoyé par e-mail.",
+        "Veuillez confirmer votre intérêt pour la recherche ESGCheck avec le lien envoyé par e-mail.",
     },
   },
   thankYou: {
-    title: "Merci pour votre inscription",
+    title: "Merci pour votre intérêt",
     description:
-      "Votre adresse e-mail a été confirmée. Vous recevrez désormais occasionnellement des mises à jour pertinentes sur ESGCheck, l'accès anticipé et les sujets ESG pour PME.",
+      "Votre adresse e-mail a été confirmée. Nous pourrons vous contacter pour une recherche ESGCheck pertinente et envoyer occasionnellement des mises à jour produit ou ESG pour PME.",
     primaryCta: "En savoir plus sur ESGCheck",
     cards: {
       product: {
@@ -1342,17 +1348,17 @@ export const frTranslations = {
         description: "Contenus pratiques sur l'ESG, la réglementation et les PME.",
       },
       access: {
-        title: "Accès anticipé",
-        description: "Informations sur les tests, le lancement et l'accès anticipé.",
+        title: "Invitations à la recherche",
+        description: "Possibilités de contribuer par sondage ou entretien.",
       },
     },
     unsubscribeNote:
       "Vous pouvez vous désabonner à tout moment via le lien de désinscription dans nos e-mails.",
-    footerTagline: "Reporting ESG simple, accessible et suisse.",
+    footerTagline: "Preuves et réponses ESG pratiques, depuis la Suisse.",
     seo: {
-      title: "Merci pour votre inscription | ESGCheck",
+      title: "Merci pour votre intérêt | ESGCheck",
       description:
-        "Votre adresse e-mail ESGCheck a été confirmée. Merci pour votre inscription aux mises à jour.",
+        "Votre adresse e-mail et votre intérêt pour la recherche ESGCheck ont été confirmés.",
     },
   },
   formRuntime: {
@@ -1368,7 +1374,7 @@ export const frTranslations = {
   consent: {
     title: "Preferences de confidentialite",
     description:
-      "Nous utilisons des services essentiels pour la securite du site et le formulaire de liste d'attente. Les options d'analyse, d'automatisation marketing et de chat ne se chargent que si vous les autorisez.",
+      "Nous utilisons des services essentiels pour la securite du site et le formulaire de recherche. Les options d'analyse, d'automatisation marketing et de chat ne se chargent que si vous les autorisez.",
     privacyLink: "Politique de confidentialite",
     cookieLink: "Politique relative aux cookies",
     alwaysActive: "Toujours actif",
@@ -1402,8 +1408,8 @@ export const frTranslations = {
   },
   footer: {
     description:
-      "Préparation ESG pratique pour les PME B2B en croissance qui se préparent aux demandes d'informations ESG, conçue en Suisse.",
-    tagline: "Conçu en Suisse · Confidentialité dès la conception",
+      "Une plateforme pratique de preuves et réponses ESG pour les PME B2B et fournisseurs, basée en Suisse.",
+    tagline: "Basé en Suisse · Confidentialité dès la conception",
     product: "Produit",
     company: "Entreprise",
     privacy: "Confidentialité",
@@ -1412,8 +1418,8 @@ export const frTranslations = {
     legalNotice: "Mentions legales",
     privacyPreferences: "Preferences de confidentialite",
     contact: "Contact",
-    earlyAccess: "Accès anticipé",
-    swissBuilt: "Conçu en Suisse",
+    research: "Recherche",
+    swissBuilt: "Basé en Suisse",
     copyright: "Copyright 2026 ESGCheck. Tous droits réservés.",
   },
 } as const;
@@ -1421,7 +1427,7 @@ export const frTranslations = {
 export const itTranslations: TranslationDictionary = {
   header: {
     trustStrip: {
-      swissBuilt: "Sviluppato in Svizzera",
+      swissBuilt: "Con sede in Svizzera",
       privacy: "Attento alla protezione dei dati",
       growingSmes: "Pensato per PMI in crescita",
     },
@@ -1430,31 +1436,27 @@ export const itTranslations: TranslationDictionary = {
     whyEsgCheck: "Perche ESGCheck",
     team: "Team",
     faq: "FAQ",
-    joinWaitlist: "Richiedi accesso anticipato",
+    joinWaitlist: "Partecipa alla ricerca",
   },
   hero: {
-    title: "Una panoramica pratica di readiness ESG per PMI B2B in crescita.",
+    title: "Risposte ESG credibili, supportate dalle tue evidenze.",
     description:
-      "Trasforma i documenti che hai gia in una panoramica chiara di readiness ESG, con mappatura delle evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste di clienti, catena di fornitura, finanziatori, investitori e reporting volontario.",
-    primaryCta: "Richiedi accesso anticipato",
+      "ESGCheck aiuta PMI B2B e fornitori a comprendere le richieste ESG, trovare le evidenze disponibili, individuare le lacune e preparare risposte tracciabili per l'approvazione umana.",
+    primaryCta: "Partecipa alla ricerca",
     secondaryCta: "Vedi come funziona",
     proof: {
-      documentFirst: "Basato sui documenti",
-      griFirst: "Fondamento GRI-first",
-      vsmeNext: "Prossimo passo orientato VSME",
-      swissPrivacy: "Mentalita svizzera sulla privacy",
+      documentFirst: "Parte dalla richiesta",
+      griFirst: "Evidenze tracciabili",
+      vsmeNext: "Revisione e approvazione umana",
+      swissPrivacy: "Privacy by design",
     },
     dashboard: {
-      title: "Panoramica di readiness ESG",
-      filter: "Esempio di risultato",
-      previewLabel: "Anteprima illustrativa del risultato",
-      scoreTitle: "Punteggio ESG indicativo",
-      scoreValue: "68",
-      scoreTotal: "/100",
-      scoreLabel: "Buon punto di partenza",
-      maturityTitle: "Maturità ESG",
-      maturityValue: "In sviluppo",
-      maturityDetail: "Le pratiche di base sono presenti, ma responsabilità, controlli e revisioni periodiche sono ancora in fase di sviluppo.",
+      title: "Spazio di lavoro delle evidenze",
+      filter: "Concetto di lavoro",
+      previewLabel: "Workflow illustrativo della richiesta",
+      requestType: "Questionario cliente",
+      requestTitle: "Puoi dimostrare le tue pratiche ambientali e verso i fornitori?",
+      requestContext: "I requisiti vengono tradotti in esigenze pratiche di informazioni ed evidenze.",
       statusTitle: "Stato delle evidenze per domanda",
       notApplicableTitle: "Potenzialmente non applicabile",
       notApplicableDetail: "Dati sul pendolarismo per un team completamente da remoto",
@@ -1464,36 +1466,38 @@ export const itTranslations: TranslationDictionary = {
         social: "Sociale",
         governance: "Governance",
       },
-      strengthsTitle: "Evidenze disponibili",
+      strengthsTitle: "Supportato",
       strengths: {
-        policy: "Politica ambientale disponibile",
-        opportunity: "Diversita e pari opportunita",
-        conduct: "Etica e codice di condotta",
+        policy: "Politica ambientale trovata",
+        opportunity: "Dati del personale supportati",
+        conduct: "Codice di condotta tracciato",
       },
-      gapsTitle: "Lacune principali",
+      gapsTitle: "Parzialmente supportato",
       gaps: {
-        tracking: "Monitoraggio delle emissioni GHG",
-        suppliers: "Valutazioni ESG dei fornitori",
-        oversight: "Supervisione ESG a livello di consiglio",
+        tracking: "I dati GHG richiedono un calcolo",
+        suppliers: "Evidenze dei fornitori incomplete",
+        oversight: "Evidenze di governance non chiare",
       },
-      nextStepsTitle: "Prossimi passi consigliati",
+      nextStepsTitle: "Prossimi passi pratici",
       nextSteps: {
-        scope: "Misurare e seguire le emissioni Scope 1 e 2",
-        suppliers: "Definire le aspettative ESG verso i fornitori",
-        governance: "Impostare una struttura di governance ESG",
+        scope: "Confermare il periodo di riferimento",
+        suppliers: "Richiedere evidenze aggiornate ai fornitori",
+        governance: "Assegnare un responsabile della risposta",
       },
       missingTitle: "Evidenze mancanti",
       missing: {
-        inventory: "Dati di inventario GHG",
-        supplier: "Documenti sulle valutazioni dei fornitori",
-        board: "Evidenze di supervisione ESG del consiglio",
+        inventory: "Inventario GHG aggiornato",
+        supplier: "Registri di valutazione dei fornitori",
+        board: "Registrazione dell'approvazione della direzione",
       },
+      sourceTrace: "Fonte: Codice di condotta · pagina 4",
+      owner: "Responsabile: Operations · Revisione richiesta",
     },
   },
   needNow: {
     title: "Perche le aziende ne hanno bisogno ora",
     description:
-      "CSRD/ESRS, le regole svizzere di rendicontazione non finanziaria per le aziende piu grandi e le aspettative piu ampie del mercato creano pressione ESG indiretta sulle PMI attraverso clienti, acquisti, partner della catena di fornitura, banche, investitori e istituzioni finanziarie.",
+      "Le PMI B2B ricevono sempre più domande su sostenibilità ed ESG da clienti, acquisti, finanziatori, investitori e altri partner, spesso senza un team dedicato alla sostenibilità.",
     items: {
       customerRequests: "Richieste dei clienti",
       procurement: "Requisiti degli acquisti",
@@ -1502,29 +1506,29 @@ export const itTranslations: TranslationDictionary = {
       credibility: "Credibilita sul mercato",
     },
     conclusion:
-      "Ai team serve prima di tutto orientamento: un punto di partenza credibile per richieste di informazioni ESG, con VSME come riferimento volontario pratico e non come obbligo di compliance.",
+      "Il compito pratico è comprendere la richiesta, trovare informazioni affidabili nei normali documenti aziendali, colmare le lacune e preparare una risposta tracciabile senza ripartire da zero.",
   },
   howItWorks: {
     title: "Come funziona",
     steps: {
       upload: {
-        title: "Carica i materiali aziendali",
+        title: "Porta una richiesta ESG",
         description:
-          "Policy, documenti interni, informazioni sui fornitori e rapporti aziendali.",
+          "Inizia con una domanda, un questionario o una richiesta di uno stakeholder, insieme alle evidenze già disponibili.",
       },
       assess: {
-        title: "Valutazione con criteri ESG strutturati",
-        description: "Organizzata su una base pratica GRI-first oggi, con readiness orientata VSME come prossimo passo.",
+        title: "Comprendi cosa serve",
+        description: "ESGCheck spiega la richiesta, verifica contesto e applicabilità e identifica informazioni ed evidenze necessarie.",
       },
       receive: {
-        title: "Ricevi una prima panoramica di readiness",
+        title: "Esamina evidenze e lacune",
         description:
-          "Vedi le evidenze disponibili, le lacune principali, i prossimi passi pratici e un punteggio indicativo.",
+          "Vedi cosa è supportato, parzialmente supportato, privo di evidenze o potenzialmente non applicabile, con azioni e responsabili probabili.",
       },
       act: {
-        title: "Decidi cosa fare dopo",
+        title: "Approva una risposta tracciabile",
         description:
-          "Dai priorita alle lacune piu rilevanti, alle azioni e al lavoro successivo.",
+          "Rivedi la risposta proposta e le relative evidenze. I fatti approvati possono essere riutilizzati finché restano validi.",
       },
     },
   },
@@ -1532,9 +1536,9 @@ export const itTranslations: TranslationDictionary = {
     title: "Perche ESGCheck",
     items: {
       practical: {
-        title: "Pratico fin dall'inizio",
+        title: "Parte dalla richiesta reale",
         description:
-          "Pensato per dare ai team una prima panoramica di readiness utilizzabile senza un processo consulenziale pesante.",
+          "Traduce il linguaggio ESG in esigenze informative pratiche e in un workflow di risposta chiaro.",
       },
       smes: {
         title: "Creato per PMI in crescita",
@@ -1542,41 +1546,41 @@ export const itTranslations: TranslationDictionary = {
           "Adatto ad aziende con poco tempo, risorse snelle e processi ESG ancora in evoluzione.",
       },
       documentFirst: {
-        title: "Parte dai documenti esistenti",
+        title: "Supportato e tracciabile",
         description:
-          "Lavora con cio che l'azienda ha gia, invece di imporre subito un nuovo progetto di raccolta dati.",
+          "Cerca informazioni rilevanti nei materiali esistenti e collega le risposte proposte alle fonti.",
       },
       privacy: {
-        title: "Attento ai materiali sensibili",
+        title: "Approvazione umana e privacy",
         description:
-          "I documenti aziendali possono essere delicati, quindi il workflow e progettato per trattarli con cura.",
+          "L'IA propone, le evidenze supportano, le persone approvano e l'azienda mantiene la responsabilità.",
       },
     },
   },
   credibility: {
     title: "Progettato per essere credibile",
     intro:
-      "ESGCheck deve essere utile presto, senza apparire piu maturo di quanto sia oggi. Al momento e una prima panoramica strutturata di readiness, non un prodotto di compliance CSRD, assurance formale, certificazione o sostituto completo del reporting di sostenibilita.",
+      "ESGCheck è progettato per preparare risposte credibili e supportate da evidenze senza presentare gli output dell'IA come automaticamente autorevoli. Non è assurance formale, certificazione, una suite CSRD completa o una garanzia di performance ESG.",
     pillars: {
       outputs: {
-        title: "Ambito utile oggi",
+        title: "Focus su evidenze e risposte",
         description:
-          "Una prima panoramica mirata di readiness per mostrare evidenze disponibili, lacune e prossimi passi sensati.",
+          "Parte da una richiesta reale, trova evidenze, mostra lacune e prepara una risposta da rivedere.",
       },
       methodology: {
         title: "Metodologia strutturata",
         description:
-          "Una base pratica GRI-first con readiness orientata VSME come prossimo riferimento volontario.",
+          "VSME è il riferimento principale per le PMI, integrato da GRI, ESRS e altre linee guida validate quando utile.",
       },
       positioning: {
-        title: "Posizionamento chiaro",
+        title: "Approvazione umana by design",
         description:
-          "Trasparente sui limiti attuali e prudente nel comunicare maturita, copertura o stato di certificazione.",
+          "Le risposte proposte restano collegate alle evidenze e richiedono revisione e approvazione umana prima dell'uso esterno.",
       },
     },
     privacyTitle: "Privacy e fiducia",
     privacyDescription:
-      "I documenti aziendali sensibili fanno parte del workflow; per questo qualita svizzera e aspettative europee sulla protezione dei dati guidano le scelte di prodotto.",
+      "I materiali ESG possono essere sensibili. Trattamento attento alla privacy, separazione dei dati clienti, controllo degli accessi e tracciabilità guidano il design; le affermazioni sull'hosting seguiranno solo dopo verifica.",
     regionBadges: {
       swiss: "CH",
       europe: "UE",
@@ -1586,38 +1590,38 @@ export const itTranslations: TranslationDictionary = {
     title: "Come sta progredendo ESGCheck",
     items: {
       mvp: {
-        title: "MVP completato",
+        title: "Prototipo funzionante",
         description:
-          "Il workflow principale e pronto per essere testato su casi d'uso reali.",
+          "Un prototipo tecnico funzionante fornisce una base reale per il prossimo ciclo di implementazione.",
       },
       testing: {
-        title: "Test interni in corso",
+        title: "Riposizionamento del prodotto",
         description:
-          "I flussi end-to-end vengono verificati sull'intera esperienza.",
+          "L'MVP viene ridefinito attorno a richieste ESG, evidenze, contesto riutilizzabile e risposte approvate da persone.",
       },
       expert: {
-        title: "Revisione metodologica esperta",
+        title: "Validazione clienti in corso",
         description:
-          "Una revisione metodologica supportata da esperti e il prossimo passo per rafforzare qualita e credibilita dei risultati.",
+          "La ricerca verifica segmento, trigger e problema del workflow prima di fissare il primo risultato vendibile.",
       },
       readiness: {
-        title: "Verso i primi piloti",
+        title: "Prossimo ciclo in preparazione",
         description:
-          "Oltre la fase di idea, con affidabilita e fiducia ancora da dimostrare prima di un lancio piu ampio.",
+          "Il team sta definendo le decisioni necessarie per un perimetro di implementazione sicuro.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "La priorita ora e validare l'affidabilita, poi ampliare il workflow in modo graduale.",
+      "La priorità è definire il workflow rivisto, separare gli errori tecnici dalle lacune di evidenze, validare il cliente target e preparare il prossimo ciclo.",
     steps: {
-      testing: "Test end-to-end interni",
-      validation: "Validazione esperta",
-      pilot: "Primi clienti pilota",
-      commercial: "Affinamento commerciale",
-      expansion: "Espansione di framework e workflow",
-      certification: "Direzione orientata alla certificazione",
+      workflow: "Definire il workflow delle richieste",
+      evidenceStates: "Definire stati di evidenza ed errore",
+      assessment: "Chiarire la semantica della valutazione",
+      research: "Condurre la ricerca clienti",
+      privacy: "Verificare privacy e flussi dati",
+      implementation: "Preparare l'implementazione",
     },
   },
   audience: {
@@ -1633,7 +1637,7 @@ export const itTranslations: TranslationDictionary = {
         "Per team concentrati su rischio, preparazione al finanziamento e fiducia degli stakeholder.",
     },
     region: {
-      title: "Particolarmente adatto a PMI B2B svizzere e DACH in crescita che ricevono richieste di informazioni ESG.",
+      title: "Per PMI B2B e fornitori senza team dedicati alla sostenibilità. Il primo segmento e il focus geografico sono in fase di validazione.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -1646,19 +1650,23 @@ export const itTranslations: TranslationDictionary = {
     members: {
       ali: {
         name: "Ali Priyatna",
-        role: "Prodotto, strategia, direzione aziendale",
-      },
-      anastasia: {
-        name: "Anastasia Kurer",
-        role: "Marketing, brand, comunicazione",
-      },
-      priyatna: {
-        name: "Priyatna Priyatna",
-        role: "Technical Lead, Senior Software Developer",
+        title: "Co-Founder & CEO",
+        responsibility: "Prodotto, strategia, coordinamento e direzione aziendale",
       },
       elena: {
-        name: "",
-        role: "Esperta e consulente ESG",
+        name: "Elena Lisa Farrace",
+        title: "Co-Founder & CSO",
+        responsibility: "Competenza ESG e sostenibilità, con contributo strategico al prodotto",
+      },
+      priyatna: {
+        name: "Priyatna / mPri",
+        title: "Co-Founder & CTO",
+        responsibility: "Direzione tecnica e sviluppo software",
+      },
+      anastasia: {
+        name: "Anastasia Lorena Kurer",
+        title: "Co-Founder & CMO",
+        responsibility: "Marketing, brand, comunicazione e validazione di mercato",
       },
     },
   },
@@ -1668,85 +1676,85 @@ export const itTranslations: TranslationDictionary = {
       certification: {
         question: "ESGCheck e una certificazione?",
         answer:
-          "Non oggi. E una prima panoramica strutturata di readiness per aiutare le aziende a orientarsi e migliorare nel tempo.",
+          "No. ESGCheck non è un meccanismo di certificazione né sostituisce assurance formale o lavoro legale o di audit professionale.",
       },
       vsme: {
         question: "ESGCheck e uno strumento di compliance CSRD o VSME?",
         answer:
-          "No. ESGCheck non e un prodotto di compliance, assurance, certificazione o reporting di sostenibilita completo. Aiuta le PMI a organizzare le informazioni esistenti, individuare lacune e prepararsi a richieste pratiche di informazioni ESG, con VSME come riferimento volontario.",
+          "No. VSME è il riferimento principale per le PMI; GRI ed ESRS forniscono contesto quando utile. La logica dei framework resta sullo sfondo e ESGCheck non è una suite completa di compliance CSRD.",
       },
       documents: {
-        question: "Quali documenti posso caricare?",
+        question: "Cosa posso portare in ESGCheck?",
         answer:
-          "Policy, documenti interni, informazioni sui fornitori e rapporti aziendali.",
+          "Una domanda ESG, un questionario, un'altra richiesta di stakeholder e le evidenze disponibili. ESGCheck cerca le informazioni necessarie senza richiedere nomi rigidi dei documenti.",
       },
       audience: {
         question: "Per chi e pensato?",
         answer:
-          "Per PMI in crescita, in particolare in contesti B2B svizzeri e DACH.",
+          "Per PMI B2B e fornitori senza team dedicati che ricevono richieste ricorrenti da clienti, acquisti, finanziatori, investitori o altri partner.",
       },
       pricing: {
         question: "Come funzionera il prezzo?",
         answer:
-          "Il modello di prezzo sara orientato alle PMI e verra affinato con la validazione iniziale.",
+          "Il prezzo è ancora aperto e sarà validato con il primo risultato vendibile, il valore per il cliente e la disponibilità a pagare.",
       },
     },
   },
   finalCta: {
-    title: "Richiedi accesso anticipato a ESGCheck.",
+    title: "Aiutaci a dare forma a ESGCheck con la ricerca.",
     description:
-      "Contattaci se vuoi seguire lo sviluppo del prodotto e capire se puo adattarsi al tuo workflow.",
-    primary: "Richiedi accesso anticipato",
-    secondary: "Richiedi maggiori informazioni",
+      "Se la tua azienda riceve domande o questionari ESG, raccontaci come li gestisci oggi e aiutaci a validare il workflow.",
+    primary: "Partecipa alla ricerca",
+    secondary: "Contatta ESGCheck",
   },
   waitlist: {
-    title: "Richiedi accesso anticipato.",
+    title: "Partecipa alla ricerca ESGCheck per le PMI.",
     description:
-      "Se le domande ESG compaiono gia in conversazioni con clienti, acquisti, catena di fornitura o finanziatori, vogliamo capire da dove nasce la pressione.",
-    cardTitle: "Cosa aspettarsi",
-    ctaButton: "Richiedi accesso anticipato a ESGCheck",
+      "Se le domande ESG fanno già parte del lavoro con clienti, acquisti, supply chain o finanziatori, registra il tuo interesse per un breve sondaggio o colloquio.",
+    cardTitle: "Come partecipare",
+    ctaButton: "Registra l'interesse",
     emailNote:
-      "Usa la tua email professionale per entrare nella beta e ricevere aggiornamenti sull'accesso.",
+      "Usa la tua email professionale per essere contattato su ricerche pertinenti e aggiornamenti di prodotto.",
     form: {
       emailLabel: "Email professionale",
       emailPlaceholder: "tu@azienda.ch",
-      emailHelp: "Inserisci la tua email per richiedere accesso anticipato.",
+      emailHelp: "Inserisci la tua email per registrare interesse nella ricerca ESGCheck.",
       optInLabel: "Consenso",
       optInText:
-        "Accetto di ricevere le vostre newsletter e accetto l'informativa sulla protezione dei dati.",
+        "Accetto di essere contattato sulla ricerca ESGCheck, ricevere aggiornamenti pertinenti e accetto l'informativa sulla privacy.",
       optInHelp:
         "Puoi annullare l'iscrizione in qualsiasi momento tramite il link nella newsletter.",
-      success: "La tua iscrizione e stata registrata.",
+      success: "Il tuo interesse per la ricerca è stato registrato.",
       error:
-        "Non e stato possibile salvare la tua iscrizione. Riprova.",
+        "Non è stato possibile salvare il tuo interesse per la ricerca. Riprova.",
       brevoDisclaimer:
         "Usiamo Brevo come piattaforma marketing. Inviando questo modulo accetti che i dati personali forniti siano trasferiti a Brevo per il trattamento secondo",
       brevoLinkLabel: "l'informativa sulla privacy di Brevo.",
     },
     modal: {
-      disclaimer: "Gratuito durante la beta. Nessuna carta di credito richiesta.",
-      disclaimerShort: "Gratuito durante la beta.",
-      betaNote:
-        "I primi partecipanti ottengono accesso gratuito e ci aiutano a sviluppare ESGCheck intorno a bisogni reali delle PMI.",
+      disclaimer: "La partecipazione alla ricerca è facoltativa. Nessun impegno commerciale.",
+      disclaimerShort: "Partecipazione facoltativa.",
+      participationNote:
+        "I profili idonei potranno essere invitati a un sondaggio o colloquio. La registrazione non garantisce l'accesso al prodotto.",
     },
   },
   seo: {
-    title: "ESGCheck | Panoramica pratica di readiness ESG per PMI B2B in crescita",
+    title: "ESGCheck | Risposte ESG supportate da evidenze per PMI B2B",
     description:
-      "Trasforma i documenti aziendali in una panoramica chiara di readiness ESG con evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste ESG di clienti, acquisti, finanziatori, investitori e supply chain.",
+      "Comprendi le richieste ESG, trova le evidenze, individua le lacune e prepara risposte tracciabili per l'approvazione umana.",
     keywords:
-      "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, readiness sostenibilita, ESG basato sui documenti",
+      "evidenze ESG, risposte ESG, questionari ESG, ESG per PMI, VSME, GRI, ESRS, ESG Svizzera, ESG fornitori",
     ogImageAlt:
-      "ESGCheck panoramica pratica di readiness ESG per PMI B2B in crescita",
+      "Piattaforma ESGCheck per evidenze e risposte di PMI B2B e fornitori",
     structuredData: {
       description:
-        "Una piattaforma pratica di readiness ESG per PMI B2B in crescita che ricevono richieste ESG indirette, basata sui documenti gia disponibili in azienda.",
+        "Una piattaforma attenta alla privacy per evidenze e risposte ESG di PMI B2B e fornitori.",
       featureList: {
-        documentFirst: "Panoramica di readiness ESG basata sui documenti",
-        scoreRationale: "Punteggio ESG indicativo con spiegazione",
-        strengthsGaps: "Mappatura delle evidenze e visibilita sulle lacune",
-        nextSteps: "Prossimi passi concreti",
-        vsmeReadiness: "Riferimento volontario orientato VSME",
+        documentFirst: "Ricerca di evidenze guidata dalla richiesta",
+        traceability: "Evidenze tracciabili e contesto delle fonti",
+        strengthsGaps: "Stati delle evidenze e lacune per domanda",
+        nextSteps: "Risposte proposte e supportate da evidenze",
+        vsmeReadiness: "VSME come riferimento metodologico per PMI",
         swissPrivacy: "Workflow svizzero attento alla privacy",
       },
     },
@@ -1760,49 +1768,49 @@ export const itTranslations: TranslationDictionary = {
     secondaryCta: "Torna alla home",
     nextTitle: "Come procedere:",
     nextDescription:
-      "Clicca sul link nell'email per confermare la richiesta di accesso anticipato e ricevere aggiornamenti su ESGCheck.",
+      "Clicca sul link nell'email per confermare l'interesse nella ricerca e il consenso a ricevere aggiornamenti ESGCheck pertinenti.",
     helpTitle: "Non hai ricevuto l'email?",
     helpDescription:
       "Controlla anche la cartella spam o promozioni. Se l'email non arriva, puoi contattarci a info@esgcheck.ch.",
     steps: {
       review: {
-        title: "Per PMI e startup",
+        title: "Per PMI B2B e fornitori",
         description:
-          "Reporting ESG orientato alle tue esigenze.",
+          "Supporto pratico per richieste reali di informazioni ESG.",
       },
       update: {
-        title: "Privacy svizzera",
+        title: "Attento alla privacy",
         description:
-          "I tuoi dati restano protetti in Svizzera o nell'UE.",
+          "La gestione responsabile dei dati guida lo sviluppo del prodotto.",
       },
       prepare: {
-        title: "Rapido e accessibile",
+        title: "Supportato da evidenze",
         description:
-          "Analisi automatizzate a un prezzo equo.",
+          "Le risposte proposte restano collegate alle evidenze e richiedono approvazione umana.",
       },
     },
     trustTitle: "Rendere l'ESG più semplice insieme.",
     trustDescription:
       "ESGCheck aiuta i team in crescita con orientamento pratico, gestione attenta dei dati e prossimi passi chiari.",
     trust: {
-      swissBuilt: "Per PMI e startup",
-      privacy: "Privacy svizzera",
-      growingSmes: "Rapido e accessibile",
+      swissBuilt: "Per PMI B2B e fornitori",
+      privacy: "Attento alla privacy",
+      growingSmes: "Approvazione umana",
     },
     finalTitle: "Vuoi saperne di più su ESGCheck?",
     finalDescription:
-      "Puoi tornare alla landing page per rivedere come ESGCheck trasforma documenti aziendali esistenti in mappatura delle evidenze, lacune visibili, prossimi passi concreti e un punteggio indicativo.",
+      "Torna alla landing page per vedere come ESGCheck spiega le richieste, trova evidenze, mostra le lacune e prepara risposte tracciabili.",
     finalCta: "Scopri di più su ESGCheck",
     seo: {
       title: "Conferma il tuo indirizzo email | ESGCheck",
       description:
-        "Conferma la richiesta di accesso anticipato a ESGCheck tramite il link inviato via email.",
+        "Conferma il tuo interesse nella ricerca ESGCheck tramite il link inviato via email.",
     },
   },
   thankYou: {
-    title: "Grazie per la tua iscrizione",
+    title: "Grazie per il tuo interesse",
     description:
-      "Il tuo indirizzo email è stato confermato. D'ora in poi riceverai occasionalmente aggiornamenti rilevanti su ESGCheck, accesso anticipato e temi ESG per PMI.",
+      "Il tuo indirizzo email è stato confermato. Potremo contattarti per ricerche ESGCheck pertinenti e inviare occasionalmente aggiornamenti di prodotto o ESG per PMI.",
     primaryCta: "Scopri di più su ESGCheck",
     cards: {
       product: {
@@ -1814,17 +1822,17 @@ export const itTranslations: TranslationDictionary = {
         description: "Contenuti pratici su ESG, regolamentazione e PMI.",
       },
       access: {
-        title: "Accesso anticipato",
-        description: "Informazioni su test, lancio e accesso anticipato.",
+        title: "Inviti alla ricerca",
+        description: "Opportunità di contribuire tramite sondaggi o colloqui.",
       },
     },
     unsubscribeNote:
       "Puoi annullare l'iscrizione in qualsiasi momento tramite il link di disiscrizione nelle nostre email.",
-    footerTagline: "Reporting ESG semplice, accessibile e svizzero.",
+    footerTagline: "Evidenze e risposte ESG pratiche, dalla Svizzera.",
     seo: {
-      title: "Grazie per la tua iscrizione | ESGCheck",
+      title: "Grazie per il tuo interesse | ESGCheck",
       description:
-        "Il tuo indirizzo email per ESGCheck è stato confermato. Grazie per esserti iscritto agli aggiornamenti.",
+        "Il tuo indirizzo email e il tuo interesse nella ricerca ESGCheck sono stati confermati.",
     },
   },
   formRuntime: {
@@ -1840,7 +1848,7 @@ export const itTranslations: TranslationDictionary = {
   consent: {
     title: "Preferenze privacy",
     description:
-      "Usiamo servizi essenziali per la sicurezza del sito e il modulo della lista d'attesa. Analisi, automazione marketing e supporto chat opzionali vengono caricati solo se li autorizzi.",
+      "Usiamo servizi essenziali per la sicurezza del sito e il modulo di ricerca. Analisi, automazione marketing e supporto chat opzionali vengono caricati solo se li autorizzi.",
     privacyLink: "Informativa privacy",
     cookieLink: "Informativa sui cookie",
     alwaysActive: "Sempre attivo",
@@ -1874,8 +1882,8 @@ export const itTranslations: TranslationDictionary = {
   },
   footer: {
     description:
-      "Readiness ESG pratica per PMI B2B in crescita che si preparano a richieste di informazioni ESG, sviluppata in Svizzera.",
-    tagline: "Sviluppato in Svizzera · Privacy by design",
+      "Una piattaforma pratica di evidenze e risposte ESG per PMI B2B e fornitori, con sede in Svizzera.",
+    tagline: "Con sede in Svizzera · Privacy by design",
     product: "Prodotto",
     company: "Azienda",
     privacy: "Privacy",
@@ -1884,8 +1892,8 @@ export const itTranslations: TranslationDictionary = {
     legalNotice: "Note legali",
     privacyPreferences: "Preferenze privacy",
     contact: "Contatto",
-    earlyAccess: "Accesso anticipato",
-    swissBuilt: "Sviluppato in Svizzera",
+    research: "Ricerca",
+    swissBuilt: "Con sede in Svizzera",
     copyright: "Copyright 2026 ESGCheck. Tutti i diritti riservati.",
   },
 };
@@ -1893,7 +1901,7 @@ export const itTranslations: TranslationDictionary = {
 export const rmTranslations: TranslationDictionary = {
   header: {
     trustStrip: {
-      swissBuilt: "Sviluppà en Svizra",
+      swissBuilt: "Cun sedia en Svizra",
       privacy: "Attent a la protecziun da datas",
       growingSmes: "Fatg per PMI che creschan",
     },
@@ -1902,31 +1910,27 @@ export const rmTranslations: TranslationDictionary = {
     whyEsgCheck: "Pertge ESGCheck",
     team: "Team",
     faq: "FAQ",
-    joinWaitlist: "Dumandar access anticipà",
+    joinWaitlist: "Participar a la perscrutaziun",
   },
   hero: {
-    title: "Ina survista pragmatica da readiness ESG per PMI B2B che creschan.",
+    title: "Respostas ESG crediblas, sustegnidas da Vossas cumprovas.",
     description:
-      "Transfurmai ils documents che Vossa interpresa ha gia en ina survista clera da readiness ESG, cun mapping da cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas da clients, chadaina da furniziun, finanziaziun, investiders e reporting voluntar.",
-    primaryCta: "Dumandar access anticipà",
+      "ESGCheck gida PMI B2B e furniturs a chapir dumondas ESG, chattar cumprovas existentas, identifitgar largias e preparar respostas traceablas per approvaziun umana.",
+    primaryCta: "Participar a la perscrutaziun",
     secondaryCta: "Vesair co ch'i funcziuna",
     proof: {
-      documentFirst: "Davent dals documents",
-      griFirst: "Basa GRI-first",
-      vsmeNext: "Proxim pass orientà a VSME",
-      swissPrivacy: "Chapientscha svizra da datas",
+      documentFirst: "Cumenza cun la dumonda",
+      griFirst: "Cumprovas traceablas",
+      vsmeNext: "Revisiun ed approvaziun umana",
+      swissPrivacy: "Protecziun da datas per design",
     },
     dashboard: {
-      title: "Survista da readiness ESG",
-      filter: "Exempel da resultat",
-      previewLabel: "Vista exemplara dal resultat",
-      scoreTitle: "Punctaziun ESG indicativa",
-      scoreValue: "68",
-      scoreTotal: "/100",
-      scoreLabel: "Bun punct da partenza",
-      maturityTitle: "Maturitad ESG",
-      maturityValue: "En svilup",
-      maturityDetail: "Praticas fundamentalas èn avant maun, ma responsabladads, controllas e revisiuns regularas èn anc en svilup.",
+      title: "Spazi da lavur per cumprovas",
+      filter: "Concept da lavur",
+      previewLabel: "Workflow exemplar da la dumonda",
+      requestType: "Questziunari da client",
+      requestTitle: "Pudais Vus cumprovar Vossas praticas d'ambient e da furniturs?",
+      requestContext: "Las pretensiuns vegnan translatadas en basegns pratics d'infurmaziuns e cumprovas.",
       statusTitle: "Status da cumprovas per dumonda",
       notApplicableTitle: "Eventualmain betg applitgabel",
       notApplicableDetail: "Datas da pendular per in team che lavura mo a distanza",
@@ -1936,36 +1940,38 @@ export const rmTranslations: TranslationDictionary = {
         social: "Social",
         governance: "Governanza",
       },
-      strengthsTitle: "Cumprovas disponiblas",
+      strengthsTitle: "Sustegnì",
       strengths: {
-        policy: "Politica d'ambient avant maun",
-        opportunity: "Diversitad ed egualitad da schanzas",
-        conduct: "Etica e codex da cumportament",
+        policy: "Directiva d'ambient chattada",
+        opportunity: "Datas dal persunal sustegnidas",
+        conduct: "Codex da cumportament traceabel",
       },
-      gapsTitle: "Largias centralas",
+      gapsTitle: "Parzialmain sustegnì",
       gaps: {
-        tracking: "Suivi da las emissiuns GHG",
-        suppliers: "Valitaziuns ESG dals furniturs",
-        oversight: "Surveglianza ESG sin nivel dal cussegl",
+        tracking: "Datas GHG dovran in calcul",
+        suppliers: "Cumprovas dals furniturs incumplettas",
+        oversight: "Cumprovas da governanza betg cleras",
       },
-      nextStepsTitle: "Proxims pass recumandads",
+      nextStepsTitle: "Proxims pass pratics",
       nextSteps: {
-        scope: "Mesirar e suandar emissiuns Scope 1 e 2",
-        suppliers: "Definir spetgas ESG envers furniturs",
-        governance: "Stabilir ina structura da governanza ESG",
+        scope: "Confermar la perioda da rapport",
+        suppliers: "Dumandar cumprovas actualas dals furniturs",
+        governance: "Assegnar la persuna responsabla",
       },
       missingTitle: "Cumprovas che mancan",
       missing: {
-        inventory: "Datas d'inventari GHG",
-        supplier: "Cumprovas da valitaziuns dals furniturs",
-        board: "Cumprovas da surveglianza ESG dal cussegl",
+        inventory: "Inventari GHG actual",
+        supplier: "Documents da valitaziun dals furniturs",
+        board: "Cumprova d'approvaziun da la direcziun",
       },
+      sourceTrace: "Funtauna: Codex da cumportament · pagina 4",
+      owner: "Responsabel: Operaziuns · Revisiun necessaria",
     },
   },
   needNow: {
     title: "Pertge che interpresas dovran quai ussa",
     description:
-      "CSRD/ESRS, reglas svizras da reporting betg finanzial per interpresas pli grondas e spetgas pli vastas dal martgà creeschan pressiun ESG indirecta sin PMI tras clients, cumpra, partenaris da la chadaina da furniziun, bancas, investiders ed instituziuns finanzialas.",
+      "PMI B2B survegnan adina dapli dumondas da durabilitad ed ESG da clients, cumpra, crediturs, investiders ed auters partenaris, savens senza in team da durabilitad.",
     items: {
       customerRequests: "Dumondas da clients",
       procurement: "Pretensiuns da cumpra",
@@ -1974,29 +1980,29 @@ export const rmTranslations: TranslationDictionary = {
       credibility: "Credibladad sin il martgà",
     },
     conclusion:
-      "Il team dovra l'emprim orientaziun: in punct da partenza credibel per dumondas d'infurmaziuns ESG, cun VSME sco referenza voluntara pratica e betg sco obligaziun da compliance.",
+      "La lavur pratica è da chapir la dumonda, chattar infurmaziuns fidablas, serrar largias da cumprovas e preparar ina resposta traceabla senza cumenzar mintga giada da nov.",
   },
   howItWorks: {
     title: "Uschia funcziuni",
     steps: {
       upload: {
-        title: "Chargiar si documents da l'interpresa",
+        title: "Purtar ina dumonda ESG",
         description:
-          "Directivas, documents interns, infurmaziuns da furniturs e rapports d'interpresa.",
+          "Cumenzai cun ina dumonda, in questiunari u ina dumonda d'in stakeholder e las cumprovas gia disponiblas.",
       },
       assess: {
-        title: "Valitar tenor criteris ESG structurads",
-        description: "Organisà sin ina basa pratica GRI-first oz, cun readiness orientada a VSME sco proxim pass.",
+        title: "Chapir tge che vegn duvrà",
+        description: "ESGCheck declera la dumonda, controlla context ed applicabladad e determinescha las infurmaziuns e cumprovas necessarias.",
       },
       receive: {
-        title: "Survegnir ina emprima survista da readiness",
+        title: "Reveder cumprovas e largias",
         description:
-          "Vus vesais cumprovas disponiblas, largias centralas, proxims pass pratics ed ina punctaziun indicativa.",
+          "Vus vesais tge ch'è sustegnì, parzialmain sustegnì, senza cumprovas u eventualmain betg applicabel, cun proxims pass e responsabels.",
       },
       act: {
-        title: "Decider ils proxims pass",
+        title: "Approvar ina resposta traceabla",
         description:
-          "Priorisar las largias las pli relevantas, las acziuns ed il lavur suandant.",
+          "Revedai la resposta proponida e las cumprovas avant l'approvaziun. Fatgs confermads pon vegnir reutilisads sche anc valaivels.",
       },
     },
   },
@@ -2004,9 +2010,9 @@ export const rmTranslations: TranslationDictionary = {
     title: "Pertge ESGCheck",
     items: {
       practical: {
-        title: "Pratic davent dal cumenzament",
+        title: "Cumenza cun la dumonda reala",
         description:
-          "Sviluppà per teams che dovran ina emprima survista da readiness utilisabla senza process da cussegliaziun grev.",
+          "Translatescha lingua ESG en basegns d'infurmaziuns pratics ed in workflow da resposta cler.",
       },
       smes: {
         title: "Fatg per PMI che creschan",
@@ -2014,41 +2020,41 @@ export const rmTranslations: TranslationDictionary = {
           "Pensà per interpresas cun pauc temp, resursas schlankas e process ESG anc en svilup.",
       },
       documentFirst: {
-        title: "Cumenzar cun documents existents",
+        title: "Sustegnì e traceabel",
         description:
-          "Lavura cun quai ch'è gia avant maun, empè da pretender l'emprim in nov project da rimnada da datas.",
+          "Tschertga infurmaziuns relevantas en documents existents e collia respostas proponidas cun lur funtaunas.",
       },
       privacy: {
-        title: "Precaut cun documents sensibels",
+        title: "Approvaziun umana e protecziun da datas",
         description:
-          "Documents d'interpresa pon esser sensibels; il workflow è perquai concepì per in tractament precaut.",
+          "L'IA propona, cumprovas sustegnan, umans approvan e l'interpresa resta responsabla.",
       },
     },
   },
   credibility: {
     title: "Concepì per credibladad",
     intro:
-      "ESGCheck duai esser nizzaivel baud, senza parair pli madir che quai ch'el è oz. Oz è quai ina emprima survista structurada da readiness, betg in product da compliance CSRD, betg assurance formala, betg certificaziun e betg in substitut per reporting cumplet da durabilitad.",
+      "ESGCheck vegn concepì per preparar respostas crediblas e sustegnidas da cumprovas senza preschentar outputs da l'IA sco automaticamain autoritativs. El n'è betg assurance formala, certificaziun, ina suite CSRD cumpletta u ina garanzia da prestaziun ESG.",
     pillars: {
       outputs: {
-        title: "In rom util oz",
+        title: "Focus sin cumprovas e respostas",
         description:
-          "Ina emprima survista focussada da readiness che mussa cumprovas disponiblas, largias e proxims pass raschunaivels.",
+          "Cumenza cun ina dumonda reala, chatta cumprovas, mussa largias e prepara ina resposta per revisiun.",
       },
       methodology: {
         title: "Metodica structurada",
         description:
-          "Ina basa pratica GRI-first cun readiness orientada a VSME sco proxima referenza voluntara.",
+          "VSME è la basa principala per PMI, cumplettada da GRI, ESRS ed autras directivas validadas nua che util.",
       },
       positioning: {
-        title: "Posiziunament cler",
+        title: "Approvaziun umana per design",
         description:
-          "Transparent davart ils cunfins actuals e precaut tar madirezza, cuvrida u status da certificaziun.",
+          "Respostas proponidas restan colliadas cun cumprovas e dovran revisiun ed approvaziun umana avant l'utilisaziun externa.",
       },
     },
     privacyTitle: "Protecziun da datas e fidanza",
     privacyDescription:
-      "Documents sensibels fan part dal workflow. Perquai influenzeschan qualitad svizra e spetgas europeicas da protecziun da datas las decisiuns da product.",
+      "Documents ESG pon esser sensibels. Tractament precaut, separaziun da datas, controlla d'access e traceabladad èn prioritads; pretensiuns davart hosting suondan mo suenter verificaziun.",
     regionBadges: {
       swiss: "CH",
       europe: "UE",
@@ -2058,38 +2064,38 @@ export const rmTranslations: TranslationDictionary = {
     title: "Co ESGCheck sa sviluppa",
     items: {
       mvp: {
-        title: "MVP terminà",
+        title: "Prototip funcziunal",
         description:
-          "Il workflow central è pront per vegnir testà cun utilisaziun reala.",
+          "In prototip tecnic funcziunal è la basa reala per il proxim ciclus d'implementaziun.",
       },
       testing: {
-        title: "Tests interns en curs",
+        title: "Nov posiziunament dal product",
         description:
-          "Ils flows end-to-end vegnan controllads sur l'entira experientscha.",
+          "Il MVP vegn redefinì enturn dumondas ESG, cumprovas, context reutilisabel e respostas approvadas d'umans.",
       },
       expert: {
-        title: "Revisiun metodica cun experts",
+        title: "Validaziun da clients en curs",
         description:
-          "Ina revisiun metodica sustegnida d'experts è il proxim pass per rinforzar qualitad e credibladad dals resultats.",
+          "La perscrutaziun examinescha segment, motiv e problems dal workflow avant da definir l'emprim resultat vendibel.",
       },
       readiness: {
-        title: "Sin via vers pilots",
+        title: "Proxim ciclus en preparaziun",
         description:
-          "Gia pli lunsch che la fasa d'idea, cun affidabilitad e fidanza anc da cumprovar avant in rollout pli vast.",
+          "Il team fixescha las decisiuns necessarias per in cunfin d'implementaziun segir.",
       },
     },
   },
   roadmap: {
     title: "Roadmap",
     description:
-      "Il focus è ussa da validar l'affidabilitad e suenter engrondir il workflow pass per pass.",
+      "Il focus è da definir il workflow, separar sbagls tecnics da largias da cumprovas, validar il client target e preparar il proxim ciclus.",
     steps: {
-      testing: "Tests end-to-end interns",
-      validation: "Validaziun d'experts",
-      pilot: "Emprims clients da pilot",
-      commercial: "Affinaziun commerziala",
-      expansion: "Extensiun da frameworks e workflow",
-      certification: "Direcziun orientada a certificaziun",
+      workflow: "Definir il workflow da dumondas",
+      evidenceStates: "Definir status da cumprovas e sbagls",
+      assessment: "Sclerir la semantica da valitaziun",
+      research: "Far la perscrutaziun da clients",
+      privacy: "Verifitgar protecziun e fluss da datas",
+      implementation: "Preparar l'implementaziun",
     },
   },
   audience: {
@@ -2105,7 +2111,7 @@ export const rmTranslations: TranslationDictionary = {
         "Per teams che guardan sin ristga, prontezza da finanziaziun e fidanza dals stakeholders.",
     },
     region: {
-      title: "Fitg adattà per PMI B2B svizras e DACH che creschan e survegnan dumondas d'infurmaziuns ESG.",
+      title: "Per PMI B2B e furniturs senza team da durabilitad. L'emprim segment e focus geografic vegnan validads.",
       badges: {
         swiss: "CH",
         germany: "DE",
@@ -2118,19 +2124,23 @@ export const rmTranslations: TranslationDictionary = {
     members: {
       ali: {
         name: "Ali Priyatna",
-        role: "Product, strategia, direcziun da l'interpresa",
-      },
-      anastasia: {
-        name: "Anastasia Kurer",
-        role: "Marketing, marca, communicaziun",
-      },
-      priyatna: {
-        name: "Priyatna Priyatna",
-        role: "Technical Lead, Senior Software Developer",
+        title: "Co-Founder & CEO",
+        responsibility: "Product, strategia, coordinaziun e direcziun da l'interpresa",
       },
       elena: {
-        name: "",
-        role: "Experta ESG e cussegliadra",
+        name: "Elena Lisa Farrace",
+        title: "Co-Founder & CSO",
+        responsibility: "Expertisa ESG e da durabilitad cun input strategic per il product",
+      },
+      priyatna: {
+        name: "Priyatna / mPri",
+        title: "Co-Founder & CTO",
+        responsibility: "Direcziun tecnica e svilup da software",
+      },
+      anastasia: {
+        name: "Anastasia Lorena Kurer",
+        title: "Co-Founder & CMO",
+        responsibility: "Marketing, marca, communicaziun e validaziun dal martgà",
       },
     },
   },
@@ -2140,85 +2150,85 @@ export const rmTranslations: TranslationDictionary = {
       certification: {
         question: "È ESGCheck ina certificaziun?",
         answer:
-          "Betg oz. Igl è ina emprima survista structurada da readiness che gida interpresas a s'orientar e meglierar pass per pass.",
+          "Na. ESGCheck n'è betg in mecanissem da certificaziun u in substitut per assurance formala u lavur legala e d'audit professiunala.",
       },
       vsme: {
         question: "È ESGCheck in tool da compliance CSRD u VSME?",
         answer:
-          "Na. ESGCheck n'è betg in product da compliance, assurance, certificaziun u reporting cumplet da durabilitad. El gida PMI ad organisar infurmaziuns existentas, identifitgar largias e sa preparar per dumondas praticas d'infurmaziuns ESG, cun VSME sco referenza voluntara.",
+          "Na. VSME è la basa principala per PMI; GRI ed ESRS dattan context nua che necessari. La logica da frameworks resta en il fund e ESGCheck n'è betg ina suite CSRD cumpletta.",
       },
       documents: {
-        question: "Tge documents poss jau chargiar si?",
+        question: "Tge poss jau purtar en ESGCheck?",
         answer:
-          "Directivas, documents interns, infurmaziuns da furniturs e rapports d'interpresa.",
+          "Ina dumonda ESG, in questiunari, ina dumonda d'in stakeholder e cumprovas disponiblas. ESGCheck tschertga l'infurmaziun necessaria senza pretender nums fixes da documents.",
       },
       audience: {
         question: "Per tgi è ESGCheck fatg?",
         answer:
-          "Per PMI che creschan, surtut en contexts B2B svizzers e DACH.",
+          "Per PMI B2B e furniturs senza team da durabilitad che survegnan dumondas repetidas da clients, cumpra, crediturs, investiders u auters partenaris.",
       },
       pricing: {
         question: "Co statti cun ils pretschs?",
         answer:
-          "Il model da pretsch vegn furmà vers ina purschida accessibla per PMI e vegn affinà cun validaziun tempriva.",
+          "Il pretsch è anc avert e vegn validà cun l'emprim resultat vendibel, la valur per clients e la prontezza da pajar.",
       },
     },
   },
   finalCta: {
-    title: "Dumandar access anticipà ad ESGCheck.",
+    title: "Gidai nus a furmar ESGCheck cun perscrutaziun.",
     description:
-      "As annunziai sche Vus vulais suandar il product e vesair sch'el pudess ir a prà cun Voss workflow.",
-    primary: "Dumandar access anticipà",
-    secondary: "Dumandar dapli infurmaziuns",
+      "Sche Vossa interpresa survegn dumondas u questiunaris ESG, mussai co che Vus lavurais oz e gidai nus a validar il workflow.",
+    primary: "Participar a la perscrutaziun",
+    secondary: "Contactar ESGCheck",
   },
   waitlist: {
-    title: "Dumandar access anticipà.",
+    title: "Participar a la perscrutaziun ESGCheck per PMI.",
     description:
-      "Sche dumondas ESG cumparan gia en discurs cun clients, cumpra, chadaina da furniziun u finanziaziun, vulain nus chapir meglier nua che la pressiun nascha tar Vus.",
-    cardTitle: "Tge spetgar",
-    ctaButton: "Dumandar access anticipà ad ESGCheck",
+      "Sche dumondas ESG èn gia part da Vossa lavur cun clients, cumpra, furniturs u finanziaziun, annunziai Voss interess per ina curta enquista u in discurs.",
+    cardTitle: "Co participar",
+    ctaButton: "Annunziar interess",
     emailNote:
-      "Inditgai Vossa adressa dad e-mail professiunala per participar a la beta e survegnir updates davart l'access.",
+      "Inditgai Vossa e-mail professiunala per che nus possian contactar Vus davart perscrutaziun adattada ed updates dal product.",
     form: {
       emailLabel: "E-mail professiunal",
       emailPlaceholder: "vus@interpresa.ch",
-      emailHelp: "Inditgai Vossa adressa dad e-mail per dumandar access anticipà.",
+      emailHelp: "Inditgai Vossa e-mail per annunziar interess a la perscrutaziun ESGCheck.",
       optInLabel: "Consentiment",
       optInText:
-        "Jau accept da survegnir Voss newsletters ed accept la decleraziun da protecziun da datas.",
+        "Jau accept da vegnir contactà davart la perscrutaziun ESGCheck, survegnir updates relevants ed accept la decleraziun da protecziun da datas.",
       optInHelp:
         "Vus pudais As retrair da l'abunament da tut temp cun il link en il newsletter.",
-      success: "Vossa annunzia è reussida.",
+      success: "Voss interess per la perscrutaziun è vegnì registrà.",
       error:
-        "Vossa annunzia n'ha betg pudì vegnir memorisada. Empruvai per plaschair anc ina giada.",
+        "Voss interess per la perscrutaziun n'ha betg pudì vegnir memorisà. Empruvai per plaschair anc ina giada.",
       brevoDisclaimer:
         "Nus duvrain Brevo sco plattafurma da marketing. Cun trametter quest formular acceptais Vus che las datas persunalas vegnan transferidas a Brevo per elavuraziun tenor",
       brevoLinkLabel: "la politica da privacy da Brevo.",
     },
     modal: {
-      disclaimer: "Gratis durant la beta. Nagina carta da credit necessaria.",
-      disclaimerShort: "Gratis durant la beta.",
-      betaNote:
-        "Participants temprivs survegnan access gratuit e gidan nus a meglierar ESGCheck tenor basegns reals da PMI.",
+      disclaimer: "La participaziun a la perscrutaziun è voluntara. Nagina obligaziun commerziala.",
+      disclaimerShort: "Participaziun voluntara.",
+      participationNote:
+        "Persunas adattadas pon vegnir envidadas ad ina enquista u in discurs. L'annunzia na garantescha betg access al product.",
     },
   },
   seo: {
-    title: "ESGCheck | Survista pragmatica da readiness ESG per PMI B2B",
+    title: "ESGCheck | Respostas ESG sustegnidas da cumprovas per PMI B2B",
     description:
-      "Transfurmai documents d'interpresa en ina survista clera da readiness ESG cun cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas ESG da clients, cumpra, finanziaziun, investiders e chadainas da furniziun.",
+      "Chapir dumondas ESG, chattar cumprovas, identifitgar largias e preparar respostas traceablas per approvaziun umana.",
     keywords:
-      "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, readiness da durabilitad, ESG sin basa da documents",
+      "cumprovas ESG, respostas ESG, questiunaris ESG, ESG per PMI, VSME, GRI, ESRS, ESG Svizra, ESG da furniturs",
     ogImageAlt:
-      "ESGCheck survista pragmatica da readiness ESG per PMI B2B che creschan",
+      "Plattafurma ESGCheck per cumprovas e respostas da PMI B2B e furniturs",
     structuredData: {
       description:
-        "Ina plattafurma pragmatica da readiness ESG per PMI B2B che creschan e survegnan dumondas ESG indirectas, basada sin documents gia existents.",
+        "Ina plattafurma attenta a la protecziun da datas per cumprovas e respostas ESG da PMI B2B e furniturs.",
       featureList: {
-        documentFirst: "Survista da readiness ESG basada sin documents",
-        scoreRationale: "Punctaziun ESG indicativa cun motivaziun",
-        strengthsGaps: "Mapping da cumprovas e survista da largias",
-        nextSteps: "Proxims pass concrets",
-        vsmeReadiness: "Referenza voluntara orientada a VSME",
+        documentFirst: "Tschertga da cumprovas guidada da la dumonda",
+        traceability: "Cumprovas traceablas e context da funtaunas",
+        strengthsGaps: "Status da cumprovas e largias per dumonda",
+        nextSteps: "Respostas proponidas e sustegnidas da cumprovas",
+        vsmeReadiness: "VSME sco basa metodica per PMI",
         swissPrivacy: "Workflow svizzer attent a la protecziun da datas",
       },
     },
@@ -2232,49 +2242,49 @@ export const rmTranslations: TranslationDictionary = {
     secondaryCta: "Enavos a la pagina iniziala",
     nextTitle: "Uschia vai vinavant:",
     nextDescription:
-      "Cliccai per plaschair sin il link en l'e-mail per confermar Vossa dumonda d'access anticipà e survegnir updates davart ESGCheck.",
+      "Cliccai sin il link per confermar Voss interess a la perscrutaziun e la lubientscha per updates ESGCheck relevants.",
     helpTitle: "Nagin e-mail retschavì?",
     helpDescription:
       "Controllai per plaschair era Voss ordinatur da spam u promoziuns. Sche l'e-mail n'arriva betg, pudais Vus contactar nus sut info@esgcheck.ch.",
     steps: {
       review: {
-        title: "Per PMI e startups",
+        title: "Per PMI B2B e furniturs",
         description:
-          "Reporting ESG che s'orientescha a Voss basegns.",
+          "Sustegn pratic per dumondas realas d'infurmaziuns ESG.",
       },
       update: {
-        title: "Protecziun da datas svizra",
+        title: "Attent a la protecziun da datas",
         description:
-          "Vossas datas restan segiras en Svizra u en l'UE.",
+          "Il tractament responsabel da datas guida il svilup dal product.",
       },
       prepare: {
-        title: "Svelt ed accessibel",
+        title: "Sustegnì da cumprovas",
         description:
-          "Analisis automatisadas ad in pretsch fair.",
+          "Respostas proponidas restan colliadas cun cumprovas e dovran approvaziun umana.",
       },
     },
     trustTitle: "Far ESG pli simpel ensemen.",
     trustDescription:
       "ESGCheck gida teams che creschan cun orientaziun pratica, tractament attent da datas e proxims pass clers.",
     trust: {
-      swissBuilt: "Per PMI e startups",
-      privacy: "Protecziun da datas svizra",
-      growingSmes: "Svelt ed accessibel",
+      swissBuilt: "Per PMI B2B e furniturs",
+      privacy: "Attent a la protecziun da datas",
+      growingSmes: "Approvaziun umana",
     },
     finalTitle: "Vulais Vus savair dapli davart ESGCheck?",
     finalDescription:
-      "Vus pudais turnar a la landing page per vesair co ESGCheck transfurma documents d'interpresa existents en mapping da cumprovas, largias visiblas, proxims pass concrets ed ina punctaziun indicativa.",
+      "Turnai a la landing page per vesair co ESGCheck declera dumondas, chatta cumprovas, mussa largias e prepara respostas traceablas.",
     finalCta: "Dapli davart ESGCheck",
     seo: {
       title: "Confermar l'adressa dad e-mail | ESGCheck",
       description:
-        "Confermai per plaschair Vossa dumonda d'access anticipà ad ESGCheck cun il link tramess per e-mail.",
+        "Confermai Voss interess a la perscrutaziun ESGCheck cun il link tramess per e-mail.",
     },
   },
   thankYou: {
-    title: "Grazia fitg per Vossa annunzia",
+    title: "Grazia fitg per Voss interess",
     description:
-      "Vossa adressa dad e-mail è vegnida confermada. Da qua davent survegnis Vus mintgatant updates relevants davart ESGCheck, access anticipà e temas ESG per PMI.",
+      "Vossa e-mail è vegnida confermada. Nus pudain contactar Vus per perscrutaziun ESGCheck adattada e trametter mintgatant updates dal product u davart ESG per PMI.",
     primaryCta: "Dapli davart ESGCheck",
     cards: {
       product: {
@@ -2286,17 +2296,17 @@ export const rmTranslations: TranslationDictionary = {
         description: "Cuntegns pratics davart ESG, regulaziun e PMI.",
       },
       access: {
-        title: "Access anticipà",
-        description: "Infurmaziuns davart tests, launch ed access anticipà.",
+        title: "Invitaziuns a la perscrutaziun",
+        description: "Pussaivladads da contribuir cun enquistas u discurs.",
       },
     },
     unsubscribeNote:
       "Vus pudais As annunziar giu da tut temp cun il link d'annullaziun en noss e-mails.",
-    footerTagline: "Reporting ESG simpel, accessibel e svizzer.",
+    footerTagline: "Cumprovas e respostas ESG praticas, da la Svizra.",
     seo: {
-      title: "Grazia fitg per Vossa annunzia | ESGCheck",
+      title: "Grazia fitg per Voss interess | ESGCheck",
       description:
-        "Vossa adressa dad e-mail per ESGCheck è vegnida confermada. Grazia fitg per Vossa annunzia als updates.",
+        "Vossa adressa dad e-mail e Voss interess per la perscrutaziun ESGCheck èn vegnids confermads.",
     },
   },
   formRuntime: {
@@ -2312,7 +2322,7 @@ export const rmTranslations: TranslationDictionary = {
   consent: {
     title: "Preferenzas da protecziun da datas",
     description:
-      "Nus duvrain servetschs essenzials per la segirezza da la pagina e per il formular da spetga. Analisa, automatisaziun da marketing e chat vegnan chargiads mo sche Vus lubis quai.",
+      "Nus duvrain servetschs essenzials per la segirezza da la pagina e per il formular da perscrutaziun. Analisa, automatisaziun da marketing e chat vegnan chargiads mo sche Vus lubis quai.",
     privacyLink: "Decleraziun da protecziun da datas",
     cookieLink: "Politica da cookies",
     alwaysActive: "Adina activ",
@@ -2346,8 +2356,8 @@ export const rmTranslations: TranslationDictionary = {
   },
   footer: {
     description:
-      "Readiness ESG pragmatica per PMI B2B che creschan e sa preparan per dumondas d'infurmaziuns ESG, sviluppada en Svizra.",
-    tagline: "Sviluppà en Svizra · Protecziun da datas dapi il cumenzament",
+      "Ina plattafurma pratica da cumprovas e respostas ESG per PMI B2B e furniturs, cun sedia en Svizra.",
+    tagline: "Cun sedia en Svizra · Protecziun da datas per design",
     product: "Product",
     company: "Interpresa",
     privacy: "Protecziun da datas",
@@ -2356,8 +2366,8 @@ export const rmTranslations: TranslationDictionary = {
     legalNotice: "Impressum",
     privacyPreferences: "Preferenzas da protecziun da datas",
     contact: "Contact",
-    earlyAccess: "Access anticipà",
-    swissBuilt: "Sviluppà en Svizra",
+    research: "Perscrutaziun",
+    swissBuilt: "Cun sedia en Svizra",
     copyright: "Copyright 2026 ESGCheck. Tut ils dretgs resalvads.",
   },
 };

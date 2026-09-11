@@ -25,7 +25,7 @@ export default function SEOHead({
   canonicalUrl = "https://esgcheck.ch/en/",
   author = "ESGCheck",
   publishedTime = "2026-04-28T00:00:00+02:00",
-  modifiedTime = "2026-05-01T00:00:00+02:00",
+  modifiedTime = "2026-09-10T00:00:00+02:00",
   ogImage = "https://esgcheck.ch/og-image.jpg",
   ogImageType = "image/jpeg",
   ogImageWidth = 1200,

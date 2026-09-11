@@ -339,7 +339,7 @@ export default function WaitlistCTA() {
                   <span className="hidden whitespace-nowrap sm:inline">{t("waitlist.modal.disclaimer")}</span>
                 </div>
                 <p className="mt-4 max-w-sm text-sm leading-7 text-foreground/68">
-                  {t("waitlist.modal.betaNote")}
+                  {t("waitlist.modal.participationNote")}
                 </p>
                 <m.div
                   className="mt-8 self-start lg:self-end"

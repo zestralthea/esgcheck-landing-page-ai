@@ -31,7 +31,7 @@ const Index = () => {
   const websiteId = `${siteBaseUrl}/#website`;
   const webpageId = `${canonicalUrl}#webpage`;
   const pagePublishedTime = "2026-04-28T00:00:00+02:00";
-  const pageModifiedTime = "2026-05-15T00:00:00+02:00";
+  const pageModifiedTime = "2026-09-10T00:00:00+02:00";
   const alternateLinks = [
     ...supportedLanguages.map((lang) => ({
       hrefLang: languageMetadata[lang].hrefLang,
@@ -93,18 +93,12 @@ const Index = () => {
       "applicationCategory": "BusinessApplication",
       "operatingSystem": "Web Browser",
       "inLanguage": structuredDataLanguage,
-      "offers": {
-        "@type": "Offer",
-        "price": "0",
-        "priceCurrency": "CHF",
-        "availability": "https://schema.org/InStock"
-      },
       "provider": {
         "@id": organizationId
       },
       "featureList": [
         t("seo.structuredData.featureList.documentFirst"),
-        t("seo.structuredData.featureList.scoreRationale"),
+        t("seo.structuredData.featureList.traceability"),
         t("seo.structuredData.featureList.strengthsGaps"),
         t("seo.structuredData.featureList.nextSteps"),
         t("seo.structuredData.featureList.vsmeReadiness"),

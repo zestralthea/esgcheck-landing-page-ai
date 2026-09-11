@@ -9,7 +9,7 @@ const templatePath = path.join(distDir, "index.html");
 
 const siteBaseUrl = "https://esgcheck.ch";
 const publishedTime = "2026-04-28T00:00:00+02:00";
-const modifiedTime = "2026-05-01T00:00:00+02:00";
+const modifiedTime = "2026-09-10T00:00:00+02:00";
 const ogImage = `${siteBaseUrl}/og-image.jpg`;
 
 const languages = {
@@ -27,100 +27,100 @@ const languages = {
     confirmation: {
       title: "Please Confirm Your Email | ESGCheck",
       description:
-        "Please confirm your ESGCheck early-access request using the link sent to your email address.",
+        "Please confirm your interest in ESGCheck research using the link sent to your email address.",
     },
     thankYou: {
-      title: "Thank You for Signing Up | ESGCheck",
+      title: "Thank You for Your Interest | ESGCheck",
       description:
-        "Your ESGCheck email address has been confirmed. Thank you for signing up for updates.",
+        "Your email address and ESGCheck research interest have been confirmed.",
     },
   },
   de: {
     htmlLang: "de-CH",
     hrefLang: "de-CH",
     seo: {
-      title: "ESGCheck | Praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
+      title: "ESGCheck | Nachweisgestützte ESG-Antworten für B2B-KMU",
       description:
-        "Machen Sie aus Unternehmensunterlagen einen klaren ESG-Readiness-Überblick mit Nachweis-Mapping, sichtbaren Lücken, konkreten nächsten Schritten und indikativem Score für steigende ESG-Informationsanfragen.",
+        "ESG-Anfragen verstehen, Nachweise finden, Lücken erkennen und nachvollziehbare Antworten zur menschlichen Freigabe vorbereiten.",
       keywords:
-        "ESG-Readiness, ESG für KMU, VSME-Readiness, GRI, Swiss ESG, ESG-Informationsanfragen, Nachhaltigkeits-Readiness, dokumentenbasierte ESG",
-      ogImageAlt: "ESGCheck praxisnaher ESG-Readiness-Überblick für wachsende B2B-KMU",
+        "ESG-Nachweise, ESG-Antworten, ESG-Fragebogen, ESG für KMU, VSME, GRI, ESRS, Swiss ESG, Lieferanten-ESG",
+      ogImageAlt: "ESGCheck Plattform für nachweisgestützte ESG-Antworten von B2B-KMU und Lieferanten",
     },
     confirmation: {
       title: "E-Mail-Adresse bestätigen | ESGCheck",
       description:
-        "Bitte bestätigen Sie Ihre ESGCheck Early-Access-Anfrage über den Link in der gesendeten E-Mail.",
+        "Bitte bestätigen Sie Ihr Interesse an der ESGCheck Forschung über den Link in der gesendeten E-Mail.",
     },
     thankYou: {
-      title: "Vielen Dank für Ihre Anmeldung | ESGCheck",
+      title: "Vielen Dank für Ihr Interesse | ESGCheck",
       description:
-        "Ihre E-Mail-Adresse für ESGCheck wurde bestätigt. Vielen Dank für Ihre Anmeldung zu Updates.",
+        "Ihre E-Mail-Adresse und Ihr Interesse an der ESGCheck Forschung wurden bestätigt.",
     },
   },
   fr: {
     htmlLang: "fr-CH",
     hrefLang: "fr-CH",
     seo: {
-      title: "ESGCheck | Aperçu pratique de préparation ESG pour les PME B2B en croissance",
+      title: "ESGCheck | Réponses ESG étayées pour les PME B2B",
       description:
-        "Transformez vos documents d'entreprise en un aperçu clair de préparation ESG avec cartographie des justificatifs, écarts visibles, prochaines étapes pratiques et score indicatif pour les demandes croissantes d'informations ESG.",
+        "Comprenez les demandes ESG, retrouvez les preuves, identifiez les lacunes et préparez des réponses traçables pour validation humaine.",
       keywords:
-        "préparation ESG, ESG pour PME, préparation VSME, GRI, Swiss ESG, demandes d'informations ESG, préparation durabilité, ESG fondé sur les documents",
-      ogImageAlt: "ESGCheck aperçu pratique de préparation ESG pour les PME B2B en croissance",
+        "preuves ESG, réponses ESG, questionnaires ESG, ESG pour PME, VSME, GRI, ESRS, ESG suisse, ESG fournisseurs",
+      ogImageAlt: "Plateforme ESGCheck de preuves et réponses pour PME B2B et fournisseurs",
     },
     confirmation: {
       title: "Confirmez votre adresse e-mail | ESGCheck",
       description:
-        "Veuillez confirmer votre demande d'accès anticipé à ESGCheck avec le lien envoyé par e-mail.",
+        "Veuillez confirmer votre intérêt pour la recherche ESGCheck avec le lien envoyé par e-mail.",
     },
     thankYou: {
-      title: "Merci pour votre inscription | ESGCheck",
+      title: "Merci pour votre intérêt | ESGCheck",
       description:
-        "Votre adresse e-mail ESGCheck a été confirmée. Merci pour votre inscription aux mises à jour.",
+        "Votre adresse e-mail et votre intérêt pour la recherche ESGCheck ont été confirmés.",
     },
   },
   it: {
     htmlLang: "it-CH",
     hrefLang: "it-CH",
     seo: {
-      title: "ESGCheck | Panoramica pratica di readiness ESG per PMI B2B in crescita",
+      title: "ESGCheck | Risposte ESG supportate da evidenze per PMI B2B",
       description:
-        "Trasforma i documenti aziendali in una panoramica chiara di readiness ESG con mappatura delle evidenze, lacune visibili, prossimi passi pratici e un punteggio indicativo per richieste crescenti di informazioni ESG.",
+        "Comprendi le richieste ESG, trova le evidenze, individua le lacune e prepara risposte tracciabili per l'approvazione umana.",
       keywords:
-        "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizzera, richieste di informazioni ESG, readiness sostenibilita, ESG basato sui documenti",
-      ogImageAlt: "ESGCheck panoramica pratica di readiness ESG per PMI B2B in crescita",
+        "evidenze ESG, risposte ESG, questionari ESG, ESG per PMI, VSME, GRI, ESRS, ESG Svizzera, ESG fornitori",
+      ogImageAlt: "Piattaforma ESGCheck per evidenze e risposte di PMI B2B e fornitori",
     },
     confirmation: {
       title: "Conferma il tuo indirizzo email | ESGCheck",
       description:
-        "Conferma la richiesta di accesso anticipato a ESGCheck tramite il link inviato via email.",
+        "Conferma il tuo interesse nella ricerca ESGCheck tramite il link inviato via email.",
     },
     thankYou: {
-      title: "Grazie per la tua iscrizione | ESGCheck",
+      title: "Grazie per il tuo interesse | ESGCheck",
       description:
-        "Il tuo indirizzo email per ESGCheck è stato confermato. Grazie per esserti iscritto agli aggiornamenti.",
+        "Il tuo indirizzo email e il tuo interesse nella ricerca ESGCheck sono stati confermati.",
     },
   },
   rm: {
     htmlLang: "rm-CH",
     hrefLang: "rm-CH",
     seo: {
-      title: "ESGCheck | Survista pragmatica da readiness ESG per PMI B2B",
+      title: "ESGCheck | Respostas ESG sustegnidas da cumprovas per PMI B2B",
       description:
-        "Transfurmai documents d'interpresa en ina survista clera da readiness ESG cun mapping da cumprovas, largias visiblas, proxims pass pratics ed ina punctaziun indicativa per dumondas creschentas d'infurmaziuns ESG.",
+        "Chapir dumondas ESG, chattar cumprovas, identifitgar largias e preparar respostas traceablas per approvaziun umana.",
       keywords:
-        "readiness ESG, ESG per PMI, readiness VSME, GRI, ESG Svizra, dumondas d'infurmaziuns ESG, readiness da durabilitad, ESG sin basa da documents",
-      ogImageAlt: "ESGCheck survista pragmatica da readiness ESG per PMI B2B che creschan",
+        "cumprovas ESG, respostas ESG, questiunaris ESG, ESG per PMI, VSME, GRI, ESRS, ESG Svizra, ESG da furniturs",
+      ogImageAlt: "Plattafurma ESGCheck per cumprovas e respostas da PMI B2B e furniturs",
     },
     confirmation: {
       title: "Confermar l'adressa dad e-mail | ESGCheck",
       description:
-        "Confermai per plaschair Vossa dumonda d'access anticipà ad ESGCheck cun il link tramess per e-mail.",
+        "Confermai Voss interess a la perscrutaziun ESGCheck cun il link tramess per e-mail.",
     },
     thankYou: {
-      title: "Grazia fitg per Vossa annunzia | ESGCheck",
+      title: "Grazia fitg per Voss interess | ESGCheck",
       description:
-        "Vossa adressa dad e-mail per ESGCheck è vegnida confermada. Grazia fitg per Vossa annunzia als updates.",
+        "Vossa adressa dad e-mail e Voss interess per la perscrutaziun ESGCheck èn vegnids confermads.",
     },
   },
 };

@@ -10,6 +10,8 @@ format_label: "professional PDF layout"
 tagline: "Swiss/EU privacy-conscious ESG evidence and response development"
 ---
 
+> **Superseded historical draft.** Public website claims and current company positioning are governed by `esgcheck-en-v3.md`, Version 3.0 dated 10 September 2026. This file is retained for history only.
+
 # Positioning
 
 ESGCheck is a practical **ESG evidence and response platform** for B2B SMEs and suppliers facing rising ESG information requests from customers, procurement teams, lenders, investors, and supply-chain partners.
